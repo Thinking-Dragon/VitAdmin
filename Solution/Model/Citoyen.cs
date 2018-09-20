@@ -15,8 +15,9 @@ namespace VitAdmin.Model
         public DateTime DateNaissance { get; set; }
         public String Adresse { get; set; }
         public String NumTelephone { get; set; }
+        public List<Hospitalisation> Hospitalisations { get; set; }
+        List<Lit> Lits { get; set; }
 
-//        List<Lit> 
 
         bool ValiderTelephone() { return new bool(); }
         bool ValiderAssMaladie() { return new bool(); }
