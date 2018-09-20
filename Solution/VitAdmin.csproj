@@ -80,6 +80,7 @@
     <Compile Include="Model\Quart.cs" />
     <Compile Include="Model\QuartIndisponible.cs" />
     <Compile Include="Model\ResultatLabo.cs" />
+    <Compile Include="Model\Role.cs" />
     <Compile Include="Model\Semaine.cs" />
     <Compile Include="Model\Symptome.cs" />
     <Compile Include="Model\Traitement.cs" />

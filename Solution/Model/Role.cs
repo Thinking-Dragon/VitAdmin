@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VitAdmin.Model
-{    // TODO: Max
-    public class Usager : Employe
+{
+    public enum Role
     {
-        String NomUtilisateur { get; set; }
-        Role RoleUsager { get; set; }
+        Admin,
+        GestPersonnel,
+        InfChef,
+        PersonnelSante
     }
 }

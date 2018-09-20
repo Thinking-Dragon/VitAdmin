@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 namespace VitAdmin.Model
 {
     // TODO: Max
-    class Employe
+    public class Employe : Citoyen
     {
+        String NumEmploye { get; set; }
+        String Poste { get; set; }
+        String NumPermis { get; set; }
+        String NAS { get; set; }
+
+        void GenererNumEmploye() { }
     }
 }
