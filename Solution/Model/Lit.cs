@@ -11,6 +11,7 @@ namespace VitAdmin.Model
         public String Numero { get; set; }
         public String Etat { get; set; }
 
+
         bool EstDispo() { return new bool(); }
     }
 }
