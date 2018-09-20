@@ -8,12 +8,27 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <Label>Usager:</Label>
-        <TextBox Text="{Binding Usager}"></TextBox>
+        <TextBox Text="{Binding Usager}"> <!-- BUG TO FIX (User binding doesn't update unless focus is changed) -->
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding CmdConnexion}" Key="Return"
+                            CommandParameter="{Binding ElementName=pswPassword}" />
+                <KeyBinding Command="{Binding CmdConnexion}" Key="Enter"
+                            CommandParameter="{Binding ElementName=pswPassword}" />
+            </TextBox.InputBindings>
+        </TextBox>
         <Label>Mot de passe:</Label>
-        <PasswordBox></PasswordBox>
+        <PasswordBox x:Name="pswPassword">
+            <PasswordBox.InputBindings>
+                <KeyBinding Command="{Binding CmdConnexion}" Key="Return"
+                            CommandParameter="{Binding ElementName=pswPassword}" />
+                <KeyBinding Command="{Binding CmdConnexion}" Key="Enter"
+                            CommandParameter="{Binding ElementName=pswPassword}" />
+            </PasswordBox.InputBindings>
+        </PasswordBox>
         <Button Grid.ColumnSpan="2"
                     Grid.Row="3"
                     Width="120"
-                    Command="{Binding CmdConnexion}">Connexion</Button>
+                    Command="{Binding CmdConnexion}"
+                    CommandParameter="{Binding ElementName=pswPassword}">Connexion</Button>
     </StackPanel>
 </UserControl>
