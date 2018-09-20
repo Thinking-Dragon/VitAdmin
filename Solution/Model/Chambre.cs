@@ -9,6 +9,8 @@ namespace VitAdmin.Model
     class Chambre
     {
         String Numero { get; set; }
+        public List<Lit> Lits { get; set; }
+        public List<Equipement> Equipements { get; set; }
 
     }
 }
