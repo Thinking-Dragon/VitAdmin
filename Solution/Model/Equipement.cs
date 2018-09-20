@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {    // TODO: Max
-    class Equipement
+    public class Equipement
     {
-        String Nom { get; set; }
-        String Description { get; set; }
+        public String Nom { get; set; }
+        public String Description { get; set; }
     }
 }

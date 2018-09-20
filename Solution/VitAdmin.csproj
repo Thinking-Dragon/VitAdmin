@@ -78,6 +78,7 @@
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\Quart.cs" />
+    <Compile Include="Model\QuartEmploye.cs" />
     <Compile Include="Model\QuartIndisponible.cs" />
     <Compile Include="Model\ResultatLabo.cs" />
     <Compile Include="Model\Role.cs" />

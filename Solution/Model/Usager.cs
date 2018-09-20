@@ -8,7 +8,7 @@ namespace VitAdmin.Model
 {    // TODO: Max
     public class Usager : Employe
     {
-        String NomUtilisateur { get; set; }
-        Role RoleUsager { get; set; }
+        public String NomUtilisateur { get; set; }
+        public Role RoleUsager { get; set; }
     }
 }

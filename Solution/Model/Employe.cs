@@ -9,11 +9,15 @@ namespace VitAdmin.Model
     // TODO: Max
     public class Employe : Citoyen
     {
-        String NumEmploye { get; set; }
-        String Poste { get; set; }
-        String NumPermis { get; set; }
-        String NAS { get; set; }
+        public String NumEmploye { get; set; }
+        public String Poste { get; set; }
+        public String NumPermis { get; set; }
+        public String NAS { get; set; }
 
-        void GenererNumEmploye() { }
+        public List<QuartEmploye> LstQuartEmploye;
+        public List<QuartIndisponible> LstQuartIndisponible;
+        public List<Evenement> LstEvenement;
+
+        public void GenererNumEmploye() { }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {    // TODO: Max
-    class Etape
+    public class Etape
     {
-        String Description { get; set; }
-        List<String> LstSousEtape;
+        public String Description { get; set; }
+        public List<String> LstSousEtape;
     }
 }

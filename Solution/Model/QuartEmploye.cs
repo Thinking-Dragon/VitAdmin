@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VitAdmin.Model
-{    // TODO: Max
-    public class Traitement
+{
+    public class QuartEmploye
     {
-        public String Nom { get; set; }
+        public Employe EmployeAssocie { get; set; }
     }
 }
