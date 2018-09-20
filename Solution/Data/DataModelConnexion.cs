@@ -37,7 +37,7 @@ namespace VitAdmin.Data
 
             if(ConnexionBD.Instance().EstConnecte())
             {
-                ConnexionBD.Instance().ExecuterRequete(
+                ConnexionBD.Instance().ExecuterRequete( // TODO: ajouter les informations des superclasses d'Usager.
                     "SELECT u.nom usager, r.nom role " +
                     "FROM Usagers u " +
                     "JOIN Roles r ON u.idRole = r.idRole " +
@@ -46,7 +46,7 @@ namespace VitAdmin.Data
                         usager = new Usager()
                         {
                             NomUtilisateur = lecteur.GetString(0),
-                            // Role usager
+                            // Role usager (TODO: implémenter un convertisseur de string à Role)
                         };
                   }
                 );
