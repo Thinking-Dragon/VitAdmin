@@ -9,6 +9,6 @@ namespace VitAdmin.Model
     public class Traitement
     {
         public String Nom { get; set; }
-        public List<Etape> EtapesTraitement { get; set; }
+        public List<Etape> EtapesTraitements { get; set; }
     }
 }

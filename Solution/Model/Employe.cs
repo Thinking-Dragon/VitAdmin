@@ -14,9 +14,9 @@ namespace VitAdmin.Model
         public String NumPermis { get; set; }
         public String NAS { get; set; }
 
-        public List<QuartEmploye> LstQuartEmploye;
-        public List<QuartIndisponible> LstQuartIndisponible;
-        public List<Evenement> LstEvenement;
+        public List<QuartEmploye> LstQuartEmployes;
+        public List<QuartIndisponible> LstQuartIndisponibles;
+        public List<Evenement> LstEvenements;
 
         public void GenererNumEmploye() { }
     }
