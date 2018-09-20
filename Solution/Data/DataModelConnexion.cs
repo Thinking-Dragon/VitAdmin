@@ -16,8 +16,8 @@ namespace VitAdmin.Data
 
             if (ConnexionBD.Instance().EstConnecte())
             {
-                ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT nom, hash FROM Usagers WHERE nom = *USAGER*", (MySqlDataReader lecteur) =>
+                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit
+                    "SELECT nom, hash FROM Usagers WHERE nom = '" + usager + "'", (MySqlDataReader lecteur) =>
                     {
                         string nom = lecteur.GetString(0);
                         string hash = lecteur.GetString(1);
@@ -27,7 +27,7 @@ namespace VitAdmin.Data
                 );
             }
             else retour.Message = "Impossible de se connecter au service de données du système";
-
+            
             return retour;
         }
 
@@ -38,15 +38,17 @@ namespace VitAdmin.Data
             if(ConnexionBD.Instance().EstConnecte())
             {
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT * FROM Usagers WHERE nom = *USAGER*", (MySqlDataReader lecteur) =>
+                    "SELECT u.nom usager, r.nom role " +
+                    "FROM Usagers u " +
+                    "JOIN Roles r ON u.idRole = r.idRole " +
+                    "WHERE u.nom = '" + nom + "'", (MySqlDataReader lecteur) =>
                     {
-/*                      usager = new Usager(
-                            lecteur.GetString(0),
-                            lecteur.GetString(1),
-                            lecteur.GetString(2),
-                            lecteur.GetString(3)
-                        );
-*/                  }
+                        usager = new Usager()
+                        {
+                            NomUtilisateur = lecteur.GetString(0),
+                            // Role usager
+                        };
+                  }
                 );
             }
 

@@ -25,7 +25,7 @@ namespace VitAdmin
         public MainWindow()
         {
             InitializeComponent();
-            ConnexionBD.Instance().NomBD = ""; // Initialiser la connexion à la base de donnée.
+            ConnexionBD.Instance().NomBD = "vitadmin-dev"; // Initialiser la connexion à la base de donnée.
             GestionnaireEcrans.Initialiser(grdMain, new ViewConnexion()); // Initialiser le gestionnaire d'écrans.
         }
 

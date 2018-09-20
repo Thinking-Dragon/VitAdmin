@@ -31,7 +31,7 @@ namespace VitAdmin.Data
             if(Connexion == null)
             {
                 if (String.IsNullOrEmpty(NomBD)) return false;
-                string strConnexion = string.Format("Server=127.0.0.1; database={0}; UID=Usager; password=Mdp", NomBD);
+                string strConnexion = string.Format("Server=127.0.0.1; database={0}; UID=root; password=; SslMode=none", NomBD);
                 connexion = new MySqlConnection(strConnexion);
                 Connexion.Open();
             }
@@ -44,6 +44,8 @@ namespace VitAdmin.Data
             MySqlDataReader lecteur = commande.ExecuteReader();
 
             while (lecteur.Read()) callback(lecteur);
+
+            lecteur.Close();
         }
 
         public void Fermer()
