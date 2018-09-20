@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Data;
 using VitAdmin.View;
 
 namespace VitAdmin
@@ -24,7 +25,11 @@ namespace VitAdmin
         public MainWindow()
         {
             InitializeComponent();
-            GestionnaireEcrans.Initialiser(grdMain, new ViewConnexion());
+            ConnexionBD.Instance().NomBD = ""; // Initialiser la connexion à la base de donnée.
+            GestionnaireEcrans.Initialiser(grdMain, new ViewConnexion()); // Initialiser le gestionnaire d'écrans.
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+            => ConnexionBD.Instance().Fermer();
     }
 }

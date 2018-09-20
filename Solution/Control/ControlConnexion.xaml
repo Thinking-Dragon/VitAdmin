@@ -25,6 +25,8 @@
                             CommandParameter="{Binding ElementName=pswPassword}" />
             </PasswordBox.InputBindings>
         </PasswordBox>
+        <Label Content="{Binding MessageErreur}"
+               Foreground="Red"></Label>
         <Button Grid.ColumnSpan="2"
                     Grid.Row="3"
                     Width="120"
