@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {    // TODO: Max
-    class Departement
+    public class Departement
     {
-        String Nom { get; set; }
+        public String Nom { get; set; }
+        public List<Chambre> Chambres { get; set; }
 
     }
 }

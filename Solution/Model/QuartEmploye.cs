@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VitAdmin.Model
-{    // TODO: Max
-    public class Usager : Employe
+{
+    public class QuartEmploye
     {
-        public String NomUtilisateur { get; set; }
-        public Role RoleUsager { get; set; }
+        public Employe EmployeAssocie { get; set; }
     }
 }

@@ -9,14 +9,15 @@ namespace VitAdmin.Model
     // TODO: Max
     public class Citoyen
     {
-        String Nom { get; set; }
-        String Prenom { get; set; }
-        String AssMaladie { get; set; }
-        DateTime DateNaissance { get; set; }
-        String Adresse { get; set; }
-        String NumTelephone { get; set; }
+        public String Nom { get; set; }
+        public String Prenom { get; set; }
+        public String AssMaladie { get; set; }
+        public DateTime DateNaissance { get; set; }
+        public String Adresse { get; set; }
+        public String NumTelephone { get; set; }
         public List<Hospitalisation> Hospitalisations { get; set; }
-        
+        List<Lit> Lits { get; set; }
+
 
         bool ValiderTelephone() { return new bool(); }
         bool ValiderAssMaladie() { return new bool(); }

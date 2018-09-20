@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {    // TODO: Max
-    class Lit
+    public class Lit
     {
-        String Numero { get; set; }
-        String Etat { get; set; }
+        public String Numero { get; set; }
+        public String Etat { get; set; }
 
         bool EstDispo() { return new bool(); }
     }
