@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
+    // TODO: Max
     class Citoyen
     {
     }
