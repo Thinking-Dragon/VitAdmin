@@ -9,5 +9,7 @@ namespace VitAdmin.Model
     public class Semaine
     {
         public DateTime PremierJour { get; set; }
+
+        bool GenererHoraire() { return true; }
     }
 }
