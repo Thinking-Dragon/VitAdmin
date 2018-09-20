@@ -12,19 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using VitAdmin.View;
+using VitAdmin.ControlModel;
 
-namespace VitAdmin
+namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour ControlConnexion.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ControlConnexion : UserControl
     {
-        public MainWindow()
+        public ControlConnexion()
         {
             InitializeComponent();
-            GestionnaireEcrans.Initialiser(grdMain, new ViewConnexion());
+            DataContext = new ControlModelConnexion();
         }
     }
 }
