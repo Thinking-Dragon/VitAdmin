@@ -8,5 +8,7 @@ namespace VitAdmin.Model
 {    // TODO: Max
     class Departement
     {
+        String Nom { get; set; }
+
     }
 }

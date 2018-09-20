@@ -8,5 +8,7 @@ namespace VitAdmin.Model
 {    // TODO: Max
     class Etape
     {
+        String Description { get; set; }
+        List<String> LstSousEtape;
     }
 }

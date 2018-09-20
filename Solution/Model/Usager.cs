@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {    // TODO: Max
-    public class Usager
+    public class Usager : Employe
     {
+        String NomUtilisateur { get; set; }
+        Role RoleUsager { get; set; }
     }
 }

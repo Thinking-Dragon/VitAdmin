@@ -8,5 +8,7 @@ namespace VitAdmin.Model
 {    // TODO: Max
     class Chambre
     {
+        String Numero { get; set; }
+
     }
 }

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    public class Hospitalisation
+    public enum Role
     {
-        public DateTime DateDebut { get; set; }
-        public DateTime DateFin { get; set; }
+        Admin,
+        GestPersonnel,
+        InfChef,
+        PersonnelSante
     }
 }

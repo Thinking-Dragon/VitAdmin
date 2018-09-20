@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class QuartIndisponible
+    public class QuartIndisponible
     {
+        public string TypeQuart { get; set; }
+        public string Raison { get; set; }
     }
 }

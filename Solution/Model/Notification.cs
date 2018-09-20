@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class Notification
+    public class Notification
     {
+        public bool EstLu { get; set; }
+        public string LienVersFenetre { get; set; }
     }
 }
