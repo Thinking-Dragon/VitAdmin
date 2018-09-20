@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class Quart
+    public class Quart
     {
+        public string TypeQuart { get; set; } //ENUM
+
     }
 }

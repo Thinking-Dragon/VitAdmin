@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class Hospitalisation
+    public class Hospitalisation
     {
+        public DateTime DateDebut { get; set; }
+        public DateTime DateFin { get; set; }
     }
 }

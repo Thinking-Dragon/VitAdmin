@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class Prescription
+    public class Prescription : Evenement
     {
+        public string Produit { get; set; }
+        public string Posologie { get; set; }
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class NoteMedecin
+    public class NoteMedecin : Evenement
     {
+        public List<String> NotesMed { get; set; }
     }
 }

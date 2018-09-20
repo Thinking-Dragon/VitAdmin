@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class Evenement
+    abstract public class Evenement
     {
+        public DateTime DateEvenement { get; set; }
+        public String Description { get; set; }
     }
 }

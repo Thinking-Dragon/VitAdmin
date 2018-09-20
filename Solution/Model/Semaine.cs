@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    class Semaine
+    public class Semaine
     {
+        public DateTime PremierJour { get; set; }
     }
 }
