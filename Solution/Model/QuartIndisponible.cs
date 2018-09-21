@@ -10,5 +10,6 @@ namespace VitAdmin.Model
     {
         public string TypeQuart { get; set; }
         public string Raison { get; set; }
+        public Employe EmployerIndisponible { get; set; }
     }
 }

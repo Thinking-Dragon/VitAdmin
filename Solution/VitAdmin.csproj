@@ -102,6 +102,7 @@
     <Compile Include="Model\Semaine.cs" />
     <Compile Include="Model\Symptome.cs" />
     <Compile Include="Model\Traitement.cs" />
+    <Compile Include="Model\TypeQuart.cs" />
     <Compile Include="Model\Usager.cs" />
     <Compile Include="MVVM\CommandeDeleguee.cs" />
     <Compile Include="MVVM\ObjetObservable.cs" />

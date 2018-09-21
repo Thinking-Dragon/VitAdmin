@@ -17,6 +17,7 @@ namespace VitAdmin.Model
         public List<QuartEmploye> LstQuartEmployes;
         public List<QuartIndisponible> LstQuartIndisponibles;
         public List<Evenement> LstEvenements;
+        //TODO : Liste de notifs right?
 
         public void GenererNumEmploye() { }
     }

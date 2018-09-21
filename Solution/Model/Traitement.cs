@@ -10,5 +10,6 @@ namespace VitAdmin.Model
     {
         public String Nom { get; set; }
         public List<Etape> EtapesTraitements { get; set; }
+        public Departement DepartementAssocie { get; set; }
     }
 }

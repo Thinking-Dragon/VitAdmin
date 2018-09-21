@@ -10,5 +10,7 @@ namespace VitAdmin.Model
     {
         public DateTime DateEvenement { get; set; }
         public String Description { get; set; }
+        //Avoir pour la liste de notifs
+        public List<Notification> Notifs { get; set; }
     }
 }

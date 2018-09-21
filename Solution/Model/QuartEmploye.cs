@@ -9,5 +9,6 @@ namespace VitAdmin.Model
     public class QuartEmploye
     {
         public Employe EmployeAssocie { get; set; }
+        public Quart QuartAssocie { get; set; }
     }
 }

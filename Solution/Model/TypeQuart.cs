@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    public class Quart
+    public enum TypeQuart
     {
-        public TypeQuart TypeDeQuart { get; set; }
-
+        Jour,
+        Soir,
+        Nuit
     }
 }
