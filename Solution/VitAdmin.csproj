@@ -107,6 +107,7 @@
     <Compile Include="MVVM\CommandeDeleguee.cs" />
     <Compile Include="MVVM\ObjetObservable.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
+    <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
     <Compile Include="ViewModel\ViewModelHubProfessionnel.cs" />
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
