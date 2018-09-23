@@ -21,10 +21,10 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlConnexion : UserControl
     {
-        public ControlConnexion()
+        public ControlConnexion(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
-            DataContext = new ControlModelConnexion();
+            DataContext = new ControlModelConnexion(gestionnaireEcrans);
         }
     }
 }

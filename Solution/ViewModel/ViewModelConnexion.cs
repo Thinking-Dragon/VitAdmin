@@ -9,6 +9,9 @@ namespace VitAdmin.ModelView
 {
     public class ViewModelConnexion : ObjetObservable
     {
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
+        public ViewModelConnexion(GestionnaireEcrans gestionnaireEcrans)
+            => GestionnaireEcrans = gestionnaireEcrans;
     }
 }

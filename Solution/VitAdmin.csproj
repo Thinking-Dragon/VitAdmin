@@ -74,7 +74,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlModel\ControlModelBandeauNavigationGeneral.cs" />
     <Compile Include="ControlModel\ControlModelConnexion.cs" />
+    <Compile Include="Control\ControlBandeauNavigationGeneral.xaml.cs">
+      <DependentUpon>ControlBandeauNavigationGeneral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlConnexion.xaml.cs">
       <DependentUpon>ControlConnexion.xaml</DependentUpon>
     </Compile>
@@ -109,6 +113,7 @@
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
     <Compile Include="ViewModel\ViewModelHubProfessionnel.cs" />
+    <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
     </Compile>
@@ -118,6 +123,13 @@
     <Compile Include="View\ViewHubProfessionnel.xaml.cs">
       <DependentUpon>ViewHubProfessionnel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewSuperEcran.xaml.cs">
+      <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Control\ControlBandeauNavigationGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlConnexion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewHubProfessionnel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewSuperEcran.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

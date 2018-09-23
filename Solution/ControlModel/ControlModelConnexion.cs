@@ -8,11 +8,14 @@ using System.Windows.Input;
 using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.View;
 
 namespace VitAdmin.ControlModel
 {
     public class ControlModelConnexion : ObjetObservable
     {
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
         private string _usager = string.Empty;
         public string Usager
         {
@@ -45,11 +48,15 @@ namespace VitAdmin.ControlModel
                     if (validation.Etat)
                     {
                         Usager usager = DataModelConnexion.GetUsager(Usager);
-                            // ... //
+                        // ... //
+                        GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewHubProfessionnel()));
                     }
                     else MessageErreur = validation.Message;
                 });
             }
         }
+
+        public ControlModelConnexion(GestionnaireEcrans gestionnaireEcrans)
+            => GestionnaireEcrans = gestionnaireEcrans;
     }
 }

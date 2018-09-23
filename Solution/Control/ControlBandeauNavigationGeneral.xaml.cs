@@ -12,21 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using VitAdmin.Control;
-using VitAdmin.ModelView;
+using VitAdmin.ControlModel;
 
-namespace VitAdmin.View
+namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour ViewConnexion.xaml
+    /// Logique d'interaction pour ControlBandeauNavigationGeneral.xaml
     /// </summary>
-    public partial class ViewConnexion : Page
+    public partial class ControlBandeauNavigationGeneral : UserControl
     {
-        public ViewConnexion(GestionnaireEcrans gestionnaireEcrans)
+        public ControlBandeauNavigationGeneral(GestionnaireEcrans gestionnaireEcrans, GestionnaireEcrans gestionnaireSousEcrans)
         {
             InitializeComponent();
-            DataContext = new ViewModelConnexion(gestionnaireEcrans);
-            card.Content = new ControlConnexion(gestionnaireEcrans);
+            DataContext = new ControlModelBandeauNavigationGeneral(gestionnaireEcrans, gestionnaireSousEcrans);
         }
     }
 }
