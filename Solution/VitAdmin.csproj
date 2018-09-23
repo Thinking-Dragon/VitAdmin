@@ -111,6 +111,9 @@
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDossierPatientInfos.xaml.cs">
+      <DependentUpon>ViewDossierPatientInfos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewHubProfessionnel.xaml.cs">
       <DependentUpon>ViewHubProfessionnel.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\ViewConnexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewDossierPatientInfos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
