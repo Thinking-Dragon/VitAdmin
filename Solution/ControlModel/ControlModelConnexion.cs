@@ -49,7 +49,7 @@ namespace VitAdmin.ControlModel
                     {
                         Usager usager = DataModelConnexion.GetUsager(Usager);
                         // ... //
-                        GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewHubProfessionnel()));
+                        GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewHubAdmin(GestionnaireEcrans)));
                     }
                     else MessageErreur = validation.Message;
                 });

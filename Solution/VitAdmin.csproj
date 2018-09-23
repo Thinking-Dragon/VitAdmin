@@ -112,6 +112,7 @@
     <Compile Include="MVVM\ObjetObservable.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
+    <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
     <Compile Include="ViewModel\ViewModelHubProfessionnel.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\ViewConnexion.xaml.cs">
@@ -119,6 +120,9 @@
     </Compile>
     <Compile Include="View\ViewDossierPatientInfos.xaml.cs">
       <DependentUpon>ViewDossierPatientInfos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewHubAdmin.xaml.cs">
+      <DependentUpon>ViewHubAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewHubProfessionnel.xaml.cs">
       <DependentUpon>ViewHubProfessionnel.xaml</DependentUpon>
@@ -152,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewDossierPatientInfos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewHubAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
