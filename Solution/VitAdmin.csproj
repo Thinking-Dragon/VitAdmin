@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlModel\ControlDossierPatientInfos.cs" />
     <Compile Include="ControlModel\ControlModelBandeauNavigationGeneral.cs" />
     <Compile Include="ControlModel\ControlModelConnexion.cs" />
     <Compile Include="Control\ControlBandeauNavigationGeneral.xaml.cs">
@@ -81,6 +82,9 @@
     </Compile>
     <Compile Include="Control\ControlConnexion.xaml.cs">
       <DependentUpon>ControlConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDossierPatientInfos.xaml.cs">
+      <DependentUpon>ControlDossierPatientInfos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\ConnexionBD.cs" />
     <Compile Include="Data\DataModelConnexion.cs" />
@@ -113,19 +117,19 @@
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
-    <Compile Include="ViewModel\ViewModelHubProfessionnel.cs" />
+    <Compile Include="ViewModel\ViewModelProfessionnelDossierPatient.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewDossierPatientInfos.xaml.cs">
-      <DependentUpon>ViewDossierPatientInfos.xaml</DependentUpon>
+    <Compile Include="View\ViewProfessionnelDossierPatientInfos.xaml.cs">
+      <DependentUpon>ViewProfessionnelDossierPatientInfos.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewHubAdmin.xaml.cs">
       <DependentUpon>ViewHubAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewHubProfessionnel.xaml.cs">
-      <DependentUpon>ViewHubProfessionnel.xaml</DependentUpon>
+    <Compile Include="View\ViewProfessionnelDossierPatient.xaml.cs">
+      <DependentUpon>ViewProfessionnelDossierPatient.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewSuperEcran.xaml.cs">
       <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
@@ -135,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlConnexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlDossierPatientInfos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +163,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewDossierPatientInfos.xaml">
+    <Page Include="View\ViewProfessionnelDossierPatientInfos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewHubProfessionnel.xaml">
+    <Page Include="View\ViewProfessionnelDossierPatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

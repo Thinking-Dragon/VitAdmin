@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using VitAdmin.ModelView;
 
-namespace VitAdmin.View
+namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour ViewHubProfessionnel.xaml
+    /// Logique d'interaction pour ControlDossierPatientInfos.xaml
     /// </summary>
-    public partial class ViewHubProfessionnel : Page
+    public partial class ControlDossierPatientInfos : UserControl
     {
-        public ViewHubProfessionnel()
+        public ControlDossierPatientInfos()
         {
             InitializeComponent();
         }

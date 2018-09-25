@@ -7,7 +7,7 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ViewModel
 {
-    class ViewModelHubProfessionnel : ObjetObservable
+    class ViewModelProfessionnelDossierPatient : ObjetObservable
     {
     }
 }

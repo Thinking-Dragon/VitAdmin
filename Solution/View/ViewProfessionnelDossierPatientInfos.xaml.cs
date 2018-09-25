@@ -18,11 +18,13 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewDossierPatientInfos.xaml
     /// </summary>
-    public partial class ViewDossierPatientInfos : Page
+    public partial class ViewProfessionnelDossierPatientInfos : Page
     {
-        public ViewDossierPatientInfos()
+        public ViewProfessionnelDossierPatientInfos()
         {
             InitializeComponent();
+
+            grdPatientInfos.Children.Add(new Control.ControlDossierPatientInfos());
         }
     }
 }
