@@ -100,6 +100,10 @@
     <Compile Include="Control\ControlProfessionnelDossierPatient.xaml.cs">
       <DependentUpon>ControlProfessionnelDossierPatient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlRechercheTraitement.xaml.cs">
+      <DependentUpon>ControlRechercheTraitement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Data\ConnexionBD.cs" />
     <Compile Include="Data\DataModelConnexion.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
@@ -136,6 +140,7 @@
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatient.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
+    <Compile Include="ViewModel\ViewProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
     </Compile>
@@ -144,6 +149,9 @@
     </Compile>
     <Compile Include="View\ViewProfessionnelCreerPatient.xaml.cs">
       <DependentUpon>ViewProfessionnelCreerPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewProfessionnelDossierPatientCreerHospitalisation.xaml.cs">
+      <DependentUpon>ViewProfessionnelDossierPatientCreerHospitalisation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewProfessionnelDossierPatientInfosModif.xaml.cs">
       <DependentUpon>ViewProfessionnelDossierPatientInfosModif.xaml</DependentUpon>
@@ -188,6 +196,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\ControlRechercheTraitement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewProfessionnelCreerPatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewProfessionnelDossierPatientCreerHospitalisation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
