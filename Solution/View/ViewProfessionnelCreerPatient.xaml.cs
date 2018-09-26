@@ -16,15 +16,16 @@ using System.Windows.Shapes;
 namespace VitAdmin.View
 {
     /// <summary>
-    /// Logique d'interaction pour ViewDossierPatientInfos.xaml
+    /// Logique d'interaction pour ViewProfessionnelCreerPatient.xaml
     /// </summary>
-    public partial class ViewProfessionnelDossierPatientInfos : Page
+    public partial class ViewProfessionnelCreerPatient : Page
     {
-        public ViewProfessionnelDossierPatientInfos()
+        public ViewProfessionnelCreerPatient()
         {
             InitializeComponent();
 
-            grdPatientInfos.Children.Add(new Control.ControlDossierPatientInfos());
+            grdCreerPatient.Children.Add(new Control.ControlDossierPatientInfos());
+
         }
     }
 }

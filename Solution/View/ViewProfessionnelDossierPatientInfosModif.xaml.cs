@@ -12,21 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using VitAdmin.ModelView;
 
 namespace VitAdmin.View
 {
     /// <summary>
-    /// Logique d'interaction pour ViewHubProfessionnel.xaml
+    /// Logique d'interaction pour ViewDossierPatientInfos.xaml
     /// </summary>
-    public partial class ViewProfessionnelDossierPatient : Page
+    public partial class ViewProfessionnelDossierPatientInfosModif : Page
     {
-        public ViewProfessionnelDossierPatient()
+        public ViewProfessionnelDossierPatientInfosModif()
         {
             InitializeComponent();
 
-            grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient());
-
+            grdPatientInfos.Children.Add(new Control.ControlDossierPatientInfos());
         }
     }
 }
