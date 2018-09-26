@@ -17,7 +17,7 @@ namespace VitAdmin.Data
             if (ConnexionBD.Instance().EstConnecte())
             {
                 ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit
-                    "SELECT nom, hash FROM Usagers WHERE nom = '" + usager + "'", (MySqlDataReader lecteur) =>
+                    "SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '" + usager + "'", (MySqlDataReader lecteur) =>
                     {
                         string nom = lecteur.GetString(0);
                         string hash = lecteur.GetString(1);
@@ -38,10 +38,10 @@ namespace VitAdmin.Data
             if(ConnexionBD.Instance().EstConnecte())
             {
                 ConnexionBD.Instance().ExecuterRequete( // TODO: ajouter les informations des superclasses d'Usager.
-                    "SELECT u.nom usager, r.nom role " +
+                    "SELECT u.nomUtilisateur usager, r.role role " +
                     "FROM Usagers u " +
                     "JOIN Roles r ON u.idRole = r.idRole " +
-                    "WHERE u.nom = '" + nom + "'", (MySqlDataReader lecteur) =>
+                    "WHERE u.nomUtilisateur = '" + nom + "'", (MySqlDataReader lecteur) =>
                     {
                         usager = new Usager()
                         {
