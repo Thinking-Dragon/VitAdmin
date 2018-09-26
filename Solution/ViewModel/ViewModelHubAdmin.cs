@@ -19,7 +19,6 @@ namespace VitAdmin.ViewModel
             {
                 return new CommandeDeleguee(obj => {
                     // GestionnaireEcrans.Changer(new View(...));
-                    GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient());
                 });
             }
         }
@@ -29,7 +28,7 @@ namespace VitAdmin.ViewModel
             get
             {
                 return new CommandeDeleguee(obj => {
-                    // GestionnaireEcrans.Changer(new View(...));
+                    GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
                 });
             }
         }
