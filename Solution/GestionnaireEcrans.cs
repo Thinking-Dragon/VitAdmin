@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using VitAdmin.MVVM;
 
 namespace VitAdmin
 {
     public class GestionnaireEcrans
     {
-        private Frame Frame { get; set; }
+        private FrameSansNavigation Frame { get; set; }
 
         public GestionnaireEcrans(Panel parent)
         {
-            Frame = new Frame();
+            Frame = new FrameSansNavigation();
             parent.Children.Add(Frame);
         }
 
