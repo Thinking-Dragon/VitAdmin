@@ -16,6 +16,7 @@ namespace VitAdmin.Data
 
             if (ConnexionBD.Instance().EstConnecte())
             {
+                int nbUsagers = 0;
                 ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit
                     "SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '" + usager + "'", (MySqlDataReader lecteur) =>
                     {
@@ -23,8 +24,11 @@ namespace VitAdmin.Data
                         string hash = lecteur.GetString(1);
                         if (true) // Valider hash
                             retour.Etat = true;
+                        ++nbUsagers;
                     }
                 );
+                if (nbUsagers == 0)
+                    retour.Message = "Nom d'utilisateur ou mot de passe invalide";
             }
             else retour.Message = "Impossible de se connecter au service de données du système";
             
