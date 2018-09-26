@@ -9,7 +9,7 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ViewModel
 {
-    public class ModelViewAdminModificationStructure
+    public class ModelViewAdminModificationStructure : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 

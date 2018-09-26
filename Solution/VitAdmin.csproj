@@ -77,6 +77,7 @@
     <Compile Include="ControlModel\ControlDossierPatientInfos.cs" />
     <Compile Include="ControlModel\ControlModelApercuDepartement.cs" />
     <Compile Include="ControlModel\ControlModelBandeauNavigationGeneral.cs" />
+    <Compile Include="ControlModel\ControlModelBarreRechercheTraitement.cs" />
     <Compile Include="ControlModel\ControlModelConnexion.cs" />
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="Control\ControlApercuDepartement.xaml.cs">
@@ -84,6 +85,9 @@
     </Compile>
     <Compile Include="Control\ControlBandeauNavigationGeneral.xaml.cs">
       <DependentUpon>ControlBandeauNavigationGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlBarreRechercheTraitement.xaml.cs">
+      <DependentUpon>ControlBarreRechercheTraitement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlConnexion.xaml.cs">
       <DependentUpon>ControlConnexion.xaml</DependentUpon>
@@ -129,6 +133,7 @@
     <Compile Include="MVVM\CommandeDeleguee.cs" />
     <Compile Include="MVVM\ObjetObservable.cs" />
     <Compile Include="ViewModel\ModelViewAdminModificationStructure.cs" />
+    <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -138,6 +143,9 @@
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewAdminModifierTraitements.xaml.cs">
+      <DependentUpon>ViewAdminModifierTraitements.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
@@ -165,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlBandeauNavigationGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlBarreRechercheTraitement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +214,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\ViewAdminModificationStructure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewAdminModifierTraitements.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

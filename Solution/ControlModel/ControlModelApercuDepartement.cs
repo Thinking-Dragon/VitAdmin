@@ -9,7 +9,7 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    public class ControlModelApercuDepartement
+    public class ControlModelApercuDepartement : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
