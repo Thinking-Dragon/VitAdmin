@@ -94,6 +94,9 @@
     <Compile Include="Control\ControlListeChoixDepartementsCRD.xaml.cs">
       <DependentUpon>ControlListeChoixDepartementsCRD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlListePatient.xaml.cs">
+      <DependentUpon>ControlListePatient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlProfessionnelDossierPatient.xaml.cs">
       <DependentUpon>ControlProfessionnelDossierPatient.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,7 @@
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelCreerPatient.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatient.cs" />
+    <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
@@ -149,6 +153,9 @@
     </Compile>
     <Compile Include="View\ViewProfessionnelDossierPatient.xaml.cs">
       <DependentUpon>ViewProfessionnelDossierPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewProfessionnelHub.xaml.cs">
+      <DependentUpon>ViewProfessionnelHub.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewSuperEcran.xaml.cs">
       <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
@@ -170,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlListeChoixDepartementsCRD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlListePatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewProfessionnelDossierPatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewProfessionnelHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
