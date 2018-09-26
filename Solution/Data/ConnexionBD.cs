@@ -31,7 +31,7 @@ namespace VitAdmin.Data
             if(Connexion == null)
             {
                 if (String.IsNullOrEmpty(NomBD)) return false;
-                string strConnexion = string.Format("Server=127.0.0.1; database={0}; UID=root; password=; SslMode=none", NomBD);
+                string strConnexion = string.Format("Server=420.cstj.qc.ca; database={0}; UID=VitAdmin; password=infoV84658; SslMode=none", NomBD);
                 connexion = new MySqlConnection(strConnexion);
                 Connexion.Open();
             }
