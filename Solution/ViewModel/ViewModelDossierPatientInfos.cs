@@ -9,5 +9,6 @@ namespace VitAdmin.ViewModel
 {
     class ViewModelDossierPatientInfos : ObjetObservable
     {
+
     }
 }

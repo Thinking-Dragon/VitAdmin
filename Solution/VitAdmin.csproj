@@ -78,6 +78,10 @@
     <Compile Include="ControlModel\ControlModelApercuDepartement.cs" />
     <Compile Include="ControlModel\ControlModelBandeauNavigationGeneral.cs" />
     <Compile Include="ControlModel\ControlModelConnexion.cs" />
+    <Compile Include="ControlModel\ControlModelDossierPatientNotesInf.cs" />
+    <Compile Include="ControlModel\ControlModelDossierPatientNotesMed.cs" />
+    <Compile Include="ControlModel\ControlModelDossierPatientPrescriptions.cs" />
+    <Compile Include="ControlModel\ControlModelDossierPatientResultatsLabo.cs" />
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="Control\ControlApercuDepartement.xaml.cs">
       <DependentUpon>ControlApercuDepartement.xaml</DependentUpon>
@@ -90,6 +94,21 @@
     </Compile>
     <Compile Include="Control\ControlDossierPatientInfos.xaml.cs">
       <DependentUpon>ControlDossierPatientInfos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDossierPatientNotesInf.xaml.cs">
+      <DependentUpon>ControlDossierPatientNotesInf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDossierPatientNotesMed.xaml.cs">
+      <DependentUpon>ControlDossierPatientNotesMed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDossierPatientOnglets.xaml.cs">
+      <DependentUpon>ControlDossierPatientOnglets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDossierPatientPrescriptions.xaml.cs">
+      <DependentUpon>ControlDossierPatientPrescriptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDossierPatientResultatsLabo.xaml.cs">
+      <DependentUpon>ControlDossierPatientResultatsLabo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlListeChoixDepartementsCRD.xaml.cs">
       <DependentUpon>ControlListeChoixDepartementsCRD.xaml</DependentUpon>
@@ -132,6 +151,7 @@
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
+    <Compile Include="ViewModel\ViewModelPatientHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelCreerPatient.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatient.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
@@ -141,6 +161,9 @@
     </Compile>
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewPatientHospitalisation.xaml.cs">
+      <DependentUpon>ViewPatientHospitalisation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewProfessionnelCreerPatient.xaml.cs">
       <DependentUpon>ViewProfessionnelCreerPatient.xaml</DependentUpon>
@@ -176,6 +199,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\ControlDossierPatientNotesInf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlDossierPatientNotesMed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlDossierPatientOnglets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlDossierPatientPrescriptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlDossierPatientResultatsLabo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlListeChoixDepartementsCRD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewConnexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewPatientHospitalisation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
