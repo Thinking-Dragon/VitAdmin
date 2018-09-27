@@ -43,12 +43,12 @@ namespace VitAdmin.ViewModel
             }
         }
 
-        public ICommand CmdTraitments
+        public ICommand CmdTraitements
         {
             get
             {
                 return new CommandeDeleguee(obj => {
-                    // GestionnaireEcrans.Changer(new View(...));
+                    GestionnaireEcrans.Changer(new ViewAdminModifierTraitements(GestionnaireEcrans));
                 });
             }
         }

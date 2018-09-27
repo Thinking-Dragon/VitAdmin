@@ -10,7 +10,7 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    public class ControlModelListeChoixDepartementsCRD
+    public class ControlModelListeChoixDepartementsCRD : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
