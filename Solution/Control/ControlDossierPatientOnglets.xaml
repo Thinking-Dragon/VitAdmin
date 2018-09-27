@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1180">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180">
-            <TabItem Header="Apreçu" Height="20" Width="235" VerticalAlignment="Top">
-                <Grid Background="#FFE5E5E5" Name="Apercu">
-                    
-                </Grid>
+        <dragablz:TabablzControl HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" FixedHeaderCount="5">
+            <TabItem Name="Apercu" Header="Apreçu" Height="20" Width="235" VerticalAlignment="Top">
+
             </TabItem>
             <TabItem Name="NotesInf" Header="Notes Infirmières" Height="20" Width="235" Margin="0,0,0,0">
 
@@ -25,7 +24,6 @@
             <TabItem Name="NotesMed" Header="Notes Médecins" Height="20" Width="236" Margin="0,0,0,0">
 
             </TabItem>
-        </TabControl>
-
+        </dragablz:TabablzControl>
     </Grid>
 </UserControl>
