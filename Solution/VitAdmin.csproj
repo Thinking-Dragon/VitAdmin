@@ -123,6 +123,9 @@
     <Compile Include="Control\ControlListePatient.xaml.cs">
       <DependentUpon>ControlListePatient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlListeTraitementsAvecEtapes.xaml.cs">
+      <DependentUpon>ControlListeTraitementsAvecEtapes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlProfessionnelDossierPatient.xaml.cs">
       <DependentUpon>ControlProfessionnelDossierPatient.xaml</DependentUpon>
     </Compile>
@@ -248,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlListePatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlListeTraitementsAvecEtapes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

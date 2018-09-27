@@ -23,5 +23,9 @@
                               Grid.Column="1"
                               Margin="16"></ContentPresenter>
         </Grid>
+        <ContentPresenter x:Name="cpListeTraitementsAvecEtapes"
+                          Grid.Row="1"
+                          Margin="16">
+        </ContentPresenter>
     </Grid>
 </Page>
