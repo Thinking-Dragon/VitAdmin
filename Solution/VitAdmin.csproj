@@ -87,6 +87,7 @@
     <Compile Include="ControlModel\ControlModelDossierPatientPrescriptions.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientResultatsLabo.cs" />
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
+    <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="Control\ControlApercuDepartement.xaml.cs">
       <DependentUpon>ControlApercuDepartement.xaml</DependentUpon>
     </Compile>
@@ -135,6 +136,8 @@
     <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Data\ConnexionBD.cs" />
     <Compile Include="Data\DataModelConnexion.cs" />
+    <Compile Include="Data\DataModelCitoyen.cs" />
+    <Compile Include="Data\DataModelDepartement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
