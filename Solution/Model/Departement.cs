@@ -9,6 +9,7 @@ namespace VitAdmin.Model
     public class Departement
     {
         public String Nom { get; set; }
+        public String Abreviation { get; set; }
         public List<Chambre> Chambres { get; set; }
 
     }

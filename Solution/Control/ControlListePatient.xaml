@@ -20,11 +20,12 @@
         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
         <TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left" GotFocus="txtRecherche_GotFocus" LostFocus="txtRecherche_LostFocus"></TextBox>
 
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2"/>
+        <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}"/>
         <StackPanel Grid.Row="1" Grid.Column="2" Height="100" VerticalAlignment="Top">
             <Label Content="Filtres"/>
-            <ComboBox>
-                <ComboBoxItem IsSelected="True">Départements</ComboBoxItem>
+            <ComboBox ItemsSource="{Binding Departements}"
+                      DisplayMemberPath="Nom">
+                <!--<ComboBoxItem IsSelected="True">Départements</ComboBoxItem>-->
 
             </ComboBox>
             <ComboBox>

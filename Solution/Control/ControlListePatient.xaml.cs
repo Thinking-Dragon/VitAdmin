@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ControlModel;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -20,11 +23,13 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlListePatient : UserControl
     {
-        public ControlListePatient()
+        public ControlListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements)
         {
             InitializeComponent();
 
-            txtRecherche.Text = "Recherche";
+            DataContext = new ControlModelListePatient(citoyens, departements);
+
+            
         }
 
         // Enlève le placeholder lorsqu'il y a focus sur le txtbox
