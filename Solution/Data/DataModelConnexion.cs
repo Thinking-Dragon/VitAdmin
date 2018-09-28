@@ -12,17 +12,19 @@ namespace VitAdmin.Data
     {
         public static EtatAvecMessage ValiderIdentite(string usager, string motDePasse)
         {
-            EtatAvecMessage retour = new EtatAvecMessage() { Etat = false };
+            EtatAvecMessage retour = new EtatAvecMessage();
 
             if (ConnexionBD.Instance().EstConnecte())
             {
                 int nbUsagers = 0;
-                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit
-                    "SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '" + usager + "'", (MySqlDataReader lecteur) =>
+                string requete = string.Format("SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '{0}'", usager);
+
+                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé?
+                    requete, (MySqlDataReader lecteur) =>
                     {
-                        string nom = lecteur.GetString(0);
-                        string hash = lecteur.GetString(1);
-                        if (true) // Valider hash
+                        string nom = lecteur.GetString("nomUtilisateur");
+                        string hash = lecteur.GetString("motDePasse");
+                        if (motDePasse == hash) // TODO : Valider hash
                             retour.Etat = true;
                         ++nbUsagers;
                     }
@@ -41,22 +43,45 @@ namespace VitAdmin.Data
 
             if(ConnexionBD.Instance().EstConnecte())
             {
+                string requete = string.Format("SELECT u.nomUtilisateur usager, r.role role " +
+                                               "FROM Usagers u " +
+                                               "JOIN Roles r ON u.idRole = r.idRole " +
+                                               "WHERE u.nomUtilisateur = '{0}'", nom);
+
                 ConnexionBD.Instance().ExecuterRequete( // TODO: ajouter les informations des superclasses d'Usager.
-                    "SELECT u.nomUtilisateur usager, r.role role " +
-                    "FROM Usagers u " +
-                    "JOIN Roles r ON u.idRole = r.idRole " +
-                    "WHERE u.nomUtilisateur = '" + nom + "'", (MySqlDataReader lecteur) =>
+                    requete, (MySqlDataReader lecteur) =>
                     {
                         usager = new Usager()
                         {
-                            NomUtilisateur = lecteur.GetString(0),
+                            NomUtilisateur = lecteur.GetString("nomUtilisateur"),
                             // Role usager (TODO: implémenter un convertisseur de string à Role)
+                            // https://stackoverflow.com/questions/2290262/search-for-a-string-in-enum-and-return-the-enum
+                            RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role"))
                         };
-                  }
+                    }
                 );
             }
 
             return usager;
+        }
+
+        public static void AddUsager(Usager usager, string motDePasseHash)
+        {
+            EtatAvecMessage retour = new EtatAvecMessage();
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                string requete = string.Format("INSERT INTO Usagers " +
+                                           "(idRole, idEmploye, nomUtilisateur, motDePasse) " +
+                                           "VALUES (" +
+                                           "(SELECT idEmploye FROM Employes WHERE numEmploye = '{0}'," +
+                                           "(SELECT idRole FROM Roles WHERE role = '{1}'," +
+                                           "'{2}'," +
+                                           "'{3}',"
+                                           , usager.NumEmploye, usager.RoleUsager, usager.NomUtilisateur, motDePasseHash);
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+            }
         }
     }
 }
