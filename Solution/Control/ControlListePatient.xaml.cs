@@ -27,6 +27,7 @@ namespace VitAdmin.Control
         {
             InitializeComponent();
 
+
             DataContext = new ControlModelListePatient(citoyens, departements);
 
             

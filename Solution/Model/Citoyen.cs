@@ -16,7 +16,7 @@ namespace VitAdmin.Model
         public String Adresse { get; set; }
         public String NumTelephone { get; set; }
         public List<Hospitalisation> Hospitalisations { get; set; }
-        List<Lit> Lits { get; set; }
+        public Lit Lits { get; set; }
 
 
         bool ValiderTelephone() { return new bool(); }

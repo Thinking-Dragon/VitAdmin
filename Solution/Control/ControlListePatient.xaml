@@ -19,8 +19,15 @@
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
         <TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left" GotFocus="txtRecherche_GotFocus" LostFocus="txtRecherche_LostFocus"></TextBox>
-
-        <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}"/>
+     
+        <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"/>
+                <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"/>
+                <DataGridTextColumn Binding="{Binding Lit}" Header="Prénom"/>
+                <DataGridTextColumn Binding="{Binding Lit.Chambre}" Header="Prénom"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel Grid.Row="1" Grid.Column="2" Height="100" VerticalAlignment="Top">
             <Label Content="Filtres"/>
             <ComboBox ItemsSource="{Binding Departements}"
