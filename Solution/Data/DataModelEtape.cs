@@ -13,7 +13,7 @@ namespace VitAdmin.Data
         {
             List<Etape> etapes = new List<Etape>();
 
-            if(ConnexionBD.Instance().EstConnecte())
+            /*if(ConnexionBD.Instance().EstConnecte())
             {
                 ConnexionBD.Instance().ExecuterRequete(
                     String.Format(
@@ -26,7 +26,7 @@ namespace VitAdmin.Data
                         })
                     }
                 );
-            }
+            }*/
 
             return etapes;
         }
