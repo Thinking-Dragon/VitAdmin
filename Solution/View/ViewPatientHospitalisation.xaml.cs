@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
 using VitAdmin.ViewModel;
+using VitAdmin.Model;
 
 namespace VitAdmin.View
 {
@@ -22,11 +23,13 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewPatientHospitalisation : Page
     {
-        public ViewPatientHospitalisation(GestionnaireEcrans gestionnaireEcrans)
+        public ViewPatientHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ViewModelPatientHospitalisation(gestionnaireEcrans);
-            this.Content = new ControlDossierPatientOnglets(gestionnaireEcrans);
+            DataContext = new ViewModelPatientHospitalisation(gestionnaireEcrans, patient);
+            this.Content = new ControlDossierPatientOnglets(gestionnaireEcrans, patient, hospit);
+
+            /*Faut label avec nom du patient etc bindé dans le view model*/
             
         }
     }

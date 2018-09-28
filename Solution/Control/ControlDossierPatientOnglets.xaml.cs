@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -21,12 +22,14 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientOnglets : UserControl
     {
-        public ControlDossierPatientOnglets(GestionnaireEcrans gestionnaireEcrans)
+        public ControlDossierPatientOnglets(GestionnaireEcrans gestionnaireEcrans, Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            //DataContext = new ControlModelDossierPatientOnglets(gestionnaireEcrans);
 
-            NotesMed.Content = new ControlDossierPatientNotesMed();
+            NotesMed.Content = new ControlDossierPatientNotesMed(patient, hospit);
+            NotesInf.Content = new ControlDossierPatientNotesInf(patient, hospit);
+            Prescriptions.Content = new ControlDossierPatientPrescriptions(patient, hospit);
+            ResultatsLabo.Content = new ControlDossierPatientResultatsLabo(patient, hospit);
         }
     }
 }

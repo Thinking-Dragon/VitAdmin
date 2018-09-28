@@ -11,6 +11,11 @@ namespace VitAdmin.ControlModel
 {
     class ControlModelDossierPatientResultatsLabo : ObjetObservable
     {
+        public List<ResultatLabo> LstResultsLabo { get; set; }
 
+        public ControlModelDossierPatientResultatsLabo(Citoyen patient, Hospitalisation hospit /*résultat de la requête*/)
+        {
+
+        }
     }
 }

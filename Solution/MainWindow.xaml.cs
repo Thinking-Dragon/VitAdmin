@@ -31,6 +31,7 @@ namespace VitAdmin
             GestionnaireEcrans = new GestionnaireEcrans(grdMain); // Initialiser le gestionnaire d'écrans.
             GestionnaireEcrans.Changer(new ViewConnexion(GestionnaireEcrans));
             //GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewProfessionnelHub()));
+            //GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewPatientHospitalisation(GestionnaireEcrans)));
         }
 
 
