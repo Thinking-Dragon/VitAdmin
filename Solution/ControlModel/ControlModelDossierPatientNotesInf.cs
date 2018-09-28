@@ -11,5 +11,10 @@ namespace VitAdmin.ControlModel
 {
     class ControlModelDossierPatientNotesInf : ObjetObservable
     {
+        public List<NoteInfirmiere> LstNotesInf { get; set; }
+        public ControlModelDossierPatientNotesInf(Citoyen patient, Hospitalisation hospit /*le résultat de la requête*/)
+        {
+
+        }
     }
 }
