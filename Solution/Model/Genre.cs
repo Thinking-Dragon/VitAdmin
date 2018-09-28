@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    public enum Role
+    public enum Genre
     {
-        admin,
-        GestPersonnel,
-        InfChef,
-        PersonnelSante
+        Homme,
+        Femme,
+        Autre
+            //, Apache Helicopter
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using VitAdmin.Model;
 
 namespace VitAdmin.Data
@@ -54,9 +55,11 @@ namespace VitAdmin.Data
                         usager = new Usager()
                         {
                             NomUtilisateur = lecteur.GetString("usager"),
+
                             // Role usager (TODO: implémenter un convertisseur de string à Role)
                             // https://stackoverflow.com/questions/2290262/search-for-a-string-in-enum-and-return-the-enum
-                            //RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role"))
+                            // Fonctionne, mais case sensitive
+                            RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role"))
                         };
                     }
                 );
@@ -77,10 +80,12 @@ namespace VitAdmin.Data
                                            "(SELECT idEmploye FROM Employes WHERE numEmploye = '{0}'," +
                                            "(SELECT idRole FROM Roles WHERE role = '{1}'," +
                                            "'{2}'," +
-                                           "'{3}',"
-                                           , usager.NumEmploye, usager.RoleUsager, usager.NomUtilisateur, motDePasseHash);
+                                           "'{3}'"
+                                           , usager.NumEmploye, usager.RoleUsager.ToString(), usager.NomUtilisateur, motDePasseHash);
 
-                //ConnexionBD.Instance().ExecuterRequete(requete);
+                DataModelEmploye.AddEmploye(usager);
+                ConnexionBD.Instance().ExecuterRequete(requete);
+                // TODO : Recevoir code erreur BD dans cas d'erreur (duplicata)
             }
         }
     }
