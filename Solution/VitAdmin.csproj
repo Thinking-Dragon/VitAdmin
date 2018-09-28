@@ -139,12 +139,9 @@
     <Compile Include="Data\DataModelConnexion.cs" />
     <Compile Include="Data\DataModelCitoyen.cs" />
     <Compile Include="Data\DataModelDepartement.cs" />
-<<<<<<< HEAD
     <Compile Include="Data\DataModelEmploye.cs" />
-=======
     <Compile Include="Data\DataModelEtape.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
->>>>>>> c2435b0efde1c69ad0bd3d4cc02ad62be3814dbf
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
