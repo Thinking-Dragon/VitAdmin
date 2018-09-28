@@ -53,10 +53,10 @@ namespace VitAdmin.Data
                     {
                         usager = new Usager()
                         {
-                            NomUtilisateur = lecteur.GetString("nomUtilisateur"),
+                            NomUtilisateur = lecteur.GetString("usager"),
                             // Role usager (TODO: implémenter un convertisseur de string à Role)
                             // https://stackoverflow.com/questions/2290262/search-for-a-string-in-enum-and-return-the-enum
-                            RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role"))
+                            //RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role"))
                         };
                     }
                 );
@@ -80,7 +80,7 @@ namespace VitAdmin.Data
                                            "'{3}',"
                                            , usager.NumEmploye, usager.RoleUsager, usager.NomUtilisateur, motDePasseHash);
 
-                ConnexionBD.Instance().ExecuterRequete(requete);
+                //ConnexionBD.Instance().ExecuterRequete(requete);
             }
         }
     }
