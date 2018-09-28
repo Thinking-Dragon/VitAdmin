@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1180">
     <Grid>
-        <dragablz:TabablzControl HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" >
+        <dragablz:TabablzControl HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" FixedHeaderCount="5">
             <TabItem Name="Apercu" Header="Apreçu" Height="20" Width="235" VerticalAlignment="Top">
 
             </TabItem>

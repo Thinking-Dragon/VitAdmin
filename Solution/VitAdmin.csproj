@@ -145,6 +145,7 @@
     <Compile Include="Model\Employe.cs" />
     <Compile Include="Model\Equipement.cs" />
     <Compile Include="Model\Etape.cs" />
+    <Compile Include="Model\EtatLit.cs" />
     <Compile Include="Model\Evenement.cs" />
     <Compile Include="Model\Hospitalisation.cs" />
     <Compile Include="Model\Lit.cs" />

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ControlModel;
+using VitAdmin.Data;
 
 namespace VitAdmin.Control
 {
@@ -23,6 +25,8 @@ namespace VitAdmin.Control
         public ControlListeTraitementsAvecEtapes()
         {
             InitializeComponent();
+
+            DataContext = new ControlModelListeTraitementsAvecEtapes(DataModelTraitement.GetTraitements());
         }
     }
 }

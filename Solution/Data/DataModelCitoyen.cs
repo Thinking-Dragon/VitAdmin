@@ -40,7 +40,7 @@ namespace VitAdmin.Data
             return lstCitoyen;
         }
 
-        /*public static List<Citoyen> getCitoyensLstPatient()
+       /* public static List<Citoyen> getCitoyensLstPatient()
         {
             // On crée une liste de citoyen venant de la BD
             List<Citoyen> lstCitoyen = new List<Citoyen>();
@@ -54,7 +54,9 @@ namespace VitAdmin.Data
                     "SELECT * " +
                     "FROM citoyens c" +
                     "INNER JOIN lits l ON c.idCitoyen = l.idCitoyen" +
-                    ""
+                    "INNER JOIN etatlits elit ON l.idEtatLit = elit.idEtatLit" +
+                    "INNER JOIN chambre ch ON ch.idLit = l.idChambre" +
+                    "INNER JOIN departement d ON d.idChambre = ch.idChambre"
                     , SqlDR => {
                         lstCitoyen.Add(new Citoyen
                         {
@@ -64,14 +66,14 @@ namespace VitAdmin.Data
                             NumTelephone = SqlDR.GetString("telephone"),
                             Adresse = SqlDR.GetString("adresse"),
                             Lit = new Lit { Numero = "numero",
-                                            }
+                                            UnEtatLit = }
                         });
                     }
                     );
             }
 
-            return lstCitoyen;*/
-        }
+            return lstCitoyen;
+        }*/
 
 
     }

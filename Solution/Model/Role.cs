@@ -8,7 +8,7 @@ namespace VitAdmin.Model
 {
     public enum Role
     {
-        Admin,
+        admin,
         GestPersonnel,
         InfChef,
         PersonnelSante

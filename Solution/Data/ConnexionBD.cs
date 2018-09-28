@@ -48,6 +48,14 @@ namespace VitAdmin.Data
             lecteur.Close();
         }
 
+        // Si retourne 0, requête a échoué
+        public int ExecuterRequete(string requete)
+        {
+            MySqlCommand commande = new MySqlCommand(requete, Connexion);
+
+            return commande.ExecuteNonQuery();
+        }
+
         public void Fermer()
         {
             if (Connexion != null) Connexion.Close();

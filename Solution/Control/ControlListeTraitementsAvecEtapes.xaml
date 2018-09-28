@@ -12,9 +12,13 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <DataGrid>
+        <DataGrid ItemsSource="{Binding Traitements}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Traitements">
+                <DataGridTextColumn Header="Traitements"
+                                    Binding="{Binding Nom}"
+                                    Width="*">
                 </DataGridTextColumn>
                 <DataGridHyperlinkColumn>
                 </DataGridHyperlinkColumn>

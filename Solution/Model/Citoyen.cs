@@ -12,16 +12,16 @@ namespace VitAdmin.Model
         public String Nom { get; set; }
         public String Prenom { get; set; }
         public String AssMaladie { get; set; }
-        public DateTime DateNaissance { get; set; }
         public String Adresse { get; set; }
         public String NumTelephone { get; set; }
         public List<Hospitalisation> Hospitalisations { get; set; }
-        public Lit Lits { get; set; }
+        public Lit Lit { get; set; }
 
 
         bool ValiderTelephone() { return new bool(); }
         bool ValiderAssMaladie() { return new bool(); }
         bool ValiderDateNaissance() { return new bool(); }
         String FormaterAdresse() { return ""; }
+        DateTime AvoirDateNaissance() { return new DateTime(); }
     }
 }
