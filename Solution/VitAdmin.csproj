@@ -88,6 +88,7 @@
     <Compile Include="ControlModel\ControlModelDossierPatientResultatsLabo.cs" />
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
+    <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
     <Compile Include="Control\ControlApercuDepartement.xaml.cs">
       <DependentUpon>ControlApercuDepartement.xaml</DependentUpon>
     </Compile>
@@ -138,6 +139,9 @@
     <Compile Include="Data\DataModelConnexion.cs" />
     <Compile Include="Data\DataModelCitoyen.cs" />
     <Compile Include="Data\DataModelDepartement.cs" />
+    <Compile Include="Data\DataModelEmploye.cs" />
+    <Compile Include="Data\DataModelEtape.cs" />
+    <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
@@ -147,6 +151,7 @@
     <Compile Include="Model\Etape.cs" />
     <Compile Include="Model\EtatLit.cs" />
     <Compile Include="Model\Evenement.cs" />
+    <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Hospitalisation.cs" />
     <Compile Include="Model\Lit.cs" />
     <Compile Include="Model\NoteInfirmiere.cs" />

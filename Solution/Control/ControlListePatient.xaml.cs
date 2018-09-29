@@ -23,12 +23,29 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlListePatient : UserControl
     {
-        public ControlListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements)
+        public ControlListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
 
+            // On met dans le datacontexte les infos qui seront liées dans le UserControl
+            DataContext = new ControlModelListePatient(citoyens, departements, employes);
 
-            DataContext = new ControlModelListePatient(citoyens, departements);
+            // Permet de sélectionner par défaut le département du professionnel dans la combobox
+            Departement deptRecherche = new Departement();
+            foreach (Departement dep in departements)
+            {
+                if (dep.Nom == departement.Nom)
+                    deptRecherche = dep;
+            }
+
+            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
+
+            // Ensuite, il faut afficher dans le cboProfessionnel les professionnels assignés au département
+            
+
+            
+            
+
 
             
         }

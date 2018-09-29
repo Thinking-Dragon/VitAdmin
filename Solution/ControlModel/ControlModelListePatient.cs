@@ -14,11 +14,13 @@ namespace VitAdmin.ControlModel
     {
         public ObservableCollection<Citoyen> Citoyens { get; set; }
         public ObservableCollection<Departement> Departements { get; set; }
+        public ObservableCollection<Employe> Employes { get; set; }
         // constructeur
-        public ControlModelListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements)
+        public ControlModelListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes)
         {
             Citoyens = citoyens;
             Departements = departements;
+            Employes = employes;
         }
 
 

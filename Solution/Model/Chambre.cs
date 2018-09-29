@@ -10,9 +10,9 @@ namespace VitAdmin.Model
     {
         public List<Lit> Lits { get; set; }
         public List<Equipement> Equipements { get; set; }
-        public Departement Departement { get; set; }
+        public Departement UnDepartement { get; set; }
 
-        public String Numero { get; set; }
+        public String Nom { get; set; }
 
     }
 }

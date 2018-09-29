@@ -32,6 +32,34 @@ namespace VitAdmin.Data
             return lstEmployes;
         }
 
+        public static List<Employe> GetEmployesLstPatient(Departement depSelectionne)
+        {
+            List<Employe> lstEmployes = new List<Employe>();
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                string requete = "SELECT c.nom nomCit, c.prenom prenomCit, e.numEmploye nEmploye " +
+                                 "FROM citoyens c " +
+                                 "INNER JOIN employes e ON e.idCitoyen = c.idCitoyen " +
+                                 "INNER JOIN quartsEmployes qe ON qe.idEmploye = e.idEmploye " +
+                                 "INNER JOIN quarts q ON q.idQuart = qe.idQuart " +
+                                 "INNER JOIN departements d ON d.idDepartement = q.idDepartement " +
+                                 "WHERE d.nom = '" + depSelectionne.Nom + "' " +
+                                 "ORDER BY nomCit ";
+                ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
+                {
+                    lstEmployes.Add(new Employe
+                    {
+                        Nom = SqlDR.GetString("nomCit"),
+                        Prenom = SqlDR.GetString("prenomCit"),
+                        NumEmploye = SqlDR.GetString("nEmploye"),
+                    });
+                });
+            }
+
+            return lstEmployes;
+        }
+
         public static void AddEmploye (Employe employe)
         {
             EtatAvecMessage retour = new EtatAvecMessage();
@@ -48,7 +76,7 @@ namespace VitAdmin.Data
                                            "'{4}'"
                                            , employe.AssMaladie, employe.Poste, employe.NumEmploye, employe.NumPermis, employe.NAS);
 
-                DataModelCitoyen.AddCitoyen(employe);
+                //DataModelCitoyen.AddCitoyen(employe);
                 ConnexionBD.Instance().ExecuterRequete(requete);
                 // TODO : Recevoir code erreur BD dans cas d'erreur (duplicata)
             }

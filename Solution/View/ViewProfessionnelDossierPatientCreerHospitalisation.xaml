@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:VitAdmin.View"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -23,6 +24,8 @@
         <TextBox Grid.Column="1" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True"/>
         <TextBox Grid.Row="1" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True"/>
         <Button Grid.Row="2" MaxWidth="100" Content="Créer"/>
+        <!-- À apdapter selon les données dans la grid-->
+        <materialDesign:PackIcon Kind="Close" Margin="124,34,0,0"></materialDesign:PackIcon>
 
 
     </Grid>
