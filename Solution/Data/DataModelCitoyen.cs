@@ -40,7 +40,7 @@ namespace VitAdmin.Data
             return lstCitoyen;
         }
 
-        public static List<Citoyen> getCitoyensLstPatient()
+        public static List<Citoyen> getCitoyensLstPatient(Employe employe)
         {
             // On crée une liste de citoyen venant de la BD
             List<Citoyen> lstCitoyen = new List<Citoyen>();
@@ -56,7 +56,11 @@ namespace VitAdmin.Data
                     "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
                     "INNER JOIN etatslits elit ON l.idEtatLit = elit.idEtatLit " +
                     "INNER JOIN chambres ch ON ch.idChambre = l.idChambre " +
-                    "INNER JOIN departements d ON d.idDepartement = ch.idDepartement"
+                    "INNER JOIN departements d ON d.idDepartement = ch.idDepartement " +
+                    "INNER JOIN quarts q ON q.idDepartement = d.idDepartement " +
+                    "INNER JOIN quartsEmployes qe ON qe.idQuart = q.idQuart " +
+                    "INNER JOIN employes emp ON emp.idEmploye = qe.idEmploye " +
+                    "WHERE emp.numEmploye = '" + employe.NumEmploye + "' "
                     , SqlDR => {
                         lstCitoyen.Add(new Citoyen
                         {

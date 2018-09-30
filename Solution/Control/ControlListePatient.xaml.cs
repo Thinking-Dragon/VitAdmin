@@ -23,6 +23,9 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlListePatient : UserControl
     {
+        ComboBox cboProfessionnel = new ComboBox();
+        ComboBox cboDepartements = new ComboBox();
+
         public ControlListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
@@ -31,6 +34,8 @@ namespace VitAdmin.Control
             DataContext = new ControlModelListePatient(citoyens, departements, employes);
 
             // Permet de sélectionner par défaut le département du professionnel dans la combobox
+            // Je dois créer mes combobox avant de les mettre dans mon stackpanel puisque l'event selectedchange 
+            // s'enclenchait au démarrage et fait planter l'application à cause de mon système par défaut.
             Departement deptRecherche = new Departement();
             foreach (Departement dep in departements)
             {
@@ -38,13 +43,11 @@ namespace VitAdmin.Control
                     deptRecherche = dep;
             }
 
-            ComboBox cboDepartements = new ComboBox
-            {   ItemsSource = departements,
-                DisplayMemberPath = "Nom",
-                SelectedItem = departements[departements.IndexOf(deptRecherche)],                                 
-            };
 
-            cboDepartements.SelectionChanged += cboProfessionnel_SelectionChanged;
+            cboDepartements.ItemsSource = departements;
+            cboDepartements.DisplayMemberPath = "Nom";
+            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];                           
+            cboDepartements.SelectionChanged += CboDepartements_SelectionChanged;
            
             stpnlFiltres.Children.Add(cboDepartements);
             
@@ -57,14 +60,12 @@ namespace VitAdmin.Control
                     empRecherche = emp;
             }
 
-            ComboBox cboProfessionnel = new ComboBox
-            {
-                ItemsSource = employes,
-                DisplayMemberPath = "idPrenomNom",
-                SelectedItem = employes[employes.IndexOf(empRecherche)]
-            };
+            employes.Add(new Employe { Nom = "Tous" });
 
-            cboProfessionnel.SelectionChanged += cboProfessionnel_SelectionChanged;
+            cboProfessionnel.ItemsSource = employes;
+            cboProfessionnel.DisplayMemberPath = "idPrenomNom";
+            cboProfessionnel.SelectedItem = employes[employes.IndexOf(empRecherche)];
+            cboProfessionnel.SelectionChanged += CboProfessionnel_SelectionChanged;
 
             stpnlFiltres.Children.Add(cboProfessionnel);
         }
@@ -82,15 +83,18 @@ namespace VitAdmin.Control
                 txtRecherche.Text = "Recherche";
         }
 
-        private void cboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            // TODO: Plante avec un null à employe et fait des doublons...
+            /*ObservableCollection<Citoyen> citoyens = new ObservableCollection<Citoyen>(Data.DataModelCitoyen.getCitoyensLstPatient((Employe)cboProfessionnel.SelectedItem));
+            cboProfessionnel.ItemsSource = citoyens;*/
         }
 
-        private void cboDepartements_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CboDepartements_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*ObservableCollection<Employe> employes = new ObservableCollection<Employe>(Data.DataModelEmploye.GetEmployesLstPatient((Departement)cboProfessionnel.SelectedItem));
-            cboProfessionnel.ItemsSource = employes;*/
+            ObservableCollection<Employe> employes = new ObservableCollection<Employe>(Data.DataModelEmploye.GetEmployesLstPatient((Departement)cboDepartements.SelectedItem));
+            cboProfessionnel.ItemsSource = employes;
         }
     }
+
 }

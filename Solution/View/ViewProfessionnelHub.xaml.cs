@@ -30,7 +30,7 @@ namespace VitAdmin.View
         {
             InitializeComponent();
 
-            Control.ControlListePatient ctrlLstPatient = new Control.ControlListePatient(new ObservableCollection<Citoyen>(DataModelCitoyen.getCitoyensLstPatient()), new ObservableCollection<Departement>(DataModelDepartement.getDepartement()), new ObservableCollection<Employe>(DataModelEmploye.GetEmployesLstPatient(departement)),
+            Control.ControlListePatient ctrlLstPatient = new Control.ControlListePatient(new ObservableCollection<Citoyen>(DataModelCitoyen.getCitoyensLstPatient(employe)), new ObservableCollection<Departement>(DataModelDepartement.getDepartement()), new ObservableCollection<Employe>(DataModelEmploye.GetEmployesLstPatient(departement)),
                                                                                         departement, employe);
 
             Grid.SetColumnSpan(ctrlLstPatient, 2);
