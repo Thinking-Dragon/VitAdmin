@@ -29,13 +29,13 @@
                 <DataGridTextColumn Binding="{Binding Lit.Numero}" Header="Num Chambre"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="1" Grid.Column="2" Height="100" VerticalAlignment="Top">
+        <StackPanel Name="stpnlFiltres" Grid.Row="1" Grid.Column="2" Height="100" VerticalAlignment="Top">
             <Label Content="Filtres"/>
-            <ComboBox Name="cboDepartements" ItemsSource="{Binding Departements}"
-                      DisplayMemberPath="Nom">
+            <!--<ComboBox Name="cboDepartements" ItemsSource="{Binding Departements}"
+                      DisplayMemberPath="Nom" SelectionChanged="cboDepartements_SelectionChanged">
 
             </ComboBox>
-            <ComboBox Name="cboProfessionnel" ItemsSource="{Binding Employes}">
+            <ComboBox Name="cboProfessionnel" ItemsSource="{Binding Employes}" SelectionChanged="cboProfessionnel_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -45,7 +45,7 @@
                         </TextBlock>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
-            </ComboBox>
+            </ComboBox>-->
             
         </StackPanel>
 

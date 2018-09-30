@@ -38,16 +38,35 @@ namespace VitAdmin.Control
                     deptRecherche = dep;
             }
 
-            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
+            ComboBox cboDepartements = new ComboBox
+            {   ItemsSource = departements,
+                DisplayMemberPath = "Nom",
+                SelectedItem = departements[departements.IndexOf(deptRecherche)],                                 
+            };
 
-            // Ensuite, il faut afficher dans le cboProfessionnel les professionnels assignés au département
+            cboDepartements.SelectionChanged += cboProfessionnel_SelectionChanged;
+           
+            stpnlFiltres.Children.Add(cboDepartements);
             
 
-            
-            
+            // Ensuite, il faut afficher dans le cboProfessionnel le professionnel par défaut
+            Employe empRecherche = new Employe();
+            foreach (Employe emp in employes)
+            {
+                if (emp.Nom == employe.Nom)
+                    empRecherche = emp;
+            }
 
+            ComboBox cboProfessionnel = new ComboBox
+            {
+                ItemsSource = employes,
+                DisplayMemberPath = "idPrenomNom",
+                SelectedItem = employes[employes.IndexOf(empRecherche)]
+            };
 
-            
+            cboProfessionnel.SelectionChanged += cboProfessionnel_SelectionChanged;
+
+            stpnlFiltres.Children.Add(cboProfessionnel);
         }
 
         // Enlève le placeholder lorsqu'il y a focus sur le txtbox
@@ -61,6 +80,17 @@ namespace VitAdmin.Control
         {
             if (string.IsNullOrWhiteSpace(txtRecherche.Text))
                 txtRecherche.Text = "Recherche";
+        }
+
+        private void cboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void cboDepartements_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*ObservableCollection<Employe> employes = new ObservableCollection<Employe>(Data.DataModelEmploye.GetEmployesLstPatient((Departement)cboProfessionnel.SelectedItem));
+            cboProfessionnel.ItemsSource = employes;*/
         }
     }
 }
