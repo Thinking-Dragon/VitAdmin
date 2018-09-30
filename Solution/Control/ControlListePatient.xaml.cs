@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
 using VitAdmin.Model;
+using VitAdmin.View;
 
 namespace VitAdmin.Control
 {
@@ -26,6 +27,8 @@ namespace VitAdmin.Control
         ComboBox cboProfessionnel = new ComboBox();
         ComboBox cboDepartements = new ComboBox();
 
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
         public ControlListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
@@ -36,6 +39,34 @@ namespace VitAdmin.Control
             // Permet de sélectionner par défaut le département du professionnel dans la combobox
             // Je dois créer mes combobox avant de les mettre dans mon stackpanel puisque l'event selectedchange 
             // s'enclenchait au démarrage et fait planter l'application à cause de mon système par défaut.
+            initialiserCboDepartement(departements, departement);
+
+            // Ensuite, il faut afficher dans le cboProfessionnel le professionnel par défaut
+            initialiserCboProfessionnel(employes, employe);
+
+
+
+            
+        }
+
+        private void barreRecherche()
+        {
+            var viewDtgPatients = CollectionViewSource.GetDefaultView(dtgPatient);
+
+            viewDtgPatients.Filter = delegate (object o)
+            {
+                if (o.ToString().Contains(txtRecherche.Text))
+                {
+                    return true;
+                }
+                return false;
+            };
+
+            dtgPatient.ItemsSource = viewDtgPatients;
+        }
+
+        private void initialiserCboDepartement(ObservableCollection<Departement> departements, Departement departement)
+        {           
             Departement deptRecherche = new Departement();
             foreach (Departement dep in departements)
             {
@@ -43,16 +74,17 @@ namespace VitAdmin.Control
                     deptRecherche = dep;
             }
 
-
             cboDepartements.ItemsSource = departements;
             cboDepartements.DisplayMemberPath = "Nom";
-            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];                           
+            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
             cboDepartements.SelectionChanged += CboDepartements_SelectionChanged;
-           
-            stpnlFiltres.Children.Add(cboDepartements);
-            
 
-            // Ensuite, il faut afficher dans le cboProfessionnel le professionnel par défaut
+            stpnlFiltres.Children.Add(cboDepartements);
+
+        }
+
+        private void initialiserCboProfessionnel(ObservableCollection<Employe> employes, Employe employe)
+        {
             Employe empRecherche = new Employe();
             foreach (Employe emp in employes)
             {
@@ -86,6 +118,7 @@ namespace VitAdmin.Control
         private void CboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // TODO: Plante avec un null à employe et fait des doublons...
+            // Normal, il n'y a pas de lien entre un patient et un employé! Voir note 30/09/2018
             /*ObservableCollection<Citoyen> citoyens = new ObservableCollection<Citoyen>(Data.DataModelCitoyen.getCitoyensLstPatient((Employe)cboProfessionnel.SelectedItem));
             cboProfessionnel.ItemsSource = citoyens;*/
         }
@@ -94,6 +127,38 @@ namespace VitAdmin.Control
         {
             ObservableCollection<Employe> employes = new ObservableCollection<Employe>(Data.DataModelEmploye.GetEmployesLstPatient((Departement)cboDepartements.SelectedItem));
             cboProfessionnel.ItemsSource = employes;
+        }
+
+        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            /*var viewDtgPatients = CollectionViewSource.GetDefaultView(dtgPatient);
+
+            viewDtgPatients.Filter = delegate (object o)
+            {
+                if (o.ToString().Contains(txtRecherche.Text))
+                {
+                    return true;
+                }
+                return false;
+            };
+
+            dtgPatient.ItemsSource = viewDtgPatients;*/
+        }
+
+        
+
+        private void dtgPatient_Selected(object sender, RoutedEventArgs e)
+        {
+                
+
+        }
+
+        private void dtgPatient_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Citoyen cit = (Citoyen)dtgPatient.SelectedItem;
+
+            if(dtgPatient.SelectedItem != null)
+                GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewProfessionnelDossierPatient(cit)));
         }
     }
 

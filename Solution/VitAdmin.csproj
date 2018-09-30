@@ -95,6 +95,9 @@
     <Compile Include="Control\ControlBandeauNavigationGeneral.xaml.cs">
       <DependentUpon>ControlBandeauNavigationGeneral.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlBarreRecherchePatients.xaml.cs">
+      <DependentUpon>ControlBarreRecherchePatients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlBarreRechercheTraitement.xaml.cs">
       <DependentUpon>ControlBarreRechercheTraitement.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
     <Compile Include="Data\DataModelDepartement.cs" />
     <Compile Include="Data\DataModelEmploye.cs" />
     <Compile Include="Data\DataModelEtape.cs" />
+    <Compile Include="Data\DataModelHospitalisation.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Model\Chambre.cs" />
@@ -220,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlBandeauNavigationGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlBarreRecherchePatients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

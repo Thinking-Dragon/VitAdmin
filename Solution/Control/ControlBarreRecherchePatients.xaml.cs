@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
-using VitAdmin.ModelView;
 
-namespace VitAdmin.View
+namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour ViewHubProfessionnel.xaml
+    /// Logique d'interaction pour ControlBarreRecherchePatients.xaml
     /// </summary>
-    public partial class ViewProfessionnelDossierPatient : Page
+    public partial class ControlBarreRecherchePatients : UserControl
     {
-        public ViewProfessionnelDossierPatient(Citoyen patient)
+        public ControlBarreRecherchePatients(ObservableCollection<Citoyen> observableCitoyens)
         {
             InitializeComponent();
-
-            grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient());
 
         }
     }

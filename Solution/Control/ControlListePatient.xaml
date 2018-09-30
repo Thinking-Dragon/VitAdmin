@@ -18,9 +18,11 @@
         </Grid.ColumnDefinitions>
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
-        <TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left" GotFocus="txtRecherche_GotFocus" LostFocus="txtRecherche_LostFocus"></TextBox>
-     
-        <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" AutoGenerateColumns="False">
+        <TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left"
+                 GotFocus="txtRecherche_GotFocus" LostFocus="txtRecherche_LostFocus"
+                 KeyDown="txtRecherche_KeyDown"></TextBox>
+
+        <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False" MouseDoubleClick="dtgPatient_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"/>
                 <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"/>
