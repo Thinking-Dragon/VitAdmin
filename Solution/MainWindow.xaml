@@ -13,7 +13,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="700" Width="1200"
+        Title="VitAdmin : pour accélérer votre précieux travail" Height="700" Width="1200"
+        Icon="pack://application:,,,/Resource/Graphic/Icon.png"
         Closing="Window_Closing">
     <Grid x:Name="grdMain"></Grid>
 </Window>

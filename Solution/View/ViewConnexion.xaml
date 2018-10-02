@@ -8,5 +8,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewConnexion">
-    <materialDesign:Card x:Name="card" Padding="32" Margin="16"></materialDesign:Card>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="512" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="128" />
+            <RowDefinition Height="256" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Column="1"
+               Grid.Row="1"
+               HorizontalAlignment="Right"
+               Source="pack://application:,,,/Resource/Graphic/Titre.png"></Image>
+
+        <materialDesign:Card Grid.Column="1"
+                             Grid.Row="2"
+                             x:Name="card"
+                             Padding="32"
+                             Margin="16">
+        </materialDesign:Card>
+    </Grid>
 </Page>

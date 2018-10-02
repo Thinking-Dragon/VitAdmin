@@ -28,7 +28,7 @@ namespace VitAdmin.View
             InitializeComponent();
             DataContext = new ViewModelAdminModifierTraitements(gestionnaireEcrans);
             cpBarreRecherche.Content = new ControlBarreRechercheTraitement((DataContext as ViewModelAdminModifierTraitements).Traitements);
-            cpListeTraitementsAvecEtapes.Content = new ControlListeTraitementsAvecEtapes();
+            cpListeTraitementsAvecEtapes.Content = new ControlListeTraitementsAvecEtapes(gestionnaireEcrans);
         }
     }
 }

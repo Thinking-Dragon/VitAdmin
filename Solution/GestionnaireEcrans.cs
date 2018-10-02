@@ -23,5 +23,7 @@ namespace VitAdmin
 
         public void Changer(Page ecran)
             => Frame.Content = ecran;
+
+        public Page GetEcranPresent() => (Frame.Content != null ? Frame.Content as Page : null);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,16 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlListeTraitementsAvecEtapes : UserControl
     {
-        public ControlListeTraitementsAvecEtapes()
+        private ControlModelListeTraitementsAvecEtapes ControlModel { get; set; }
+
+        public ControlListeTraitementsAvecEtapes(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
+            DataContext = ControlModel = new ControlModelListeTraitementsAvecEtapes(gestionnaireEcrans, DataModelTraitement.GetTraitements(true));
 
-            DataContext = new ControlModelListeTraitementsAvecEtapes(DataModelTraitement.GetTraitements());
+            cpTraitementsCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutTraitement, ControlModel.CmdSuppressionTraitement);
+            cpEtapesCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutEtapes, ControlModel.CmdSuppressionEtapes);
+            cpInstructionsCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutInstructions, ControlModel.CmdSuppressionInstructions);
         }
     }
 }

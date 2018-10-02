@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
@@ -78,10 +81,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ControlModel\ControlDossierPatientInfos.cs" />
+    <Compile Include="ControlModel\ControlModelAjoutSuppression.cs" />
     <Compile Include="ControlModel\ControlModelApercuDepartement.cs" />
     <Compile Include="ControlModel\ControlModelBandeauNavigationGeneral.cs" />
     <Compile Include="ControlModel\ControlModelBarreRechercheTraitement.cs" />
     <Compile Include="ControlModel\ControlModelConnexion.cs" />
+    <Compile Include="ControlModel\ControlModelDialogAjout.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientNotesInf.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientNotesMed.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientPrescriptions.cs" />
@@ -89,6 +94,9 @@
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
+    <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
+      <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlApercuDepartement.xaml.cs">
       <DependentUpon>ControlApercuDepartement.xaml</DependentUpon>
     </Compile>
@@ -103,6 +111,9 @@
     </Compile>
     <Compile Include="Control\ControlConnexion.xaml.cs">
       <DependentUpon>ControlConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDialogAjout.xaml.cs">
+      <DependentUpon>ControlDialogAjout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlDossierPatientInfos.xaml.cs">
       <DependentUpon>ControlDossierPatientInfos.xaml</DependentUpon>
@@ -145,6 +156,7 @@
     <Compile Include="Data\DataModelEmploye.cs" />
     <Compile Include="Data\DataModelEtape.cs" />
     <Compile Include="Data\DataModelHospitalisation.cs" />
+    <Compile Include="Data\DataModelInstructionEtape.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Model\Chambre.cs" />
@@ -219,6 +231,10 @@
     <Compile Include="View\ViewSuperEcran.xaml.cs">
       <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\ControlAjoutSuppression.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlApercuDepartement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlConnexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlDialogAjout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,6 +390,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Command\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Graphic\Titre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Graphic\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
