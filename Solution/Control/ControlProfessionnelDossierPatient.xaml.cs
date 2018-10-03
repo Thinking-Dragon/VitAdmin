@@ -23,6 +23,8 @@ namespace VitAdmin.Control
         public ControlProfessionnelDossierPatient()
         {
             InitializeComponent();
+
+           // DataContext = new ControlModel.ControlModelProfessionnelDossierPatient()
         }
     }
 }

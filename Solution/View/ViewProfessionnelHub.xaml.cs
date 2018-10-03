@@ -26,11 +26,11 @@ namespace VitAdmin.View
         // TODO: Modifier le paramètres pour qu'il recoit les infos du professionnel qui se connecte
         // Ainsi, le filtre département sera par défaut le département de l'employé ainsi la liste des
         // professionnels sera mis à jour.
-        public ViewProfessionnelHub(Departement departement, Employe employe) //Remplacer tous les paramètres par Employe, voir avec Clément
+        public ViewProfessionnelHub(GestionnaireEcrans gestionnaireEcrans, Departement departement, Employe employe) //Remplacer tous les paramètres par Employe, voir avec Clément
         {
             InitializeComponent();
 
-            Control.ControlListePatient ctrlLstPatient = new Control.ControlListePatient(new ObservableCollection<Citoyen>(DataModelCitoyen.getCitoyensLstPatient(employe)), new ObservableCollection<Departement>(DataModelDepartement.getDepartement()), new ObservableCollection<Employe>(DataModelEmploye.GetEmployesLstPatient(departement)),
+            Control.ControlListePatient ctrlLstPatient = new Control.ControlListePatient(gestionnaireEcrans, new ObservableCollection<Citoyen>(DataModelCitoyen.getCitoyensLstPatient(employe)), new ObservableCollection<Departement>(DataModelDepartement.getDepartement()), new ObservableCollection<Employe>(DataModelEmploye.GetEmployesLstPatient(departement)),
                                                                                         departement, employe);
 
             Grid.SetColumnSpan(ctrlLstPatient, 2);

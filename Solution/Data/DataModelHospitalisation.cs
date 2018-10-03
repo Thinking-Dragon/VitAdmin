@@ -9,10 +9,11 @@ namespace VitAdmin.Data
 {
     class DataModelHospitalisation
     {
-        public static List<Hospitalisation> getHospitalisation(Employe employe)
-        {/*
+        public static List<Hospitalisation> getHospitalisation(Citoyen citoyen)
+        {
             // On crée une liste de citoyen venant de la BD
-            List<Citoyen> lstCitoyen = new List<Citoyen>();
+            List<Hospitalisation> lstHospitalisation = new List<Hospitalisation>();
+            List<Traitement> lstTraitement = new List<Traitement>();
 
             // On vérifie si la BD est connecté
             if (ConnexionBD.Instance().EstConnecte())
@@ -20,43 +21,22 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT c.nom nomCit, c.prenom prenomCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit " +
-                    "FROM citoyens c " +
-                    "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
-                    "INNER JOIN etatslits elit ON l.idEtatLit = elit.idEtatLit " +
-                    "INNER JOIN chambres ch ON ch.idChambre = l.idChambre " +
-                    "INNER JOIN departements d ON d.idDepartement = ch.idDepartement " +
-                    "INNER JOIN quarts q ON q.idDepartement = d.idDepartement " +
-                    "INNER JOIN quartsEmployes qe ON qe.idQuart = q.idQuart " +
-                    "INNER JOIN employes emp ON emp.idEmploye = qe.idEmploye " +
-                    "WHERE emp.numEmploye = '" + employe.NumEmploye + "' "
+                    "SELECT h.dateDebut dDebut, h.dateFin dFin, d.nom depNom " +
+                    "FROM hospitalisation h " +
+                    "INNER JOIN traitements t ON t.idHospitalisation = t.idHospitalisation " +
+                    "INNER JOIN departements d ON d.idDepartement = t.idDepartement "
                     , SqlDR => {
-                        lstCitoyen.Add(new Citoyen
+                        lstHospitalisation.Add(new Hospitalisation
                         {
-                            Nom = SqlDR.GetString("nomCit"),
-                            Prenom = SqlDR.GetString("prenomCit"),
-                            //AssMaladie = SqlDR.GetString("numAssuranceMaladie"),
-                            //NumTelephone = SqlDR.GetString("telephone"),
-                            //Adresse = SqlDR.GetString("adresse"),
-                            Lit = new Lit
-                            {
-                                Numero = SqlDR.GetString("numeroLit"),
-                                //UnEtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), SqlDR.GetString("e.nom")),
-                                Chambre = new Chambre
-                                {
-                                    Nom = SqlDR.GetString("nomCh"),
-                                    UnDepartement = new Departement
-                                    {
-                                        Nom = SqlDR.GetString("nomDep"),
-                                        // Abreviation = SqlDR.GetString("d.abreviation")
-                                    }
-                                }
-                            }
+                            DateDebut = SqlDR.GetDateTime("dDebut"),
+                            DateFin = SqlDR.GetDateTime("dFin"),
+                            //LstTraitements
+
 
                         });
                     }
                     );
-            }*/
+            }
 
             return new List<Hospitalisation>();
         }

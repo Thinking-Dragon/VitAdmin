@@ -109,6 +109,7 @@
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
+    <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
     </Compile>

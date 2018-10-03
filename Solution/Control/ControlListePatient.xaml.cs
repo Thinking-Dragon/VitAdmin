@@ -26,12 +26,12 @@ namespace VitAdmin.Control
     {
         ComboBox cboProfessionnel = new ComboBox();
         ComboBox cboDepartements = new ComboBox();
+        GestionnaireEcrans gestEcrans;
 
-        private GestionnaireEcrans GestionnaireEcrans { get; set; }
-
-        public ControlListePatient(ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
+        public ControlListePatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
+            gestEcrans = gestionnaireEcrans;
 
             // On met dans le datacontexte les infos qui seront liées dans le UserControl
             DataContext = new ControlModelListePatient(citoyens, departements, employes);
@@ -158,7 +158,7 @@ namespace VitAdmin.Control
             Citoyen cit = (Citoyen)dtgPatient.SelectedItem;
 
             if(dtgPatient.SelectedItem != null)
-                GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewProfessionnelDossierPatient(cit)));
+                gestEcrans.Changer(new ViewSuperEcran(gestEcrans , new ViewProfessionnelDossierPatient(cit)));
         }
     }
 
