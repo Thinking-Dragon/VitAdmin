@@ -406,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Command\" />
+    <Folder Include="Parameter\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Graphic\Titre.png" />
