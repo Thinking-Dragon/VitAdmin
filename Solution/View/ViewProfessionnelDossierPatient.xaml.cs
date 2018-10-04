@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
 using VitAdmin.ModelView;
+using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
 {
@@ -23,11 +24,13 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewProfessionnelDossierPatient : Page
     {
-        public ViewProfessionnelDossierPatient(Citoyen patient)
+        public ViewProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
         {
             InitializeComponent();
 
-            //grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient(new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient))));
+            DataContext = new ViewModelProfessionnelDossierPatient(gestionnaireEcrans);
+
+            grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient))));
 
         }
     }

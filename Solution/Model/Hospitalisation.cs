@@ -9,7 +9,8 @@ namespace VitAdmin.Model
     public class Hospitalisation
     {
         public DateTime DateDebut { get; set; }
-        public DateTime DateFin { get; set; }
+        public DateTime DateFin;
+       
         public List<Traitement> LstTraitements { get; set; }
         public List<Symptome> LstSymptomes { get; set; }
     }
