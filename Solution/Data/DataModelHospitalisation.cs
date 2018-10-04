@@ -21,22 +21,22 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT h.dateDebut dDebut, h.dateFin dFin, d.nom depNom " +
-                    "FROM hospitalisation h " +
-                    "INNER JOIN traitements t ON t.idHospitalisation = t.idHospitalisation " +
-                    "INNER JOIN departements d ON d.idDepartement = t.idDepartement "
+                    "SELECT h.dateDebut dDebut, h.dateFin dFin " +
+                    "FROM hospitalisations h " +
+                    "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " //+
+                    //"WHERE c.numAssuranceMaladie ='" + citoyen.AssMaladie + "' "
                     , SqlDR => {
                         lstHospitalisation.Add(new Hospitalisation
                         {
                             DateDebut = SqlDR.GetDateTime("dDebut"),
-                            DateFin = SqlDR.GetDateTime("dFin"),
-                            LstTraitements = DataModelTraitement.GetTraitements(),
+                            //DateFin = SqlDR.GetDateTime("dFin"), 
+                            //LstTraitements = DataModelTraitement.GetTraitements(),
                         });
                     }
                     );
             }
 
-            return new List<Hospitalisation>();
+            return lstHospitalisation;
         }
     }
 }

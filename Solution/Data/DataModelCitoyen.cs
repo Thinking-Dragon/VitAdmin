@@ -51,7 +51,7 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT c.nom nomCit, c.prenom prenomCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit " +
+                    "SELECT c.nom nomCit, c.prenom prenomCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit, c.numAssuranceMaladie AssMal " +
                     "FROM citoyens c " +
                     "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
                     "INNER JOIN etatslits elit ON l.idEtatLit = elit.idEtatLit " +
@@ -66,7 +66,7 @@ namespace VitAdmin.Data
                         {
                             Nom = SqlDR.GetString("nomCit"),
                             Prenom = SqlDR.GetString("prenomCit"),
-                            //AssMaladie = SqlDR.GetString("numAssuranceMaladie"),
+                            AssMaladie = SqlDR.GetString("AssMal"),
                             //NumTelephone = SqlDR.GetString("telephone"),
                             //Adresse = SqlDR.GetString("adresse"),
                             Lit = new Lit
