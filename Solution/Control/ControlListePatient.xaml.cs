@@ -26,15 +26,13 @@ namespace VitAdmin.Control
     {
         ComboBox cboProfessionnel = new ComboBox();
         ComboBox cboDepartements = new ComboBox();
-        GestionnaireEcrans gestEcrans;
 
         public ControlListePatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
-            gestEcrans = gestionnaireEcrans;
 
             // On met dans le datacontexte les infos qui seront liées dans le UserControl
-            DataContext = new ControlModelListePatient(citoyens, departements, employes);
+            DataContext = new ControlModelListePatient(gestionnaireEcrans, citoyens, departements, employes);
 
             // Permet de sélectionner par défaut le département du professionnel dans la combobox
             // Je dois créer mes combobox avant de les mettre dans mon stackpanel puisque l'event selectedchange 
@@ -144,22 +142,7 @@ namespace VitAdmin.Control
 
             dtgPatient.ItemsSource = viewDtgPatients;*/
         }
-
-        
-
-        private void dtgPatient_Selected(object sender, RoutedEventArgs e)
-        {
-                
-
-        }
-
-        private void dtgPatient_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Citoyen cit = (Citoyen)dtgPatient.SelectedItem;
-
-            if(dtgPatient.SelectedItem != null)
-                gestEcrans.Changer(new ViewSuperEcran(gestEcrans , new ViewProfessionnelDossierPatient(cit)));
-        }
+     
     }
 
 }

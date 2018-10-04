@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -20,11 +22,11 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlProfessionnelDossierPatient : UserControl
     {
-        public ControlProfessionnelDossierPatient()
+        public ControlProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Hospitalisation> hospitalisations)
         {
             InitializeComponent();
 
-           // DataContext = new ControlModel.ControlModelProfessionnelDossierPatient()
+            DataContext = new ControlModel.ControlModelProfessionnelDossierPatient(hospitalisations);
         }
     }
 }

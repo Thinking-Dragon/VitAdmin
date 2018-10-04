@@ -11,7 +11,7 @@ namespace VitAdmin.Data
     public static class DataModelCitoyen
     {
         // On rend static la fonction pour être en mesure de l'utiliser partout
-        public static List <Citoyen> getCitoyens()
+        public static List <Citoyen> GetCitoyens()
         {
             // On crée une liste de citoyen venant de la BD
             List<Citoyen> lstCitoyen = new List<Citoyen>();
@@ -40,7 +40,7 @@ namespace VitAdmin.Data
             return lstCitoyen;
         }
 
-        public static List<Citoyen> getCitoyensLstPatient(Employe employe)
+        public static List<Citoyen> GetCitoyensLstPatient(Employe employe)
         {
             // On crée une liste de citoyen venant de la BD
             List<Citoyen> lstCitoyen = new List<Citoyen>();

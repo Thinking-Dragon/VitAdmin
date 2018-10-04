@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace VitAdmin.View
         {
             InitializeComponent();
 
-            grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient());
+            //grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient(new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient))));
 
         }
     }

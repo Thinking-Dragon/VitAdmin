@@ -8,7 +8,8 @@ namespace VitAdmin.Model
 {
     public class QuartEmploye
     {
-        public Employe EmployeAssocie { get; set; }
+        //public Employe EmployeAssocie { get; set; } N'est plus nécessaire. Sinon, cela fait du relationnel.
         public Quart QuartAssocie { get; set; }
+        public List<Citoyen> LstCitoyen;
     }
 }

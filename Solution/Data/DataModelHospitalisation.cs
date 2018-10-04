@@ -30,9 +30,7 @@ namespace VitAdmin.Data
                         {
                             DateDebut = SqlDR.GetDateTime("dDebut"),
                             DateFin = SqlDR.GetDateTime("dFin"),
-                            //LstTraitements
-
-
+                            LstTraitements = DataModelTraitement.GetTraitements(),
                         });
                     }
                     );

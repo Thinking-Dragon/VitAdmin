@@ -18,7 +18,13 @@
 
         </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="4"></DataGrid>
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="4">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Departement.Nom}" Header="Département"/>
+                <DataGridTextColumn Binding="{Binding DateDebut}" Header="Date début"/>
+                <DataGridTextColumn Binding="{Binding DateFin}" Header="Date fin"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <ComboBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"></ComboBox>
         <DatePicker Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"></DatePicker>
         <DatePicker Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"></DatePicker>
