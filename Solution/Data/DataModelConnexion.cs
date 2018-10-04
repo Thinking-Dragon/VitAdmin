@@ -44,22 +44,38 @@ namespace VitAdmin.Data
 
             if(ConnexionBD.Instance().EstConnecte())
             {
-                string requete = string.Format("SELECT u.nomUtilisateur usager, r.role role " +
-                                               "FROM Usagers u " +
-                                               "JOIN Roles r ON u.idRole = r.idRole " +
-                                               "WHERE u.nomUtilisateur = '{0}'", nom);
+                string requete = string.Format(
+                    "SELECT u.nomUtilisateur, r.role, " +
+                    "e.numEmploye, e.numPermis, e.NAS, " +
+                    "c.prenom, c.nom, c.numAssuranceMaladie, c.dateNaissance, c.telephone, c.adresse " +
+                    "FROM Usagers u " +
+                    "JOIN Roles r ON u.idRole = r.idRole " +
+                    "JOIN Employes e ON u.idEmploye = e.idEmploye " +
+                    "JOIN Citoyens c ON e.idCitoyen = c.idCitoyen " +
+                    "WHERE nomUtilisateur = '{0}'",
+                    nom
+                );
 
-                ConnexionBD.Instance().ExecuterRequete( // TODO: ajouter les informations des superclasses d'Usager.
+                ConnexionBD.Instance().ExecuterRequete(
                     requete, (MySqlDataReader lecteur) =>
                     {
                         usager = new Usager()
                         {
-                            NomUtilisateur = lecteur.GetString("usager"),
+                            NomUtilisateur = lecteur.GetString("nomUtilisateur"),
 
-                            // Role usager (TODO: implémenter un convertisseur de string à Role)
                             // https://stackoverflow.com/questions/2290262/search-for-a-string-in-enum-and-return-the-enum
                             // Fonctionne, mais case sensitive
-                            RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role"))
+                            RoleUsager = (Role)System.Enum.Parse(typeof(Role), lecteur.GetString("role")),
+
+                            NumEmploye = lecteur.GetString("numEmploye"),
+                            NumPermis = lecteur.GetString("numPermis"),
+                            NAS = lecteur.GetString("NAS"),
+                            Prenom = lecteur.GetString("prenom"),
+                            Nom = lecteur.GetString("nom"),
+                            AssMaladie = lecteur.GetString("numAssuranceMaladie"),
+                            //DateNaissance = lecteur.GetDateTime("dateNaissance"),
+                            NumTelephone = lecteur.GetString("telephone"),
+                            Adresse = lecteur.GetString("adresse")
                         };
                     }
                 );

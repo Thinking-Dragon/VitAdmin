@@ -173,8 +173,10 @@
     <Compile Include="Data\DataModelEtape.cs" />
     <Compile Include="Data\DataModelHospitalisation.cs" />
     <Compile Include="Data\DataModelInstructionEtape.cs" />
+    <Compile Include="Data\DataModelNotification.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
+    <Compile Include="GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
     <Compile Include="Model\Departement.cs" />

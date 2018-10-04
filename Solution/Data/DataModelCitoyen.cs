@@ -32,7 +32,7 @@ namespace VitAdmin.Data
                         AssMaladie = SqlDR.GetString("numAssuranceMaladie"),
                         NumTelephone = SqlDR.GetString("telephone"),
                         Adresse = SqlDR.GetString("adresse")
-
+                        
                     });}
                     );
             }

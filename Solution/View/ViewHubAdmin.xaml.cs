@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Data;
+using VitAdmin.Parameter;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -25,8 +27,6 @@ namespace VitAdmin.View
         {
             InitializeComponent();
             DataContext = new ViewModelHubAdmin(gestionnaireEcrans);
-
-            System.Windows.MessageBox.Show(Parameter.UsagerConnecte.Usager.NomUtilisateur);
         }
     }
 }
