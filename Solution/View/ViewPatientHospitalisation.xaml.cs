@@ -28,8 +28,6 @@ namespace VitAdmin.View
             InitializeComponent();
             DataContext = new ViewModelPatientHospitalisation(gestionnaireEcrans, patient);
             this.Content = new ControlDossierPatientOnglets(gestionnaireEcrans, patient, hospit);
-
-            /*Faut label avec nom du patient etc bindé dans le view model*/
             
         }
     }

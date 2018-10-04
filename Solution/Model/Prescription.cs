@@ -11,6 +11,6 @@ namespace VitAdmin.Model
         public string Produit { get; set; }
         public string Posologie { get; set; }
         public DateTime DateDebut { get; set; }
-        public DateTime DateFin { get; set; }
+        public int NbJour { get; set; }
     }
 }

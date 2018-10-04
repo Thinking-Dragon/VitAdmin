@@ -18,6 +18,15 @@ namespace VitAdmin.Model
         public List<Hospitalisation> Hospitalisations { get; set; }
         public Lit Lit { get; set; }
 
+        public Citoyen(String NumAssMaladie)
+        {
+            AssMaladie = NumAssMaladie;
+        }
+
+        public Citoyen()
+        {
+        }
+
 
         bool ValiderTelephone() { return new bool(); }
         bool ValiderAssMaladie() { return new bool(); }

@@ -26,7 +26,7 @@ namespace VitAdmin.Control
         public ControlDossierPatientPrescriptions(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientPrescriptions(DataModelCitoyen.GetPrescriptionsCitoyens(patient, hospit));
+            DataContext = new ControlModelDossierPatientPrescriptions(DataModelCitoyen.GetPrescriptionsCitoyens("tous059615"));
         }
     }
 }
