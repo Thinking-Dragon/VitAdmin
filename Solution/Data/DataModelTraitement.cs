@@ -44,5 +44,42 @@ namespace VitAdmin.Data
 
             return traitements;
         }
+
+        public static Traitement GetTraitement(string nom, bool expand = false)
+        {
+            Traitement traitement = new Traitement();
+            int idTraitement = -1;
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT t.idTraitement _id, t.nom traitement, d.nom departement, d.abreviation dept " +
+                        "FROM Traitements t " +
+                        "JOIN Departements d ON d.idDepartement = t.idDepartement " +
+                        "WHERE t.nom = '{0}'", 
+                        nom
+                    ), lecteur =>
+                    {
+                        traitement = new Traitement
+                        {
+                            Nom = lecteur.GetString("traitement"),
+                            DepartementAssocie = new Departement
+                            {
+                                Nom = lecteur.GetString("departement"),
+                                Abreviation = lecteur.GetString("dept")
+                            }
+                        };
+
+                        if (expand)
+                            idTraitement = int.Parse(lecteur.GetString("_id"));
+                    }
+                );
+                if (expand && traitement != null && idTraitement >= 0)
+                    traitement.EtapesTraitement = DataModelEtape.GetEtapes(idTraitement, true);
+            }
+
+            return traitement;
+        }
     }
 }
