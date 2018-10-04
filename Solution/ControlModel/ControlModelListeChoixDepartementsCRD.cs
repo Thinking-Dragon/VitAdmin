@@ -16,7 +16,12 @@ namespace VitAdmin.ControlModel
 
         public ObservableCollection<Departement> Departements { get; set; }
 
-        public Departement DepartementSelectionne { get; set; }
+        private Departement departementSelectionne;
+        public Departement DepartementSelectionne
+        {
+            get { return departementSelectionne; }
+            set { departementSelectionne = value; RaisePropertyChangedEvent("DepartementSelectionne"); }
+        }
 
         public ICommand CmdCreer
         {

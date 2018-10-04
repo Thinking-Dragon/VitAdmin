@@ -12,8 +12,13 @@ namespace VitAdmin.ControlModel
     public class ControlModelApercuDepartement : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
-
-        public Departement Departement { get; set; }
+        
+        private Departement departement;
+        public Departement Departement
+        {
+            get { return departement; }
+            set { departement = value; RaisePropertyChangedEvent("Departement"); }
+        }
 
         public ICommand CmdModifierDepartement
         {

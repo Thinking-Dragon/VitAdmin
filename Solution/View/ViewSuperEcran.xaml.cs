@@ -23,12 +23,18 @@ namespace VitAdmin.View
     public partial class ViewSuperEcran : Page
     {
         private GestionnaireEcrans GestionnaireSousEcrans { get; set; }
-        public ViewSuperEcran(GestionnaireEcrans gestionnaireEcrans, Page premierSousEcran)
+        public ViewSuperEcran(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
-            GestionnaireSousEcrans = new GestionnaireEcrans(grdSousEcran, premierSousEcran);
+            GestionnaireSousEcrans = new GestionnaireEcrans(grdSousEcran, null);
             grdMain.Children.Add(new ControlBandeauNavigationGeneral(gestionnaireEcrans, GestionnaireSousEcrans));
             DataContext = new ViewModelSuperEcran(gestionnaireEcrans, GestionnaireSousEcrans);
         }
+
+        public ViewSuperEcran(GestionnaireEcrans gestionnaireEcrans, Page premierSousEcran) : this(gestionnaireEcrans)
+            => GestionnaireSousEcrans.Changer(premierSousEcran);
+
+        public ViewSuperEcran(GestionnaireEcrans gestionnaireEcrans, Type typePremierSousEcran) : this(gestionnaireEcrans)
+            => GestionnaireSousEcrans.Changer(Activator.CreateInstance(typePremierSousEcran, GestionnaireSousEcrans) as Page);
     }
 }

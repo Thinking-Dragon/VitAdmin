@@ -13,7 +13,12 @@ namespace VitAdmin.ViewModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public Departement DepartementSelectionne { get; set; }
+        private Departement departementSelectionne;
+        public Departement DepartementSelectionne
+        {
+            get { return departementSelectionne; }
+            set { departementSelectionne = value; RaisePropertyChangedEvent("DepartementSelectionne"); }
+        }
 
         public ICommand CmdEquipements
         {
