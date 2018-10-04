@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
 using VitAdmin.ControlModel;
+using VitAdmin.Data;
 
 namespace VitAdmin.Control
 {
@@ -25,7 +26,7 @@ namespace VitAdmin.Control
         public ControlDossierPatientPrescriptions(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientPrescriptions(patient, hospit /*résultat de la requête*/);
+            DataContext = new ControlModelDossierPatientPrescriptions(DataModelCitoyen.GetPrescriptionsCitoyens(patient, hospit));
         }
     }
 }
