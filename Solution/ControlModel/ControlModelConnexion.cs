@@ -8,6 +8,7 @@ using System.Windows.Input;
 using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.Parameter;
 using VitAdmin.View;
 
 namespace VitAdmin.ControlModel
@@ -44,13 +45,9 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(password =>
                 {
-                    EtatAvecMessage validation = DataModelConnexion.ValiderIdentite(Usager, (password as PasswordBox).Password);
+                    EtatAvecMessage validation = UsagerConnecte.TenterConnexion(Usager, (password as PasswordBox).Password);
                     if (validation.Etat)
-                    {
-                        Usager usager = DataModelConnexion.GetUsager(Usager);
-                        // ... //
                         GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, typeof(ViewHubAdmin)));
-                    }
                     else MessageErreur = validation.Message;
                 });
             }

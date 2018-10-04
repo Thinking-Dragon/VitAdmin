@@ -203,6 +203,7 @@
     <Compile Include="MVVM\CommandeDeleguee.cs" />
     <Compile Include="MVVM\FrameSansNavigation.cs" />
     <Compile Include="MVVM\ObjetObservable.cs" />
+    <Compile Include="Parameter\UsagerConnecte.cs" />
     <Compile Include="ViewModel\ModelViewAdminModificationStructure.cs" />
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
@@ -406,7 +407,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Command\" />
-    <Folder Include="Parameter\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Graphic\Titre.png" />
