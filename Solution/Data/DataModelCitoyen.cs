@@ -93,7 +93,7 @@ namespace VitAdmin.Data
         }
 
         // On rend static la fonction pour être en mesure de l'utiliser partout
-        public static List<Prescription> GetPrescriptionsCitoyens(Citoyen patient, Hospitalisation hospit)
+        public static List<Prescription> GetPrescriptionsCitoyens(String NumAssMaladie)
         {
             // On crée une liste de citoyen venant de la BD
             List<Prescription> lstPrescriptions = new List<Prescription>();
@@ -104,20 +104,21 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT produit, posologie, p.dateDebut, p.dateFin from prescriptions p" +
-                    "INNER JOIN evenements e on e.idEvenement = p.idEvenement" +
-                    "INNER JOIN hospitalisations h on h.idHospitalisation = e.idHospitalisation" +
-                    "INNER JOIN citoyens c on c.idCitoyen = h.idCitoyen" +
-                    "where c.numAssuranceMaladie = '"+ patient.AssMaladie.ToString() + "'" 
-
+                    "SELECT produit prod, posologie poso, prescriptions.dateDebut Ddebut, nbJour nbj " +
+                    "FROM prescriptions " +
+                    "INNER JOIN evenements e on e.idEvenement = prescriptions.idEvenement " +
+                    "INNER JOIN hospitalisations h on h.idHospitalisation = e.idHospitalisation " +
+                    "INNER JOIN citoyens c on c.idCitoyen = h.idCitoyen " +
+                    "WHERE c.numAssuranceMaladie = '"+ NumAssMaladie +
+                    "' AND (prescriptions.dateDebut + INTERVAL nbJour DAY >= CURDATE() OR nbJour = 0) "
 
                     , SqlDR => {
                         lstPrescriptions.Add(new Prescription
                         {
-                            Produit = SqlDR.GetString("produit"),
-                            Posologie = SqlDR.GetString("posologie"),
-                            DateDebut = SqlDR.GetDateTime("DateDebut"),
-                            DateFin = SqlDR.GetDateTime("DateFin")
+                            Produit = SqlDR.GetString("prod"),
+                            Posologie = SqlDR.GetString("poso"),
+                            DateDebut = SqlDR.GetDateTime("Ddebut"),
+                            NbJour = SqlDR.GetUInt16("nbj")
 
                         });
                     }
@@ -126,40 +127,6 @@ namespace VitAdmin.Data
 
             return lstPrescriptions;
         }
-
-
-        // On rend static la fonction pour être en mesure de l'utiliser partout
-        public static Citoyen GetCitoyen(int id)
-        {
-            // On crée une liste de citoyen venant de la BD
-            Citoyen patient = new Citoyen();
-
-            // On vérifie si la BD est connecté
-            if (ConnexionBD.Instance().EstConnecte())
-            {
-                // Si oui, on execute la requête que l'on veut effectuer
-                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
-                ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT * " +
-                    "WHERE idCitoyen = '" + id.ToString() + "'"
-
-                    , SqlDR => {
-                        patient = new Citoyen
-                        {
-                            Nom = SqlDR.GetString("nom"),
-                            Prenom = SqlDR.GetString("prenom"),
-                            DateNaissance = SqlDR.GetDateTime("dateNaissance"),
-                            AssMaladie = SqlDR.GetString("NumAssuranceMaladie")
-
-
-
-                        };
-                    });
-            }
-
-            return patient;
-        }
-
 
     }
 }

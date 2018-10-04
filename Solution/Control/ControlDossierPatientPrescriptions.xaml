@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding LstPrescriptions}" AutoGenerateColumns="False">
+        <DataGrid ItemsSource="{Binding LstPrescriptions}">
             
         </DataGrid>
 
