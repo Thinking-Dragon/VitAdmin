@@ -12,6 +12,7 @@ namespace VitAdmin.Model
         public String Nom { get; set; }
         public String Prenom { get; set; }
         public String AssMaladie { get; set; }
+        public DateTime DateNaissance { get; set; }
         public String Adresse { get; set; }
         public String NumTelephone { get; set; }
         public List<Hospitalisation> Hospitalisations { get; set; }
