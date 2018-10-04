@@ -25,6 +25,8 @@ namespace VitAdmin.View
         {
             InitializeComponent();
             DataContext = new ViewModelHubAdmin(gestionnaireEcrans);
+
+            System.Windows.MessageBox.Show(Parameter.UsagerConnecte.Usager.NomUtilisateur);
         }
     }
 }

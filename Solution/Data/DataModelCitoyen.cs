@@ -93,7 +93,7 @@ namespace VitAdmin.Data
         }
 
         // On rend static la fonction pour être en mesure de l'utiliser partout
-        public static List<Prescription> PrescriptionsCitoyens(Citoyen patient, Hospitalisation hospit)
+        public static List<Prescription> GetPrescriptionsCitoyens(Citoyen patient, Hospitalisation hospit)
         {
             // On crée une liste de citoyen venant de la BD
             List<Prescription> lstPrescriptions = new List<Prescription>();
@@ -126,5 +126,40 @@ namespace VitAdmin.Data
 
             return lstPrescriptions;
         }
+
+
+        // On rend static la fonction pour être en mesure de l'utiliser partout
+        public static Citoyen GetCitoyen(int id)
+        {
+            // On crée une liste de citoyen venant de la BD
+            Citoyen patient = new Citoyen();
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT * " +
+                    "WHERE idCitoyen = '" + id.ToString() + "'"
+
+                    , SqlDR => {
+                        patient = new Citoyen
+                        {
+                            Nom = SqlDR.GetString("nom"),
+                            Prenom = SqlDR.GetString("prenom"),
+                            DateNaissance = SqlDR.GetDateTime("dateNaissance"),
+                            AssMaladie = SqlDR.GetString("NumAssuranceMaladie")
+
+
+
+                        };
+                    });
+            }
+
+            return patient;
+        }
+
+
     }
 }

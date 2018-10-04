@@ -13,9 +13,11 @@ namespace VitAdmin.ControlModel
     {
         public List<Prescription> LstPrescriptions { get; set; }
 
-        public ControlModelDossierPatientPrescriptions(Citoyen patient, Hospitalisation hospit /*résultat de la requête*/)
-        {
 
+
+        public ControlModelDossierPatientPrescriptions(List<Prescription> resultRequete)
+        {
+            LstPrescriptions = resultRequete;
         }
     }
 }

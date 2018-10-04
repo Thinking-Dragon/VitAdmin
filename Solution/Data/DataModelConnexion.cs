@@ -20,7 +20,7 @@ namespace VitAdmin.Data
                 int nbUsagers = 0;
                 string requete = string.Format("SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '{0}'", usager);
 
-                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé?
+                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé? Meh. En principe ! Mais ça doit clairement être encore hackable !
                     requete, (MySqlDataReader lecteur) =>
                     {
                         string nom = lecteur.GetString("nomUtilisateur");
