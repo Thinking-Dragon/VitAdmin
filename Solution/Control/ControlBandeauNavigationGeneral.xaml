@@ -15,21 +15,30 @@
             <ColumnDefinition Width="128"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--<Button>Back</Button>-->
-        <!--<Button Grid.Column="2">Notifications</Button>-->
-        <materialDesign:PackIcon Grid.Column="2"
-                                 Kind="Bell"
-                                 Width="32" Height="32"
-                                 HorizontalAlignment="Right"
-                                 VerticalAlignment="Center"
-                                 Cursor="Hand">
-        </materialDesign:PackIcon>
-        <!--<Button Grid.Column="3">Profil</Button>-->
-        <materialDesign:PackIcon Grid.Column="3"
-                                 Kind="AccountCircle"
-                                 Width="32" Height="32"
-                                 VerticalAlignment="Center"
-                                 Cursor="Hand">
-        </materialDesign:PackIcon>
+        <materialDesign:DialogHost CloseOnClickAway="True"
+                                   Grid.Column="2">
+            <materialDesign:DialogHost.DialogContent>
+                <local:ControlNotifications />
+            </materialDesign:DialogHost.DialogContent>
+            <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                <materialDesign:PackIcon Grid.Column="2"
+                                         Kind="Bell"
+                                         Width="32" Height="32"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         Cursor="Hand">
+                </materialDesign:PackIcon>
+            </Button>
+        </materialDesign:DialogHost>
+        <Button Grid.Column="3"
+                Command="{Binding CmdProfil}">
+            <materialDesign:PackIcon Grid.Column="3"
+                                     Kind="AccountCircle"
+                                     Width="32" Height="32"
+                                     VerticalAlignment="Center"
+                                     Cursor="Hand">
+            </materialDesign:PackIcon>
+        </Button>
     </Grid>
 </UserControl>
 
