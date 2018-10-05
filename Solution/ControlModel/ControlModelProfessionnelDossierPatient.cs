@@ -5,16 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VitAdmin.Model;
+using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    class ControlModelProfessionnelDossierPatient
+    class ControlModelProfessionnelDossierPatient : ObjetObservable
     {
-        ObservableCollection<Hospitalisation> hospitalisations { get; set; }
-
-        public ControlModelProfessionnelDossierPatient(ObservableCollection<Hospitalisation> hospit)
+        public ObservableCollection<Hospitalisation> Hospitalisations { get; set; }
+        private Departement DepartementAss { get; set; }
+        public Departement DepartementAssocie
         {
-            hospitalisations = hospit;
+            get
+            {
+                return DepartementAss;
+            }
+
+            set
+            {
+                DepartementAss = value;
+                RaisePropertyChangedEvent("DepartementAssocie");
+            }
+        }
+
+        public ControlModelProfessionnelDossierPatient(ObservableCollection<Hospitalisation> hospitalisations)
+        {
+            Hospitalisations = hospitalisations;
+            DepartementAssocie = hospitalisations[0].LstTraitements[0].DepartementAssocie;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace VitAdmin.Data
         {
             // On crée une liste de citoyen venant de la BD
             List<Hospitalisation> lstHospitalisation = new List<Hospitalisation>();
-            List<Traitement> lstTraitement = new List<Traitement>();
+            List<int> lstIdTraitement = new List<int>();
 
             // On vérifie si la BD est connecté
             if (ConnexionBD.Instance().EstConnecte())
@@ -21,19 +21,56 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT h.dateDebut dDebut, h.dateFin dFin " +
+                    "SELECT h.dateDebut dDebut, h.dateFin dFin, t.idTraitement idTrait " +
                     "FROM hospitalisations h " +
-                    "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " //+
-                    //"WHERE c.numAssuranceMaladie ='" + citoyen.AssMaladie + "' "
+                    "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " +
+                    "INNER JOIN hospitalisationstraitements ht ON ht.idHospitalisation = h.idHospitalisation " +
+                    "INNER JOIN traitements t ON t.idTraitement = ht.idTraitement " +
+                    "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
+                    "WHERE c.numAssuranceMaladie ='" + citoyen.AssMaladie + "' "
                     , SqlDR => {
                         lstHospitalisation.Add(new Hospitalisation
                         {
-                            DateDebut = SqlDR.GetDateTime("dDebut"),
-                            //DateFin = SqlDR.GetDateTime("dFin"), 
-                            //LstTraitements = DataModelTraitement.GetTraitements(),
+                            DateDebut = (DateTime)SqlDR.GetMySqlDateTime("dDebut"),
+                            DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin") , 
+                            
                         });
+
+                        lstIdTraitement.Add(SqlDR.GetInt16("idTrait"));
                     }
                     );
+            }
+
+
+            // Il faut aller chercher dans une autre requête les traitements de l'hospitalisation
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                foreach(Hospitalisation hospitalisation in lstHospitalisation)
+                {
+                    hospitalisation.LstTraitements = new List<Traitement>();
+                    foreach(int idTraitement in lstIdTraitement)
+                    {
+
+                        ConnexionBD.Instance().ExecuterRequete(
+                            "SELECT d.Nom depNom " +
+                            "FROM traitements t " +
+                            "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
+                            "INNER JOIN hospitalisationstraitements ht ON ht.idTraitement = t.idTraitement " +
+                            "INNER JOIN hospitalisations h ON h.idHospitalisation = ht.idHospitalisation " +
+                            "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " +
+                            "WHERE c.numAssuranceMaladie ='" + citoyen.AssMaladie + "' "
+                            , SqlDR => { hospitalisation.LstTraitements.Add(new Traitement {
+
+                                DepartementAssocie = new Departement { Nom = SqlDR.GetString("depNom") }
+
+                                });
+                                
+                            }
+                            );
+                    }
+                }
             }
 
             return lstHospitalisation;

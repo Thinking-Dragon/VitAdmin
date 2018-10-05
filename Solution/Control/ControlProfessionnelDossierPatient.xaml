@@ -18,9 +18,10 @@
 
         </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="4">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Departement.Nom}" Header="Département"/>
+        <DataGrid Name="dtgDossierPatient" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
+           <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding DataContext.DepartementAssocie.Nom, 
+                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
                 <DataGridTextColumn Binding="{Binding DateDebut}" Header="Date début"/>
                 <DataGridTextColumn Binding="{Binding DateFin}" Header="Date fin"/>
             </DataGrid.Columns>

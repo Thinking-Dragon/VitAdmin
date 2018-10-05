@@ -22,11 +22,29 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlProfessionnelDossierPatient : UserControl
     {
+
         public ControlProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Hospitalisation> hospitalisations)
         {
             InitializeComponent();
 
             DataContext = new ControlModel.ControlModelProfessionnelDossierPatient(hospitalisations);
         }
+
+        /*void initialiserDataGridHospit(ObservableCollection<Hospitalisation> hospitalisations)
+        {
+            DataGrid dataGridHospitalisations = new DataGrid
+            {
+                ItemsSource = hospitalisations,
+                IsReadOnly = true,
+                AutoGenerateColumns = false,  
+            };
+
+            // Binding de DateDebut
+            Binding bdgDateDebut = new Binding("DateDebut");
+            DataGridTextColumn dtgTextColDateDebut = new DataGridTextColumn { Binding = bdgDateDebut };
+            // Binding de DateDebut
+            Binding bdgDateFin = new Binding("Hospitalisations.DateFin");
+            DataGridTextColumn dtgTextColDateDebut = new DataGridTextColumn { Binding = bdgDateDebut };
+        }*/
     }
 }
