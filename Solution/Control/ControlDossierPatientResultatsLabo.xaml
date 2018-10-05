@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="VitAdmin.Control.ControlDossierPatientResultatsLabo"
+﻿<!-- Charle sucks-->
+<UserControl x:Class="VitAdmin.Control.ControlDossierPatientResultatsLabo"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

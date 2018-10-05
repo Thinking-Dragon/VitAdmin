@@ -7,8 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding LstPrescriptions}">
-            
+        <DataGrid ItemsSource="{Binding LstPrescriptions}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Produit}" Header="Médicament" Width="*" />
+                <DataGridTextColumn Binding="{Binding Posologie}" Header="Posologie" Width="*" />
+                <DataGridTextColumn Binding="{Binding DateDebut}" Header="Date de début" Width="*" />
+                <DataGridTextColumn Binding="{Binding NbJour}" Header="Nombre de jour" Width="*" />
+            </DataGrid.Columns>
         </DataGrid>
 
     </Grid>
