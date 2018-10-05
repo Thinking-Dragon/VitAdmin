@@ -29,7 +29,7 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
-                    System.Windows.MessageBox.Show("Hey!");
+                    
                 });
             }
         }
