@@ -47,7 +47,7 @@ namespace VitAdmin.ControlModel
                 {
                     EtatAvecMessage validation = UsagerConnecte.TenterConnexion(Usager, (password as PasswordBox).Password);
                     if (validation.Etat)
-                        GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, typeof(ViewHubAdmin)));
+                        GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, typeof(ViewChargementApp)));
                     else MessageErreur = validation.Message;
                 });
             }
