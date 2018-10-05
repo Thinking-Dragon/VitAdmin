@@ -212,6 +212,7 @@
     <Compile Include="Parameter\UsagerConnecte.cs" />
     <Compile Include="ViewModel\ModelViewAdminModificationStructure.cs" />
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
+    <Compile Include="ViewModel\ViewModelChargementApp.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -226,6 +227,9 @@
     </Compile>
     <Compile Include="View\ViewAdminModifierTraitements.xaml.cs">
       <DependentUpon>ViewAdminModifierTraitements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewChargementApp.xaml.cs">
+      <DependentUpon>ViewChargementApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
@@ -344,6 +348,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewAdminModifierTraitements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewChargementApp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,7 +14,7 @@
             <ColumnDefinition Width="128"></ColumnDefinition>
             <ColumnDefinition Width="128"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button>Back</Button>
+        <!--<Button>Back</Button>-->
         <!--<Button Grid.Column="2">Notifications</Button>-->
         <materialDesign:PackIcon Grid.Column="2"
                                  Kind="Bell"

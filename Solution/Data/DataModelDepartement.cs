@@ -9,8 +9,22 @@ namespace VitAdmin.Data
 {
     class DataModelDepartement
     {
+        /*public static Departement GetDepartement(string numEmploye)
+        {
+            Departement departement = new Departement();
+
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT "
+                    )
+                );
+            }
+        }*/
+
         // On rend static la fonction pour être en mesure de l'utiliser partout
-        public static List<Departement> getDepartement()
+        public static List<Departement> GetDepartements()
         {
             // On crée une liste de citoyen venant de la BD
             List<Departement> lstDepartement = new List<Departement>();
