@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
+using VitAdmin.ControlModel;
+using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -26,8 +28,9 @@ namespace VitAdmin.View
         public ViewSuperEcran(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
-            GestionnaireSousEcrans = new GestionnaireEcrans(grdSousEcran, null);
-            grdMain.Children.Add(new ControlBandeauNavigationGeneral(gestionnaireEcrans, GestionnaireSousEcrans));
+            ControlBandeauNavigationGeneral controlBandeauNavigationGeneral = new ControlBandeauNavigationGeneral(gestionnaireEcrans, grdSousEcran);
+            grdMain.Children.Add(controlBandeauNavigationGeneral);
+            GestionnaireSousEcrans = controlBandeauNavigationGeneral.GestionnaireSousEcrans;
             DataContext = new ViewModelSuperEcran(gestionnaireEcrans, GestionnaireSousEcrans);
         }
 

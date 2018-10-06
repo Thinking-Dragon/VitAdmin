@@ -225,6 +225,7 @@
     <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="ViewModel\ViewProfessionnelDossierPatientCreerHospitalisation.cs" />
+    <Compile Include="View\Tool\IEcranRetour.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
     </Compile>

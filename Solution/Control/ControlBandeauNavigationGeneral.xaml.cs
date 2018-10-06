@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
+using VitAdmin.View.Tool;
 
 namespace VitAdmin.Control
 {
@@ -21,10 +22,21 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlBandeauNavigationGeneral : UserControl
     {
-        public ControlBandeauNavigationGeneral(GestionnaireEcrans gestionnaireEcrans, GestionnaireEcrans gestionnaireSousEcrans)
+        public GestionnaireEcrans GestionnaireSousEcrans { get; set; }
+
+        public ControlBandeauNavigationGeneral(GestionnaireEcrans gestionnaireEcrans, Panel grdSousEcran)
         {
             InitializeComponent();
-            DataContext = new ControlModelBandeauNavigationGeneral(gestionnaireEcrans, gestionnaireSousEcrans);
+            GestionnaireSousEcrans = new GestionnaireEcrans(grdSousEcran, prochainEcran =>
+            {
+                if (prochainEcran is IEcranRetour)
+                {
+                    (DataContext as ControlModelBandeauNavigationGeneral).TexteBoutonRetourEcran = (prochainEcran as IEcranRetour).TexteBoutonRetourEcran;
+                    btnRetourEcran.Visibility = Visibility.Visible;
+                }
+                else btnRetourEcran.Visibility = Visibility.Hidden;
+            });
+            DataContext = new ControlModelBandeauNavigationGeneral(gestionnaireEcrans, GestionnaireSousEcrans);
         }
     }
 }

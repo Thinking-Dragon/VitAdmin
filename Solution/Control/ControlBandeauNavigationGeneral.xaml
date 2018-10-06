@@ -14,7 +14,9 @@
             <ColumnDefinition Width="128"></ColumnDefinition>
             <ColumnDefinition Width="128"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <!--<Button>Back</Button>-->
+        <Button x:Name="btnRetourEcran"
+                Content="{Binding TexteBoutonRetourEcran}"
+                Command="{Binding CmdRetourEcran}"/>
         <materialDesign:DialogHost CloseOnClickAway="True"
                                    Grid.Column="2">
             <materialDesign:DialogHost.DialogContent>

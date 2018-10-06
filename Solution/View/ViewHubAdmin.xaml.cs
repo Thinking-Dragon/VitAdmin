@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Data;
 using VitAdmin.Parameter;
+using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -23,10 +24,13 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewHubAdmin : Page
     {
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
         public ViewHubAdmin(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
             DataContext = new ViewModelHubAdmin(gestionnaireEcrans);
+            GestionnaireEcrans = gestionnaireEcrans;
         }
     }
 }

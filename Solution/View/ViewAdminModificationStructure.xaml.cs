@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
+using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -20,11 +21,14 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewAdminModificationStructure.xaml
     /// </summary>
-    public partial class ViewAdminModificationStructure : Page
+    public partial class ViewAdminModificationStructure : Page, IEcranRetour
     {
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
         public ViewAdminModificationStructure(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
+            GestionnaireEcrans = gestionnaireEcrans;
             DataContext = new ModelViewAdminModificationStructure(gestionnaireEcrans);
             cpListeDepartements.Content = new ControlListeChoixDepartementsCRD(gestionnaireEcrans, new List<Model.Departement>
             {
@@ -40,6 +44,16 @@ namespace VitAdmin.View
                 gestionnaireEcrans,
                 (DataContext as ModelViewAdminModificationStructure).DepartementSelectionne
             );
+        }
+
+        public Action CmdRetourEcranPrecedent
+        {
+            get { return () => { GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans)); }; }
+        }
+
+        public string TexteBoutonRetourEcran
+        {
+            get { return "< Accueil"; }
         }
     }
 }
