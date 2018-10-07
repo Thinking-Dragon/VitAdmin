@@ -9,7 +9,7 @@ namespace VitAdmin.Model
     public enum EtatLit
     {
         Libre,
-        Occupe,
+        Occupé,
         Maintenance,
         Nettoyage
     }

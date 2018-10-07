@@ -32,7 +32,7 @@ namespace VitAdmin.Data
             return lstEmployes;
         }
 
-        public static List<Employe> GetEmployesLstPatient(Departement depSelectionne)
+        public static List<Employe> GetLstEmployesDepartement(Departement depSelectionne)
         {
             List<Employe> lstEmployes = new List<Employe>();
 

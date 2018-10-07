@@ -75,6 +75,7 @@ namespace VitAdmin.Control
             cboDepartements.ItemsSource = departements;
             cboDepartements.DisplayMemberPath = "Nom";
             cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
+
             cboDepartements.SelectionChanged += CboDepartements_SelectionChanged;
 
             stpnlFiltres.Children.Add(cboDepartements);
@@ -115,16 +116,41 @@ namespace VitAdmin.Control
 
         private void CboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: Plante avec un null à employe et fait des doublons...
-            // Normal, il n'y a pas de lien entre un patient et un employé! Voir note 30/09/2018
-            /*ObservableCollection<Citoyen> citoyens = new ObservableCollection<Citoyen>(Data.DataModelCitoyen.getCitoyensLstPatient((Employe)cboProfessionnel.SelectedItem));
-            cboProfessionnel.ItemsSource = citoyens;*/
+            ControlModelListePatient controlModelListePatient = (ControlModelListePatient)DataContext;
+
+            // la fonction clear dans la fonction CboDepartements_SelectionChanged déclenche un selectionChanged 
+            // dans le cboProfessionnel lorsque son contenu est vide. Donc, il fait planté la requête ici.
+            if (controlModelListePatient.Employes.Count != 0)
+            {
+                List<Citoyen> lstPatients = new List<Citoyen>();
+                Employe employeSelectionne = (Employe)cboProfessionnel.SelectedItem;
+
+                if (employeSelectionne.Nom == "Tous")
+                    lstPatients = Data.DataModelCitoyen.GetTousCitoyensDepartement((Departement)cboDepartements.SelectedItem);                   
+                else
+                    lstPatients = Data.DataModelCitoyen.GetCitoyensLstPatient(employeSelectionne);
+
+                controlModelListePatient.Citoyens.Clear();
+                lstPatients.ForEach(patient => controlModelListePatient.Citoyens.Add(patient));
+            }
+            
         }
 
+        // À modifier pour le rendre en ICommand dans ControlModel?
         private void CboDepartements_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ObservableCollection<Employe> employes = new ObservableCollection<Employe>(Data.DataModelEmploye.GetEmployesLstPatient((Departement)cboDepartements.SelectedItem));
-            cboProfessionnel.ItemsSource = employes;
+            // On va chercher le contenu du DataContext pour modifier directement les valeurs
+            ControlModelListePatient controlModelListePatient = (ControlModelListePatient)DataContext;
+
+            // On met temporairement la nouvelle liste d'employés du département sélectionné dans une liste
+            List<Employe> lstEmploye = Data.DataModelEmploye.GetLstEmployesDepartement((Departement)cboDepartements.SelectedItem);
+            // On vide la liste dans le datacontext
+            controlModelListePatient.Employes.Clear();
+            // On ajoute les nouveaux employés dans le datacontext
+            lstEmploye.Add(new Employe { Nom = "Tous" });
+            // On met le critère Tous lorsque le département est changé.
+            cboProfessionnel.SelectedItem = lstEmploye[0];
+            lstEmploye.ForEach(employe => controlModelListePatient.Employes.Add(employe));
         }
 
         private void txtRecherche_KeyDown(object sender, KeyEventArgs e)

@@ -27,8 +27,8 @@
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"/>
                 <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"/>
                 <DataGridTextColumn Binding="{Binding Lit.Chambre.UnDepartement.Nom}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding Lit.Chambre.Nom}" Header="Num Lit"/>
-                <DataGridTextColumn Binding="{Binding Lit.Numero}" Header="Num Chambre"/>
+                <DataGridTextColumn Binding="{Binding Lit.Chambre.Nom}" Header="N°Chambre"/>
+                <DataGridTextColumn Binding="{Binding Lit.Numero}" Header="N°Lit"/>
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick"

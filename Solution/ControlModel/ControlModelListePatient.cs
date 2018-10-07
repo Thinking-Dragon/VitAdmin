@@ -41,5 +41,21 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        public ICommand CmdDepartementSelectionChanged
+        {
+            get
+            {   // departementSelectionne reçoit l'item sélectionné dans la combobox
+                return new CommandeDeleguee(departementSelectionne =>
+                {
+                    List<Employe> lstEmploye = Data.DataModelEmploye.GetLstEmployesDepartement((Departement)departementSelectionne);
+                    Citoyens.Clear();
+                    lstEmploye.ForEach(employe => Employes.Add(employe));
+                    /*List<Citoyen> lstCitoyen = Data.DataModelCitoyen.GetCitoyensLstPatient((Employe)employeSelectionne);
+                    Citoyens.Clear();
+                    lstCitoyen.ForEach(c => Citoyens.Add(c));*/
+                });
+            }
+        } 
+
     }
 }
