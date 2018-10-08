@@ -18,9 +18,16 @@
         </Grid.ColumnDefinitions>
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
-        <TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left"
+        <!--<TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left"
                  GotFocus="txtRecherche_GotFocus" LostFocus="txtRecherche_LostFocus"
-                 KeyDown="txtRecherche_KeyDown"></TextBox>
+                 KeyDown="txtRecherche_KeyDown"></TextBox>-->
+
+        <ComboBox x:Name="cboRecherche" Grid.Column="1" MaxWidth="500" MinWidth="175" VerticalAlignment="Center" HorizontalAlignment="Left"
+              KeyUp="CboRecherche_KeyUp"
+              IsEditable="True"
+              ItemsSource="{Binding Citoyens}"
+              DisplayMemberPath="Nom">
+        </ComboBox>
 
         <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -40,22 +47,6 @@
         </DataGrid>
         <StackPanel Name="stpnlFiltres" Grid.Row="1" Grid.Column="2" Height="100" VerticalAlignment="Top">
             <Label Content="Filtres"/>
-            <!--<ComboBox Name="cboDepartements" ItemsSource="{Binding Departements}"
-                      DisplayMemberPath="Nom" SelectionChanged="cboDepartements_SelectionChanged">
-
-            </ComboBox>
-            <ComboBox Name="cboProfessionnel" ItemsSource="{Binding Employes}" SelectionChanged="cboProfessionnel_SelectionChanged">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <Run Text="{Binding NumEmploye}" />
-                            <Run Text="{Binding Prenom}" />
-                            <Run Text="{Binding Nom}" />
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>-->
-            
         </StackPanel>
 
     </Grid>
