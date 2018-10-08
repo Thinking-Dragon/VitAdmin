@@ -46,13 +46,32 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdAjoutTraitement { get { return new CommandeDeleguee(
             param => {
+                // Pour afficher un contrôle dans une fenêtre contextuelle, vous pouvez appeler la fonction DialogHost.Show :
+                // Le premier paramètre est le contenu (je vous conseille de mettre une nouvelle instance d'un UserControl)
+                // et le deuxième paramètre est l'identifiant du dialog. Si vous voulez un dialog qui s'affiche par dessus tout l'interface,
+                // veuillez utiliser un dialog que j'ai créé dans le « super-écran », dont l'identifiant est "dialogGeneral".
                 DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(nomTraitement =>
                 {
                     Traitements.Add(new Traitement
                     {
-                        Nom = nomTraitement as string
+                        Nom = nomTraitement as string,
+                        EtapesTraitement = new ObservableCollection<Etape>()
                     });
-                }), "Nouveau traitement"));
+                    DialogHost.CloseDialogCommand.Execute(null, null);
+                }), "Nouveau traitement"), "dialogGeneral");
+            });
+        }}
+
+        public ICommand CmdEditerTraitement { get { return new CommandeDeleguee(
+            param => {
+                if(TraitementSelectionne != null)
+                {
+                    DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(nomTraitement =>
+                    {
+                        TraitementSelectionne.Nom = nomTraitement as string;
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                    }), "Modifier le traitement « " + TraitementSelectionne.Nom + " »", TraitementSelectionne.Nom), "dialogGeneral");
+                }
             });
         }}
 
@@ -65,7 +84,30 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdAjoutEtapes { get { return new CommandeDeleguee(
             param => {
-                System.Windows.MessageBox.Show(EtapeSelectionnee.Description);
+                DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(descriptionEtape =>
+                {
+                    TraitementSelectionne.EtapesTraitement.Add(
+                        new Etape
+                        {
+                            Description = descriptionEtape as string,
+                            Instructions = new ObservableCollection<string>()
+                        }
+                    );
+                    DialogHost.CloseDialogCommand.Execute(null, null);
+                }), "Nouvelle étape"), "dialogGeneral");
+            });
+        }}
+
+        public ICommand CmdEditerEtape { get { return new CommandeDeleguee(
+            param => {
+                if(EtapeSelectionnee != null)
+                {
+                    DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(descriptionEtape =>
+                    {
+                        EtapeSelectionnee.Description = descriptionEtape as string;
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                    }), "Modifier l'étape « " + EtapeSelectionnee.Description + " »", EtapeSelectionnee.Description), "dialogGeneral");
+                }
             });
         }}
 
@@ -78,7 +120,11 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdAjoutInstructions { get { return new CommandeDeleguee(
             param => {
-                System.Windows.MessageBox.Show(InstructionSelectionnee);
+                DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(instruction =>
+                {
+                    EtapeSelectionnee.Instructions.Add(instruction as string);
+                    DialogHost.CloseDialogCommand.Execute(null, null);
+                }), "Nouvelle instruction"), "dialogGeneral");
             });
         }}
 
@@ -89,9 +135,9 @@ namespace VitAdmin.ControlModel
             });
         }}
 
-        public ControlModelListeTraitementsAvecEtapes(GestionnaireEcrans gestionnaireEcrans, List<Traitement> traitements)
+        public ControlModelListeTraitementsAvecEtapes(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Traitement> traitements)
         {
-            Traitements = new ObservableCollection<Traitement>(traitements);
+            Traitements = traitements;
             GestionnaireEcrans = gestionnaireEcrans;
         }
     }

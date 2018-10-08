@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
 using VitAdmin.Data;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -25,10 +27,10 @@ namespace VitAdmin.Control
     {
         private ControlModelListeTraitementsAvecEtapes ControlModel { get; set; }
 
-        public ControlListeTraitementsAvecEtapes(GestionnaireEcrans gestionnaireEcrans)
+        public ControlListeTraitementsAvecEtapes(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Traitement> traitements)
         {
             InitializeComponent();
-            DataContext = ControlModel = new ControlModelListeTraitementsAvecEtapes(gestionnaireEcrans, DataModelTraitement.GetTraitements(true));
+            DataContext = ControlModel = new ControlModelListeTraitementsAvecEtapes(gestionnaireEcrans, traitements);
 
             cpTraitementsCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutTraitement, ControlModel.CmdSuppressionTraitement);
             cpEtapesCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutEtapes, ControlModel.CmdSuppressionEtapes);

@@ -19,13 +19,18 @@ namespace VitAdmin.Control
     /// <summary>
     /// Logique d'interaction pour ControlDialogAjout.xaml
     /// </summary>
-    public partial class ControlDialogAjout : UserControl
+    public partial class ControlDialogAjout : UserControl // TODO: refactor (change name, since it's not only a POST control anymore)
     {
-        public ControlDialogAjout(ICommand cmdAjout, string titre)
+        public ControlDialogAjout(ICommand cmdAjout, string titre, string contenu = null)
         {
             InitializeComponent();
             DataContext = new ControlModelDialogAjout(cmdAjout);
             lblTitre.Content = titre;
+            if (contenu != null)
+            {
+                txtNom.Text = contenu;
+                btnConfirmer.Content = "Modifier";
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace VitAdmin.Data
                 );
                 if (expand)
                     for (int i = 0; i < etapes.Count; i++)
-                        etapes[i].Instructions = DataModelInstructionEtape.GetInstructions(idEtapes[i]);
+                        etapes[i].Instructions = new ObservableCollection<string>(DataModelInstructionEtape.GetInstructions(idEtapes[i]));
             }
 
             return etapes;

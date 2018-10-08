@@ -28,9 +28,11 @@
                                     Binding="{Binding Nom}"
                                     Width="*">
                 </DataGridTextColumn>
-                <DataGridHyperlinkColumn>
-                </DataGridHyperlinkColumn>
             </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding CmdEditerTraitement}"></MouseBinding>
+            </DataGrid.InputBindings>
         </DataGrid>
 
         <DataGrid x:Name="dtgEtapes"
@@ -44,9 +46,11 @@
                                     Binding="{Binding Description}"
                                     Width="*">
                 </DataGridTextColumn>
-                <DataGridHyperlinkColumn>
-                </DataGridHyperlinkColumn>
             </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding CmdEditerEtape}"></MouseBinding>
+            </DataGrid.InputBindings>
         </DataGrid>
 
         <DataGrid x:Name="dtgInstructions"
@@ -60,8 +64,6 @@
                                     Binding="{Binding}"
                                     Width="*">
                 </DataGridTextColumn>
-                <DataGridHyperlinkColumn>
-                </DataGridHyperlinkColumn>
             </DataGrid.Columns>
         </DataGrid>
 

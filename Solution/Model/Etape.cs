@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,6 @@ namespace VitAdmin.Model
     public class Etape
     {
         public String Description { get; set; }
-        public List<String> Instructions { get; set; }
+        public ObservableCollection<String> Instructions { get; set; }
     }
 }

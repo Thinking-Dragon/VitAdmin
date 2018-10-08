@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
+using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
@@ -29,10 +31,10 @@ namespace VitAdmin.View
         public ViewAdminModifierTraitements(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
-            DataContext = new ViewModelAdminModifierTraitements(gestionnaireEcrans);
+            DataContext = new ViewModelAdminModifierTraitements(gestionnaireEcrans, DataModelTraitement.GetTraitements(true));
             GestionnaireEcrans = gestionnaireEcrans;
             cpBarreRecherche.Content = new ControlBarreRechercheTraitement((DataContext as ViewModelAdminModifierTraitements).Traitements);
-            cpListeTraitementsAvecEtapes.Content = new ControlListeTraitementsAvecEtapes(gestionnaireEcrans);
+            cpListeTraitementsAvecEtapes.Content = new ControlListeTraitementsAvecEtapes(gestionnaireEcrans, (DataContext as ViewModelAdminModifierTraitements).Traitements);
         }
         
 
