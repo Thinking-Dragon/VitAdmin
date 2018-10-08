@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace VitAdmin.Control
     {
         ComboBox cboProfessionnel = new ComboBox();
         ComboBox cboDepartements = new ComboBox();
+        List<Citoyen> LstCitoyenRecherche;
 
         public ControlListePatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
@@ -45,22 +47,6 @@ namespace VitAdmin.Control
 
 
             
-        }
-
-        private void barreRecherche()
-        {
-            var viewDtgPatients = CollectionViewSource.GetDefaultView(dtgPatient);
-
-            viewDtgPatients.Filter = delegate (object o)
-            {
-                if (o.ToString().Contains(txtRecherche.Text))
-                {
-                    return true;
-                }
-                return false;
-            };
-
-            dtgPatient.ItemsSource = viewDtgPatients;
         }
 
         private void initialiserCboDepartement(ObservableCollection<Departement> departements, Departement departement)
@@ -104,14 +90,14 @@ namespace VitAdmin.Control
         // Enlève le placeholder lorsqu'il y a focus sur le txtbox
         private void txtRecherche_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtRecherche.Text = "";
+            cboRecherche.Text = "";
         }
 
         // Rajoute le placeholder lorsqu'il n'y a plus de texte et défocuse.
         private void txtRecherche_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtRecherche.Text))
-                txtRecherche.Text = "Recherche";
+            if (string.IsNullOrWhiteSpace(cboRecherche.Text))
+                cboRecherche.Text = "Recherche";
         }
 
         private void CboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -132,6 +118,8 @@ namespace VitAdmin.Control
 
                 controlModelListePatient.Citoyens.Clear();
                 lstPatients.ForEach(patient => controlModelListePatient.Citoyens.Add(patient));
+                // Pour la barre de recherche
+                LstCitoyenRecherche = lstPatients;
             }
             
         }
@@ -149,26 +137,27 @@ namespace VitAdmin.Control
             // On ajoute les nouveaux employés dans le datacontext
             lstEmploye.Add(new Employe { Nom = "Tous" });
             // On met le critère Tous lorsque le département est changé.
-            cboProfessionnel.SelectedItem = lstEmploye[0];
+            cboProfessionnel.SelectedItem = lstEmploye.Find((employe) => employe.Nom == "Tous");
             lstEmploye.ForEach(employe => controlModelListePatient.Employes.Add(employe));
         }
 
-        private void txtRecherche_KeyDown(object sender, KeyEventArgs e)
+        private void CboRecherche_KeyUp(object sender, KeyEventArgs e)
         {
-            /*var viewDtgPatients = CollectionViewSource.GetDefaultView(dtgPatient);
+            ControlModelListePatient controlModelListePatient = (ControlModelListePatient)DataContext;
+            // Si la barre de recherche est vide, on remet tous les patients. Sinon, on vide la liste pour préparer la recherche.
+            if (cboRecherche.Text == "")
+                LstCitoyenRecherche.ForEach((patient) => controlModelListePatient.Citoyens.Add(patient));
 
-            viewDtgPatients.Filter = delegate (object o)
-            {
-                if (o.ToString().Contains(txtRecherche.Text))
-                {
-                    return true;
-                }
-                return false;
-            };
 
-            dtgPatient.ItemsSource = viewDtgPatients;*/
+            // On ajoute dans une liste temporaire les patients trouvés dans la liste des patients.
+            List<Citoyen> LstCitoyenTrouve = LstCitoyenRecherche.FindAll((patient) => patient.Nom.IndexOf(cboRecherche.Text) != -1);
+
+            controlModelListePatient.Citoyens.Clear();
+
+            // Finalement, on copie tous les patients trouvés dans la liste installée dans le DataContext.
+            LstCitoyenTrouve.ForEach((patient) => controlModelListePatient.Citoyens.Add(patient));
         }
-     
+
     }
 
 }
