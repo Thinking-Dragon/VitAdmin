@@ -13,7 +13,7 @@ namespace VitAdmin.Data
         {
             // On crée une liste de citoyen venant de la BD
             List<Hospitalisation> lstHospitalisation = new List<Hospitalisation>();
-            List<int> lstIdTraitement = new List<int>();
+            List<string> lstNomTraitement = new List<string>();
 
             // On vérifie si la BD est connecté
             if (ConnexionBD.Instance().EstConnecte())
@@ -21,7 +21,7 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT h.dateDebut dDebut, h.dateFin dFin, t.idTraitement idTrait " +
+                    "SELECT h.dateDebut dDebut, h.dateFin dFin, t.Nom NomTrait " +
                     "FROM hospitalisations h " +
                     "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " +
                     "INNER JOIN hospitalisationstraitements ht ON ht.idHospitalisation = h.idHospitalisation " +
@@ -36,7 +36,7 @@ namespace VitAdmin.Data
                             
                         });
 
-                        lstIdTraitement.Add(SqlDR.GetInt16("idTrait"));
+                        lstNomTraitement.Add(SqlDR.GetString("NomTrait"));
                     }
                     );
             }
@@ -50,7 +50,7 @@ namespace VitAdmin.Data
                 foreach(Hospitalisation hospitalisation in lstHospitalisation)
                 {
                     hospitalisation.LstTraitements = new List<Traitement>();
-                    foreach(int idTraitement in lstIdTraitement)
+                    foreach(string NomTraitement in lstNomTraitement)
                     {
 
                         ConnexionBD.Instance().ExecuterRequete(
@@ -60,7 +60,7 @@ namespace VitAdmin.Data
                             "INNER JOIN hospitalisationstraitements ht ON ht.idTraitement = t.idTraitement " +
                             "INNER JOIN hospitalisations h ON h.idHospitalisation = ht.idHospitalisation " +
                             "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " +
-                            "WHERE c.numAssuranceMaladie ='" + citoyen.AssMaladie + "' "
+                            "WHERE t.Nom ='" + NomTraitement + "' "
                             , SqlDR => { hospitalisation.LstTraitements.Add(new Traitement {
 
                                 DepartementAssocie = new Departement { Nom = SqlDR.GetString("depNom") }
