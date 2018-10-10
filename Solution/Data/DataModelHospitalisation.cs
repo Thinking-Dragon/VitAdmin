@@ -13,7 +13,6 @@ namespace VitAdmin.Data
         {
             // On crée une liste de citoyen venant de la BD
             List<Hospitalisation> lstHospitalisation = new List<Hospitalisation>();
-            List<string> lstNomTraitement = new List<string>();
 
             // On vérifie si la BD est connecté
             if (ConnexionBD.Instance().EstConnecte())
@@ -36,7 +35,6 @@ namespace VitAdmin.Data
                             
                         });
 
-                        lstNomTraitement.Add(SqlDR.GetString("NomTrait"));
                     }
                     );
             }
@@ -46,31 +44,34 @@ namespace VitAdmin.Data
             if (ConnexionBD.Instance().EstConnecte())
             {
                 // Si oui, on execute la requête que l'on veut effectuer
-                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                // SqlDR (MySqlDataReader) emmagasine une liste de la BD
+
+
                 foreach(Hospitalisation hospitalisation in lstHospitalisation)
                 {
                     hospitalisation.LstTraitements = new List<Traitement>();
-                    foreach(string NomTraitement in lstNomTraitement)
-                    {
+                    
 
-                        ConnexionBD.Instance().ExecuterRequete(
-                            "SELECT d.Nom depNom " +
-                            "FROM traitements t " +
-                            "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
-                            "INNER JOIN hospitalisationstraitements ht ON ht.idTraitement = t.idTraitement " +
-                            "INNER JOIN hospitalisations h ON h.idHospitalisation = ht.idHospitalisation " +
-                            "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " +
-                            "WHERE t.Nom ='" + NomTraitement + "' "
-                            , SqlDR => { hospitalisation.LstTraitements.Add(new Traitement {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        "SELECT d.Nom depNom, t.Nom TraitNom " +
+                        "FROM traitements t " +
+                        "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
+                        "INNER JOIN hospitalisationstraitements ht ON ht.idTraitement = t.idTraitement " +
+                        "INNER JOIN hospitalisations h ON h.idHospitalisation = ht.idHospitalisation " +
+                        "WHERE h.dateDebut = '" + hospitalisation.DateDebut + "' "
+                        , SqlDR => { hospitalisation.LstTraitements.Add(new Traitement {
 
-                                DepartementAssocie = new Departement { Nom = SqlDR.GetString("depNom") }
+                            Nom = SqlDR.GetString("TraitNom"),
+                            DepartementAssocie = new Departement { Nom = SqlDR.GetString("depNom") }
 
-                                });
+                            });
                                 
-                            }
-                            );
-                    }
+                        }
+                        );
+                    
                 }
+                
+
             }
 
             return lstHospitalisation;
