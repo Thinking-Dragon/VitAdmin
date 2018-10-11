@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -20,7 +21,7 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientInfos : UserControl
     {
-        public ControlDossierPatientInfos()
+        public ControlDossierPatientInfos(Citoyen patient)
         {
             InitializeComponent();
         }

@@ -220,7 +220,7 @@
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelChargementApp.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
-    <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
+    <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
     <Compile Include="ViewModel\ViewModelPatientHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelCreerPatient.cs" />

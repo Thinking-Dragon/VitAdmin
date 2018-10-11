@@ -28,10 +28,12 @@ namespace VitAdmin.View
         {
             InitializeComponent();
 
-            DataContext = new ViewModelProfessionnelDossierPatient(gestionnaireEcrans);
+            DataContext = new ViewModelProfessionnelDossierPatient(gestionnaireEcrans, patient);
 
             grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient))));
 
         }
+
+    
     }
 }
