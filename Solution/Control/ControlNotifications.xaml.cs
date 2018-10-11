@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ControlModel;
 
 namespace VitAdmin.Control
 {
@@ -23,6 +24,7 @@ namespace VitAdmin.Control
         public ControlNotifications()
         {
             InitializeComponent();
+            DataContext = new ControlModelNotifications();
         }
     }
 }

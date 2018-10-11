@@ -5,34 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" Height="474.477" Width="651.255">
-    <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
+    <Grid Name="grdInfosPatient">
+        <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition />
                 <RowDefinition/>
                 <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.8*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-            <!-- TODO: Il va falloir adapter les cases selon la longueur du string comme le nom et l'adresse-->
-            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">Nom</Label>
-            <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"></TextBox>
-            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Right">Genre</Label>
-            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100"></ComboBox>
-            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Right">NAS</Label>
-            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"></TextBox>
-            <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right">Téléphone</Label>
-            <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"></TextBox>
-            <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Right">Date de naissance</Label>
-            <DatePicker Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"></DatePicker>
-            <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"  HorizontalAlignment="Right">Adresse</Label>
-            <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"></TextBox>
-        </Grid>
+        <!-- TODO: Il va falloir adapter les cases selon la longueur du string comme le nom et l'adresse-->
+        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">Nom</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
+                    Text="{Binding Citoyen.Nom}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Prénom</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
+                    Text="{Binding Citoyen.Prenom}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Right">Genre</Label>
+        <!--<ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100"
+                    ItemsSource="{Binding Citoyen}"
+                    DisplayMemberPath="Genre"></ComboBox>-->
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right">N°Assurance maladie</Label>
+        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
+                    Text="{Binding Citoyen.AssMaladie}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Right">Téléphone</Label>
+        <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
+                    Text="{Binding Citoyen.NumTelephone}"></TextBox>
+        <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"  HorizontalAlignment="Right">Date de naissance</Label>
+        <DatePicker Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
+                    SelectedDate="{Binding Citoyen.DateNaissance}"></DatePicker>
+        <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"  HorizontalAlignment="Right">Adresse</Label>
+        <TextBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"
+                    Text="{Binding Citoyen.Adresse}"></TextBox>
+
     </Grid>
 </UserControl>

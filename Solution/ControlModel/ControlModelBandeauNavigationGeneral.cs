@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using VitAdmin.Control;
+using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.Notifications;
 using VitAdmin.View.Tool;
 
 namespace VitAdmin.ControlModel
@@ -25,6 +27,17 @@ namespace VitAdmin.ControlModel
             {
                 _textBoutonRetourEcran = value;
                 RaisePropertyChangedEvent("TexteBoutonRetourEcran");
+            }
+        }
+
+        public string _nbNotificationsNonLues = string.Empty;
+        public string NbNotificationsNonLues
+        {
+            get { return _nbNotificationsNonLues; }
+            set
+            {
+                _nbNotificationsNonLues = value;
+                RaisePropertyChangedEvent("NbNotificationsNonLues");
             }
         }
 
@@ -62,16 +75,27 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        
+                        DialogHost.Show(new ControlNotifications(), "dialogGeneral");
                     }
                 );
             }
+        }
+
+        private void ActualiserNbNotificationsNonLues(object sender, NotificationsEventArgs args)
+        {
+            int nombre = 0;
+            foreach (Notification notification in args.Notifications)
+                if (!notification.EstLu)
+                    ++nombre;
+            NbNotificationsNonLues = nombre.ToString();
         }
 
         public ControlModelBandeauNavigationGeneral(GestionnaireEcrans gestionnaireEcrans, GestionnaireEcrans gestionnaireSousEcrans)
         {
             GestionnaireEcrans = gestionnaireEcrans;
             GestionnaireSousEcrans = gestionnaireSousEcrans;
+
+            GestionnaireNotifications.Instance.ANotifier += ActualiserNbNotificationsNonLues;
         }
     }
 }

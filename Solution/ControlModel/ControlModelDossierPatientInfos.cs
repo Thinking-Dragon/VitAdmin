@@ -9,8 +9,13 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    public class ControlDossierPatientInfos : ObjetObservable
+    public class ControlModelDossierPatientInfos : ObjetObservable
     {
+        public Citoyen Citoyen { get; set; }
 
+        public ControlModelDossierPatientInfos(Citoyen citoyen)
+        {
+            Citoyen = citoyen;
+        }
     }
 }

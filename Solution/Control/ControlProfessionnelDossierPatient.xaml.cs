@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ControlModel;
 using VitAdmin.Model;
 
 namespace VitAdmin.Control
@@ -22,29 +23,125 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlProfessionnelDossierPatient : UserControl
     {
+        List<Hospitalisation> LstHospitalisation; // List temporaire qui garde en mémoire tous les hospitalisations trouvées lors de l'accès au dossier du patient. Cela permet d'augmenter la vitesse de l'application et diminuer le nombre de demande à la bd.
+        ComboBox cboDepartements = new ComboBox
+        {
+            VerticalAlignment = VerticalAlignment.Center,
+        };
+
+        ControlModelProfessionnelDossierPatient controlModelProfessionnelDossierPatient;
 
         public ControlProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Hospitalisation> hospitalisations)
         {
             InitializeComponent();
 
-            DataContext = new ControlModel.ControlModelProfessionnelDossierPatient(hospitalisations);
+            controlModelProfessionnelDossierPatient = new ControlModelProfessionnelDossierPatient(hospitalisations);
+
+            InitialiserCboDepartement(controlModelProfessionnelDossierPatient.Hospitalisations);
+
+            DataContext = controlModelProfessionnelDossierPatient;
+            LstHospitalisation = controlModelProfessionnelDossierPatient.Hospitalisations.ToList();
         }
 
-        /*void initialiserDataGridHospit(ObservableCollection<Hospitalisation> hospitalisations)
+        // TODO: À refactoriser
+        private void InitialiserCboDepartement(ObservableCollection<Hospitalisation> hospitalisations)
         {
-            DataGrid dataGridHospitalisations = new DataGrid
-            {
-                ItemsSource = hospitalisations,
-                IsReadOnly = true,
-                AutoGenerateColumns = false,  
-            };
+            ObservableCollection<Traitement> traitements = new ObservableCollection<Traitement>();
+            ObservableCollection<Departement> departements = new ObservableCollection<Departement>();
 
-            // Binding de DateDebut
-            Binding bdgDateDebut = new Binding("DateDebut");
-            DataGridTextColumn dtgTextColDateDebut = new DataGridTextColumn { Binding = bdgDateDebut };
-            // Binding de DateDebut
-            Binding bdgDateFin = new Binding("Hospitalisations.DateFin");
-            DataGridTextColumn dtgTextColDateDebut = new DataGridTextColumn { Binding = bdgDateDebut };
-        }*/
+            // On fait le tour des hospitalisations du patient pour faire sortir les départements liés.
+            foreach(Hospitalisation hospitalisation in hospitalisations)
+            {
+                bool bDepartementPresent = false;
+                // On vérifie pour empêcher les doublons de département dans la liste temporaire de traitements.
+                foreach(Traitement traitement in traitements)
+                {
+                    if (traitement.DepartementAssocie.Nom == hospitalisation.LstTraitements[0].DepartementAssocie.Nom)
+                    {
+                        bDepartementPresent = true;
+                        break;
+                    }
+
+                }
+
+                if (!bDepartementPresent)
+                    traitements.Add(hospitalisation.LstTraitements[0]);
+            }
+
+            foreach (Traitement traitement in traitements)
+                departements.Add(traitement.DepartementAssocie);
+
+            cboDepartements.ItemsSource = departements;
+            cboDepartements.DisplayMemberPath = "Nom";
+            cboDepartements.SelectionChanged += cboDepartement_SelectionChanged;
+
+            grdDossierPatient.Children.Add(cboDepartements);
+        }
+
+        private void dtpkrDebut_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dtpkrDebut.SelectedDate != null)
+            {
+
+                List<Hospitalisation> LstHospitalisationsRecherche = new List<Hospitalisation>();
+                DateTime dateTimeDebut = new DateTime(dtpkrDebut.SelectedDate.Value.Year, dtpkrDebut.SelectedDate.Value.Month, dtpkrDebut.SelectedDate.Value.Day);
+           
+                // On recherche dans la liste des hospitalisations ceux qui correspondent à la date demandée.
+                LstHospitalisationsRecherche = LstHospitalisation.FindAll((hospitalisation) => hospitalisation.DateDebut.ToString("MM/dd/yyyy") == dateTimeDebut.ToString("MM/dd/yyyy"));
+                // On vide le contenu de la liste dans le datacontext.
+                controlModelProfessionnelDossierPatient.Hospitalisations.Clear();
+                // Ajoute dans la liste les hospitalisations trouvées.
+                LstHospitalisationsRecherche.ForEach((hospitalisation) => controlModelProfessionnelDossierPatient.Hospitalisations.Add(hospitalisation));
+            }
+
+        }
+
+        private void dtpkrFin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dtpkrFin.SelectedDate != null)
+            {
+                List<Hospitalisation> LstHospitalisationsRecherche = new List<Hospitalisation>();
+                DateTime dateTimeFin = new DateTime(dtpkrFin.SelectedDate.Value.Year, dtpkrFin.SelectedDate.Value.Month, dtpkrFin.SelectedDate.Value.Day);
+
+                // On recherche dans la liste des hospitalisations ceux qui correspondent à la date demandée.
+                LstHospitalisationsRecherche = LstHospitalisation.FindAll((hospitalisation) => hospitalisation.DateFin.ToString("MM/dd/yyyy") == dateTimeFin.ToString("MM/dd/yyyy"));
+                // On vide le contenu de la liste dans le datacontext.
+                controlModelProfessionnelDossierPatient.Hospitalisations.Clear();
+                // Ajoute dans la liste les hospitalisations trouvées.
+                LstHospitalisationsRecherche.ForEach((hospitalisation) => controlModelProfessionnelDossierPatient.Hospitalisations.Add(hospitalisation));
+
+            }
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            dtpkrDebut.SelectedDate = null;
+            dtpkrFin.SelectedDate = null;
+
+            cboDepartements.Text = "";
+
+            LstHospitalisation.ForEach((hospitalisation) => controlModelProfessionnelDossierPatient.Hospitalisations.Add(hospitalisation));
+        }
+
+        private void cboDepartement_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<Hospitalisation> LstHospitalisationTrouve = new List<Hospitalisation>();
+            List<Hospitalisation> LstHospitalisationDtgTemp = controlModelProfessionnelDossierPatient.Hospitalisations.ToList<Hospitalisation>();
+            Departement departementSelectionne = (Departement)cboDepartements.SelectedItem;
+
+            // S'il n'y a plus rien dans la datagrid, tout plante puisqu'il n'y a plus rien à trouver lorsqu'on tente de réinitialiser le datagrid.
+            if(controlModelProfessionnelDossierPatient.Hospitalisations.Count > 0)
+            {
+                LstHospitalisationTrouve = LstHospitalisationDtgTemp.FindAll((hospit) => hospit.LstTraitements[0].DepartementAssocie.Nom == departementSelectionne.Nom);
+
+                controlModelProfessionnelDossierPatient.Hospitalisations.Clear();
+                LstHospitalisationTrouve.ForEach((hospit) => controlModelProfessionnelDossierPatient.Hospitalisations.Add(hospit));
+
+            }
+
+            
+        }
+
+     
     }
 }

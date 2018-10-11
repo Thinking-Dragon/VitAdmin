@@ -22,16 +22,23 @@
             <materialDesign:DialogHost.DialogContent>
                 <local:ControlNotifications />
             </materialDesign:DialogHost.DialogContent>
-            <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-                <materialDesign:PackIcon Grid.Column="2"
+        </materialDesign:DialogHost>
+        <Button Grid.Column="2"
+                Command="{Binding CmdNotifications}">
+            <Grid>
+                <materialDesign:PackIcon Canvas.Left="auto"
+                                         Canvas.Right="auto"
                                          Kind="Bell"
                                          Width="32" Height="32"
                                          HorizontalAlignment="Right"
                                          VerticalAlignment="Center"
                                          Cursor="Hand">
                 </materialDesign:PackIcon>
-            </Button>
-        </materialDesign:DialogHost>
+                <materialDesign:Badged Margin="10,3,0,0"
+                                       Foreground="#FF2196F3"
+                                       Content="{Binding NbNotificationsNonLues}"></materialDesign:Badged>
+            </Grid>
+        </Button>
         <Button Grid.Column="3"
                 Command="{Binding CmdProfil}">
             <materialDesign:PackIcon Grid.Column="3"
