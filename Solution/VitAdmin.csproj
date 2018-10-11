@@ -109,6 +109,7 @@
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
+    <Compile Include="ControlModel\ControlModelNotifications.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
@@ -183,7 +184,7 @@
     <Compile Include="Data\DataModelPrescriptions.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
-    <Compile Include="GestionnaireNotifications.cs" />
+    <Compile Include="Notifications\GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
     <Compile Include="Model\Departement.cs" />
@@ -212,6 +213,8 @@
     <Compile Include="MVVM\CommandeDeleguee.cs" />
     <Compile Include="MVVM\FrameSansNavigation.cs" />
     <Compile Include="MVVM\ObjetObservable.cs" />
+    <Compile Include="Notifications\EventNotifications.cs" />
+    <Compile Include="Notifications\BackgroundWorkerNotifications.cs" />
     <Compile Include="Parameter\UsagerConnecte.cs" />
     <Compile Include="ViewModel\ModelViewAdminModificationStructure.cs" />
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
