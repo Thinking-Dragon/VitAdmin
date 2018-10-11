@@ -139,6 +139,37 @@ namespace VitAdmin.Data
             return lstCitoyen;
         }
 
+        public static Citoyen GetUnCitoyen(Citoyen citoyen)
+        {
+            // On crée un citoyen venant de la BD
+            Citoyen InfosCitoyen = new Citoyen();
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.nom nomGenre, c.dateNaissance dtNaiss, c.adresse uneAdresse, c.telephone numTel " +
+                    "FROM citoyens c " +
+                    "INNER JOIN genres g ON g.idGenre = c.idGenre " +
+                    "WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "' "
+                     , SqlDR => {
+
+                        InfosCitoyen.Nom = SqlDR.GetString("nomCit");
+                        InfosCitoyen.Prenom = SqlDR.GetString("prenomCit");
+                        InfosCitoyen.AssMaladie = SqlDR.GetString("AssMal");
+                        InfosCitoyen.UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("nomGenre"));
+                        InfosCitoyen.DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("dtNaiss");
+                        InfosCitoyen.Adresse = SqlDR.GetString("uneAdresse");
+                        InfosCitoyen.NumTelephone = SqlDR.GetString("numTel");
+                         
+                     }
+                    );
+            }
+
+            return InfosCitoyen;
+        }
 
 
     }

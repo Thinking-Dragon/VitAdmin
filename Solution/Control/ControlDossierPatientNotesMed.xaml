@@ -7,7 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label Content="TESSST" HorizontalAlignment="Left" Margin="146,141,0,0" VerticalAlignment="Top"/>
+        <DataGrid ItemsSource="{Binding LstNotesMed}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding NotesMed}" Header="Note" Width="*" />
+                <DataGridTextColumn Binding="{Binding DateEvenement}" Header="Date" Width="*" />
+                <DataGridTextColumn Binding="{Binding EmployeImplique.Nom}" Header="Nom de l'employé" Width="*" />
+                <DataGridTextColumn Binding="{Binding EmployeImplique.Prenom}" Header="Prenom de l'employé" Width="*" />
+                <DataGridTextColumn Binding="{Binding EmployeImplique.NumEmploye}" Header="Numéro de l'employé" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </UserControl>

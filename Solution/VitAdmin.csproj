@@ -95,7 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ControlModel\ControlDossierPatientInfos.cs" />
+    <Compile Include="ControlModel\ControlModelDossierPatientInfos.cs" />
     <Compile Include="ControlModel\ControlModelAjoutSuppression.cs" />
     <Compile Include="ControlModel\ControlModelApercuDepartement.cs" />
     <Compile Include="ControlModel\ControlModelBandeauNavigationGeneral.cs" />
@@ -177,7 +177,6 @@
     </Compile>
     <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Data\ConnexionBD.cs" />
-    <Compile Include="Data\ControlModelResultatsLabo.cs" />
     <Compile Include="Data\DataModelConnexion.cs" />
     <Compile Include="Data\DataModelCitoyen.cs" />
     <Compile Include="Data\DataModelDepartement.cs" />
@@ -189,6 +188,7 @@
     <Compile Include="Data\DataModelNotesMed.cs" />
     <Compile Include="Data\DataModelNotification.cs" />
     <Compile Include="Data\DataModelPrescriptions.cs" />
+    <Compile Include="Data\DataModelResultatsLabo.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Notifications\GestionnaireNotifications.cs" />
@@ -227,7 +227,7 @@
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelChargementApp.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
-    <Compile Include="ViewModel\ViewModelDossierPatientInfos.cs" />
+    <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
     <Compile Include="ViewModel\ViewModelPatientHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelCreerPatient.cs" />

@@ -23,11 +23,10 @@
            <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DataContext.DepartementAssocie.Nom, 
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding DateDebut}" Header="Date début"/>
-                <DataGridTextColumn Binding="{Binding DateFin}" Header="Date fin"/>
+                <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd/MM/yy HH:mm:ss\}}" Header="Date début"/>
+                <DataGridTextColumn Binding="{Binding DateFin, StringFormat=\{0:dd/MM/yy HH:mm:ss\}}" Header="Date fin"/>
             </DataGrid.Columns>
         </DataGrid>
-        <!--<ComboBox Name="cboDepartements" VerticalAlignment="Center" SelectionChanged="cboDepartement_SelectionChanged"></ComboBox>-->
         <DatePicker Name="dtpkrDebut" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
         <DatePicker Name="dtpkrFin" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
         <Button Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>

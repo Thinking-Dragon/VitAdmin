@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using VitAdmin.Model;
 
 namespace VitAdmin.Data
 {
-    class DataModelNotesInf
+    class DataModelResultatsLabo
     {
-        // On rend static la fonction pour être en mesure de l'utiliser partout
-        public static List<NoteInfirmiere> GetNotesInfirmiereCitoyens(String NumAssMaladie, DateTime dateDebut)
+        public static List<ResultatLabo> GetResultatsLaboCitoyens(String NumAssMaladie, DateTime dateDebut)
         {
             // On crée une liste de citoyen venant de la BD
-            List<NoteInfirmiere> lstNoteInfirmiere = new List<NoteInfirmiere>();
-            List<Employe> lstEmp = new List<Employe>();
+            List<ResultatLabo> lstResultatLabo = new List<ResultatLabo>();
 
 
             // On vérifie si la BD est connecté
@@ -24,9 +23,9 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT notesInfirmiere.note nte, e.dateHeure dthr, cit.nom nm, cit.prenom pm, em.numEmploye numEm " +
-                          "FROM notesInfirmiere " +
-                              "INNER JOIN evenements e on e.idEvenement = notesInfirmiere.idEvenement " +
+                    "SELECT resultatslabo.nomAnalyse nA, resultatslabo.lienImage lIm, e.dateHeure dthr, cit.nom nm, cit.prenom pm, em.numEmploye numEm " +
+                          "FROM resultatslabo " +
+                              "INNER JOIN evenements e on e.idEvenement = resultatslabo.idEvenement " +
                               "INNER JOIN hospitalisations h on h.idHospitalisation = e.idHospitalisation " +
                               "INNER JOIN citoyens c on c.idCitoyen = h.idCitoyen " +
                               "INNER JOIN employes em  on em.idEmploye = e.idEmploye " +
@@ -35,9 +34,10 @@ namespace VitAdmin.Data
 
                     , SqlDR =>
                     {
-                        lstNoteInfirmiere.Add(new NoteInfirmiere
+                        lstResultatLabo.Add(new ResultatLabo
                         {
-                            NotesInf = SqlDR.GetString("nte"),
+                            NomAnalyse = SqlDR.GetString("nA"),
+                            LienImage = SqlDR.GetString("lIm"),
                             DateEvenement = SqlDR.GetDateTime("dthr"),
                             EmployeImplique = new Employe
                             {
@@ -47,10 +47,17 @@ namespace VitAdmin.Data
                             }
                         });
                     });
+
+                foreach (ResultatLabo result in lstResultatLabo)
+                {
+                    result.Resultats = new BitmapImage(new Uri(result.LienImage));
+                }
+
+
             }
 
-            return lstNoteInfirmiere;
+
+            return lstResultatLabo;
         }
     }
-
 }

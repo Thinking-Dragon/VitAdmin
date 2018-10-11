@@ -30,8 +30,6 @@ namespace VitAdmin
             ConnexionBD.Instance().NomBD = "vitadmin_bd_main"; // Initialiser la connexion à la base de donnée.
             GestionnaireEcrans = new GestionnaireEcrans(grdMain); // Initialiser le gestionnaire d'écrans.
             GestionnaireEcrans.Changer(new ViewConnexion(GestionnaireEcrans));
-
-            //GestionnaireEcrans.Changer(new ViewSuperEcran(GestionnaireEcrans, new ViewProfessionnelHub(GestionnaireEcrans, new Model.Departement { Nom = "Chirurgie" }, new Model.Employe { Nom = "Therien", Prenom = "Jacques", NumEmploye = "123456THJ"})));
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

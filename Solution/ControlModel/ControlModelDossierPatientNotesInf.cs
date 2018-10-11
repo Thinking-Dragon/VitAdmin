@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,11 @@ namespace VitAdmin.ControlModel
 {
     class ControlModelDossierPatientNotesInf : ObjetObservable
     {
-        public List<NoteInfirmiere> LstNotesInf { get; set; }
-        public ControlModelDossierPatientNotesInf(Citoyen patient, Hospitalisation hospit /*le résultat de la requête*/)
-        {
+        public ObservableCollection<NoteInfirmiere> LstNotesInf { get; set; }
 
+        public ControlModelDossierPatientNotesInf(Citoyen patient, Hospitalisation hospit, List<NoteInfirmiere> lstNotesInf)
+        {
+            LstNotesInf = new ObservableCollection<NoteInfirmiere>(lstNotesInf);
         }
     }
 }

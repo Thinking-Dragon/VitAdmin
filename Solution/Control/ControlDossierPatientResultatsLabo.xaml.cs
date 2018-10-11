@@ -25,7 +25,14 @@ namespace VitAdmin.Control
         public ControlDossierPatientResultatsLabo(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientResultatsLabo(patient, hospit /*résultat de la requête*/);
+            DataContext = new ControlModelDossierPatientResultatsLabo(patient, hospit, Data.DataModelResultatsLabo.GetResultatsLaboCitoyens(patient.AssMaladie, hospit.DateDebut));
+
+            img.Source = new BitmapImage(new Uri("http://420.cstj.qc.ca/laurencedarveau/vitadmin/radio1.jpg"));
+        }
+
+        private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            img.Source = ((ResultatLabo)(((DataGrid)sender).SelectedItem)).Resultats;
         }
     }
 }

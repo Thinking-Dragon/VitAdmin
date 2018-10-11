@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
+using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
 {
@@ -20,11 +22,13 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewProfessionnelDossierPatientInfosModif : Page
     {
-        public ViewProfessionnelDossierPatientInfosModif()
+        public ViewProfessionnelDossierPatientInfosModif(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
         {
             InitializeComponent();
 
-            grdPatientInfos.Children.Add(new Control.ControlDossierPatientInfos());
+            DataContext = new ViewModelProfessionnelDossierPatientInfosModif(gestionnaireEcrans, patient);
+
+            grdPatientInfos.Children.Add(new Control.ControlDossierPatientInfos(patient));
         }
     }
 }

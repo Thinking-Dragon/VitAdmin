@@ -8,20 +8,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1180">
     <Grid>
-        <dragablz:TabablzControl HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" FixedHeaderCount="5">
-            <TabItem Name="Apercu" Header="Apreçu" Height="20" Width="235" VerticalAlignment="Top">
+        <dragablz:TabablzControl HorizontalAlignment="Center" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" FixedHeaderCount="5">
+            <TabItem Name="Apercu" Header="Apreçu" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="NotesInf" Header="Notes Infirmières" Height="20" Width="235" Margin="0,0,0,0">
+            <TabItem Name="NotesInf" Header="Notes Infirmières" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="Prescriptions" Header="Prescriptions" Height="20" Width="235" Margin="0,0,0,0">
+            <TabItem Name="Prescriptions" Header="Prescriptions" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="ResultatsLabo" Header="Résultats d'analyse" Height="20" Width="235" Margin="0,0,0,0">
+            <TabItem Name="ResultatsLabo" Header="Résultats d'analyse" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="NotesMed" Header="Notes Médecins" Height="20" Width="236" Margin="0,0,0,0">
+            <TabItem Name="NotesMed" Header="Notes Médecins" HorizontalAlignment="Center">
 
             </TabItem>
         </dragablz:TabablzControl>

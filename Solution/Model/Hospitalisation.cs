@@ -13,5 +13,15 @@ namespace VitAdmin.Model
        
         public List<Traitement> LstTraitements { get; set; }
         public List<Symptome> LstSymptomes { get; set; }
+
+        public Hospitalisation()
+        {
+
+        }
+
+        public Hospitalisation(DateTime dt)
+        {
+            DateDebut = dt;
+        }
     }
 }
