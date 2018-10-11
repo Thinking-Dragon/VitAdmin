@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
+using VitAdmin.ControlModel;
+using VitAdmin.Data;
 
 namespace VitAdmin.Control
 {
@@ -21,9 +23,36 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientInfos : UserControl
     {
-        public ControlDossierPatientInfos(Citoyen patient)
+        ComboBox CboGenre { get; set; }
+        ControlModelDossierPatientInfos controlModelDossierPatientInfos;
+
+        public ControlDossierPatientInfos(Citoyen citoyen)
         {
             InitializeComponent();
+
+            controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(DataModelCitoyen.GetUnCitoyen(citoyen));
+
+            DataContext = controlModelDossierPatientInfos;
+
+            InitialiserCboGenre();
+        }
+
+        private void InitialiserCboGenre()
+        {
+
+            CboGenre = new ComboBox
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Width = 100,
+                ItemsSource = Enum.GetValues(typeof(Genre)).Cast<Genre>(),
+                SelectedItem = controlModelDossierPatientInfos.Citoyen.UnGenre
+            };
+
+            Grid.SetColumn(CboGenre, 1);
+            Grid.SetRow(CboGenre, 2);
+
+            grdInfosPatient.Children.Add(CboGenre);
         }
     }
 }

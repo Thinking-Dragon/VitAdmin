@@ -8,9 +8,9 @@ namespace VitAdmin.Model
 {
     public enum Genre
     {
-        Homme,
-        Femme,
-        Autre
+        masculin,
+        féminin,
+        autre
             //, Apache Helicopter
     }
 }
