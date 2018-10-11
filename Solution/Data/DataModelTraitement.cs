@@ -91,7 +91,32 @@ namespace VitAdmin.Data
 
         public static void PostTraitement(Traitement traitement)
         {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "INSERT INTO Traitements (nom, idDepartement) " +
+                        "VALUES ( " +
+                        "   '{0}', " +
+                        "   (SELECT idDepartement FROM Departements WHERE abreviation = '{1}') " +
+                        ")",
+                        traitement.Nom, traitement.DepartementAssocie.Abreviation
+                    )
+                );
 
+                int idTraitement = -1;
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT t.idTraitement " +
+                        "FROM Traitements t " +
+                        "JOIN Departements d ON d.idDepartement = t.idDepartement " +
+                        "WHERE t.nom = '{0}' AND d.abreviation = '{1}'",
+                        traitement.Nom, traitement.DepartementAssocie.Abreviation
+                    ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
+                );
+                if(idTraitement >= 0)
+                    DataModelEtape.PostEtapes(new List<Etape>(traitement.EtapesTraitement), idTraitement);
+            }
         }
 
         #endregion
@@ -100,7 +125,32 @@ namespace VitAdmin.Data
 
         public static void PutTraitement(Traitement traitement)
         {
-
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                int idTraitement = -1;
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT t.idTraitement " +
+                        "FROM Traitements t " +
+                        "JOIN Departements d ON d.idDepartement = t.idDepartement " +
+                        "WHERE t.nom = '{0}' AND d.abreviation = '{1}'",
+                        traitement.Nom, traitement.DepartementAssocie.Abreviation
+                    ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
+                );
+                if(idTraitement >= 0)
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        String.Format(
+                            "UPDATE Traitements " +
+                            "SET nom = '{0}', idDepartement = (SELECT idDepartement FROM Departements WHERE abreviation = '{1}') " +
+                            "WHERE idTraitement = {2}",
+                            traitement.Nom, traitement.DepartementAssocie.Abreviation, idTraitement
+                        )
+                    );
+                    DataModelEtape.DeleteEtapes(idTraitement);
+                    DataModelEtape.PostEtapes(new List<Etape>(traitement.EtapesTraitement), idTraitement);
+                }
+            }
         }
 
         public static void PutTraitements(List<Traitement> traitements)
@@ -108,8 +158,7 @@ namespace VitAdmin.Data
             if(ConnexionBD.Instance().EstConnecte())
             {
                 List<Traitement> traitementsExistants = GetTraitements(true);
-                List<Traitement> traitementsASupprimer = new List<Traitement>();
-
+                
                 for (int i = 0; i < traitementsExistants.Count; ++i)
                 {
                     bool aSupprimer = true;
@@ -117,10 +166,24 @@ namespace VitAdmin.Data
                         if (traitementsExistants[i].Nom == traitements[j].Nom)
                             aSupprimer = false;
                     if(aSupprimer)
-                        traitementsASupprimer.Add(traitementsExistants[i]);
+                    {
+                        DeleteTraitement(traitementsExistants[i]);
+                        traitementsExistants.Remove(traitementsExistants[i]);
+                    }
                 }
-                
-                
+                // TODO: add dept. in equ.
+                for(int i = 0; i < traitements.Count; ++i)
+                {
+                    bool aAjouter = true;
+                    for (int j = 0; j < traitementsExistants.Count; ++j)
+                        if (traitements[i].Nom == traitementsExistants[j].Nom)
+                            aAjouter = false;
+                    if(aAjouter)
+                        PostTraitement(traitements[i]);
+                }
+
+                for (int i = 0; i < traitementsExistants.Count; ++i)
+                    PutTraitement(traitementsExistants[i]);
             }
         }
 
@@ -129,6 +192,41 @@ namespace VitAdmin.Data
         #region PATCH
 
 
+
+        #endregion
+
+        #region DELETE
+
+        public static void DeleteTraitement(Traitement traitement)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                int idTraitement = -1;
+
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT t.idTraitement " +
+                        "FROM Traitements t " +
+                        "JOIN Departements d ON d.idDepartement = t.idDepartement " +
+                        "WHERE t.nom = '{0}' AND d.abreviation = '{1}'",
+                        traitement.Nom, traitement.DepartementAssocie.Abreviation
+                    ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
+                );
+                if(idTraitement >= 0)
+                {
+                    DataModelEtape.DeleteEtapes(idTraitement);
+
+                    ConnexionBD.Instance().ExecuterRequete(
+                        String.Format(
+                            "DELETE FROM Traitements " +
+                            "WHERE idTraitement = {0}",
+                            idTraitement
+                        )
+                    );
+                }
+
+            }
+        }
 
         #endregion
     }

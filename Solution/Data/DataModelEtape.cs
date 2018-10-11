@@ -40,5 +40,67 @@ namespace VitAdmin.Data
 
             return etapes;
         }
+
+        public static void PostEtapes(List<Etape> etapes, int idTraitement)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                foreach (Etape etape in etapes)
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        String.Format(
+                            "INSERT INTO Etapes (description, idTraitement) " +
+                            "VALUES ('{0}', {1})",
+                            etape.Description, idTraitement
+                        )
+                    );
+
+                    int idEtape = -1;
+                    ConnexionBD.Instance().ExecuterRequete(
+                        String.Format(
+                            "SELECT idEtape " +
+                            "FROM Etapes " +
+                            "WHERE description = '{0}' AND idTraitement = {1}",
+                            etape.Description, idTraitement
+                        ), lecteur => idEtape = int.Parse(lecteur.GetString("idEtape"))
+                    );
+                    if (idEtape >= 0)
+                        DataModelInstructionEtape.PostInstructions(new List<string>(etape.Instructions), idEtape);
+                }
+            }
+        }
+
+        public static void DeleteEtape(int idEtape)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                DataModelInstructionEtape.DeleteInstructions(idEtape);
+                ConnexionBD.Instance().ExecuterRequete(
+                     String.Format(
+                         "DELETE FROM Etapes " +
+                         "WHERE idEtape = {0}",
+                         idEtape
+                     )
+                 );
+            }
+        }
+
+        public static void DeleteEtapes(int idTraitement)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                int idEtape = -1;
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT idEtape " +
+                        "FROM Etapes " +
+                        "WHERE idTraitement = {0} ",
+                        idTraitement
+                    ), lecteur => idEtape = int.Parse(lecteur.GetString("idEtape"))
+                );
+                if(idEtape >= 0)
+                    DeleteEtape(idEtape);
+            }
+        }
     }
 }

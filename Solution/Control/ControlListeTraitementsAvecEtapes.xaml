@@ -28,6 +28,10 @@
                                     Binding="{Binding Nom}"
                                     Width="*">
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="Département"
+                                    Binding="{Binding DepartementAssocie.Abreviation}"
+                                    Width="*">
+                </DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick"

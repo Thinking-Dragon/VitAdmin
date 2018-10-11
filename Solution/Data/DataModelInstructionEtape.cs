@@ -26,5 +26,36 @@ namespace VitAdmin.Data
 
             return instructions;
         }
+
+        public static void PostInstructions(List<string> instructions, int idEtape)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                foreach (string instruction in instructions)
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        String.Format(
+                            "INSERT INTO SousEtapes (description, idEtape) " +
+                            "VALUES ('{0}', {1})",
+                            instruction, idEtape
+                        )
+                    );
+                }
+            }
+        }
+
+        public static void DeleteInstructions(int idEtape)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                   String.Format(
+                       "DELETE FROM SousEtapes " +
+                       "WHERE idEtape = {0}",
+                       idEtape
+                   )
+               );
+            }
+        }
     }
 }

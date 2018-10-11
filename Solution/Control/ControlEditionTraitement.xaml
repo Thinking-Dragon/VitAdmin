@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="VitAdmin.Control.ControlEditionTraitement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VitAdmin.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1">Nouveau traitement</Label>
+        <Grid Grid.Column="1"
+              Grid.Row="2"
+              Margin="32">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label>Séléctionnez le département</Label>
+            <ContentPresenter x:Name="cpDepartement"
+                              Grid.Row="1">
+            </ContentPresenter>
+        </Grid>
+        <ContentPresenter x:Name="cpNomTraitement"
+                          Grid.Column="1"
+                          Grid.Row="3">
+        </ContentPresenter>
+    </Grid>
+</UserControl>

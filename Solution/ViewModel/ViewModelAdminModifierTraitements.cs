@@ -8,6 +8,7 @@ using System.Windows.Input;
 using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.View;
 
 namespace VitAdmin.ViewModel
 {
@@ -23,15 +24,8 @@ namespace VitAdmin.ViewModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        //
-                        MaterialDesignThemes.Wpf.DialogHost.Show(new System.Windows.Controls.DataGrid
-                        {
-                            ItemsSource = Traitements
-                        }, "dialogGeneral");
-                        //
-
-                        // POST
                         DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
+                        GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
                     }
                 );
             }
