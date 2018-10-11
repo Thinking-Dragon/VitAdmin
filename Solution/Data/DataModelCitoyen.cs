@@ -139,6 +139,52 @@ namespace VitAdmin.Data
             return lstCitoyen;
         }
 
+        public static List<Citoyen> GetUnCitoyen(Citoyen citoyen)
+        {
+            // On crée une liste de citoyen venant de la BD
+            List<Citoyen> lstCitoyen = new List<Citoyen>();
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT c.nom nomCit, c.prenom prenomCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit, c.numAssuranceMaladie AssMal, el.nom EtLitNom " +
+                    "FROM citoyens c " +
+                    "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
+                    "INNER JOIN etatslits el ON el.idEtatLit = l.idEtatLit " +
+                    "INNER JOIN chambres ch ON ch.idChambre = l.idChambre " +
+                    "INNER JOIN departements d ON d.idDepartement = ch.idDepartement " +
+                    "WHERE d.nom = '" + citoyen.AssMaladie + "' "
+                    , SqlDR => {
+                        lstCitoyen.Add(new Citoyen
+                        {
+                            Nom = SqlDR.GetString("nomCit"),
+                            Prenom = SqlDR.GetString("prenomCit"),
+                            AssMaladie = SqlDR.GetString("AssMal"),
+                            Lit = new Lit
+                            {
+                                Numero = SqlDR.GetString("numeroLit"),
+                                UnEtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), SqlDR.GetString("EtLitNom")),
+                                Chambre = new Chambre
+                                {
+                                    Nom = SqlDR.GetString("nomCh"),
+                                    UnDepartement = new Departement
+                                    {
+                                        Nom = SqlDR.GetString("nomDep"),
+
+                                    }
+                                }
+                            }
+
+                        });
+                    }
+                    );
+            }
+
+            return lstCitoyen;
+        }
 
 
     }

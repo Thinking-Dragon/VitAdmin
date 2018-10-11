@@ -16,16 +16,16 @@ namespace VitAdmin.Notifications
 
         public event NotificationsEventHandler EventHandler;
 
-        // ça plante ici : Max D
-       /* private void ObtenirNotifications()
-            => EventHandler?.Invoke(this, new NotificationsEventArgs(DataModelNotification.GetNotifications(UsagerConnecte.Usager)));*/
+        
+        private void ObtenirNotifications()
+            => EventHandler?.Invoke(this, new NotificationsEventArgs(DataModelNotification.GetNotifications(UsagerConnecte.Usager)));
 
-       /* public BackgroundWorkerNotifications(uint interval)
+        public BackgroundWorkerNotifications(uint interval)
         {
             Timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(interval) };
             Timer.Tick += (object sender, EventArgs args) => ObtenirNotifications();
             Timer.Start();
             ObtenirNotifications();
-        }*/
+        }
     }
 }

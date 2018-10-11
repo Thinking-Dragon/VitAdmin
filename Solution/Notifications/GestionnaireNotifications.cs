@@ -42,11 +42,11 @@ namespace VitAdmin.Notifications
 
         #region Constructeur
 
-       /* public GestionnaireNotifications()
+        public GestionnaireNotifications()
         {
             BackgroundWorker = new BackgroundWorkerNotifications(DELAI);
             BackgroundWorker.EventHandler += BackgroundWorker_EventHandler;
-        }*/
+        }
 
         #endregion
 
