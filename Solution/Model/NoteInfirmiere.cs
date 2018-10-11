@@ -8,6 +8,6 @@ namespace VitAdmin.Model
 {
     public class NoteInfirmiere : Evenement
     {
-        public List<String> NotesInf { get; set; }
+        public String NotesInf { get; set; }
     }
 }

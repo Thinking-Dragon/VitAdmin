@@ -169,7 +169,6 @@
     </Compile>
     <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Data\ConnexionBD.cs" />
-    <Compile Include="Data\ControlModelResultatsLabo.cs" />
     <Compile Include="Data\DataModelConnexion.cs" />
     <Compile Include="Data\DataModelCitoyen.cs" />
     <Compile Include="Data\DataModelDepartement.cs" />
@@ -181,6 +180,7 @@
     <Compile Include="Data\DataModelNotesMed.cs" />
     <Compile Include="Data\DataModelNotification.cs" />
     <Compile Include="Data\DataModelPrescriptions.cs" />
+    <Compile Include="Data\DataModelResultatsLabo.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="GestionnaireNotifications.cs" />

@@ -10,6 +10,11 @@ namespace VitAdmin.Model
 {
     public class ResultatLabo : Evenement
     {
-        public List<BitmapImage> Resultats { get; set; }
+        public BitmapImage Resultats { get; set; }
+
+        public String LienImage { get; set; }
+
+        public String NomAnalyse { get; set; }
+
     }
 }

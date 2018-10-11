@@ -9,6 +9,7 @@ namespace VitAdmin.Model
     abstract public class Evenement
     {
         public DateTime DateEvenement { get; set; }
+        public Employe EmployeImplique { get; set; }
 
     }
 }

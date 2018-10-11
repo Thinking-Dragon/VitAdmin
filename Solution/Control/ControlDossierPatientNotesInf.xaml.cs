@@ -25,7 +25,9 @@ namespace VitAdmin.Control
         public ControlDossierPatientNotesInf(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientNotesInf(patient, hospit /*et le résultats de la requête*/);
+            DataContext = new ControlModelDossierPatientNotesInf(patient, hospit, Data.DataModelNotesInf.GetNotesInfirmiereCitoyens(patient.AssMaladie, hospit.DateDebut));
+
+            /*http://420.cstj.qc.ca/laurencedarveau/vitadmin/radio1.jpg*/
         }
     }
 }
