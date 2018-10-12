@@ -20,7 +20,7 @@ namespace VitAdmin.Data
                         "   ( " +
                         "       SELECT idEmploye " +
                         "       FROM Employes " +
-                        "       WHERE numEmploye = {0}" +
+                        "       WHERE numEmploye = '{0}'" +
                         "   ), " +
                         "   '{1}', '{2}', false " +
                         ")",
@@ -41,7 +41,7 @@ namespace VitAdmin.Data
                         "SELECT n.message, n.lien, n.estLu " +
                         "FROM Notifications n " +
                         "JOIN Employes e ON n.idEmploye = e.idEmploye " +
-                        "WHERE e.numEmploye = {0}",
+                        "WHERE e.numEmploye = '{0}'",
                         employe.NumEmploye
                     ), lecteur =>
                     {

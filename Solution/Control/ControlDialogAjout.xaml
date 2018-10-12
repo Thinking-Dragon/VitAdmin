@@ -11,13 +11,14 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="16" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
         <Label x:Name="lblTitre"></Label>
 
         <TextBox x:Name="txtNom" Grid.Row="1">
+            
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding CmdAjout}" Key="Return"
                             CommandParameter="{Binding Text, ElementName=txtNom}" />
