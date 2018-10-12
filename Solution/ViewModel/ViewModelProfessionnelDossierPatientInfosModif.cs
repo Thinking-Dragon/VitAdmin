@@ -4,8 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.Data;
+using VitAdmin.View;
 
 namespace VitAdmin.ViewModel
 {
@@ -19,5 +22,23 @@ namespace VitAdmin.ViewModel
             GestionnaireEcrans = gestionnaireEcrans;
             Patient = patient;
         }
+
+        public ICommand CmdBtnModif
+        {
+            get
+            {
+                return new CommandeDeleguee(action =>
+                {
+                    DataModelCitoyen.PutCitoyen((Patient));
+
+                    //ViewProfessionnelDossierPatientInfosModif winModif = (ViewProfessionnelDossierPatientInfosModif)viewModif;
+                    
+                    this.GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, Patient));
+
+                    
+                });
+            }
+        }
+
     }
 }

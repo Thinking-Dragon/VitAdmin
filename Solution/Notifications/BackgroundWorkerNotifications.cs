@@ -17,7 +17,7 @@ namespace VitAdmin.Notifications
         public event NotificationsEventHandler EventHandler;
 
         
-        private void ObtenirNotifications()
+       private void ObtenirNotifications()
             => EventHandler?.Invoke(this, new NotificationsEventArgs(DataModelNotification.GetNotifications(UsagerConnecte.Usager)));
 
         public BackgroundWorkerNotifications(uint interval)

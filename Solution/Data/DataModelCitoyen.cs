@@ -171,6 +171,27 @@ namespace VitAdmin.Data
             return InfosCitoyen;
         }
 
+        public static void PutCitoyen(Citoyen citoyen)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "UPDATE citoyens " +
+                        "SET prenom = '" + citoyen.Prenom + "', " +
+                        "nom = '" + citoyen.Nom + "', " +
+                        //"numAssuranceMaladie = '" + citoyen.AssMaladie + "', " +
+                        "dateNaissance = '" + citoyen.DateNaissance + "', " +
+                        "telephone = '" + citoyen.NumTelephone + "', " +
+                        "adresse = '" + citoyen.Adresse + "', " +
+                        "idGenre = ( SELECT idGenre FROM genres WHERE nom = '" + citoyen.UnGenre + "') " +
+                        "WHERE numAssuranceMaladie = '" + citoyen.AssMaladie + "' "
+                        ,
+                        citoyen
+                    )
+                );
+            }
+        }
 
     }
 }

@@ -62,7 +62,7 @@ namespace VitAdmin.Notifications
                 return _instance;
             }
         }
-
+    
         #endregion
     }
 }
