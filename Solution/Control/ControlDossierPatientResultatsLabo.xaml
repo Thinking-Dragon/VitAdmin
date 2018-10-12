@@ -23,7 +23,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Column="1" Background="White">
+        <Grid Grid.Column="1">
             <Image Name="img"></Image>
         </Grid>
 

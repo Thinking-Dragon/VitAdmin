@@ -51,6 +51,24 @@ namespace VitAdmin.Data
 
             return lstNoteInfirmiere;
         }
+
+        public static void AddNoteInf(DateTime dtEvenement, NoteInfirmiere noteInf)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                string requete = string.Format("INSERT INTO NotesInfirmiere " +
+                                           "(idEvenement, note) " +
+                                           "VALUES (" +
+                                           "(SELECT idEvenement FROM evenements WHERE dateHeure = '{0}')," +
+                                           "'{1}')"
+                                           , dtEvenement.ToString(), noteInf.NotesInf);
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+            }
+        }
+
+
     }
 
 }

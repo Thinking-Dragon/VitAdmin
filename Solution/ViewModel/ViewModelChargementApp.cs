@@ -35,7 +35,7 @@ namespace VitAdmin.ViewModel
         {
             get
             {
-                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewPatientHospitalisation(GestionnaireEcrans, UsagerConnecte.Usager, new Hospitalisation())));
+                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewPatientHospitalisation(GestionnaireEcrans, new Citoyen("tous059615"), new Hospitalisation(new DateTime(2018, 09, 28, 16, 16, 15)))));
             }
         }
 

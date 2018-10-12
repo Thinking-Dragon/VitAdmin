@@ -182,6 +182,7 @@
     <Compile Include="Data\DataModelDepartement.cs" />
     <Compile Include="Data\DataModelEmploye.cs" />
     <Compile Include="Data\DataModelEtape.cs" />
+    <Compile Include="Data\DataModelEvenement.cs" />
     <Compile Include="Data\DataModelHospitalisation.cs" />
     <Compile Include="Data\DataModelInstructionEtape.cs" />
     <Compile Include="Data\DataModelNotesInf.cs" />

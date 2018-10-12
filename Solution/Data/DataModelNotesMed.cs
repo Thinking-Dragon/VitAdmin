@@ -60,5 +60,22 @@ namespace VitAdmin.Data
 
             return lstNoteMedecin;
         }
+
+        public static void AddNoteMed(DateTime dtEvenement, NoteMedecin noteMed)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                string requete = string.Format("INSERT INTO NotesMedecin " +
+                                           "(idEvenement, note) " +
+                                           "VALUES (" +
+                                           "(SELECT idEvenement FROM evenements WHERE dateHeure = '{0}')," +
+                                           "'{1}',"
+                                           , dtEvenement.ToString(), noteMed.NotesMed);
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+            }
+        }
+
     }
 }
