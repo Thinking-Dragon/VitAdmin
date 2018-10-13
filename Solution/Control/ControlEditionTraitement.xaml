@@ -19,7 +19,8 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1">Nouveau traitement</Label>
+        <Label Grid.Column="1"
+               Grid.Row="1">Nouveau traitement</Label>
         <Grid Grid.Column="1"
               Grid.Row="2"
               Margin="32">
@@ -36,5 +37,10 @@
                           Grid.Column="1"
                           Grid.Row="3">
         </ContentPresenter>
+        <Label Foreground="Red"
+               Grid.Column="1"
+               Grid.Row="4"
+               Content="{Binding MessageErreur}">
+        </Label>
     </Grid>
 </UserControl>

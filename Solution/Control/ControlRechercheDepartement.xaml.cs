@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -23,10 +24,10 @@ namespace VitAdmin.Control
     {
         public ControlModelRechercheDepartement ControlModel { get; set; }
 
-        public ControlRechercheDepartement()
+        public ControlRechercheDepartement(Departement departement)
         {
             InitializeComponent();
-            DataContext = ControlModel = new ControlModelRechercheDepartement();
+            DataContext = ControlModel = new ControlModelRechercheDepartement(departement);
         }
     }
 }

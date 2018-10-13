@@ -32,11 +32,14 @@
                                     Binding="{Binding DepartementAssocie.Abreviation}"
                                     Width="*">
                 </DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnModifierTraitement_Click">Modifier</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-            <DataGrid.InputBindings>
-                <MouseBinding MouseAction="LeftDoubleClick"
-                              Command="{Binding CmdEditerTraitement}"></MouseBinding>
-            </DataGrid.InputBindings>
         </DataGrid>
 
         <DataGrid x:Name="dtgEtapes"
@@ -50,11 +53,14 @@
                                     Binding="{Binding Description}"
                                     Width="*">
                 </DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnModifierEtape_Click">Modifier</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-            <DataGrid.InputBindings>
-                <MouseBinding MouseAction="LeftDoubleClick"
-                              Command="{Binding CmdEditerEtape}"></MouseBinding>
-            </DataGrid.InputBindings>
         </DataGrid>
 
         <DataGrid x:Name="dtgInstructions"
@@ -68,6 +74,13 @@
                                     Binding="{Binding}"
                                     Width="*">
                 </DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnModifierInstruction_Click">Modifier</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

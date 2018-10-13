@@ -25,7 +25,13 @@ namespace VitAdmin.ControlModel
             }
         }
 
-        public ControlModelRechercheDepartement()
-            => Departements = new ObservableCollection<Departement>(DataModelDepartement.GetDepartements());
+        public ControlModelRechercheDepartement(Departement departement)
+        {
+            Departements = new ObservableCollection<Departement>(DataModelDepartement.GetDepartements());
+            if (departement != null)
+                for (int i = 0; i < Departements.Count; ++i)
+                    if (Departements[i].Nom == departement.Nom && Departements[i].Abreviation == departement.Abreviation)
+                        DepartementSelectionne = Departements[i];
+        }
     }
 }

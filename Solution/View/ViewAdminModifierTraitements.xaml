@@ -21,9 +21,11 @@
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ContentPresenter x:Name="cpBarreRecherche"
+            <!--<ContentPresenter x:Name="cpBarreRecherche"
                               Grid.Column="1"
-                              Margin="16"></ContentPresenter>
+                              Margin="16"></ContentPresenter>-->
+            <Label FontSize="24"
+                   Grid.Column="1">Modification des traitements disponibles</Label>
         </Grid>
         <ContentPresenter x:Name="cpListeTraitementsAvecEtapes"
                           Grid.Row="1"
