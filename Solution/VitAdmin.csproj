@@ -112,6 +112,9 @@
     <Compile Include="ControlModel\ControlModelNotifications.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
+    <Compile Include="Control\ControlAjoutNote.xaml.cs">
+      <DependentUpon>ControlAjoutNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
     </Compile>
@@ -273,6 +276,10 @@
     <Compile Include="View\ViewSuperEcran.xaml.cs">
       <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\ControlAjoutNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlAjoutSuppression.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

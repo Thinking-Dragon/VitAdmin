@@ -18,5 +18,18 @@ namespace VitAdmin.ControlModel
         {
             LstResultsLabo = new ObservableCollection<ResultatLabo>(lstResulLabo);
         }
+
+        public ICommand CmdBtnClicNouveauResultat
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+
+                    }
+                );
+            }
+        }
     }
 }

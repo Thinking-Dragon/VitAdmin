@@ -25,11 +25,8 @@
 
         <Grid Grid.Column="1">
             <Image Name="img"></Image>
+            <Button Command="{Binding CmdBtnClicNouveauResultat}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouveau résultat</Button>
         </Grid>
-
-
-        
-
-        
+     
     </Grid>
 </UserControl>

@@ -20,5 +20,18 @@ namespace VitAdmin.ControlModel
         {
             LstPrescriptions = new ObservableCollection<Prescription>(resultRequete);
         }
+
+        public ICommand CmdBtnClicNouvellePrescription
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+
+                    }
+                );
+            }
+        }
     }
 }

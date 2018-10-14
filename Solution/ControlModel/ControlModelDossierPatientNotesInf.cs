@@ -18,5 +18,16 @@ namespace VitAdmin.ControlModel
         {
             LstNotesInf = new ObservableCollection<NoteInfirmiere>(lstNotesInf);
         }
+
+        public ICommand CmdBtnClicNouvelleNoteInf
+        {
+            get
+            {
+                return new CommandeDeleguee(param =>
+                {
+                    System.Windows.MessageBox.Show("Hey!");
+                });
+            }
+        }
     }
 }

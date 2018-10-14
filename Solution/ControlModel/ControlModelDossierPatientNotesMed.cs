@@ -18,5 +18,18 @@ namespace VitAdmin.ControlModel
         {
             LstNotesMed = new ObservableCollection<NoteMedecin>(lstNotesMed);
         }
+
+        public ICommand CmdBtnClicNouvelleNoteMed
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+
+                    }
+                );
+            }
+        }
     }
 }

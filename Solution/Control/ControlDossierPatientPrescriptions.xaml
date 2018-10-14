@@ -16,5 +16,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <Button Command="{Binding CmdBtnClicNouvellePrescription}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle Prescription</Button>
     </Grid>
 </UserControl>
