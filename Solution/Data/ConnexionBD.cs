@@ -38,9 +38,13 @@ namespace VitAdmin.Data
             return true;
         }
 
-        public void ExecuterRequete(string requete, Action<MySqlDataReader> callback)
+        public void ExecuterRequete(string requete, Action<MySqlDataReader> callback, params Tuple<string, string>[] parametres)
         {
             MySqlCommand commande = new MySqlCommand(requete, Connexion);
+
+            for (int i = 0; i < parametres.Length; ++i)
+                commande.Parameters.AddWithValue(parametres[i].Item1, parametres[i].Item2);
+
             MySqlDataReader lecteur = commande.ExecuteReader();
 
             while (lecteur.Read()) callback(lecteur);
@@ -49,9 +53,12 @@ namespace VitAdmin.Data
         }
 
         // Si retourne 0, requête a échoué
-        public int ExecuterRequete(string requete)
+        public int ExecuterRequete(string requete, params Tuple<string, string>[] parametres)
         {
             MySqlCommand commande = new MySqlCommand(requete, Connexion);
+
+            for (int i = 0; i < parametres.Length; ++i)
+                commande.Parameters.AddWithValue(parametres[i].Item1, parametres[i].Item2);
 
             return commande.ExecuteNonQuery();
         }

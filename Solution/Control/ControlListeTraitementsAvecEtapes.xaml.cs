@@ -36,5 +36,14 @@ namespace VitAdmin.Control
             cpEtapesCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutEtapes, ControlModel.CmdSuppressionEtapes);
             cpInstructionsCD.Content = new ControlAjoutSuppression(ControlModel.CmdAjoutInstructions, ControlModel.CmdSuppressionInstructions);
         }
+
+        private void btnModifierEtape_Click(object sender, RoutedEventArgs e)
+            => ControlModel.CmdEditerEtape.Execute(null);
+
+        private void btnModifierTraitement_Click(object sender, RoutedEventArgs e)
+            => ControlModel.CmdEditerTraitement.Execute(null);
+
+        private void btnModifierInstruction_Click(object sender, RoutedEventArgs e)
+            => ControlModel.CmdEditerInstructions.Execute(null);
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
+using VitAdmin.Data;
 using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
 
@@ -30,16 +31,7 @@ namespace VitAdmin.View
             InitializeComponent();
             GestionnaireEcrans = gestionnaireEcrans;
             DataContext = new ModelViewAdminModificationStructure(gestionnaireEcrans);
-            cpListeDepartements.Content = new ControlListeChoixDepartementsCRD(gestionnaireEcrans, new List<Model.Departement>
-            {
-                new Model.Departement { Nom = "Chirurgie" },
-                new Model.Departement { Nom = "Oncologie" },
-                new Model.Departement { Nom = "Radiologie" },
-                new Model.Departement { Nom = "Pédiatrie" },
-                new Model.Departement { Nom = "Soins" },
-                new Model.Departement { Nom = "Médecine" },
-                new Model.Departement { Nom = "Psychologie" }
-            }, (DataContext as ModelViewAdminModificationStructure).DepartementSelectionne);
+            cpListeDepartements.Content = new ControlListeChoixDepartementsCRD(gestionnaireEcrans, DataModelDepartement.GetDepartements(), (DataContext as ModelViewAdminModificationStructure).DepartementSelectionne);
             cpApercuDepartementSelectionne.Content = new ControlApercuDepartement(
                 gestionnaireEcrans,
                 (DataContext as ModelViewAdminModificationStructure).DepartementSelectionne

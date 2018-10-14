@@ -106,6 +106,7 @@
     <Compile Include="ControlModel\ControlModelDossierPatientNotesMed.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientPrescriptions.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientResultatsLabo.cs" />
+    <Compile Include="ControlModel\ControlModelEditionTraitement.cs" />
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />

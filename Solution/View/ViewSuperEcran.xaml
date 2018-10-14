@@ -8,7 +8,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewSuperEcran">
-
     <Grid x:Name="grdMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="64"></RowDefinition>
@@ -16,6 +15,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1" x:Name="grdSousEcran"></Grid>
 
+        <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}" />
+        
         <materialDesign:DialogHost Identifier="dialogGeneral"
                                    CloseOnClickAway="True"
                                    Panel.ZIndex="99"

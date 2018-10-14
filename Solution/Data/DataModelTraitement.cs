@@ -157,6 +157,21 @@ namespace VitAdmin.Data
         {
             if(ConnexionBD.Instance().EstConnecte())
             {
+                List<int> idTraitements = new List<int>();
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT idTraitement " +
+                    "FROM Traitements", lecteur => idTraitements.Add(int.Parse(lecteur.GetString("idTraitement")))
+                );
+                foreach (int idTraitement in idTraitements)
+                    DeleteTraitement(idTraitement);
+                foreach (Traitement traitement in traitements)
+                    PostTraitement(traitement);
+            }
+
+
+            #region Version plus rapide, mais duplicant des données.
+            /*if(ConnexionBD.Instance().EstConnecte())
+            {
                 List<Traitement> traitementsExistants = GetTraitements(true);
                 
                 for (int i = 0; i < traitementsExistants.Count; ++i)
@@ -184,7 +199,8 @@ namespace VitAdmin.Data
 
                 for (int i = 0; i < traitementsExistants.Count; ++i)
                     PutTraitement(traitementsExistants[i]);
-            }
+            }*/
+            #endregion
         }
 
         #endregion
@@ -196,6 +212,25 @@ namespace VitAdmin.Data
         #endregion
 
         #region DELETE
+
+        public static void DeleteTraitement(int idTraitement)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                if (idTraitement >= 0)
+                {
+                    DataModelEtape.DeleteEtapes(idTraitement);
+
+                    ConnexionBD.Instance().ExecuterRequete(
+                        String.Format(
+                            "DELETE FROM Traitements " +
+                            "WHERE idTraitement = {0}",
+                            idTraitement
+                        )
+                    );
+                }
+            }
+        }
 
         public static void DeleteTraitement(Traitement traitement)
         {
@@ -212,19 +247,8 @@ namespace VitAdmin.Data
                         traitement.Nom, traitement.DepartementAssocie.Abreviation
                     ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
                 );
-                if(idTraitement >= 0)
-                {
-                    DataModelEtape.DeleteEtapes(idTraitement);
 
-                    ConnexionBD.Instance().ExecuterRequete(
-                        String.Format(
-                            "DELETE FROM Traitements " +
-                            "WHERE idTraitement = {0}",
-                            idTraitement
-                        )
-                    );
-                }
-
+                DeleteTraitement(idTraitement);
             }
         }
 

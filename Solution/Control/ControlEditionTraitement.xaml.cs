@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ControlModel;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 
@@ -25,10 +26,13 @@ namespace VitAdmin.Control
     {
         private ControlRechercheDepartement ControlRechercheDepartement { get; set; }
 
-        public ControlEditionTraitement(ICommand cmdConfirmer)
+        private ControlModelEditionTraitement ControlModel { get; set; }
+
+        public ControlEditionTraitement(ICommand cmdConfirmer, Traitement traitement = null)
         {
             InitializeComponent();
-            cpDepartement.Content = ControlRechercheDepartement = new ControlRechercheDepartement();
+            DataContext = ControlModel = new ControlModelEditionTraitement();
+            cpDepartement.Content = ControlRechercheDepartement = new ControlRechercheDepartement(traitement?.DepartementAssocie);
             cpNomTraitement.Content = new ControlDialogAjout(
                 new CommandeDeleguee(
                     nomTraitement =>
@@ -44,10 +48,12 @@ namespace VitAdmin.Control
                                 }
                             );
                         }
-                        else MessageBox.Show("!");
+                        else ControlModel.MessageErreur = "Les deux champs sont obligatoires!";
                     }
-                )
-            , "Entrez le nom du traitement");
+                ), "Entrez le nom du traitement", traitement?.Nom
+            );
+            if (traitement != null)
+                ControlModel.Titre = "Modifier le traitement : « " + traitement.Nom + " »";
         }
     }
 }

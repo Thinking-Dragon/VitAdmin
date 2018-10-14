@@ -21,10 +21,14 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlNotifications : UserControl
     {
+        private ControlModelNotifications ControlModel { get; set; }
         public ControlNotifications()
         {
             InitializeComponent();
-            DataContext = new ControlModelNotifications();
+            DataContext = ControlModel = new ControlModelNotifications();
         }
+
+        private void dtgNotifications_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            => ControlModel.CmdOuvrirNotification.Execute(null);
     }
 }

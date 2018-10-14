@@ -66,11 +66,13 @@ namespace VitAdmin.ControlModel
             param => {
                 if(TraitementSelectionne != null)
                 {
-                    DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(nomTraitement =>
+                    DialogHost.Show(new ControlEditionTraitement(new CommandeDeleguee(traitement =>
                     {
-                        TraitementSelectionne.Nom = nomTraitement as string;
+                        TraitementSelectionne.Nom = (traitement as Traitement).Nom;
+                        TraitementSelectionne.DepartementAssocie = (traitement as Traitement).DepartementAssocie;
+                        Traitements = new ObservableCollection<Traitement>(Traitements);
                         DialogHost.CloseDialogCommand.Execute(null, null);
-                    }), "Modifier le traitement « " + TraitementSelectionne.Nom + " »", TraitementSelectionne.Nom), "dialogGeneral");
+                    }), TraitementSelectionne), "dialogGeneral");
                 }
             });
         }}
@@ -125,6 +127,21 @@ namespace VitAdmin.ControlModel
                     EtapeSelectionnee.Instructions.Add(instruction as string);
                     DialogHost.CloseDialogCommand.Execute(null, null);
                 }), "Nouvelle instruction"), "dialogGeneral");
+            });
+        }}
+
+        public ICommand CmdEditerInstructions { get { return new CommandeDeleguee(
+            param => {
+                if(InstructionSelectionnee != null)
+                {
+                    DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(instruction =>
+                    {
+                        for (int i = 0; i < EtapeSelectionnee.Instructions.Count; ++i)
+                            if (EtapeSelectionnee.Instructions[i] == InstructionSelectionnee)
+                                EtapeSelectionnee.Instructions[i] = instruction as string;
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                    }), "Modifier l'instruction « " + InstructionSelectionnee + " »", InstructionSelectionnee), "dialogGeneral");
+                }
             });
         }}
 

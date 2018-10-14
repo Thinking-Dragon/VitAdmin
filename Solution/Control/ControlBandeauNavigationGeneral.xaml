@@ -7,11 +7,12 @@
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="128"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="128"></ColumnDefinition>
+            <ColumnDefinition Width="8"></ColumnDefinition>
             <ColumnDefinition Width="128"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnRetourEcran"
@@ -24,6 +25,8 @@
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
         <Button Grid.Column="2"
+                Width="64"
+                HorizontalAlignment="Right"
                 Command="{Binding CmdNotifications}">
             <Grid>
                 <materialDesign:PackIcon Canvas.Left="auto"
@@ -36,10 +39,23 @@
                 </materialDesign:PackIcon>
                 <materialDesign:Badged Margin="10,3,0,0"
                                        Foreground="#FF2196F3"
-                                       Content="{Binding NbNotificationsNonLues}"></materialDesign:Badged>
+                                       Content="{Binding NbNotificationsNonLues}">
+                    <materialDesign:Badged.Style>
+                        <Style TargetType="{x:Type materialDesign:Badged}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <Trigger Property="Content" Value="0">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:Badged.Style>
+                </materialDesign:Badged>
             </Grid>
         </Button>
-        <Button Grid.Column="3"
+        <Button Grid.Column="4"
+                Width="64"
+                HorizontalAlignment="Left"
                 Command="{Binding CmdProfil}">
             <materialDesign:PackIcon Grid.Column="3"
                                      Kind="AccountCircle"
