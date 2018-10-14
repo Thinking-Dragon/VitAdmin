@@ -20,7 +20,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Grid.Column="1"
-               Grid.Row="1">Nouveau traitement</Label>
+               Grid.Row="1"
+               Content="{Binding Titre}"/>
         <Grid Grid.Column="1"
               Grid.Row="2"
               Margin="32">

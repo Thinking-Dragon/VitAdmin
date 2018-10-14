@@ -41,7 +41,8 @@ namespace VitAdmin.Data
                         "SELECT n.message, n.lien, n.estLu " +
                         "FROM Notifications n " +
                         "JOIN Employes e ON n.idEmploye = e.idEmploye " +
-                        "WHERE e.numEmploye = '{0}'",
+                        "WHERE e.numEmploye = '{0}' " +
+                        "ORDER BY idNotification DESC", // Change for ORDER BY date- DESC, when date- is added to the database.
                         employe.NumEmploye
                     ), lecteur =>
                     {
@@ -58,6 +59,21 @@ namespace VitAdmin.Data
             }
 
             return notifications;
+        }
+
+        public static void Set(string attribut, Notification notification, string valeur)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "UPDATE Notifications " +
+                        "SET {0} = {1} " +
+                        "WHERE message = '{2}' AND lien = '{3}'",
+                        attribut, valeur, notification.Message, notification.LienVersFenetre
+                    )
+                );
+            }
         }
     }
 }

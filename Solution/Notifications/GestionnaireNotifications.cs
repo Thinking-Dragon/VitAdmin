@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace VitAdmin.Notifications
         
         private BackgroundWorkerNotifications BackgroundWorker { get; set; }
         private List<Notification> NotificationsDerniereActualisation { get; set; } = new List<Notification>();
-        
+        private SnackbarMessageQueue SnackbarMessageQueue { get; set; }
+
         public event NotificationsEventHandler ANotifier;
         
         #endregion
@@ -29,6 +31,26 @@ namespace VitAdmin.Notifications
         
         private void BackgroundWorker_EventHandler(object sender, NotificationsEventArgs args)
         {
+            for (int i = 0; i < args.Notifications.Count; i++)
+            {
+                if(!args.Notifications[i].EstLu)
+                {
+                    bool bEstPresente = false;
+                        for (int j = 0; j < NotificationsDerniereActualisation.Count; j++)
+                            if (args.Notifications[i].Message == NotificationsDerniereActualisation[j].Message &&
+                                args.Notifications[i].LienVersFenetre == NotificationsDerniereActualisation[j].LienVersFenetre &&
+                                args.Notifications[i].TempsReception == NotificationsDerniereActualisation[j].TempsReception)
+                                bEstPresente = true;
+                    if (!bEstPresente)
+                        SnackbarMessageQueue.Enqueue(args.Notifications[i].Message, "Voir", notification =>
+                            {
+                                notification.EstLu = true;
+                                DataModelNotification.Set("estLu", notification, "true");
+                            },
+                            args.Notifications[i]
+                        );
+                }
+            }
             NotificationsDerniereActualisation = args.Notifications;
             ANotifier?.Invoke(this, args);
         }
@@ -37,6 +59,8 @@ namespace VitAdmin.Notifications
             => DataModelNotification.PostNotification(message, lien, employe);
 
         public List<Notification> GetNotifications() => NotificationsDerniereActualisation;
+
+        public SnackbarMessageQueue GetMessageQueue() => SnackbarMessageQueue;
         
         #endregion
 
@@ -44,6 +68,7 @@ namespace VitAdmin.Notifications
 
         public GestionnaireNotifications()
         {
+            SnackbarMessageQueue = new SnackbarMessageQueue();
             BackgroundWorker = new BackgroundWorkerNotifications(DELAI);
             BackgroundWorker.EventHandler += BackgroundWorker_EventHandler;
         }

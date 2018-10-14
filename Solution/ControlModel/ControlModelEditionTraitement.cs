@@ -19,5 +19,16 @@ namespace VitAdmin.ControlModel
                 RaisePropertyChangedEvent("MessageErreur");
             }
         }
+
+        private string _titre = "Nouveau traitement";
+        public string Titre
+        {
+            get { return _titre; }
+            set
+            {
+                _titre = value;
+                RaisePropertyChangedEvent("Titre");
+            }
+        }
     }
 }

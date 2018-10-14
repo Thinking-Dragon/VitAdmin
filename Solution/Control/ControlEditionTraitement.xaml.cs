@@ -52,6 +52,8 @@ namespace VitAdmin.Control
                     }
                 ), "Entrez le nom du traitement", traitement?.Nom
             );
+            if (traitement != null)
+                ControlModel.Titre = "Modifier le traitement : « " + traitement.Nom + " »";
         }
     }
 }

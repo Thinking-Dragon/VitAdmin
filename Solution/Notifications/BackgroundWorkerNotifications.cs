@@ -15,9 +15,8 @@ namespace VitAdmin.Notifications
         private DispatcherTimer Timer { get; set; }
 
         public event NotificationsEventHandler EventHandler;
-
         
-       private void ObtenirNotifications()
+        private void ObtenirNotifications()
             => EventHandler?.Invoke(this, new NotificationsEventArgs(DataModelNotification.GetNotifications(UsagerConnecte.Usager)));
 
         public BackgroundWorkerNotifications(uint interval)
@@ -25,7 +24,13 @@ namespace VitAdmin.Notifications
             Timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(interval) };
             Timer.Tick += (object sender, EventArgs args) => ObtenirNotifications();
             Timer.Start();
-            ObtenirNotifications();
+            DispatcherTimer dtFirst = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
+            dtFirst.Tick += (object sender, EventArgs args) =>
+            {
+                ObtenirNotifications();
+                dtFirst.Stop();
+            };
+            dtFirst.Start();
         }
     }
 }
