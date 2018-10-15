@@ -17,7 +17,7 @@ namespace VitAdmin.ControlModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        private string _usager = string.Empty;
+        private string _usager = "admin";//string.Empty;
         public string Usager
         {
             get { return _usager; }

@@ -34,8 +34,8 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(citoyenSelectionne =>
                 {
-
-                    GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, (Citoyen)citoyenSelectionne));
+                    if(citoyenSelectionne != null)
+                        GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, (Citoyen)citoyenSelectionne));
                     
                 });
             }

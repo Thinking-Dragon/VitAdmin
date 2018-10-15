@@ -130,7 +130,7 @@ namespace VitAdmin.Control
             Departement departementSelectionne = (Departement)cboDepartements.SelectedItem;
 
             // S'il n'y a plus rien dans la datagrid, tout plante puisqu'il n'y a plus rien à trouver lorsqu'on tente de réinitialiser le datagrid.
-            if(controlModelProfessionnelDossierPatient.Hospitalisations.Count > 0)
+            if(departementSelectionne != null)
             {
                 LstHospitalisationTrouve = LstHospitalisationDtgTemp.FindAll((hospit) => hospit.LstTraitements[0].DepartementAssocie.Nom == departementSelectionne.Nom);
 
