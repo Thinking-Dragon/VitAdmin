@@ -23,7 +23,6 @@ namespace VitAdmin.Control
     public partial class ControlDossierPatientNotesMed : UserControl
     {
         private ControlModelDossierPatientNotesMed ControlModelNoteMed { get; set; }
-        ControlDossierPatientOnglets parent { get; set; }
 
         public ControlDossierPatientNotesMed(Citoyen patient, Hospitalisation hospit)
         {
@@ -33,7 +32,7 @@ namespace VitAdmin.Control
         }
 
         private void NouvelleNote_Click(object sender, RoutedEventArgs e)
-            => ControlModelNoteMed.CmdBtnClicNouvelleNoteMed.Execute(null);
+            => ControlModelNoteMed.CmdBtnClicNouvelleNoteMed.Execute(ControlModelNoteMed.Hospit);
 
     }
 }

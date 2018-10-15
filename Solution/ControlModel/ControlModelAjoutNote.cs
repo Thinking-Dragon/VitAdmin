@@ -14,6 +14,14 @@ namespace VitAdmin.ControlModel
     {
         public NoteMedecin Note { get; set; }
 
+        public Hospitalisation Hospit { get; set; }
+
+        public ControlModelAjoutNote(Hospitalisation hospit)
+        {
+            Hospit = hospit;
+
+        }
+
         public ICommand CmdBtnClicConfirmerNoteMed
         {
             get
@@ -21,33 +29,8 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        
-                    }
-                );
-            }
-        }
-
-        public ICommand CmdBtnClicNotifierNoteMed
-        {
-            get
-            {
-                return new CommandeDeleguee(
-                    param =>
-                    {
-                        
-                    }
-                );
-            }
-        }
-
-        public ICommand CmdBtnClicUnNotifyNoteMed
-        {
-            get
-            {
-                return new CommandeDeleguee(
-                    param =>
-                    {
-
+                        Note = (NoteMedecin)param;
+                        Data.DataModelNotesMed.AddNoteMed(Hospit, Note, Parameter.UsagerConnecte.Usager.idEmploye);
                     }
                 );
             }

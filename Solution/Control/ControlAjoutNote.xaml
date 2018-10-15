@@ -10,7 +10,7 @@
 
         <WrapPanel HorizontalAlignment="Center" Height="300" VerticalAlignment="Center" Width="300" Margin="0,10,0,10">
             <TextBox Name="Note"  AcceptsReturn="True" Height="230" Width="280" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBox>
-            <CheckBox Checked="Notifier_Checked" Unchecked="Notifier_Unchecked" Name="Notifier" Margin="110,0,10,0" Height="30" Width="65" >Notifier</CheckBox>
+            <CheckBox Name="Notifier" Margin="110,0,10,0" Height="30" Width="65" >Notifier</CheckBox>
             <Button Click="Confirmer_Click" Name="Confirmer" Width="100">Confirmer</Button>
         </WrapPanel>
 

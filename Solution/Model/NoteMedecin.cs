@@ -17,7 +17,8 @@ namespace VitAdmin.Model
 
         public NoteMedecin(string note, bool notifier)
         {
-
+            EstNotifier = notifier;
+            NotesMed = note;
         }
     }
 }

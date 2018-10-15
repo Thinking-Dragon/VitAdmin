@@ -10,6 +10,6 @@ namespace VitAdmin.Model
     {
         public DateTime DateEvenement { get; set; }
         public Employe EmployeImplique { get; set; }
-
+        public bool EstNotifier { get; set; }
     }
 }

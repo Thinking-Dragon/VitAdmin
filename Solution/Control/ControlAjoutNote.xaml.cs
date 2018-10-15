@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -23,20 +25,18 @@ namespace VitAdmin.Control
     {
         private ControlModelAjoutNote ControlModelNote { get; set; }
 
-        public ControlAjoutNote()
+        public ControlAjoutNote(Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = ControlModelNote = new ControlModelAjoutNote();
+            DataContext = ControlModelNote = new ControlModelAjoutNote(hospit);
         }
 
         private void Confirmer_Click(object sender, RoutedEventArgs e)
-            => ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(/*Note, Notifier.IsChecked*/);
+        {
+            ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
+            DialogHost.CloseDialogCommand.Execute(null, null);
+        }
 
 
-        private void Notifier_Checked(object sender, RoutedEventArgs e)
-            => ControlModelNote.CmdBtnClicNotifierNoteMed.Execute(null);
-
-        private void Notifier_Unchecked(object sender, RoutedEventArgs e)
-            => ControlModelNote.CmdBtnClicUnNotifyNoteMed.Execute(null);
     }
 }

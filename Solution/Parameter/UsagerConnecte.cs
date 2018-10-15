@@ -16,11 +16,13 @@ namespace VitAdmin.Parameter
         public static EtatAvecMessage TenterConnexion(string usager, string motDePasse)
         {
             EtatAvecMessage validation = DataModelConnexion.ValiderIdentite(usager, motDePasse);
+            
 
             if (validation.Etat)
             {
                 Usager = DataModelConnexion.GetUsager(usager);
                 EstConnecte = true;
+                DataModelEmploye.SetIdEmployeUsagerConnecte();
             }
 
             return validation;

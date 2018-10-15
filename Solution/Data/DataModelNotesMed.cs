@@ -61,16 +61,30 @@ namespace VitAdmin.Data
             return lstNoteMedecin;
         }
 
-        public static void AddNoteMed(DateTime dtEvenement, NoteMedecin noteMed)
+        public static void AddNoteMed(Hospitalisation hospit, NoteMedecin noteMed, int numEmp)
         {
+            noteMed.DateEvenement = DateTime.Now;
+
             if (ConnexionBD.Instance().EstConnecte())
             {
-                string requete = string.Format("INSERT INTO NotesMedecin " +
+
+                string requete = string.Format("INSERT INTO evenements " +
+                                           "(idHospitalisation, idEmploye, dateHeure, estNotifier) " +
+                                           "VALUES (" +
+                                           "(SELECT idHospitalisation FROM hospitalisations WHERE dateDebut = '{0}')," +
+                                           "{1}," +
+                                           "'{2}'," +
+                                           "{3})", hospit.DateDebut.ToString(), numEmp, noteMed.DateEvenement.ToString(), noteMed.EstNotifier);
+
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+                requete = string.Format("INSERT INTO NotesMedecin " +
                                            "(idEvenement, note) " +
                                            "VALUES (" +
                                            "(SELECT idEvenement FROM evenements WHERE dateHeure = '{0}')," +
-                                           "'{1}',"
-                                           , dtEvenement.ToString(), noteMed.NotesMed);
+                                           "'{1}')"
+                                           , noteMed.DateEvenement.ToString(), noteMed.NotesMed);
 
                 ConnexionBD.Instance().ExecuterRequete(requete);
 

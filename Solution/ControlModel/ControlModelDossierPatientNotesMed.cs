@@ -16,9 +16,12 @@ namespace VitAdmin.ControlModel
     {
         public ObservableCollection<NoteMedecin> LstNotesMed { get; set; }
 
+        public Hospitalisation Hospit { get; set; }
+
         public ControlModelDossierPatientNotesMed(Citoyen patient, Hospitalisation hospit, List<NoteMedecin> lstNotesMed)
         {
             LstNotesMed = new ObservableCollection<NoteMedecin>(lstNotesMed);
+            Hospit = hospit;
         }
 
         public ICommand CmdBtnClicNouvelleNoteMed
@@ -28,7 +31,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlAjoutNote(), "dialogGeneral");
+                        DialogHost.Show(new ControlAjoutNote(Hospit), "dialogGeneral");
                     }
                 );
             }

@@ -4,11 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VitAdmin.Model;
+using VitAdmin.Parameter;
 
 namespace VitAdmin.Data
 {
     public static class DataModelEmploye
     {
+        public static void SetIdEmployeUsagerConnecte()
+        {
+            Employe employe = new Employe();
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                string requete = "SELECT e.idEmploye emp FROM Employes e " +
+                                 "INNER JOIN Postes p ON p.idPoste = e.idPoste " +
+                                 "INNER JOIN Usagers us ON e.idEmploye = us.idEmploye " +
+                                 "WHERE us.nomUtilisateur = '" + UsagerConnecte.Usager.NomUtilisateur + "' ";
+                ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
+                {
+                    UsagerConnecte.Usager.idEmploye = SqlDR.GetUInt16("emp");
+                });
+            }
+        }
+
         public static List<Employe> GetEmployes()
         {
             List<Employe> lstEmployes = new List<Employe>();
