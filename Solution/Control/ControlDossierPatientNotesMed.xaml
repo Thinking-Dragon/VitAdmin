@@ -17,6 +17,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Command="{Binding CmdBtnClicNouvelleNoteMed}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle note</Button>
+        <Button Click="NouvelleNote_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle note</Button>
     </Grid>
 </UserControl>

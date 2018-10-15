@@ -95,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientInfos.cs" />
     <Compile Include="ControlModel\ControlModelAjoutSuppression.cs" />
     <Compile Include="ControlModel\ControlModelApercuDepartement.cs" />

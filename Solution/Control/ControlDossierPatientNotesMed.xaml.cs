@@ -22,10 +22,18 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientNotesMed : UserControl
     {
+        private ControlModelDossierPatientNotesMed ControlModelNoteMed { get; set; }
+        ControlDossierPatientOnglets parent { get; set; }
+
         public ControlDossierPatientNotesMed(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientNotesMed(patient, hospit, Data.DataModelNotesMed.GetNotesMedecinCitoyens(patient.AssMaladie, hospit.DateDebut));
+            DataContext = ControlModelNoteMed = new ControlModelDossierPatientNotesMed(patient, hospit, Data.DataModelNotesMed.GetNotesMedecinCitoyens(patient.AssMaladie, hospit.DateDebut));
+
         }
+
+        private void NouvelleNote_Click(object sender, RoutedEventArgs e)
+            => ControlModelNoteMed.CmdBtnClicNouvelleNoteMed.Execute(null);
+
     }
 }
