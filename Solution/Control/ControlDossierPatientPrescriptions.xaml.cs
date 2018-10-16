@@ -23,10 +23,15 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientPrescriptions : UserControl
     {
+        private ControlModelDossierPatientPrescriptions ControlModelPrescription { get; set; }
         public ControlDossierPatientPrescriptions(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientPrescriptions(DataModelPrescriptions.GetPrescriptionsCitoyens("tous059615"));
+            DataContext = ControlModelPrescription = new ControlModelDossierPatientPrescriptions(patient, hospit ,DataModelPrescriptions.GetPrescriptionsCitoyens(patient.AssMaladie));
         }
+
+        private void NouvellePrescription_Click(object sender, RoutedEventArgs e)
+            => ControlModelPrescription.CmdBtnClicNouvellePrescription.Execute(ControlModelPrescription.Hospit);
+
     }
 }

@@ -15,10 +15,16 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label></Label>
+        <Label Grid.Row="0">Produit :</Label>
         <TextBox Grid.Row="0" Name="produit"></TextBox>
+
+        <Label Grid.Row="1">Posologie :</Label>
         <TextBox Grid.Row="1" Name="posologie"></TextBox>
+
+        <Label Grid.Row="2">Date de début de la prescription :</Label>
         <DatePicker Grid.Row="2" Name="dateDebut"></DatePicker>
+
+        <Label Grid.Row="3">Nombre de jours :</Label>
         <xctk:IntegerUpDown Width="50" Height="50" Grid.Row="3" Name="myUpDownControl"/>
     </Grid>
 </UserControl>

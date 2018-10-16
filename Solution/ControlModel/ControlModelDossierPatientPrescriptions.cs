@@ -14,11 +14,12 @@ namespace VitAdmin.ControlModel
     {
         public ObservableCollection<Prescription> LstPrescriptions { get; set; }
 
+        public Hospitalisation Hospit { get; set; }
 
-
-        public ControlModelDossierPatientPrescriptions(List<Prescription> resultRequete)
+        public ControlModelDossierPatientPrescriptions(Citoyen patient, Hospitalisation hospit, List<Prescription> resultRequete)
         {
             LstPrescriptions = new ObservableCollection<Prescription>(resultRequete);
+            Hospit = Hospit;
         }
 
         public ICommand CmdBtnClicNouvellePrescription
