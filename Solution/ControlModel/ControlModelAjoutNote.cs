@@ -10,10 +10,23 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    class ControlModelAjoutNote
+    class ControlModelAjoutNote : ObjetObservable
     {
         public NoteMedecin NoteMed { get; set; }
         public NoteInfirmiere NoteInf { get; set; }
+        public string MessagePrivate = "";
+        public String MessageErreur
+        {
+            get
+            {
+                return MessagePrivate;
+            }
+            set
+            {
+                MessagePrivate = value;
+                RaisePropertyChangedEvent("MessageErreur");
+            }
+        }
 
         public Hospitalisation Hospit { get; set; }
 

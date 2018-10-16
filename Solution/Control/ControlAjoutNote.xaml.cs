@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
+using VitAdmin.Data;
 using VitAdmin.Model;
 
 namespace VitAdmin.Control
@@ -25,6 +26,8 @@ namespace VitAdmin.Control
     {
         private ControlModelAjoutNote ControlModelNote { get; set; }
 
+        private bool EstDeuxiemeClick { get; set; }
+
         public ControlAjoutNote(Hospitalisation hospit)
         {
             InitializeComponent();
@@ -33,25 +36,52 @@ namespace VitAdmin.Control
 
         private void Confirmer_Click(object sender, RoutedEventArgs e)
         {
-            if (Parameter.UsagerConnecte.Usager.Poste == "admin")
+            if (EstDeuxiemeClick == true)
             {
-                DialogHost.CloseDialogCommand.Execute(null, null);
-                DialogHost.Show(new QuelPosteOccupesTuAdmin(), "dialogGeneral");
-                
-                ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
-                
-                Parameter.UsagerConnecte.Usager.Poste = "admin";
+                if (Parameter.UsagerConnecte.Usager.Poste == "admin")
+                {
+                    DialogHost.CloseDialogCommand.Execute(null, null);
+                    DialogHost.Show(new QuelPosteOccupesTuAdmin( () => {
+
+                        if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
+                        {
+                            ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
+                            DialogHost.CloseDialogCommand.Execute(null, null);
+                            Parameter.UsagerConnecte.Usager.Poste = "admin";
+                        }
+                        else if (Parameter.UsagerConnecte.Usager.Poste == "infirmière")
+                        {
+                            ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
+                            DialogHost.CloseDialogCommand.Execute(null, null);
+                            Parameter.UsagerConnecte.Usager.Poste = "admin";
+                        }
+
+                    }), "dialogGeneral");
+                }
+                else
+                {
+                    if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
+                    {
+                        ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                        Parameter.UsagerConnecte.Usager.Poste = "admin";
+                    }
+                    else if (Parameter.UsagerConnecte.Usager.Poste == "infirmière")
+                    {
+                        ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                        Parameter.UsagerConnecte.Usager.Poste = "admin";
+                    }
+                }
+
+
             }
-            else if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
+            else
             {
-                ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
-                DialogHost.CloseDialogCommand.Execute(null, null);
+                (DataContext as ControlModelAjoutNote).MessageErreur = "Voulez-vous vraiment confirmer?";
+                EstDeuxiemeClick = true;
             }
-            else if(Parameter.UsagerConnecte.Usager.Poste == "infirmière")
-            {
-                ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
-                DialogHost.CloseDialogCommand.Execute(null, null);
-            }
+
             
         }
 

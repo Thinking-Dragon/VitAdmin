@@ -21,21 +21,25 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class QuelPosteOccupesTuAdmin : UserControl
     {
-        public QuelPosteOccupesTuAdmin()
+        private Action Action { get; set; }
+        public QuelPosteOccupesTuAdmin(Action action)
         {
             InitializeComponent();
+            Action = action;
         }
 
         private void estInf_Click(object sender, RoutedEventArgs e)
         {
             Parameter.UsagerConnecte.Usager.Poste = estInf.Content.ToString();
             DialogHost.CloseDialogCommand.Execute(null, null);
+            Action();
         }
 
         private void estMed_Click(object sender, RoutedEventArgs e)
         {
             Parameter.UsagerConnecte.Usager.Poste = estMed.Content.ToString();
             DialogHost.CloseDialogCommand.Execute(null, null);
+            Action();
         }
     }
 }

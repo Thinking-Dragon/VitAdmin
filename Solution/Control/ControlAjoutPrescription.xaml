@@ -15,6 +15,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Label></Label>
         <TextBox Grid.Row="0" Name="produit"></TextBox>
         <TextBox Grid.Row="1" Name="posologie"></TextBox>
         <DatePicker Grid.Row="2" Name="dateDebut"></DatePicker>
