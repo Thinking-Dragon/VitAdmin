@@ -37,6 +37,7 @@
                 Width="180"
                 Height="128"
                 HorizontalAlignment="Right"
+                IsEnabled="False"
                 Command="{Binding CmdPersonnel}">Gestion personnel</Button>
 
         <Button Grid.Column="2"
@@ -50,6 +51,7 @@
                 Width="180"
                 Height="128"
                 HorizontalAlignment="Left"
+                IsEnabled="False"
                 Command="{Binding CmdPatients}">Gestion patients</Button>
 
         <Button Grid.Column="2"

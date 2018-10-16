@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    public class ControlModelListeChoixDepartementsCRD : ObjetObservable
+    public class ControlModelDepartementsAvecDetails : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
@@ -23,28 +24,16 @@ namespace VitAdmin.ControlModel
             set { departementSelectionne = value; RaisePropertyChangedEvent("DepartementSelectionne"); }
         }
 
-        public ICommand CmdCreer
+        public ICommand CmdModifierDepartement
         {
             get
             {
                 return new CommandeDeleguee(param =>
                 {
-
+                    System.Windows.MessageBox.Show("Hey!");
                 });
             }
         }
-
-        public ICommand CmdSupprimer
-        {
-            get
-            {
-                return new CommandeDeleguee(param =>
-                {
-
-                });
-            }
-        }
-
 
         public ICommand CmdCreerDepartement
         {
@@ -52,6 +41,7 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
+                    System.Windows.MessageBox.Show("Hey!");
 
                 });
             }
@@ -63,16 +53,17 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
+                    System.Windows.MessageBox.Show("Hey!");
 
                 });
             }
         }
 
-        public ControlModelListeChoixDepartementsCRD(GestionnaireEcrans gestionnaireEcrans, List<Departement> departements, Departement departementSelectionne)
+
+        public ControlModelDepartementsAvecDetails(GestionnaireEcrans gestionnaireEcrans)
         {
             GestionnaireEcrans = gestionnaireEcrans;
-            Departements = new ObservableCollection<Departement>(departements);
-            DepartementSelectionne = departementSelectionne;
+            Departements = new ObservableCollection<Departement>(DataModelDepartement.GetDepartements());
         }
     }
 }

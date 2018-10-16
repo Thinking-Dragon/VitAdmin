@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="VitAdmin.Control.ControlModifierDepartement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VitAdmin.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid DataContext="{Binding Departement}"
+          Grid.Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"></RowDefinition>
+            <RowDefinition Height="64"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="64"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label HorizontalAlignment="Right"
+                   VerticalAlignment="Center">Nom:</Label>
+            <TextBox Grid.Column="1"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Text="{Binding Nom}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label HorizontalAlignment="Right"
+                   VerticalAlignment="Top">Abréviation:</Label>
+            <TextBox Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Text="{Binding Abreviation}"/>
+        </Grid>
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Chambres}"
+                  Background="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Local" Width="*" />
+                <DataGridTextColumn Header="Nb. Lits" Width="128" />
+                <DataGridTextColumn Header="Matériel" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Grid.Row="2"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="24">Cette section n'existe pas pour la version 0.5</Label>
+        <Button Grid.Row="3"
+            Command="{Binding CmdValider}">
+            Valider la modification
+        </Button>
+    </Grid>
+</UserControl>

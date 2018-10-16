@@ -114,6 +114,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
+    <Compile Include="ControlModel\ControlModelDepartementsAvecDetails.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientInfos.cs" />
     <Compile Include="ControlModel\ControlModelAjoutSuppression.cs" />
     <Compile Include="ControlModel\ControlModelApercuDepartement.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
+    <Compile Include="ControlModel\ControlModelModifierDepartement.cs" />
     <Compile Include="ControlModel\ControlModelNotifications.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
@@ -155,6 +157,9 @@
     </Compile>
     <Compile Include="Control\ControlConnexion.xaml.cs">
       <DependentUpon>ControlConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlDepartementsAvecDetails.xaml.cs">
+      <DependentUpon>ControlDepartementsAvecDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlDialogAjout.xaml.cs">
       <DependentUpon>ControlDialogAjout.xaml</DependentUpon>
@@ -188,6 +193,9 @@
     </Compile>
     <Compile Include="Control\ControlListeTraitementsAvecEtapes.xaml.cs">
       <DependentUpon>ControlListeTraitementsAvecEtapes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlModifierDepartement.xaml.cs">
+      <DependentUpon>ControlModifierDepartement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlNotifications.xaml.cs">
       <DependentUpon>ControlNotifications.xaml</DependentUpon>
@@ -334,6 +342,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\ControlDepartementsAvecDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlDialogAjout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -375,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlListeTraitementsAvecEtapes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlModifierDepartement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

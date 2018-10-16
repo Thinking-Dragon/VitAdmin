@@ -18,10 +18,8 @@
             <RowDefinition Height="128">
             </RowDefinition>
         </Grid.RowDefinitions>
-        <ContentPresenter x:Name="cpListeDepartements"
-                          Grid.RowSpan="2"></ContentPresenter>
-        <ContentPresenter x:Name="cpApercuDepartementSelectionne"
-                          Grid.Column="1"></ContentPresenter>
+        <ContentPresenter x:Name="cpDepartementsAvecApercu"
+                          Grid.ColumnSpan="2"></ContentPresenter>
         <Button Grid.Column="1"
                 Grid.Row="1"
                 Command="{Binding CmdEquipements}">

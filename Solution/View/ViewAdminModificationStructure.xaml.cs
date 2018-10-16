@@ -31,11 +31,7 @@ namespace VitAdmin.View
             InitializeComponent();
             GestionnaireEcrans = gestionnaireEcrans;
             DataContext = new ModelViewAdminModificationStructure(gestionnaireEcrans);
-            cpListeDepartements.Content = new ControlListeChoixDepartementsCRD(gestionnaireEcrans, DataModelDepartement.GetDepartements(), (DataContext as ModelViewAdminModificationStructure).DepartementSelectionne);
-            cpApercuDepartementSelectionne.Content = new ControlApercuDepartement(
-                gestionnaireEcrans,
-                (DataContext as ModelViewAdminModificationStructure).DepartementSelectionne
-            );
+            cpDepartementsAvecApercu.Content = new ControlDepartementsAvecDetails(gestionnaireEcrans);
         }
 
         public Action CmdRetourEcranPrecedent
