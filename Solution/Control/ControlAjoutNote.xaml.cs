@@ -33,7 +33,16 @@ namespace VitAdmin.Control
 
         private void Confirmer_Click(object sender, RoutedEventArgs e)
         {
-            if(Parameter.UsagerConnecte.Usager.Poste == "Médecin" || Parameter.UsagerConnecte.Usager.Poste == "admin")
+            if (Parameter.UsagerConnecte.Usager.Poste == "admin")
+            {
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                DialogHost.Show(new QuelPosteOccupesTuAdmin(), "dialogGeneral");
+                
+                ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
+                
+                Parameter.UsagerConnecte.Usager.Poste = "admin";
+            }
+            else if (Parameter.UsagerConnecte.Usager.Poste == "Médecin" || Parameter.UsagerConnecte.Usager.Poste == "admin")
             {
                 ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
                 DialogHost.CloseDialogCommand.Execute(null, null);
