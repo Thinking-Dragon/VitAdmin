@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace VitAdmin.Data
             if(Connexion == null)
             {
                 if (String.IsNullOrEmpty(NomBD)) return false;
-                string strConnexion = string.Format("Server=420.cstj.qc.ca; database={0}; UID=VitAdmin; password=infoV84658; SslMode=none", NomBD);
+                string strConnexion = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
                 connexion = new MySqlConnection(strConnexion);
                 Connexion.Open();
             }
