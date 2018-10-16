@@ -22,12 +22,17 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientNotesInf : UserControl
     {
+        private ControlModelDossierPatientNotesInf ControlModelNoteInf { get; set; }
+
         public ControlDossierPatientNotesInf(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientNotesInf(patient, hospit, Data.DataModelNotesInf.GetNotesInfirmiereCitoyens(patient.AssMaladie, hospit.DateDebut));
+            DataContext = ControlModelNoteInf = new ControlModelDossierPatientNotesInf(patient, hospit, Data.DataModelNotesInf.GetNotesInfirmiereCitoyens(patient.AssMaladie, hospit.DateDebut));
 
             /*http://420.cstj.qc.ca/laurencedarveau/vitadmin/radio1.jpg*/
         }
+
+        private void NouvelleNote_Click(object sender, RoutedEventArgs e)
+            => ControlModelNoteInf.CmdBtnClicNouvelleNoteInf.Execute(ControlModelNoteInf.Hospit);
     }
 }

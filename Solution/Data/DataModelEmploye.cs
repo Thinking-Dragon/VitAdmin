@@ -16,13 +16,14 @@ namespace VitAdmin.Data
 
             if (ConnexionBD.Instance().EstConnecte())
             {
-                string requete = "SELECT e.idEmploye emp FROM Employes e " +
+                string requete = "SELECT e.idEmploye emp, p.nom pos FROM Employes e " +
                                  "INNER JOIN Postes p ON p.idPoste = e.idPoste " +
                                  "INNER JOIN Usagers us ON e.idEmploye = us.idEmploye " +
                                  "WHERE us.nomUtilisateur = '" + UsagerConnecte.Usager.NomUtilisateur + "' ";
                 ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
                 {
                     UsagerConnecte.Usager.idEmploye = SqlDR.GetUInt16("emp");
+                    UsagerConnecte.Usager.Poste = SqlDR.GetString("pos");
                 });
             }
         }

@@ -9,5 +9,16 @@ namespace VitAdmin.Model
     public class NoteInfirmiere : Evenement
     {
         public String NotesInf { get; set; }
+
+        public NoteInfirmiere()
+        {
+
+        }
+
+        public NoteInfirmiere(string note, bool notifier)
+        {
+            EstNotifier = notifier;
+            NotesInf = note;
+        }
     }
 }
