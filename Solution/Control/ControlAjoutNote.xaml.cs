@@ -42,12 +42,12 @@ namespace VitAdmin.Control
                 
                 Parameter.UsagerConnecte.Usager.Poste = "admin";
             }
-            else if (Parameter.UsagerConnecte.Usager.Poste == "Médecin" || Parameter.UsagerConnecte.Usager.Poste == "admin")
+            else if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
             {
                 ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
                 DialogHost.CloseDialogCommand.Execute(null, null);
             }
-            else if(Parameter.UsagerConnecte.Usager.Poste == "Infirmière")
+            else if(Parameter.UsagerConnecte.Usager.Poste == "infirmière")
             {
                 ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
                 DialogHost.CloseDialogCommand.Execute(null, null);
