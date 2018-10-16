@@ -30,7 +30,7 @@ namespace VitAdmin.Control
         {
             InitializeComponent();
 
-            controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(DataModelCitoyen.GetUnCitoyen(citoyen));
+            controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(citoyen); // GetUnCitoyen
 
             DataContext = controlModelDossierPatientInfos;
 
@@ -49,10 +49,17 @@ namespace VitAdmin.Control
                 SelectedItem = controlModelDossierPatientInfos.Citoyen.UnGenre
             };
 
+            CboGenre.SelectionChanged += CboGenre_SelectionChanged;
+
             Grid.SetColumn(CboGenre, 1);
             Grid.SetRow(CboGenre, 2);
 
             grdInfosPatient.Children.Add(CboGenre);
+        }
+
+        public void CboGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            controlModelDossierPatientInfos.Citoyen.UnGenre = (Genre)CboGenre.SelectedItem;
         }
     }
 }

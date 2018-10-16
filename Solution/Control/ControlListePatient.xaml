@@ -18,9 +18,6 @@
         </Grid.ColumnDefinitions>
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
-        <!--<TextBox Name="txtRecherche" Grid.Column="1" MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Left"
-                 GotFocus="txtRecherche_GotFocus" LostFocus="txtRecherche_LostFocus"
-                 KeyDown="txtRecherche_KeyDown"></TextBox>-->
 
         <ComboBox x:Name="cboRecherche" Grid.Column="1" MaxWidth="500" MinWidth="175" VerticalAlignment="Center" HorizontalAlignment="Left"
               KeyUp="CboRecherche_KeyUp"

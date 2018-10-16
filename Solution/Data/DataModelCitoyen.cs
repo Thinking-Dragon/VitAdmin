@@ -51,8 +51,9 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT c.nom nomCit, c.prenom prenomCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit, c.numAssuranceMaladie AssMal, el.nom EtLitNom " +
+                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.Nom GenreCit, c.dateNaissance DNaiss, c.telephone Tel, c.adresse AdresseCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit, el.nom EtLitNom " +
                     "FROM citoyens c " +
+                    "INNER JOIN genres g ON g.idGenre = c.idGenre " +
                     "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
                     "INNER JOIN etatslits el ON el.idEtatLit = l.idEtatLit " +
                     "INNER JOIN chambres ch ON ch.idChambre = l.idChambre " +
@@ -67,6 +68,10 @@ namespace VitAdmin.Data
                             Nom = SqlDR.GetString("nomCit"),
                             Prenom = SqlDR.GetString("prenomCit"),
                             AssMaladie = SqlDR.GetString("AssMal"),
+                            UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("GenreCit")),
+                            DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("DNaiss"),
+                            NumTelephone = SqlDR.GetString("Tel"),
+                            Adresse = SqlDR.GetString("AdresseCit"),
                             Lit = new Lit
                             {
                                 Numero = SqlDR.GetString("numeroLit"),
@@ -180,7 +185,7 @@ namespace VitAdmin.Data
                         "UPDATE citoyens " +
                         "SET prenom = '" + citoyen.Prenom + "', " +
                         "nom = '" + citoyen.Nom + "', " +
-                        //"numAssuranceMaladie = '" + citoyen.AssMaladie + "', " +
+                        "numAssuranceMaladie = '" + citoyen.AssMaladie + "', " +
                         "dateNaissance = '" + citoyen.DateNaissance + "', " +
                         "telephone = '" + citoyen.NumTelephone + "', " +
                         "adresse = '" + citoyen.Adresse + "', " +

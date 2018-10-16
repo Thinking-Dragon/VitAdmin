@@ -26,6 +26,13 @@
                 <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd/MM/yy HH:mm:ss\}}" Header="Date début"/>
                 <DataGridTextColumn Binding="{Binding DateFin, StringFormat=\{0:dd/MM/yy HH:mm:ss\}}" Header="Date fin"/>
             </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                              Command="{Binding CmdMouseDoubleClickHospit}"
+                              CommandParameter="{Binding SelectedItem, ElementName=dtgDossierPatient}"
+                />
+
+            </DataGrid.InputBindings>
         </DataGrid>
         <DatePicker Name="dtpkrDebut" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
         <DatePicker Name="dtpkrFin" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>

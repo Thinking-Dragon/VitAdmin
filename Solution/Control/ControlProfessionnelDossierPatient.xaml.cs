@@ -31,11 +31,11 @@ namespace VitAdmin.Control
 
         ControlModelProfessionnelDossierPatient controlModelProfessionnelDossierPatient;
 
-        public ControlProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Hospitalisation> hospitalisations)
+        public ControlProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Hospitalisation> hospitalisations, Citoyen patient)
         {
             InitializeComponent();
 
-            controlModelProfessionnelDossierPatient = new ControlModelProfessionnelDossierPatient(hospitalisations);
+            controlModelProfessionnelDossierPatient = new ControlModelProfessionnelDossierPatient(gestionnaireEcrans, hospitalisations, patient);
 
             InitialiserCboDepartement(controlModelProfessionnelDossierPatient.Hospitalisations);
 
@@ -119,6 +119,7 @@ namespace VitAdmin.Control
             dtpkrFin.SelectedDate = null;
 
             cboDepartements.Text = "";
+            controlModelProfessionnelDossierPatient.Hospitalisations.Clear();
 
             LstHospitalisation.ForEach((hospitalisation) => controlModelProfessionnelDossierPatient.Hospitalisations.Add(hospitalisation));
         }
