@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using VitAdmin.ControlModel;
 using VitAdmin.Model;
 using VitAdmin.View;
+using VitAdmin.Parameter;
 
 namespace VitAdmin.Control
 {
@@ -60,7 +61,8 @@ namespace VitAdmin.Control
 
             cboDepartements.ItemsSource = departements;
             cboDepartements.DisplayMemberPath = "Nom";
-            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
+            // Au cas qu'un admin se connecte, aucun département lui est associé, donc il faut enlever la fonction par défaut des filtres.
+            cboDepartements.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? departements[0] : departements[departements.IndexOf(deptRecherche)];
 
             cboDepartements.SelectionChanged += CboDepartements_SelectionChanged;
 
@@ -71,17 +73,23 @@ namespace VitAdmin.Control
         private void initialiserCboProfessionnel(ObservableCollection<Employe> employes, Employe employe)
         {
             Employe empRecherche = new Employe();
-            foreach (Employe emp in employes)
+
+            if(UsagerConnecte.Usager.NomUtilisateur != "admin")
             {
-                if (emp.Nom == employe.Nom)
-                    empRecherche = emp;
+
+                foreach (Employe emp in employes)
+                {
+                    if (emp.Nom == employe.Nom)
+                        empRecherche = emp;
+                }
             }
 
             employes.Add(new Employe { Nom = "Tous" });
 
             cboProfessionnel.ItemsSource = employes;
             cboProfessionnel.DisplayMemberPath = "idPrenomNom";
-            cboProfessionnel.SelectedItem = employes[employes.IndexOf(empRecherche)];
+            // Au cas qu'un admin se connecte, aucun employé lui est associé, donc il faut enlever la fonction par défaut des filtres.
+            cboProfessionnel.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? employes[0] : employes[employes.IndexOf(empRecherche)];
             cboProfessionnel.SelectionChanged += CboProfessionnel_SelectionChanged;
 
             stpnlFiltres.Children.Add(cboProfessionnel);

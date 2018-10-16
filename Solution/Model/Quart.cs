@@ -9,6 +9,7 @@ namespace VitAdmin.Model
     public class Quart
     {
         public TypeQuart TypeDeQuart { get; set; }
+        public Departement DepartementAssocie { get; set; }
 
     }
 }

@@ -73,12 +73,14 @@ namespace VitAdmin.Data
                             Prenom = lecteur.GetString("prenom"),
                             Nom = lecteur.GetString("nom"),
                             AssMaladie = lecteur.GetString("numAssuranceMaladie"),
-                            //DateNaissance = lecteur.GetDateTime("dateNaissance"),
+                            DateNaissance = (DateTime)lecteur.GetMySqlDateTime("dateNaissance"),
                             NumTelephone = lecteur.GetString("telephone"),
                             Adresse = lecteur.GetString("adresse")
                         };
                     }
                 );
+
+
             }
 
             return usager;

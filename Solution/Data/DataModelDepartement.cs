@@ -26,7 +26,6 @@ namespace VitAdmin.Data
         // On rend static la fonction pour être en mesure de l'utiliser partout
         public static List<Departement> GetDepartements()
         {
-            // On crée une liste de citoyen venant de la BD
             List<Departement> lstDepartement = new List<Departement>();
 
             // On vérifie si la BD est connecté
@@ -49,6 +48,30 @@ namespace VitAdmin.Data
             }
 
             return lstDepartement;
+        }
+
+        public static Departement GetDepartementEmploye(Employe employe)
+        {
+            Departement departement = new Departement();
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT d.nom depNom, d.abreviation depAbrev " +
+                    "FROM departements d " +
+                    "JOIN quarts q ON q.idDepartement = d.idDepartement " +
+                    "JOIN quartsemployes qe ON qe.idQuart = q.idQuart " +
+                    "JOIN employes e ON e.idEmploye = qe.idEmploye " +
+                    "WHERE e.numEmploye = '" + employe.NumEmploye + "' "
+                    , SqlDR => {
+                        departement.Nom = SqlDR.GetString("depNom");
+                        departement.Abreviation = SqlDR.GetString("depAbrev");
+                    }
+                    );
+            }
+
+            return departement;
         }
     }
 }

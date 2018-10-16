@@ -14,9 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
-using VitAdmin.ModelView;
 using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
+using VitAdmin.View;
+using VitAdmin.Parameter;
 
 namespace VitAdmin.View
 {
@@ -30,7 +31,7 @@ namespace VitAdmin.View
         public ViewProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
         {
             InitializeComponent();
-
+            GestEcrans = gestionnaireEcrans;
             DataContext = new ViewModelProfessionnelDossierPatient(gestionnaireEcrans, patient);
 
             grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient)), patient));
@@ -40,13 +41,13 @@ namespace VitAdmin.View
         // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.
         public Action CmdRetourEcranPrecedent
         {
-            get { return () => { GestEcrans.Changer(new ViewChargementApp(GestEcrans)); }; }
+            get { return () => { GestEcrans.Changer(new ViewProfessionnelHub(GestEcrans, UsagerConnecte.Usager)); }; }
         }
 
         // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.
         public string TexteBoutonRetourEcran
         {
-            get { return "< Accueil"; }
+            get { return "< Liste des patients"; }
         }
 
     }

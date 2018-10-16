@@ -27,7 +27,7 @@ namespace VitAdmin.ViewModel
         {
             get
             {
-                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, new Model.Departement { Nom = "Chirurgie" }, new Model.Employe { Nom = "Therien", Prenom = "Jacques", NumEmploye = "123456THJ" })));
+                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager)));
                 }
         }
 
