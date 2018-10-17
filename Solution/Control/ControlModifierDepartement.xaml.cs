@@ -22,10 +22,13 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlModifierDepartement : UserControl
     {
-        public ControlModifierDepartement(Departement departement)
+        public ControlModifierDepartement(GestionnaireEcrans gestionnaireEcrans, Departement departement)
         {
             InitializeComponent();
-            DataContext = new ControlModelModifierDepartement(departement);
+            DataContext = new ControlModelModifierDepartement(gestionnaireEcrans, departement);
         }
+
+        private void btnValiderClic(object sender, RoutedEventArgs e)
+            => (DataContext as ControlModelModifierDepartement).CmdValider.Execute(null);
     }
 }

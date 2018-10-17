@@ -15,7 +15,7 @@ namespace VitAdmin.Data
             List<Etape> etapes = new List<Etape>();
             List<int> idEtapes = new List<int>();
 
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 ConnexionBD.Instance().ExecuterRequete(
                     String.Format(
@@ -43,7 +43,7 @@ namespace VitAdmin.Data
 
         public static void PostEtapes(List<Etape> etapes, int idTraitement)
         {
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 foreach (Etape etape in etapes)
                 {
@@ -72,7 +72,7 @@ namespace VitAdmin.Data
 
         public static void DeleteEtape(int idEtape)
         {
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 DataModelInstructionEtape.DeleteInstructions(idEtape);
                 ConnexionBD.Instance().ExecuterRequete(
@@ -89,17 +89,18 @@ namespace VitAdmin.Data
         {
             if (ConnexionBD.Instance().EstConnecte())
             {
-                int idEtape = -1;
+                List<int> idEtapes = new List<int>();
                 ConnexionBD.Instance().ExecuterRequete(
                     String.Format(
                         "SELECT idEtape " +
                         "FROM Etapes " +
                         "WHERE idTraitement = {0} ",
                         idTraitement
-                    ), lecteur => idEtape = int.Parse(lecteur.GetString("idEtape"))
+                    ), lecteur => idEtapes.Add(int.Parse(lecteur.GetString("idEtape")))
                 );
-                if(idEtape >= 0)
-                    DeleteEtape(idEtape);
+                for (int i = 0; i < idEtapes.Count; i++)
+                    if (idEtapes[i] >= 0)
+                        DeleteEtape(idEtapes[i]);
             }
         }
     }

@@ -24,9 +24,9 @@
         <Label Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center">Menu temporaire pour la démontration permettant d'accéder à quelques uns des écrans</Label>
         <StackPanel Grid.Column="1"
                     Grid.Row="2">
-            <Button Command="{Binding CmdAccueilAdministrateur}">Accueil administrateur</Button>
-            <Button Command="{Binding CmdAccueilProfessionnel}">Accueil professionel</Button>
-            <Button Command="{Binding CmdEcranHospitalisation}">Visualisation d'une hospitalisation</Button>
+            <Button Command="{Binding CmdAccueilAdministrateur}" Margin="16">Accueil administrateur</Button>
+            <Button Command="{Binding CmdAccueilProfessionnel}" Margin="16">Accueil professionel</Button>
+            <Button Command="{Binding CmdCreationNotifications}" Margin="16">Créer des notification</Button>
         </StackPanel>
     </Grid>
 </Page>

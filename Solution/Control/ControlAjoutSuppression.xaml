@@ -15,6 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Button Grid.Column="1" Command="{Binding CmdAjout}">+</Button>
-        <Button Grid.Column="2" Command="{Binding CmdSuppression}">-</Button>
+        <Button Grid.Column="2" Command="{Binding CmdSuppression}"
+                IsEnabled="False">-</Button>
     </Grid>
 </UserControl>

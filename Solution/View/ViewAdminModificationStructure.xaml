@@ -22,6 +22,8 @@
                           Grid.ColumnSpan="2"></ContentPresenter>
         <Button Grid.Column="1"
                 Grid.Row="1"
+                Width="128"
+                IsEnabled="False"
                 Command="{Binding CmdEquipements}">
             Équipements
         </Button>

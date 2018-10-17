@@ -50,6 +50,23 @@ namespace VitAdmin.Data
             return lstDepartement;
         }
 
+        public static void PutDepartement(string abrevInitiale, Departement departement)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "UPDATE Departements " +
+                        "SET nom = '{0}', abreviation = '{1}'" +
+                        "WHERE abreviation = '{2}' ",
+                        departement.Nom,
+                        departement.Abreviation,
+                        abrevInitiale
+                    )
+                );
+            }
+        }
+
         public static Departement GetDepartementEmploye(Employe employe)
         {
             Departement departement = new Departement();

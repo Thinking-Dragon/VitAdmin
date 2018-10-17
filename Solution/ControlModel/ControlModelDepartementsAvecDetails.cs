@@ -1,13 +1,16 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using VitAdmin.Control;
 using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.View;
 
 namespace VitAdmin.ControlModel
 {
@@ -21,7 +24,16 @@ namespace VitAdmin.ControlModel
         public Departement DepartementSelectionne
         {
             get { return departementSelectionne; }
-            set { departementSelectionne = value; RaisePropertyChangedEvent("DepartementSelectionne"); }
+            set
+            {
+                departementSelectionne = value;
+                RaisePropertyChangedEvent("DepartementSelectionne");
+            }
+        }
+
+        public bool IsDepartementSelectionneNull
+        {
+            get { return DepartementSelectionne == null; }
         }
 
         public ICommand CmdModifierDepartement
@@ -30,7 +42,7 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
-                    System.Windows.MessageBox.Show("Hey!");
+                    GestionnaireEcrans.Changer(new ViewModifierDepartement(GestionnaireEcrans, DepartementSelectionne));
                 });
             }
         }
@@ -41,7 +53,6 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
-                    System.Windows.MessageBox.Show("Hey!");
 
                 });
             }
@@ -53,7 +64,6 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
-                    System.Windows.MessageBox.Show("Hey!");
 
                 });
             }

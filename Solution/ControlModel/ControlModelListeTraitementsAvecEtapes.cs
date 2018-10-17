@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using VitAdmin.Control;
 using VitAdmin.Model;
@@ -86,17 +88,50 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdAjoutEtapes { get { return new CommandeDeleguee(
             param => {
-                DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(descriptionEtape =>
+                if (TraitementSelectionne == null)
                 {
-                    TraitementSelectionne.EtapesTraitement.Add(
-                        new Etape
+                    Grid grid = new Grid();
+                    grid.RowDefinitions.Add(new RowDefinition());
+                    grid.RowDefinitions.Add(new RowDefinition());
+                    grid.Children.Add(new Label { Content = "Sélectionnez d'abord un traitement !", Margin = new Thickness(32) });
+                    Button buttonClose = new Button { Content = "Okay" };
+                    buttonClose.Command = DialogHost.CloseDialogCommand;
+                    Grid.SetRow(buttonClose, 1);
+                    grid.Children.Add(buttonClose);
+                    
+                    DialogHost.Show(grid, "dialogGeneral");
+                }
+                else
+                {
+                    DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(descriptionEtape =>
+                    {
+                        if((descriptionEtape as string) != string.Empty)
                         {
-                            Description = descriptionEtape as string,
-                            Instructions = new ObservableCollection<string>()
+                            TraitementSelectionne.EtapesTraitement.Add(
+                                new Etape
+                                {
+                                    Description = descriptionEtape as string,
+                                    Instructions = new ObservableCollection<string>()
+                                }
+                            );
+                            DialogHost.CloseDialogCommand.Execute(null, null);
                         }
-                    );
-                    DialogHost.CloseDialogCommand.Execute(null, null);
-                }), "Nouvelle étape"), "dialogGeneral");
+                        else
+                        {
+                            DialogHost.CloseDialogCommand.Execute(null, null);
+                            Grid grid = new Grid();
+                            grid.RowDefinitions.Add(new RowDefinition());
+                            grid.RowDefinitions.Add(new RowDefinition());
+                            grid.Children.Add(new Label { Content = "Un nom d'étape ne peut pas être vide", Margin = new Thickness(32) });
+                            Button buttonClose = new Button { Content = "Okay" };
+                            buttonClose.Command = DialogHost.CloseDialogCommand;
+                            Grid.SetRow(buttonClose, 1);
+                            grid.Children.Add(buttonClose);
+
+                            DialogHost.Show(grid, "dialogGeneral");
+                        }
+                    }), "Nouvelle étape"), "dialogGeneral");
+                }
             });
         }}
 
@@ -122,11 +157,44 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdAjoutInstructions { get { return new CommandeDeleguee(
             param => {
-                DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(instruction =>
+                if (EtapeSelectionnee == null)
                 {
-                    EtapeSelectionnee.Instructions.Add(instruction as string);
-                    DialogHost.CloseDialogCommand.Execute(null, null);
-                }), "Nouvelle instruction"), "dialogGeneral");
+                    Grid grid = new Grid();
+                    grid.RowDefinitions.Add(new RowDefinition());
+                    grid.RowDefinitions.Add(new RowDefinition());
+                    grid.Children.Add(new Label { Content = "Sélectionnez d'abord une étape !", Margin = new Thickness(32) });
+                    Button buttonClose = new Button { Content = "Okay" };
+                    buttonClose.Command = DialogHost.CloseDialogCommand;
+                    Grid.SetRow(buttonClose, 1);
+                    grid.Children.Add(buttonClose);
+
+                    DialogHost.Show(grid, "dialogGeneral");
+                }
+                else
+                {
+                    DialogHost.Show(new ControlDialogAjout(new CommandeDeleguee(instruction =>
+                    {
+                        if((instruction as string) != string.Empty)
+                        {
+                            EtapeSelectionnee.Instructions.Add(instruction as string);
+                            DialogHost.CloseDialogCommand.Execute(null, null);
+                        }
+                        else
+                        {
+                            DialogHost.CloseDialogCommand.Execute(null, null);
+                            Grid grid = new Grid();
+                            grid.RowDefinitions.Add(new RowDefinition());
+                            grid.RowDefinitions.Add(new RowDefinition());
+                            grid.Children.Add(new Label { Content = "Un nom d'instruction ne peut pas être vide", Margin = new Thickness(32) });
+                            Button buttonClose = new Button { Content = "Okay" };
+                            buttonClose.Command = DialogHost.CloseDialogCommand;
+                            Grid.SetRow(buttonClose, 1);
+                            grid.Children.Add(buttonClose);
+
+                            DialogHost.Show(grid, "dialogGeneral");
+                        }
+                    }), "Nouvelle instruction"), "dialogGeneral");
+                }
             });
         }}
 

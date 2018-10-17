@@ -228,6 +228,7 @@
     <Compile Include="Data\DataModelPrescriptions.cs" />
     <Compile Include="Data\DataModelResultatsLabo.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
+    <Compile Include="Data\DataModelUsager.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
     <Compile Include="Notifications\GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
@@ -285,6 +286,12 @@
     </Compile>
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewCreerNotifications.xaml.cs">
+      <DependentUpon>ViewCreerNotifications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewModifierDepartement.xaml.cs">
+      <DependentUpon>ViewModifierDepartement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewPatientHospitalisation.xaml.cs">
       <DependentUpon>ViewPatientHospitalisation.xaml</DependentUpon>
@@ -440,6 +447,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewConnexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewCreerNotifications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewModifierDepartement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

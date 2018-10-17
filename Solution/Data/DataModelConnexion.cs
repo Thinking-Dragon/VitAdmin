@@ -20,7 +20,7 @@ namespace VitAdmin.Data
                 int nbUsagers = 0;
                 string requete = string.Format("SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '{0}'", usager);
 
-                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé? Meh. En principe ! Mais ça doit clairement être encore hackable !
+                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé? Nah !
                     requete, (MySqlDataReader lecteur) =>
                     {
                         string nom = lecteur.GetString("nomUtilisateur");
@@ -34,7 +34,7 @@ namespace VitAdmin.Data
                     retour.Message = "Nom d'utilisateur ou mot de passe invalide";
             }
             else retour.Message = "Impossible de se connecter au service de données du système";
-            
+
             return retour;
         }
 
@@ -42,7 +42,7 @@ namespace VitAdmin.Data
         {
             Usager usager = null;
 
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 string requete = string.Format(
                     "SELECT u.nomUtilisateur, r.role, " +

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="32">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -18,13 +18,14 @@
         <Grid Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="128"></RowDefinition>
+                <RowDefinition Height="42"></RowDefinition>
             </Grid.RowDefinitions>
 
             <DataGrid ItemsSource="{Binding Departements}"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectedItem="{Binding DepartementSelectionne}">
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectionChanged="dtgDepartements_SelectionChanged"
+                      SelectedItem="{Binding DepartementSelectionne}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Département"
                                     Binding="{Binding Nom}"
@@ -38,8 +39,12 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Button VerticalAlignment="Bottom"
+                        IsEnabled="False"
+                        Width="128"
                         Command="{Binding CmdCreerDepartement}">Créer</Button>
                 <Button Grid.Column="1"
+                        IsEnabled="False"
+                        Width="128"
                         VerticalAlignment="Bottom"
                         Command="{Binding CmdSupprimerDepartement}">Supprimer</Button>
             </Grid>
@@ -50,8 +55,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"></RowDefinition>
                 <RowDefinition Height="64"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="64"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -59,9 +64,9 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label HorizontalAlignment="Right"
-                       VerticalAlignment="Center">Nom:</Label>
+                       VerticalAlignment="Bottom">Nom:</Label>
                 <TextBox Grid.Column="1"
-                         VerticalAlignment="Center"
+                         VerticalAlignment="Bottom"
                          HorizontalAlignment="Left"
                          IsEnabled="False"
                          Text="{Binding Nom}" />
@@ -72,14 +77,27 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label HorizontalAlignment="Right"
-                       VerticalAlignment="Top">Abréviation:</Label>
+                       VerticalAlignment="Center">Abréviation:</Label>
                 <TextBox Grid.Column="1"
                          HorizontalAlignment="Left"
                          IsEnabled="False"
-                         VerticalAlignment="Top"
+                         VerticalAlignment="Center"
                          Text="{Binding Abreviation}"/>
             </Grid>
-            <DataGrid Grid.Row="2"
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalAlignment="Right"
+                       VerticalAlignment="Top">Infirmière chef:</Label>
+                <TextBox Grid.Column="1"
+                         HorizontalAlignment="Left"
+                         IsEnabled="False"
+                         VerticalAlignment="Top"/>
+            </Grid>
+            <DataGrid Grid.Row="3"
+                      Margin="16"
                       ItemsSource="{Binding Chambres}"
                       Background="LightGray">
                 <DataGrid.Columns>
@@ -88,13 +106,16 @@
                     <DataGridTextColumn Header="Matériel" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Grid.Row="2"
+            <Label Grid.Row="3"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24">Cette section n'existe pas pour la version 0.5</Label>
         </Grid>
-        <Button Grid.Column="1"
+        <Button x:Name="btnModifierDepartement"
+                Grid.Column="1"
                 Grid.Row="3"
+                Width="256"
+                IsEnabled="False"
                 Command="{Binding CmdModifierDepartement}">
             Modifier le département
         </Button>

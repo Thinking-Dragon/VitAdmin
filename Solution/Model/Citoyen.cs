@@ -11,6 +11,7 @@ namespace VitAdmin.Model
     {
         public String Nom { get; set; }
         public String Prenom { get; set; }
+        public String NomComplet { get { return string.Format("{0} {1}", Nom, Prenom); } }
         public String AssMaladie { get; set; }
         public DateTime DateNaissance { get; set; }
         public String Adresse { get; set; }

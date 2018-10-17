@@ -7,13 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid DataContext="{Binding Departement}"
-          Grid.Column="1">
+          Margin="32">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="64"></RowDefinition>
             <RowDefinition Height="64"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="64"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <!-- Partie de gauche -->
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -39,6 +46,7 @@
                      Text="{Binding Abreviation}"/>
         </Grid>
         <DataGrid Grid.Row="2"
+                  Margin="16"
                   ItemsSource="{Binding Chambres}"
                   Background="LightGray">
             <DataGrid.Columns>
@@ -51,8 +59,36 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                FontSize="24">Cette section n'existe pas pour la version 0.5</Label>
-        <Button Grid.Row="3"
-            Command="{Binding CmdValider}">
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Width="128"
+                    IsEnabled="False">Créer</Button>
+            <Button Width="128"
+                    Grid.Column="1"
+                    IsEnabled="False">Supprimer</Button>
+        </Grid>
+
+        <!-- Partie de droite -->
+
+        <Label Grid.Column="1"
+               Grid.Row="1"
+               VerticalAlignment="Bottom">
+            Infirmière chef:
+        </Label>
+        <ComboBox Grid.Column="1"
+                  Grid.Row="2"
+                  Width="256"
+                  VerticalAlignment="Top">
+            Note: il n'y a pas de lien entre département et les infirmières chef.
+            J'afficherai les infirmières chef ici dès que la personne en charge des infirmières chef règlera le problème.
+        </ComboBox>
+        <Button Grid.Column="1"
+                Grid.Row="3"
+                Width="256"
+                Click="btnValiderClic">
             Valider la modification
         </Button>
     </Grid>

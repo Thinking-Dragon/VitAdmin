@@ -12,9 +12,29 @@ namespace VitAdmin.Data
     {
         #region GET
 
+        public static int GetIdTraitement(string nom)
+        {
+            int idTraitement = -1;
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "SELECT t.idTraitement _id " +
+                        "FROM Traitements t " +
+                        "JOIN Departements d ON d.idDepartement = t.idDepartement " +
+                        "WHERE t.nom = '{0}'",
+                        nom
+                    ), lecteur => idTraitement = int.Parse(lecteur.GetString("_id"))
+                );
+            }
+
+            return idTraitement;
+        }
+
         public static Traitement GetTraitement(string nom, bool expand = false)
         {
-            Traitement traitement = new Traitement();
+            Traitement traitement = null;
             int idTraitement = -1;
 
             if (ConnexionBD.Instance().EstConnecte())
@@ -24,7 +44,7 @@ namespace VitAdmin.Data
                         "SELECT t.idTraitement _id, t.nom traitement, d.nom departement, d.abreviation dept " +
                         "FROM Traitements t " +
                         "JOIN Departements d ON d.idDepartement = t.idDepartement " +
-                        "WHERE t.nom = '{0}'", 
+                        "WHERE t.nom = '{0}'",
                         nom
                     ), lecteur =>
                     {
@@ -54,7 +74,7 @@ namespace VitAdmin.Data
             List<Traitement> traitements = new List<Traitement>();
             List<int> idTraitements = new List<int>();
 
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 ConnexionBD.Instance().ExecuterRequete(
                     "SELECT t.idTraitement _id, t.nom traitement, d.nom departement, d.abreviation dept " +
@@ -114,7 +134,7 @@ namespace VitAdmin.Data
                         traitement.Nom, traitement.DepartementAssocie.Abreviation
                     ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
                 );
-                if(idTraitement >= 0)
+                if (idTraitement >= 0)
                     DataModelEtape.PostEtapes(new List<Etape>(traitement.EtapesTraitement), idTraitement);
             }
         }
@@ -137,7 +157,7 @@ namespace VitAdmin.Data
                         traitement.Nom, traitement.DepartementAssocie.Abreviation
                     ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
                 );
-                if(idTraitement >= 0)
+                if (idTraitement >= 0)
                 {
                     ConnexionBD.Instance().ExecuterRequete(
                         String.Format(
@@ -155,6 +175,36 @@ namespace VitAdmin.Data
 
         public static void PutTraitements(List<Traitement> traitements)
         {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                List<Traitement> traitementsExistants = GetTraitements();
+
+                for (int i = 0; i < traitementsExistants.Count; i++)
+                {
+                    int idTraitement = GetIdTraitement(traitementsExistants[i].Nom);
+                    DataModelEtape.DeleteEtapes(idTraitement);
+
+                    Traitement traitementNouveau = traitements.Find(t => t.Nom == traitementsExistants[i].Nom);
+                    DataModelEtape.PostEtapes(new List<Etape>(traitementNouveau.EtapesTraitement), idTraitement);
+                }
+
+                List<Traitement> AAjouter = new List<Traitement>();
+
+                for (int i = 0; i < traitements.Count; i++)
+                {
+                    bool existe = false;
+                    for (int j = 0; j < traitementsExistants.Count; j++)
+                        if (traitements[i].Nom == traitementsExistants[j].Nom)
+                            existe = true;
+                    if (!existe)
+                        AAjouter.Add(traitements[i]);
+                }
+
+                for (int i = 0; i < AAjouter.Count; i++)
+                    PostTraitement(AAjouter[i]);
+            }
+
+            /*
             if(ConnexionBD.Instance().EstConnecte())
             {
                 List<int> idTraitements = new List<int>();
@@ -167,7 +217,7 @@ namespace VitAdmin.Data
                 foreach (Traitement traitement in traitements)
                     PostTraitement(traitement);
             }
-
+            */
 
             #region Version plus rapide, mais duplicant des données.
             /*if(ConnexionBD.Instance().EstConnecte())
@@ -215,7 +265,7 @@ namespace VitAdmin.Data
 
         public static void DeleteTraitement(int idTraitement)
         {
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 if (idTraitement >= 0)
                 {
@@ -234,7 +284,7 @@ namespace VitAdmin.Data
 
         public static void DeleteTraitement(Traitement traitement)
         {
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
                 int idTraitement = -1;
 

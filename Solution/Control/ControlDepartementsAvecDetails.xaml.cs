@@ -26,5 +26,13 @@ namespace VitAdmin.Control
             InitializeComponent();
             DataContext = new ControlModelDepartementsAvecDetails(gestionnaireEcrans);
         }
+
+        private void dtgDepartements_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((DataContext as ControlModelDepartementsAvecDetails).DepartementSelectionne != null)
+                btnModifierDepartement.IsEnabled = true;
+            else
+                btnModifierDepartement.IsEnabled = false;
+        }
     }
 }
