@@ -34,8 +34,10 @@ namespace VitAdmin.Control
         {
             InitializeComponent();
 
+            ControlModelListePatient controlModelListePatient = new ControlModelListePatient(gestionnaireEcrans, citoyens, departements, employes);
+
             // On met dans le datacontexte les infos qui seront liées dans le UserControl
-            DataContext = new ControlModelListePatient(gestionnaireEcrans, citoyens, departements, employes);
+            DataContext = controlModelListePatient;
 
             // Permet de sélectionner par défaut le département du professionnel dans la combobox
             // Je dois créer mes combobox avant de les mettre dans mon stackpanel puisque l'event selectedchange 
@@ -45,9 +47,10 @@ namespace VitAdmin.Control
             // Ensuite, il faut afficher dans le cboProfessionnel le professionnel par défaut
             initialiserCboProfessionnel(employes, employe);
 
+            // Pour la barre de recherche
+            LstCitoyenRecherche = controlModelListePatient.Citoyens.ToList<Citoyen>();
 
 
-            
         }
 
         private void initialiserCboDepartement(ObservableCollection<Departement> departements, Departement departement)

@@ -17,7 +17,7 @@ namespace VitAdmin.ControlModel
         public GestionnaireEcrans GestEcrans { get; set; }
         public Citoyen Patient { get; set; }
         public ObservableCollection<Hospitalisation> Hospitalisations { get; set; }
-        /*private Departement DepartementAss { get; set; }
+        private Departement DepartementAss { get; set; }
         public Departement DepartementAssocie
         {
             get
@@ -30,12 +30,13 @@ namespace VitAdmin.ControlModel
                 DepartementAss = value;
                 RaisePropertyChangedEvent("DepartementAssocie");
             }
-        }*/
+        }
 
         public ControlModelProfessionnelDossierPatient(GestionnaireEcrans gestEcrans, ObservableCollection<Hospitalisation> hospitalisations, Citoyen patient)
         {
             Hospitalisations = hospitalisations;
-            //DepartementAssocie = hospitalisations[0].LstTraitements[0].DepartementAssocie;
+            // TODO : C'est ici qui indique à la datagrid quel département est associé une hospitalisation!! Bug affichage du département tout le temps en chirurgie.
+            DepartementAssocie = hospitalisations[0].LstTraitements[0].DepartementAssocie;
             GestEcrans = gestEcrans;
             Patient = patient;
         }
