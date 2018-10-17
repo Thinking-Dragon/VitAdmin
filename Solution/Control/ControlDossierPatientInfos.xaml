@@ -28,12 +28,10 @@
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
                     Text="{Binding Citoyen.Prenom}"></TextBox>
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Right">Genre</Label>
-        <!--<ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100"
-                    ItemsSource="{Binding Citoyen}"
-                    DisplayMemberPath="Genre"></ComboBox>-->
         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right">N°Assurance maladie</Label>
+        <!--TODO : Faire fonctionner la modification d'Assurance Maladie-->
         <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
-                    Text="{Binding Citoyen.AssMaladie}"></TextBox>
+                    Text="{Binding Citoyen.AssMaladie, Mode=OneWay}"></TextBox>
         <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Right">Téléphone</Label>
         <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
                     Text="{Binding Citoyen.NumTelephone}"></TextBox>

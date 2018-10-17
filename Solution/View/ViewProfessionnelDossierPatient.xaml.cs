@@ -47,7 +47,7 @@ namespace VitAdmin.View
         // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.
         public string TexteBoutonRetourEcran
         {
-            get { return "< Liste des patients"; }
+            get { return "< Liste patients"; }
         }
 
     }

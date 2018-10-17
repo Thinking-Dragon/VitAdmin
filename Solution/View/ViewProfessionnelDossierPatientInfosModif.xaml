@@ -19,6 +19,8 @@
 
         <Button Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" MaxWidth="100" Content="Modifier"
                 Command="{Binding CmdBtnModif}"
-                CommandParameter="{Binding ElementName=WinProPatientInfosModif}"></Button>
+                CommandParameter="{Binding ElementName=WinProPatientInfosModif}">
+            
+        </Button>
     </Grid>
 </Page>
