@@ -16,5 +16,16 @@ namespace VitAdmin.Model
 
         public String NomAnalyse { get; set; }
 
+        public ResultatLabo( string lienImage, string nomAnalyse, bool estNotifie)
+        {
+            LienImage = lienImage;
+            NomAnalyse = nomAnalyse;
+            EstNotifier = estNotifie;
+        }
+
+        public ResultatLabo()
+        {
+
+        }
     }
 }
