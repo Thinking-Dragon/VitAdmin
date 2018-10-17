@@ -22,10 +22,12 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlDossierPatientResultatsLabo : UserControl
     {
+        private ControlModelDossierPatientResultatsLabo ControlModelResultat { get; set; }
+
         public ControlDossierPatientResultatsLabo(Citoyen patient, Hospitalisation hospit)
         {
             InitializeComponent();
-            DataContext = new ControlModelDossierPatientResultatsLabo(patient, hospit, Data.DataModelResultatsLabo.GetResultatsLaboCitoyens(patient.AssMaladie, hospit.DateDebut));
+            DataContext = ControlModelResultat = new ControlModelDossierPatientResultatsLabo(patient, hospit, Data.DataModelResultatsLabo.GetResultatsLaboCitoyens(patient.AssMaladie, hospit.DateDebut));
 
         }
 
@@ -33,5 +35,8 @@ namespace VitAdmin.Control
         {
             img.Source = ((ResultatLabo)(((DataGrid)sender).SelectedItem)).Resultats;
         }
+
+        private void NouveauResultat_Click(object sender, RoutedEventArgs e)
+            => ControlModelResultat.CmdBtnClicNouveauResultat.Execute(ControlModelResultat.Hospit);
     }
 }

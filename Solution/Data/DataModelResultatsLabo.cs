@@ -59,5 +59,36 @@ namespace VitAdmin.Data
 
             return lstResultatLabo;
         }
+
+        public static void AddResultatLabo(Hospitalisation hospit, ResultatLabo resultLabo, int numEmp)
+        {
+            resultLabo.DateEvenement = DateTime.Now;
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+
+                string requete = string.Format("INSERT INTO evenements " +
+                                           "(idHospitalisation, idEmploye, dateHeure, estNotifier) " +
+                                           "VALUES (" +
+                                           "(SELECT idHospitalisation FROM hospitalisations WHERE dateDebut = '{0}')," +
+                                           "{1}," +
+                                           "'{2}'," +
+                                           "{3})", hospit.DateDebut.ToString(), numEmp, resultLabo.DateEvenement.ToString(), resultLabo.EstNotifier);
+
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+                requete = string.Format("INSERT INTO resultatsLabo " +
+                                           "(idEvenement, lienImage, nomAnalyse) " +
+                                           "VALUES (" +
+                                           "(SELECT idEvenement FROM evenements WHERE dateHeure = '{0}')," +
+                                           "'{1}'," +
+                                           "'{2}')" 
+                                           , resultLabo.DateEvenement.ToString(), resultLabo.LienImage, resultLabo.NomAnalyse);
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+            }
+        }
     }
 }

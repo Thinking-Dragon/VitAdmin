@@ -14,7 +14,7 @@ namespace VitAdmin.ControlModel
     {
         public NoteMedecin NoteMed { get; set; }
         public NoteInfirmiere NoteInf { get; set; }
-        public string MessagePrivate = "";
+        private string MessagePrivate = "";
         public String MessageErreur
         {
             get

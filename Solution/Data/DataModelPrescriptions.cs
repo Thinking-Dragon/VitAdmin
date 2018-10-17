@@ -44,5 +44,38 @@ namespace VitAdmin.Data
 
             return lstPrescriptions;
         }
+
+        public static void AddPrescription(Hospitalisation hospit, Prescription prescript, int numEmp)
+        {
+            prescript.DateEvenement = DateTime.Now;
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+
+                string requete = string.Format("INSERT INTO evenements " +
+                                           "(idHospitalisation, idEmploye, dateHeure, estNotifier) " +
+                                           "VALUES (" +
+                                           "(SELECT idHospitalisation FROM hospitalisations WHERE dateDebut = '{0}')," +
+                                           "{1}," +
+                                           "'{2}'," +
+                                           "{3})", hospit.DateDebut.ToString(), numEmp, prescript.DateEvenement.ToString(), prescript.EstNotifier);
+
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+                requete = string.Format("INSERT INTO Prescriptions " +
+                                           "(idEvenement, produit, posologie, dateDebut, nbJour) " +
+                                           "VALUES (" +
+                                           "(SELECT idEvenement FROM evenements WHERE dateHeure = '{0}')," +
+                                           "'{1}'," +
+                                           "'{2}'," +
+                                           "'{3}'," +
+                                           "{4})"
+                                           , prescript.DateEvenement.ToString(), prescript.Produit, prescript.Posologie, prescript.DateDebut.ToString(), prescript.NbJour);
+
+                ConnexionBD.Instance().ExecuterRequete(requete);
+
+            }
+        }
     }
 }

@@ -114,6 +114,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
+    <Compile Include="ControlModel\ControlModelAjoutPrescription.cs" />
+    <Compile Include="ControlModel\ControlModelAjoutResultatLabo.cs" />
     <Compile Include="ControlModel\ControlModelDepartementsAvecDetails.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientInfos.cs" />
     <Compile Include="ControlModel\ControlModelAjoutSuppression.cs" />
@@ -139,6 +141,9 @@
     </Compile>
     <Compile Include="Control\ControlAjoutPrescription.xaml.cs">
       <DependentUpon>ControlAjoutPrescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlAjoutResultatLabo.xaml.cs">
+      <DependentUpon>ControlAjoutResultatLabo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
@@ -315,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlAjoutPrescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlAjoutResultatLabo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
