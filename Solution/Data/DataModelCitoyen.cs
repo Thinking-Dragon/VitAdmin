@@ -209,5 +209,26 @@ namespace VitAdmin.Data
             }
         }
 
+        public static void PostCitoyen(Citoyen citoyen)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    String.Format(
+                        "INSERT INTO citoyens (prenom, nom, numAssuranceMaladie, dateNaissance, telephone, adresse, idGenre) " +
+                        "VALUES ('" + citoyen.Prenom + "', " +
+                        "'" + citoyen.Nom + "', " +
+                        "'" + citoyen.AssMaladie + "', " +
+                        "'" + citoyen.DateNaissance + "', " +
+                        "'" + citoyen.NumTelephone + "', " +
+                        "'" + citoyen.Adresse + "', " +
+                        "(SELECT idGenre FROM genres g WHERE g.nom = '" + citoyen.UnGenre.ToString() + "') ) "
+                        ,
+                        citoyen
+                    )
+                );
+            }
+        }
+
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Data;
 using VitAdmin.Model;
+using VitAdmin.ViewModel;
 using VitAdmin.View.Tool;
 using VitAdmin.Parameter;
 
@@ -25,7 +26,7 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewProfessionnelHub : Page, IEcranRetour
     {
-        GestionnaireEcrans GestEcrans { get; set; }
+        ViewModelProfessionnelHub ViewModelProfessionnelHub { get; set; }
         // TODO: Modifier le paramètres pour qu'il recoit les infos du professionnel qui se connecte
         // Ainsi, le filtre département sera par défaut le département de l'employé ainsi la liste des
         // professionnels sera mis à jour.
@@ -34,7 +35,10 @@ namespace VitAdmin.View
             InitializeComponent();
             Departement departementEmploye = DataModelDepartement.GetDepartementEmploye(employe);
 
-            GestEcrans = gestionnaireEcrans;
+            ViewModelProfessionnelHub = new ViewModelProfessionnelHub(gestionnaireEcrans);
+            DataContext = ViewModelProfessionnelHub;
+
+            // TODO : À refactoriser ****
             Control.ControlListePatient ctrlLstPatient = 
                 new Control.ControlListePatient(
                     gestionnaireEcrans, 
@@ -52,7 +56,7 @@ namespace VitAdmin.View
         // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.
         public Action CmdRetourEcranPrecedent
         {
-            get { return () => { GestEcrans.Changer(new ViewChargementApp(GestEcrans)); }; }
+            get { return () => { ViewModelProfessionnelHub.GestionnaireEcrans.Changer(new ViewChargementApp(ViewModelProfessionnelHub.GestionnaireEcrans)); }; }
         }
 
         // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.

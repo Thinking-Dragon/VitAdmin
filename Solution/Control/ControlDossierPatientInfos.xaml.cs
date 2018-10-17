@@ -30,7 +30,7 @@ namespace VitAdmin.Control
         {
             InitializeComponent();
 
-            controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(citoyen); // GetUnCitoyen
+            controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(citoyen);
 
             DataContext = controlModelDossierPatientInfos;
 
@@ -46,7 +46,7 @@ namespace VitAdmin.Control
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Width = 100,
                 ItemsSource = Enum.GetValues(typeof(Genre)).Cast<Genre>(),
-                SelectedItem = controlModelDossierPatientInfos.Citoyen.UnGenre
+                SelectedItem = controlModelDossierPatientInfos.Citoyen == null ? Genre.autre : controlModelDossierPatientInfos.Citoyen.UnGenre
             };
 
             CboGenre.SelectionChanged += CboGenre_SelectionChanged;

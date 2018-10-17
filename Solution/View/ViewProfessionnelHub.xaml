@@ -19,6 +19,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="1" VerticalAlignment="Center" MaxWidth="150" MaxHeight="50" Content="Créer Patient"/>
+        <Button Grid.Row="1" VerticalAlignment="Center" MaxWidth="150" MaxHeight="50" Content="Créer Patient"
+                Command="{Binding CmdBtnCreerPatient}"/>
     </Grid>
 </Page>
