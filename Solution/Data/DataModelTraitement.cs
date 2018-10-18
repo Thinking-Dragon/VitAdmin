@@ -215,7 +215,7 @@ namespace VitAdmin.Data
                 {
                     bool aSupprimer = true;
                     for (int j = 0; j < traitements.Count; ++j)
-                        if (traitementsExistants[i].Nom == traitements[j].Nom)
+                        if (traitementsExistants[i].IdTraitment == traitements[j].IdTraitment)
                             aSupprimer = false;
                     if(aSupprimer)
                     {
@@ -223,12 +223,12 @@ namespace VitAdmin.Data
                         traitementsExistants.Remove(traitementsExistants[i]);
                     }
                 }
-                // TODO: add dept. in equ.
+
                 for(int i = 0; i < traitements.Count; ++i)
                 {
                     bool aAjouter = true;
                     for (int j = 0; j < traitementsExistants.Count; ++j)
-                        if (traitements[i].Nom == traitementsExistants[j].Nom)
+                        if (traitements[i].IdTraitment == traitementsExistants[j].IdTraitment)
                             aAjouter = false;
                     if(aAjouter)
                         PostTraitement(traitements[i]);
