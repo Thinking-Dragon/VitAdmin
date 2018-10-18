@@ -199,6 +199,9 @@
     <Compile Include="Control\ControlListeTraitementsAvecEtapes.xaml.cs">
       <DependentUpon>ControlListeTraitementsAvecEtapes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlMenuUtilisateur.xaml.cs">
+      <DependentUpon>ControlMenuUtilisateur.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlModifierDepartement.xaml.cs">
       <DependentUpon>ControlModifierDepartement.xaml</DependentUpon>
     </Compile>
@@ -403,6 +406,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlListeTraitementsAvecEtapes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlMenuUtilisateur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
