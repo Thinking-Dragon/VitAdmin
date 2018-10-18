@@ -1,10 +1,13 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MaterialDesignThemes.Wpf;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace VitAdmin.Data
 {
@@ -31,10 +34,14 @@ namespace VitAdmin.Data
         {
             if(Connexion == null)
             {
-                if (String.IsNullOrEmpty(NomBD)) return false;
-                string strConnexion = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
-                connexion = new MySqlConnection(strConnexion);
-                Connexion.Open();
+                try
+                {
+                    if (String.IsNullOrEmpty(NomBD)) return false;
+                    string strConnexion = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
+                    connexion = new MySqlConnection(strConnexion);
+                    Connexion.Open();
+                }
+                catch (ConfigurationErrorsException e) { return false; }
             }
             return true;
         }
