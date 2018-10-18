@@ -227,6 +227,7 @@
     <Compile Include="Data\DataModelEvenement.cs" />
     <Compile Include="Data\DataModelHospitalisation.cs" />
     <Compile Include="Data\DataModelInstructionEtape.cs" />
+    <Compile Include="Data\DataModelLit.cs" />
     <Compile Include="Data\DataModelNotesInf.cs" />
     <Compile Include="Data\DataModelNotesMed.cs" />
     <Compile Include="Data\DataModelNotification.cs" />

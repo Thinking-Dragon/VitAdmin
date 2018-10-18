@@ -10,6 +10,7 @@ namespace VitAdmin.Model
     {
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
+        public string Contexte { get; set; }
        
         public List<Traitement> LstTraitements { get; set; }
         public List<Symptome> LstSymptomes { get; set; }

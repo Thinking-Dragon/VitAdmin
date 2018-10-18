@@ -10,6 +10,7 @@ namespace VitAdmin.Data
 {
     public static class DataModelCitoyen
     {
+        #region GET
         // On rend static la fonction pour être en mesure de l'utiliser partout
         public static List <Citoyen> GetCitoyens()
         {
@@ -187,6 +188,8 @@ namespace VitAdmin.Data
             return InfosCitoyen;
         }
 
+        #endregion GET
+        #region PUT
         public static void PutCitoyen(Citoyen citoyen)
         {
             if (ConnexionBD.Instance().EstConnecte())
@@ -208,7 +211,8 @@ namespace VitAdmin.Data
                 );
             }
         }
-
+        #endregion
+        #region POST
         public static void PostCitoyen(Citoyen citoyen)
         {
             if (ConnexionBD.Instance().EstConnecte())
@@ -229,6 +233,7 @@ namespace VitAdmin.Data
                 );
             }
         }
+        #endregion
 
     }
 }
