@@ -9,6 +9,7 @@ namespace VitAdmin.Model
 {    // TODO: Max
     public class Traitement
     {
+        public int IdTraitment { get; set; }
         public String Nom { get; set; }
         public ObservableCollection<Etape> EtapesTraitement { get; set; }
         public Departement DepartementAssocie { get; set; }

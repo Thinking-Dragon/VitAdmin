@@ -35,7 +35,6 @@ namespace VitAdmin.Data
         public static Traitement GetTraitement(string nom, bool expand = false)
         {
             Traitement traitement = null;
-            int idTraitement = -1;
 
             if (ConnexionBD.Instance().EstConnecte())
             {
@@ -50,6 +49,7 @@ namespace VitAdmin.Data
                     {
                         traitement = new Traitement
                         {
+                            IdTraitment = int.Parse(lecteur.GetString("_id")),
                             Nom = lecteur.GetString("traitement"),
                             DepartementAssocie = new Departement
                             {
@@ -57,13 +57,10 @@ namespace VitAdmin.Data
                                 Abreviation = lecteur.GetString("dept")
                             }
                         };
-
-                        if (expand)
-                            idTraitement = int.Parse(lecteur.GetString("_id"));
                     }
                 );
-                if (expand && traitement != null && idTraitement >= 0)
-                    traitement.EtapesTraitement = new ObservableCollection<Etape>(DataModelEtape.GetEtapes(idTraitement, true));
+                if (expand && traitement != null && traitement.IdTraitment >= 0)
+                    traitement.EtapesTraitement = new ObservableCollection<Etape>(DataModelEtape.GetEtapes(traitement.IdTraitment, true));
             }
 
             return traitement;
@@ -83,6 +80,7 @@ namespace VitAdmin.Data
                     {
                         Traitement traitement = new Traitement
                         {
+                            IdTraitment = int.Parse(lecteur.GetString("_id")),
                             Nom = lecteur.GetString("traitement"),
                             DepartementAssocie = new Departement
                             {
@@ -90,16 +88,13 @@ namespace VitAdmin.Data
                                 Abreviation = lecteur.GetString("dept")
                             }
                         };
-
-                        if (expand)
-                            idTraitements.Add(int.Parse(lecteur.GetString("_id")));
-
+                        
                         traitements.Add(traitement);
                     }
                 );
                 if (expand)
                     for (int i = 0; i < traitements.Count; i++)
-                        traitements[i].EtapesTraitement = new ObservableCollection<Etape>(DataModelEtape.GetEtapes(idTraitements[i], true));
+                        traitements[i].EtapesTraitement = new ObservableCollection<Etape>(DataModelEtape.GetEtapes(traitements[i].IdTraitment, true));
             }
 
             return traitements;
@@ -147,34 +142,25 @@ namespace VitAdmin.Data
         {
             if (ConnexionBD.Instance().EstConnecte())
             {
-                int idTraitement = -1;
-                ConnexionBD.Instance().ExecuterRequete(
-                    String.Format(
-                        "SELECT t.idTraitement " +
-                        "FROM Traitements t " +
-                        "JOIN Departements d ON d.idDepartement = t.idDepartement " +
-                        "WHERE t.nom = '{0}' AND d.abreviation = '{1}'",
-                        traitement.Nom, traitement.DepartementAssocie.Abreviation
-                    ), lecteur => idTraitement = int.Parse(lecteur.GetString("idTraitement"))
-                );
-                if (idTraitement >= 0)
+                if (traitement.IdTraitment >= 0)
                 {
                     ConnexionBD.Instance().ExecuterRequete(
                         String.Format(
                             "UPDATE Traitements " +
                             "SET nom = '{0}', idDepartement = (SELECT idDepartement FROM Departements WHERE abreviation = '{1}') " +
                             "WHERE idTraitement = {2}",
-                            traitement.Nom, traitement.DepartementAssocie.Abreviation, idTraitement
+                            traitement.Nom, traitement.DepartementAssocie.Abreviation, traitement.IdTraitment
                         )
                     );
-                    DataModelEtape.DeleteEtapes(idTraitement);
-                    DataModelEtape.PostEtapes(new List<Etape>(traitement.EtapesTraitement), idTraitement);
+                    DataModelEtape.DeleteEtapes(traitement.IdTraitment);
+                    DataModelEtape.PostEtapes(new List<Etape>(traitement.EtapesTraitement), traitement.IdTraitment);
                 }
             }
         }
 
         public static void PutTraitements(List<Traitement> traitements)
         {
+            /*
             if (ConnexionBD.Instance().EstConnecte())
             {
                 List<Traitement> traitementsExistants = GetTraitements();
@@ -203,6 +189,7 @@ namespace VitAdmin.Data
                 for (int i = 0; i < AAjouter.Count; i++)
                     PostTraitement(AAjouter[i]);
             }
+            */
 
             /*
             if(ConnexionBD.Instance().EstConnecte())
@@ -220,7 +207,7 @@ namespace VitAdmin.Data
             */
 
             #region Version plus rapide, mais duplicant des données.
-            /*if(ConnexionBD.Instance().EstConnecte())
+            if(ConnexionBD.Instance().EstConnecte())
             {
                 List<Traitement> traitementsExistants = GetTraitements(true);
                 
@@ -249,7 +236,7 @@ namespace VitAdmin.Data
 
                 for (int i = 0; i < traitementsExistants.Count; ++i)
                     PutTraitement(traitementsExistants[i]);
-            }*/
+            }
             #endregion
         }
 
