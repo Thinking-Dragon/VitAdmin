@@ -10,23 +10,19 @@
       Title="ViewProfessionnelDossierPatientCreerHospitalisation">
 
     <Grid Name="grdCreerHospitalisation">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DataGrid/>
-        <TextBox Grid.Column="1" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True"/>
-        <TextBox Grid.Row="1" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True"/>
-        <Button Grid.Row="2" MaxWidth="100" Content="Créer"/>
-        <!-- À apdapter selon les données dans la grid-->
-        <materialDesign:PackIcon Kind="Close" Margin="124,34,0,0"></materialDesign:PackIcon>
+        <ContentPresenter Grid.Row="1" Content="{Binding Contenu}"
+                          >
+            
+        </ContentPresenter>
 
+        <!-- <materialDesign:PackIcon Kind="Close" Margin="124,36,0,0" Grid.Row="2"></materialDesign:PackIcon>-->
+        
 
     </Grid>
 </Page>

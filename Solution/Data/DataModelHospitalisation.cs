@@ -81,17 +81,6 @@ namespace VitAdmin.Data
         {
             if (ConnexionBD.Instance().EstConnecte())
             {
-                /*ConnexionBD.Instance().ExecuterRequete(
-                    String.Format(
-                        "INSERT INTO hospitalisations (idCitoyen, dateDebut, dateFin, contexte) " +
-                        "VALUES ((SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "'), " +
-                        "'" + hospitalisation.DateDebut + "', " +
-                        "'" + hospitalisation.DateFin + "', " +
-                        "'" + hospitalisation.Contexte + "', "
-                        ,
-                        hospitalisation, citoyen
-                    )
-                );*/
 
                 // On crée la nouvelle hospitalisation liée au patient
                 ConnexionBD.Instance().ExecuterRequete(
