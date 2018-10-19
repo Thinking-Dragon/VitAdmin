@@ -135,6 +135,7 @@
     <Compile Include="ControlModel\ControlModelModifierDepartement.cs" />
     <Compile Include="ControlModel\ControlModelNotifications.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
+    <Compile Include="ControlModel\ControlModelProfessionnelProfil.cs" />
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
     <Compile Include="Control\ControlAjoutNote.xaml.cs">
       <DependentUpon>ControlAjoutNote.xaml</DependentUpon>
@@ -211,6 +212,9 @@
     <Compile Include="Control\ControlProfessionnelDossierPatient.xaml.cs">
       <DependentUpon>ControlProfessionnelDossierPatient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlProfessionnelProfil.xaml.cs">
+      <DependentUpon>ControlProfessionnelProfil.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlRechercheDepartement.xaml.cs">
       <DependentUpon>ControlRechercheDepartement.xaml</DependentUpon>
     </Compile>
@@ -281,6 +285,7 @@
     <Compile Include="ViewModel\ViewModelProfessionnelCreerPatient.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatient.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
+    <Compile Include="ViewModel\ViewModelProfessionnelProfil.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="ViewModel\ViewProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="View\Tool\IEcranRetour.cs" />
@@ -322,6 +327,9 @@
     </Compile>
     <Compile Include="View\ViewProfessionnelHub.xaml.cs">
       <DependentUpon>ViewProfessionnelHub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewProfessionnelProfil.xaml.cs">
+      <DependentUpon>ViewProfessionnelProfil.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewSuperEcran.xaml.cs">
       <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
@@ -426,6 +434,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\ControlProfessionnelProfil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlRechercheDepartement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -500,6 +512,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewProfessionnelHub.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewProfessionnelProfil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
