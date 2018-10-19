@@ -143,7 +143,7 @@ namespace VitAdmin.Data
             if (ConnexionBD.Instance().EstConnecte())
             {
                 if (traitement.IdTraitment >= 0)
-                {
+                {                                                              
                     ConnexionBD.Instance().ExecuterRequete(
                         String.Format(
                             "UPDATE Traitements " +
@@ -218,7 +218,7 @@ namespace VitAdmin.Data
                         if (traitementsExistants[i].IdTraitment == traitements[j].IdTraitment)
                             aSupprimer = false;
                     if(aSupprimer)
-                    {
+                    {                                                                                                     
                         DeleteTraitement(traitementsExistants[i]);
                         traitementsExistants.Remove(traitementsExistants[i]);
                     }
@@ -230,12 +230,16 @@ namespace VitAdmin.Data
                     for (int j = 0; j < traitementsExistants.Count; ++j)
                         if (traitements[i].IdTraitment == traitementsExistants[j].IdTraitment)
                             aAjouter = false;
-                    if(aAjouter)
+                    if(aAjouter)                                                        
                         PostTraitement(traitements[i]);
+                    
                 }
 
                 for (int i = 0; i < traitementsExistants.Count; ++i)
-                    PutTraitement(traitementsExistants[i]);
+                  for(int j = 0; j < traitements.Count; ++j)
+                     if(traitements[i].IdTraitment == traitementsExistants[j].IdTraitment)
+                        PutTraitement(traitements[i]);
+                
             }
             #endregion
         }
