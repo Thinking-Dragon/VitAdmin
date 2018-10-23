@@ -12,6 +12,7 @@ namespace VitAdmin
     {
         private FrameSansNavigation Frame { get; set; }
         private Action<Page> ActionLorsqueFenetreChange { get; set; } = null;
+        private Page AncienEcran { get; set; } = null;
 
         public GestionnaireEcrans(Panel parent)
         {
@@ -30,9 +31,13 @@ namespace VitAdmin
 
         public void Changer(Page ecran)
         {
+            AncienEcran = Frame.Content as Page;
             Frame.Content = ecran;
             ActionLorsqueFenetreChange?.Invoke(ecran);
         }
+
+        public void RetourAncienEcran()
+            => Changer(AncienEcran);
 
         public Page GetEcranPresent() => (Frame.Content != null ? Frame.Content as Page : null);
     }
