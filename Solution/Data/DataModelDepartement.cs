@@ -40,8 +40,20 @@ namespace VitAdmin.Data
                         lstDepartement.Add(new Departement
                         {
                             Nom = SqlDR.GetString("nom"),
-                            Abreviation = SqlDR.GetString("abreviation")
-
+                            Abreviation = SqlDR.GetString("abreviation"),
+                            Chambres = new List<Chambre>
+                            {
+                                new Chambre
+                                {
+                                    Nom = "D125",
+                                    Lits = new System.Collections.ObjectModel.ObservableCollection<Lit>
+                                    {
+                                        new Lit { Numero = "1" },
+                                        new Lit { Numero = "2" },
+                                        new Lit { Numero = "3" }
+                                    }
+                                }
+                            }
                         });
                     }
                     );

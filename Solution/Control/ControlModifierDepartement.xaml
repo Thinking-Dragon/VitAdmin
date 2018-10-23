@@ -47,28 +47,21 @@
         </Grid>
         <DataGrid Grid.Row="2"
                   Margin="16"
-                  ItemsSource="{Binding Chambres}"
-                  Background="LightGray">
+                  ItemsSource="{Binding Chambres}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Local" Width="*" />
                 <DataGridTextColumn Header="Nb. Lits" Width="128" />
                 <DataGridTextColumn Header="Matériel" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label Grid.Row="2"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               FontSize="24">Cette section n'existe pas pour la version 0.5</Label>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Button Width="128">Créer</Button>
             <Button Width="128"
-                    IsEnabled="False">Créer</Button>
-            <Button Width="128"
-                    Grid.Column="1"
-                    IsEnabled="False">Supprimer</Button>
+                    Grid.Column="1">Supprimer</Button>
         </Grid>
 
         <!-- Partie de droite -->
