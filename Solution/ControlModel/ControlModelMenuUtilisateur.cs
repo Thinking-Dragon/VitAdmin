@@ -10,9 +10,11 @@ using VitAdmin.View;
 
 namespace VitAdmin.ControlModel
 {
-   class ControlModelMenuUtilisateur
+   class ControlModelMenuUtilisateur : ObjetObservable
    {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
+
+        public bool IsBtnHoraireEnabled { get; set; }
 
         public ControlModelMenuUtilisateur(GestionnaireEcrans gestionnaireEcrans)
         {
