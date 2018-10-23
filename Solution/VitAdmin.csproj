@@ -132,6 +132,7 @@
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
+    <Compile Include="ControlModel\ControlModelMenuUtilisateur.cs" />
     <Compile Include="ControlModel\ControlModelModifierDepartement.cs" />
     <Compile Include="ControlModel\ControlModelNotifications.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
