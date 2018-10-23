@@ -22,13 +22,26 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlProfessionnelProfil : UserControl
     {
+        // Dépendamment de si le Control reçoit un employé ou non, il modifiera ou créera un employé
         public ControlProfessionnelProfil(Employe employe = null)
         {
             InitializeComponent();
-            //DataContext = new ControlModelProfessionnelProfil(employe);
+
+            if (employe == null)
+            {
+                btnSendInfo.Content = "Créer";
+            }
+            else btnSendInfo.Content = "Modifier";
+
+            DataContext = new ControlModelProfessionnelProfil(employe);
 
             // Si employe = null, mode Create, sinon mode Update
             // Si employe /= passé, valeur nulle
+        }
+
+        private void btnCancelChange_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
         }
     }
 }

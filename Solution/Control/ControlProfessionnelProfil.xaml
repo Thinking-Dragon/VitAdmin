@@ -64,5 +64,22 @@
         <TextBox Name="txtNumPermisEmploye" Margin="5" Height="30" VerticalAlignment="Center"
                  Grid.Row="3" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
+
+        <!-- Bouton d'envoi -->
+        <Grid Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="grd2ColOpt"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Name="btnSendInfo" Margin="5" Height="30"
+                Content="Oui"/>
+            <Button Name="btnCancelChange" Margin="5" Height="30"
+                Content="Non"/>
+            <Button Name="btnReset" Margin="5" Height="30"
+                Content="Reset"/>
+        </Grid>
+        
     </Grid>
 </UserControl>

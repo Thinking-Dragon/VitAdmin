@@ -7,8 +7,13 @@ using VitAdmin.Model;
 
 namespace VitAdmin.ControlModel
 {
-    class ControlModelProfessionnelProfil
+    public class ControlModelProfessionnelProfil
     {
         Employe Employe { get; set; }
+
+        public ControlModelProfessionnelProfil(Employe employe)
+        {
+            Employe = employe;
+        }
     }
 }
