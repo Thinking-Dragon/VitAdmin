@@ -42,6 +42,14 @@ namespace VitAdmin.Data
                     );
             }
 
+            foreach (Prescription prescrip in lstPrescriptions)
+            {
+                prescrip.addISOEvenement();
+                prescrip.addISODateDebut();
+            }
+
+
+
             return lstPrescriptions;
         }
 

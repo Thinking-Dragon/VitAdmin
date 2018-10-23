@@ -56,6 +56,10 @@ namespace VitAdmin.Data
 
             }
 
+            foreach (ResultatLabo result in lstResultatLabo)
+            {
+                result.addISOEvenement();
+            }
 
             return lstResultatLabo;
         }

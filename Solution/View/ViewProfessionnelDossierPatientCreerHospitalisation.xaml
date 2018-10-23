@@ -16,8 +16,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ContentPresenter Grid.Row="1" Content="{Binding Contenu}"
-                          >
+        <ContentPresenter Grid.Row="1" Content="{Binding Contenu}">
             
         </ContentPresenter>
 

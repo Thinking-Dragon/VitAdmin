@@ -49,6 +49,11 @@ namespace VitAdmin.Data
                     });
             }
 
+            foreach (NoteInfirmiere note in lstNoteInfirmiere)
+            {
+                note.addISOEvenement();
+            }
+
             return lstNoteInfirmiere;
         }
 

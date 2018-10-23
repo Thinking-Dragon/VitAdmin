@@ -11,6 +11,7 @@ namespace VitAdmin.Model
         public string Produit { get; set; }
         public string Posologie { get; set; }
         public DateTime DateDebut { get; set; }
+        public string DateDebutISO { get; set; }
         public int NbJour { get; set; }
 
         public Prescription(string produit, string posologie, DateTime dateDebut, int nbJour, bool estNotifier)
@@ -25,6 +26,11 @@ namespace VitAdmin.Model
         public Prescription()
         {
 
+        }
+
+        public void addISODateDebut()
+        {
+            DateDebutISO = DateDebut.ToString("yyyy-MM-dd h:mm tt");
         }
     }
 }

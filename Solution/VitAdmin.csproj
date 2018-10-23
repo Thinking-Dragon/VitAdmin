@@ -221,6 +221,9 @@
     <Compile Include="Control\ControlRechercheTraitement.xaml.cs">
       <DependentUpon>ControlRechercheTraitement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ControlTableauHoraire.xaml.cs">
+      <DependentUpon>ControlTableauHoraire.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Control\QuelPosteOccupesTuAdmin.xaml.cs">
       <DependentUpon>QuelPosteOccupesTuAdmin.xaml</DependentUpon>
@@ -287,7 +290,6 @@
     <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelProfil.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
-    <Compile Include="ViewModel\ViewProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="View\Tool\IEcranRetour.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
@@ -324,6 +326,9 @@
     </Compile>
     <Compile Include="View\ViewProfessionnelDossierPatient.xaml.cs">
       <DependentUpon>ViewProfessionnelDossierPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewProfessionnelHoraire.xaml.cs">
+      <DependentUpon>ViewProfessionnelHoraire.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewProfessionnelHub.xaml.cs">
       <DependentUpon>ViewProfessionnelHub.xaml</DependentUpon>
@@ -446,6 +451,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\ControlTableauHoraire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\QuelPosteOccupesTuAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -508,6 +517,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewProfessionnelDossierPatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewProfessionnelHoraire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

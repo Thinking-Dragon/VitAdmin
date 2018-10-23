@@ -47,15 +47,10 @@ namespace VitAdmin.Data
                     });
             }
 
-            /*SELECT note, e.dateHeure, cit.nom, cit.prenom, em.numEmploye 
-                FROM notesMedecin
-                    INNER JOIN evenements e on e.idEvenement = notesMedecin.idEvenement
-                    INNER JOIN hospitalisations h on h.idHospitalisation = e.idHospitalisation
-                    INNER JOIN citoyens c on c.idCitoyen = h.idCitoyen
-                    INNER JOIN employes em  on em.idEmploye = e.idEmploye
-                    INNER JOIN citoyens cit on cit.idCitoyen = em.idCitoyen
-                        WHERE c.numAssuranceMaladie = 'tous059615' 
-                        AND h.dateDebut = '2018-09-28 16:16:15'*/
+            foreach (NoteMedecin note in lstNoteMedecin)
+            {
+                note.addISOEvenement();
+            }
 
 
             return lstNoteMedecin;
