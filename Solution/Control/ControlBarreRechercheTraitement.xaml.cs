@@ -23,18 +23,17 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlBarreRechercheTraitement : UserControl
     {
+        List<Traitement> LstTraitementsTemp { get; set; }
         public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitements)
         {
             InitializeComponent();
             DataContext = new ControlModelBarreRechercheTraitement(traitements);
+            LstTraitementsTemp = traitements.ToList<Traitement>();
         }
 
         private void cboRecherche_KeyUp(object sender, KeyEventArgs e)
         {
-            (DataContext as ControlModelBarreRechercheTraitement).Traitements.Add(new Traitement
-            {
-                Nom = "Radiographie"
-            });
+            (DataContext as ControlModelBarreRechercheTraitement).Traitements = LstTraitementsTemp.FindAll( traitement => traitement.Nom = )
             (sender as ComboBox).IsDropDownOpen = true;
         }
     }

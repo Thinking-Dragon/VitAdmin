@@ -77,6 +77,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -138,6 +139,7 @@
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelProfil.cs" />
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
+    <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
     <Compile Include="Control\ControlAjoutNote.xaml.cs">
       <DependentUpon>ControlAjoutNote.xaml</DependentUpon>
     </Compile>
@@ -164,6 +166,9 @@
     </Compile>
     <Compile Include="Control\ControlConnexion.xaml.cs">
       <DependentUpon>ControlConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlTextBoxHospitalisation.xaml.cs">
+      <DependentUpon>ControlTextBoxHospitalisation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlDepartementsAvecDetails.xaml.cs">
       <DependentUpon>ControlDepartementsAvecDetails.xaml</DependentUpon>
@@ -224,6 +229,9 @@
     </Compile>
     <Compile Include="Control\ControlTableauHoraire.xaml.cs">
       <DependentUpon>ControlTableauHoraire.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlTraitementCreationHospitalisation.xaml.cs">
+      <DependentUpon>ControlTraitementCreationHospitalisation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Control\QuelPosteOccupesTuAdmin.xaml.cs">
@@ -376,6 +384,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\ControlTextBoxHospitalisation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlDepartementsAvecDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -453,6 +465,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlTableauHoraire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlTraitementCreationHospitalisation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
