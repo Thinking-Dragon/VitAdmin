@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.ControlModel;
+using VitAdmin.View;
 
 namespace VitAdmin.Control
 {
@@ -27,6 +28,7 @@ namespace VitAdmin.Control
          InitializeComponent();
          GestionnaireEcrans = gestionnaireEcrans;
          DataContext = new ControlModelMenuUtilisateur(GestionnaireEcrans);
+
       }
    }
 }

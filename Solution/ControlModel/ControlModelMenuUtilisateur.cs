@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,8 @@ namespace VitAdmin.ControlModel
                   return new CommandeDeleguee(
                      param =>
                      {
-                        GestionnaireEcrans.Changer(new ViewProfessionnelHoraire());
+                        GestionnaireEcrans.Changer(new ViewProfessionnelHoraire(GestionnaireEcrans));
+                         DialogHost.CloseDialogCommand.Execute(null, null);
                      }
             );
          }

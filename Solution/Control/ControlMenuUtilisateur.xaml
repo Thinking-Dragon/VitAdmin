@@ -24,7 +24,7 @@
             </Rectangle.InputBindings>
         </Rectangle>
         
-        <Rectangle Grid.Row="1" Cursor="Hand" Fill="Transparent" Panel.ZIndex="5">
+        <Rectangle Grid.Row="1" Cursor="Hand" IsEnabled="False" Fill="Transparent" Panel.ZIndex="5" Name="RectHoraire">
             <Rectangle.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdAfficheHoraire}"></MouseBinding>
             </Rectangle.InputBindings>
