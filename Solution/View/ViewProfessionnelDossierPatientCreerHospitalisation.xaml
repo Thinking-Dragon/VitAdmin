@@ -20,6 +20,15 @@
             
         </ContentPresenter>
 
+        <Button Grid.Row="2"
+                Content="Suivant"
+                Width="100"
+                HorizontalAlignment="Right"/>
+        <Button Grid.Row="2"
+                Content="Précédent"
+                Width="100"
+                HorizontalAlignment="Left"/>
+
         <!-- <materialDesign:PackIcon Kind="Close" Margin="124,36,0,0" Grid.Row="2"></materialDesign:PackIcon>-->
         
 

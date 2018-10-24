@@ -23,6 +23,18 @@ namespace VitAdmin.Control
         public ControlTraitementCreationHospitalisation()
         {
             InitializeComponent();
+
+            InitialiserControlRechercheTraitement();
+
         }
+
+        private void InitialiserControlRechercheTraitement()
+        {
+            ControlRechercheTraitement controlRechercheTraitement = new ControlRechercheTraitement();
+
+            Grid.SetRow(controlRechercheTraitement, 1);
+        }
+
+        
     }
 }

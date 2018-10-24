@@ -33,7 +33,7 @@ namespace VitAdmin.Control
 
         private void cboRecherche_KeyUp(object sender, KeyEventArgs e)
         {
-            (DataContext as ControlModelBarreRechercheTraitement).Traitements = LstTraitementsTemp.FindAll( traitement => traitement.Nom = )
+            (DataContext as ControlModelBarreRechercheTraitement).Traitements = new ObservableCollection<Traitement>(LstTraitementsTemp.FindAll(traitement => traitement.Nom.IndexOf(cboRecherche.Text) != -1));
             (sender as ComboBox).IsDropDownOpen = true;
         }
     }

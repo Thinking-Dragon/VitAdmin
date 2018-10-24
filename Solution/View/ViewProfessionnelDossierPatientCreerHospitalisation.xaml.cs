@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
 {
@@ -24,11 +25,10 @@ namespace VitAdmin.View
         {
             InitializeComponent();
 
-            Control.ControlRechercheTraitement ctrlRechTraitement = new Control.ControlRechercheTraitement();
-            Grid.SetColumn(ctrlRechTraitement, 1);
-            Grid.SetRow(ctrlRechTraitement, 1);
+            DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation();
 
-            grdCreerHospitalisation.Children.Add(ctrlRechTraitement);
+            Grid.SetRow((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl[0], 1);
+            grdCreerHospitalisation.Children.Add((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl[0]);
         }
     }
 }

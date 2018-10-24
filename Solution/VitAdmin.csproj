@@ -139,6 +139,7 @@
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelProfil.cs" />
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
+    <Compile Include="ControlModel\ControlModelSymptome.cs" />
     <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
     <Compile Include="Control\ControlAjoutNote.xaml.cs">
       <DependentUpon>ControlAjoutNote.xaml</DependentUpon>
@@ -151,6 +152,9 @@
     </Compile>
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlSymptome.xaml.cs">
+      <DependentUpon>ControlSymptome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlApercuDepartement.xaml.cs">
       <DependentUpon>ControlApercuDepartement.xaml</DependentUpon>
@@ -291,6 +295,7 @@
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelChargementApp.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
+    <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
     <Compile Include="ViewModel\ViewModelPatientHospitalisation.cs" />
@@ -361,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlAjoutSuppression.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlSymptome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
