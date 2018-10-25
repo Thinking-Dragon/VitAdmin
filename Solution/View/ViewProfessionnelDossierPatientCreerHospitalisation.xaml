@@ -10,6 +10,7 @@
       Title="ViewProfessionnelDossierPatientCreerHospitalisation">
 
     <Grid Name="grdCreerHospitalisation">
+
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="5*"/>
@@ -17,20 +18,34 @@
         </Grid.RowDefinitions>
 
         <Label Content="Création d'une hospitalisation"/>
-        <ContentPresenter Grid.Row="1" Content="{Binding Contenu}">
-            
-        </ContentPresenter>
+        <materialDesign:Transitioner Name="transitionnerUC" Grid.Row="1" SelectedIndex="0">
 
-        <Button Grid.Row="2"
-                Content="Suivant"
-                Width="100"
-                HorizontalAlignment="Right"
-                Command="{Binding CmdSuivant}"/>
-        <Button Grid.Row="2"
-                Content="Précédent"
-                Width="100"
-                HorizontalAlignment="Left"
-                Command="{Binding CmdPrecedent}"/>
+            <Grid>
+                <Grid>
+                    <Label Content="Page1"/>
+                    <Button Grid.Row="2"
+                    Content="Suivant"
+                    Width="100"
+                    HorizontalAlignment="Right"
+                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"/>
+                    <Button Grid.Row="2"
+                    Content="Précédent"
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
+                    />
+
+                </Grid>
+                <Grid>
+                    <Label Content="Page2"/>
+                </Grid>
+            </Grid>
+            
+        </materialDesign:Transitioner>
+
+        
+        
+        
         <Label Content="{Binding NumEtape}"
                HorizontalAlignment="Center"
                Grid.Row="2" Margin="139,0,151,0"/>

@@ -29,8 +29,10 @@ namespace VitAdmin.View
 
             DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation(gestionnaireEcrans, citoyen);
 
-            Grid.SetRow((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).Contenu, 1);
-            grdCreerHospitalisation.Children.Add((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).Contenu);
+            /*grdCreerHospitalisation.Children.Add()
+            transitionnerUC.*/
+
+
         }
     }
 }

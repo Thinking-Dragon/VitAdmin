@@ -91,6 +91,8 @@ namespace VitAdmin.Data
                         });
                     }
                     );
+
+
             }
 
             return lstCitoyen;
