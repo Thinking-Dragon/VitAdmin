@@ -33,5 +33,18 @@ namespace VitAdmin.ViewModel
                 });
             }
         }
+
+        public ICommand CmdBtnCreerHospitalisation
+        {
+            get
+            {
+                return new CommandeDeleguee(action =>
+                {
+
+                    GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans, Patient));
+
+                });
+            }
+        }
     }
 }

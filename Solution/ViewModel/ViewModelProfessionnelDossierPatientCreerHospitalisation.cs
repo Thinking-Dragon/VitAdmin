@@ -13,8 +13,12 @@ namespace VitAdmin.ViewModel
 {
     public class ViewModelProfessionnelDossierPatientCreerHospitalisation : ObjetObservable
     {
+        public GestionnaireEcrans GestionnaireEcrans { get; set; }
+        public Citoyen Citoyen { get; set; }
         public List<UserControl> LstUserControl { get; set; }
         public Hospitalisation Hospitalisation { get; set; }
+        public int TotalEtape { get; set; }
+        public int NumEtape { get; set; }
         private UserControl contenu;
         public UserControl Contenu
         {
@@ -26,9 +30,15 @@ namespace VitAdmin.ViewModel
             }
         }
 
-        public ViewModelProfessionnelDossierPatientCreerHospitalisation()
+        public ViewModelProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
+            LstUserControl = new List<UserControl>();
+            Hospitalisation = new Hospitalisation();
             LstUserControl.Add(new ControlTextBoxHospitalisation(Hospitalisation.Contexte, "Contexte"));
+            Contenu = LstUserControl[0];
+
+            TotalEtape = LstUserControl.Count();
+            NumEtape = 1;
             
         }
 
@@ -37,11 +47,9 @@ namespace VitAdmin.ViewModel
         {
             get
             {
-                return new CommandeDeleguee(newPatient =>
+                return new CommandeDeleguee(action =>
                 {
-                    //DataModelCitoyen.PostCitoyen(Citoyen);
-                    //ViewProfessionnelDossierPatientInfosModif winModif = (ViewProfessionnelDossierPatientInfosModif)viewModif;
-                    //this.GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager));
+
                 });
             }
         }

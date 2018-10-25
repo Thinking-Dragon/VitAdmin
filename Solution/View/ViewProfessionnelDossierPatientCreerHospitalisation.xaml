@@ -12,10 +12,11 @@
     <Grid Name="grdCreerHospitalisation">
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Label Content="Création d'une hospitalisation"/>
         <ContentPresenter Grid.Row="1" Content="{Binding Contenu}">
             
         </ContentPresenter>
@@ -23,11 +24,19 @@
         <Button Grid.Row="2"
                 Content="Suivant"
                 Width="100"
-                HorizontalAlignment="Right"/>
+                HorizontalAlignment="Right"
+                Command="{Binding CmdSuivant}"/>
         <Button Grid.Row="2"
                 Content="Précédent"
                 Width="100"
-                HorizontalAlignment="Left"/>
+                HorizontalAlignment="Left"
+                Command="{Binding CmdPrecedent}"/>
+        <Label Content="{Binding NumEtape}"
+               HorizontalAlignment="Center"
+               Grid.Row="2" Margin="139,0,151,0"/>
+        <Label Content="{Binding TotalEtape}"
+               HorizontalAlignment="Center"
+               Grid.Row="2" Margin="151,0,139,0"/>
 
         <!-- <materialDesign:PackIcon Kind="Close" Margin="124,36,0,0" Grid.Row="2"></materialDesign:PackIcon>-->
         

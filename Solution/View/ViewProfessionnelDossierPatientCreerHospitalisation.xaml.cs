@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -21,14 +22,15 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewProfessionnelDossierPatientCreerHospitalisation : Page
     {
-        public ViewProfessionnelDossierPatientCreerHospitalisation()
+
+        public ViewProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
             InitializeComponent();
 
-            DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation();
+            DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation(gestionnaireEcrans, citoyen);
 
-            Grid.SetRow((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl[0], 1);
-            grdCreerHospitalisation.Children.Add((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl[0]);
+            Grid.SetRow((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).Contenu, 1);
+            grdCreerHospitalisation.Children.Add((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).Contenu);
         }
     }
 }
