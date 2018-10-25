@@ -51,6 +51,30 @@ namespace VitAdmin.Data
             return lstEmployes;
         }
 
+        public static Employe GetEmploye(int idEmp)
+        {
+            Employe employe = new Employe();
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                string requete = "SELECT nom, prenom, numEmploye FROM Employes e " +
+                                 "JOIN Citoyens c ON c.idCitoyen = e.idCitoyen " +
+                                 "WHERE e.idEmploye = " + idEmp + ";";
+
+                ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
+                {
+                    employe = new Employe
+                    {
+                        NumEmploye = SqlDR.GetString("numEmploye"),
+                        Nom = SqlDR.GetString("nom"),
+                        Prenom = SqlDR.GetString("prenom")
+                    };
+                });
+            }
+
+            return employe;
+        }
+
         public static List<Employe> GetLstEmployesDepartement(Departement depSelectionne)
         {
             List<Employe> lstEmployes = new List<Employe>();

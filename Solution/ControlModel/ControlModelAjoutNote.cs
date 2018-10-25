@@ -33,6 +33,7 @@ namespace VitAdmin.ControlModel
         public ControlModelAjoutNote(Hospitalisation hospit)
         {
             Hospit = hospit;
+            NoteInf = new NoteInfirmiere();
 
         }
 

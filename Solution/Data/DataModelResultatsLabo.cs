@@ -67,6 +67,8 @@ namespace VitAdmin.Data
         public static void AddResultatLabo(Hospitalisation hospit, ResultatLabo resultLabo, int numEmp)
         {
             resultLabo.DateEvenement = DateTime.Now;
+            resultLabo.addISOEvenement();
+            resultLabo.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())
             {
@@ -91,7 +93,7 @@ namespace VitAdmin.Data
                                            , resultLabo.DateEvenement.ToString(), resultLabo.LienImage, resultLabo.NomAnalyse);
 
                 ConnexionBD.Instance().ExecuterRequete(requete);
-
+                ControlModel.ControlModelDossierPatientResultatsLabo.LstResultsLabo.Add(resultLabo);
             }
         }
     }

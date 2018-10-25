@@ -14,7 +14,7 @@ namespace VitAdmin.ControlModel
 {
     class ControlModelDossierPatientPrescriptions : ObjetObservable
     {
-        public ObservableCollection<Prescription> LstPrescriptions { get; set; }
+        public static ObservableCollection<Prescription> LstPrescriptions { get; set; }
 
         public Hospitalisation Hospit { get; set; }
 

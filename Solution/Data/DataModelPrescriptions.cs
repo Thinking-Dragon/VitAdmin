@@ -56,6 +56,9 @@ namespace VitAdmin.Data
         public static void AddPrescription(Hospitalisation hospit, Prescription prescript, int numEmp)
         {
             prescript.DateEvenement = DateTime.Now;
+            prescript.addISOEvenement();
+            prescript.addISODateDebut();
+            prescript.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())
             {
@@ -82,7 +85,7 @@ namespace VitAdmin.Data
                                            , prescript.DateEvenement.ToString(), prescript.Produit, prescript.Posologie, prescript.DateDebut.ToString(), prescript.NbJour);
 
                 ConnexionBD.Instance().ExecuterRequete(requete);
-
+                ControlModel.ControlModelDossierPatientPrescriptions.LstPrescriptions.Add(prescript);
             }
         }
     }

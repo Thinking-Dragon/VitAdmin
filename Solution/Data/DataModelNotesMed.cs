@@ -59,6 +59,9 @@ namespace VitAdmin.Data
         public static void AddNoteMed(Hospitalisation hospit, NoteMedecin noteMed, int numEmp)
         {
             noteMed.DateEvenement = DateTime.Now;
+            noteMed.DateEvenement = DateTime.Now;
+            noteMed.addISOEvenement();
+            noteMed.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())
             {
@@ -82,8 +85,10 @@ namespace VitAdmin.Data
                                            , noteMed.DateEvenement.ToString(), noteMed.NotesMed);
 
                 ConnexionBD.Instance().ExecuterRequete(requete);
-
+                ControlModel.ControlModelDossierPatientNotesMed.LstNotesMed.Add(noteMed);
             }
+
+
         }
 
     }
