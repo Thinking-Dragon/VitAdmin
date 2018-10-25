@@ -7,23 +7,32 @@ using VitAdmin.Model;
 
 namespace VitAdmin.Data
 {
-    public class DataModelLit
+    public static class DataModelLit
     {
-        /*public static void PutLit(Citoyen citoyen)
+        public static List<Lit> GetLits(int idChambre)
         {
-            if (ConnexionBD.Instance().EstConnecte())
-            {
-                
-                ConnexionBD.Instance().ExecuterRequete(
+            List<Lit> lits = new List<Lit>();
 
-                        "INSERT INTO lits (idCitoyen, idTraitement) " +
-                        "VALUES ((SELECT idHospitalisation FROM hospitalisations h JOIN citoyens c WHERE c.numAssuranceMaladie = '@AssMaladie'), " +
-                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '@TraitementNom'), ",
-                        new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
-                        new Tuple<string, string>("@TraitementNom", traitement.Nom)
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "SELECT l.numero, el.nom etat " +
+                        "FROM Lits l " +
+                        "JOIN EtatsLits el ON l.idEtatLit = el.idEtatLit " +
+                        "WHERE idChambre = {0}",
+                        idChambre
+                    ), lecteur => lits.Add(
+                        new Lit
+                        {
+                            Numero = lecteur.GetString("numero"),
+                            EtatLit = (EtatLit) Enum.Parse(typeof(EtatLit), lecteur.GetString("etat"))
+                        }
+                    )
                 );
             }
-        }*/
-    }
 
+            return lits;
+        }
+    }
 }

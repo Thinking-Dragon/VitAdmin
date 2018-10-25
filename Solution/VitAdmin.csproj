@@ -242,6 +242,7 @@
       <DependentUpon>QuelPosteOccupesTuAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\ConnexionBD.cs" />
+    <Compile Include="Data\DataModelChambre.cs" />
     <Compile Include="Data\DataModelConnexion.cs" />
     <Compile Include="Data\DataModelCitoyen.cs" />
     <Compile Include="Data\DataModelDepartement.cs" />

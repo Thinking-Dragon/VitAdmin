@@ -9,9 +9,8 @@ namespace VitAdmin.Model
     public class Lit
     {
         public String Numero { get; set; }
-        public String Etat { get; set; }
         public Chambre Chambre { get; set; } // ?????????????????????????
-        public EtatLit UnEtatLit { get; set; }
+        public EtatLit EtatLit { get; set; }
         bool EstDispo() { return new bool(); }
 
     }

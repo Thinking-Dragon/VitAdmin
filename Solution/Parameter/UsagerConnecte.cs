@@ -27,5 +27,11 @@ namespace VitAdmin.Parameter
 
             return validation;
         }
+
+        public static void Deconnecter()
+        {
+            Usager = null;
+            EstConnecte = false;
+        }
     }
 }
