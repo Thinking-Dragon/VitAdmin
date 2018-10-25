@@ -36,16 +36,24 @@ namespace VitAdmin.Control
 
         private void Confirmer_Click(object sender, RoutedEventArgs e)
         {
-            if (EstDeuxiemeClick == true)
+            if (lienImage.Text != "" && nomAnalyse.Text != "")
             {
+                if (EstDeuxiemeClick == true)
+                {
                     ControlModelResultatLabo.CmdBtnClicConfirmerResultatLabo.Execute(new ResultatLabo(lienImage.Text, nomAnalyse.Text, (bool)Notifier.IsChecked));
                     DialogHost.CloseDialogCommand.Execute(null, null);
+                }
+                else
+                {
+                    (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Voulez-vous vraiment confirmer?";
+                    EstDeuxiemeClick = true;
+                }
             }
             else
             {
-                (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Voulez-vous vraiment confirmer?";
-                EstDeuxiemeClick = true;
+                (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Vous devez remplir tous les champs";
             }
+            
         }
     }
 }

@@ -21,6 +21,7 @@ namespace VitAdmin.Model
             LienImage = lienImage;
             NomAnalyse = nomAnalyse;
             EstNotifier = estNotifie;
+            Resultats = new BitmapImage(new Uri(LienImage));
         }
 
         public ResultatLabo()

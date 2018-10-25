@@ -35,24 +35,34 @@ namespace VitAdmin.Control
 
         private void Confirmer_Click(object sender, RoutedEventArgs e)
         {
-            if (EstDeuxiemeClick == true)
+            if (produit.Text != "" && posologie.Text != "" && dateDebut.SelectedDate != null && nbJour.Text != null)
             {
-                if (Parameter.UsagerConnecte.Usager.Poste == "médecin" || Parameter.UsagerConnecte.Usager.Poste == "infirmière" || Parameter.UsagerConnecte.Usager.Poste == "admin")
+                if (EstDeuxiemeClick == true)
                 {
-                    ControlModelPrescription.CmdBtnClicConfirmerPrescription.Execute(new Prescription(produit.Text, posologie.Text, new DateTime(dateDebut.SelectedDate.Value.Year, dateDebut.SelectedDate.Value.Month, dateDebut.SelectedDate.Value.Day), (int)nbJour.Value, (bool)Notifier.IsChecked));
-                    DialogHost.CloseDialogCommand.Execute(null, null);
+                    if (Parameter.UsagerConnecte.Usager.Poste == "médecin" || Parameter.UsagerConnecte.Usager.Poste == "infirmière" || Parameter.UsagerConnecte.Usager.Poste == "admin")
+                    {
+                        ControlModelPrescription.CmdBtnClicConfirmerPrescription.Execute(new Prescription(produit.Text, posologie.Text, new DateTime(dateDebut.SelectedDate.Value.Year, dateDebut.SelectedDate.Value.Month, dateDebut.SelectedDate.Value.Day), (int)nbJour.Value, (bool)Notifier.IsChecked));
+                        DialogHost.CloseDialogCommand.Execute(null, null);
 
+                    }
+                    else
+                    {
+                        (DataContext as ControlModelAjoutPrescription).MessageErreur = "Vous n'êtes pas autorisé à ajouter une prescription";
+                    }
                 }
                 else
                 {
-                    //TODO
+                    (DataContext as ControlModelAjoutPrescription).MessageErreur = "Voulez-vous vraiment confirmer?";
+                    EstDeuxiemeClick = true;
                 }
             }
             else
             {
-                (DataContext as ControlModelAjoutPrescription).MessageErreur = "Voulez-vous vraiment confirmer?";
-                EstDeuxiemeClick = true;
+                (DataContext as ControlModelAjoutPrescription).MessageErreur = "Vous devez remplir tous les champs";
             }
+
+
+
 
         }
     }

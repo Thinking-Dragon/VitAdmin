@@ -23,8 +23,8 @@
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdModifierProfil}"></MouseBinding>
             </Rectangle.InputBindings>
         </Rectangle>
-        
-        <Rectangle Grid.Row="1" Cursor="Hand" IsEnabled="{Binding IsBtnHoraireEnabled}" Fill="Transparent" Panel.ZIndex="5" Name="RectHoraire">
+
+        <Rectangle Grid.Row="1" Cursor="Hand" IsEnabled="{Binding IsBtnHoraireEnabled}" Opacity="0.5" Fill="{Binding FillBtnHoraire}" Panel.ZIndex="5" Name="RectHoraire">
             <Rectangle.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdAfficheHoraire}"></MouseBinding>
             </Rectangle.InputBindings>
