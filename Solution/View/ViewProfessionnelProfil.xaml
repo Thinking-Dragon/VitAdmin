@@ -8,8 +8,14 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewProfessionnelProfil">
 
-    <Grid>
-
+    <Grid Name="grdViewPro">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                 Content="Créer" Width="100"
                 Command="{Binding CmdBtn}" CommandParameter="{Binding txtPrenomEmploye}"/>

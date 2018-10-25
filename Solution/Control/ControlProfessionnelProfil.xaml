@@ -5,81 +5,35 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="337.5" d:DesignWidth="400">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="0.7*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!-- Identité -->
-        <Label Content="Prénom" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="0" Grid.Column="0"/>
-        <TextBox Name="txtPrenomEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="0" Grid.Column="1"
-                 Text="{Binding Employe.Prenom}"/>
-        <Label Content="Nom" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="0" Grid.Column="2"/>
-        <TextBox Name="txtNomEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="0" Grid.Column="3"
-                 Text="{Binding Employe.Nom}"/>
-        
-        <!-- Adresse -->
-        <Label Content="Adresse" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="1" Grid.Column="0"/>
-        <TextBox Name="txtAdresseEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-                 Text="{Binding Employe.Adresse}"/>
-        <!--ComboBox Name="temp" Margin="5,40"
-                  Grid.Row="1" Grid.Column="2">
-            <https://www.wpf-tutorial.com/list-controls/combobox-control/>
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding }"
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox-->
 
         <!-- Info Profession -->
         <Label Content="NAS" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="2" Grid.Column="0"/>
+               Grid.Row="1" Grid.Column="0"/>
         <TextBox Name="txtNASEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="2" Grid.Column="1"
+                 Grid.Row="1" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
         <Label Content="Profession" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="2" Grid.Column="2"/>
+               Grid.Row="0" Grid.Column="0"/>
         <TextBox Name="txtPosteEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="2" Grid.Column="3"
+                 Grid.Row="0" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
         <Label Content="Numéro de permis" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="3" Grid.Column="0"/>
+               Grid.Row="2" Grid.Column="0"/>
         <TextBox Name="txtNumPermisEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="3" Grid.Column="1"
+                 Grid.Row="2" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
 
-        <!-- Bouton d'envoi -->
-        <Grid Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Name="grd2ColOpt"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            
-            <Button Name="btnSendInfo" Margin="5" Height="30"
-                Content="Oui"/>
-            <Button Name="btnCancelChange" Margin="5" Height="30"
-                Content="Non"/>
-            <Button Name="btnReset" Margin="5" Height="30"
-                Content="Reset"/>
-        </Grid>
-        
     </Grid>
 </UserControl>

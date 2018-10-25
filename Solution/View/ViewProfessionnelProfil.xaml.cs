@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -21,10 +22,21 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewProfessionnelProfil : Page
     {
-        public ViewProfessionnelProfil()
+        public ViewProfessionnelProfil(Employe employe)
         {
             InitializeComponent();
             DataContext = new ViewModelProfessionnelProfil();
+
+            Control.ControlDossierPatientInfos CDPI = new Control.ControlDossierPatientInfos(employe);
+            Grid.SetColumn(CDPI, 0);
+            Grid.SetRow(CDPI, 0);
+
+            Control.ControlProfessionnelProfil CPP = new Control.ControlProfessionnelProfil(employe);
+            Grid.SetColumn(CPP, 1);
+            Grid.SetRow(CPP, 0);
+
+            grdViewPro.Children.Add(CDPI);
+            grdViewPro.Children.Add(CPP);
         }
     }
 }

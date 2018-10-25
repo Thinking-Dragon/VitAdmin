@@ -22,26 +22,23 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlProfessionnelProfil : UserControl
     {
+        ControlModelProfessionnelProfil CMPP;
         // Dépendamment de si le Control reçoit un employé ou non, il modifiera ou créera un employé
-        public ControlProfessionnelProfil(Employe employe = null)
+        // On peut choisir spécifiquement quel champ sera modifiable
+        public ControlProfessionnelProfil(Employe employe = null, bool isJobActive = false, bool isNASActive = false, bool isCodeActive = false)
         {
             InitializeComponent();
 
-            if (employe == null)
-            {
-                btnSendInfo.Content = "Créer";
-            }
-            else btnSendInfo.Content = "Modifier";
+            // Prévient la modification involontaire des champs.
+            if (isJobActive)
+                txtPosteEmploye.IsEnabled = true;
+            if (isNASActive)
+                txtNASEmploye.IsEnabled = true;
+            if (isCodeActive)
+                txtNumPermisEmploye.IsEnabled = true;
 
-            DataContext = new ControlModelProfessionnelProfil(employe);
-
-            // Si employe = null, mode Create, sinon mode Update
-            // Si employe /= passé, valeur nulle
+            DataContext = CMPP = new ControlModelProfessionnelProfil(employe);
         }
-
-        private void btnCancelChange_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
