@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="Création d'une hospitalisation"/>
-        <materialDesign:Transitioner Name="transitionnerUC" Grid.Row="1" SelectedIndex="0">
+        <!-- <materialDesign:Transitioner Name="transitionnerUC" Grid.Row="1" SelectedIndex="0">
 
             <Grid>
                 <Grid>
@@ -41,7 +41,7 @@
                 </Grid>
             </Grid>
             
-        </materialDesign:Transitioner>
+        </materialDesign:Transitioner>-->
 
         
         
