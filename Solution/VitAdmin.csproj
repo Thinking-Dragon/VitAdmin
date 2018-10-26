@@ -247,6 +247,7 @@
     <Compile Include="Data\DataModelCitoyen.cs" />
     <Compile Include="Data\DataModelDepartement.cs" />
     <Compile Include="Data\DataModelEmploye.cs" />
+    <Compile Include="Data\DataModelEquipement.cs" />
     <Compile Include="Data\DataModelEtape.cs" />
     <Compile Include="Data\DataModelEvenement.cs" />
     <Compile Include="Data\DataModelHospitalisation.cs" />
@@ -296,6 +297,7 @@
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelChargementApp.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
+    <Compile Include="ViewModel\ViewModelCreerDepartement.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -317,6 +319,9 @@
     </Compile>
     <Compile Include="View\ViewConnexion.xaml.cs">
       <DependentUpon>ViewConnexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewCreerDepartement.xaml.cs">
+      <DependentUpon>ViewCreerDepartement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewCreerNotifications.xaml.cs">
       <DependentUpon>ViewCreerNotifications.xaml</DependentUpon>
@@ -512,6 +517,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewConnexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewCreerDepartement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

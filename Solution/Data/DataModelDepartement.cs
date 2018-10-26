@@ -39,24 +39,15 @@ namespace VitAdmin.Data
                     , SqlDR => {
                         lstDepartement.Add(new Departement
                         {
+                            _identifiant = int.Parse(SqlDR.GetString("idDepartement")),
                             Nom = SqlDR.GetString("nom"),
-                            Abreviation = SqlDR.GetString("abreviation"),
-                            Chambres = new List<Chambre>
-                            {
-                                new Chambre
-                                {
-                                    Nom = "D125",
-                                    Lits = new System.Collections.ObjectModel.ObservableCollection<Lit>
-                                    {
-                                        new Lit { Numero = "1" },
-                                        new Lit { Numero = "2" },
-                                        new Lit { Numero = "3" }
-                                    }
-                                }
-                            }
+                            Abreviation = SqlDR.GetString("abreviation")
                         });
                     }
-                    );
+                );
+
+                for (int i = 0; i < lstDepartement.Count; i++)
+                    lstDepartement[i].Chambres = DataModelChambre.GetChambres(lstDepartement[i]._identifiant.ToString(), "lits, equipements");
             }
 
             return lstDepartement;

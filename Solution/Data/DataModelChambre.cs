@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,7 @@ namespace VitAdmin.Data
 
             if(ConnexionBD.Instance().EstConnecte())
             {
-                Chambre chambre = null;
-                int idChambre = 0;
+                List<int> idChambres = new List<int>();
 
                 ConnexionBD.Instance().ExecuterRequete(
                     string.Format(
@@ -28,16 +28,17 @@ namespace VitAdmin.Data
                     {
                         chambres.Add( new Chambre { Nom = lecteur.GetString("nom") } );
                         if (extends != "")
-                            idChambre = int.Parse(lecteur.GetString("idChambre"));
+                            idChambres.Add(int.Parse(lecteur.GetString("idChambre")));
                     }
                 );
 
-                if (chambre != null && idChambre != 0)
+                for(int i = 0; i < idChambres.Count; ++i)
                 {
                     if (extends.ToLower().Contains("lits"))
-                        ;// chambre.Lits = DataModelLit.GetLits(idChambre);
+                        chambres[i].Lits = new ObservableCollection<Lit>(DataModelLit.GetLits(idChambres[i]));
                     if (extends.ToLower().Contains("equipements"))
-                        ;// chambre.Equipements = DataModelEquipement.GetEquipements(idChambre);
+                        chambres[i].Equipements = new ObservableCollection<Equipement>(DataModelEquipement.GetEquipements(idChambres[i]));
+
                 }
             }
 

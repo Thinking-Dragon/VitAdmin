@@ -17,6 +17,8 @@ using VitAdmin.ControlModel;
 
 namespace VitAdmin.Control
 {
+    // Bonheur à Laurence : https://stackoverflow.com/questions/15268760/upload-file-to-ftp-using-c-sharp
+
     /// <summary>
     /// Interaction logic for ControlDossierPatientResultatsLabo.xaml
     /// </summary>

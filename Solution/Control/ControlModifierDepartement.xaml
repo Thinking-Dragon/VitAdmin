@@ -47,21 +47,27 @@
         </Grid>
         <DataGrid Grid.Row="2"
                   Margin="16"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
                   ItemsSource="{Binding Chambres}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Local" Width="*" />
-                <DataGridTextColumn Header="Nb. Lits" Width="128" />
-                <DataGridTextColumn Header="Matériel" Width="*" />
+                <DataGridTextColumn Header="Local" Width="*"
+                                        Binding="{Binding Nom}"/>
+                <DataGridTextColumn Header="Nb. Lits" Width="128"
+                                        Binding="{Binding Lits.Count}"/>
+                <DataGridTextColumn Header="Matériel" Width="*"
+                                        Binding="{Binding EquipementsString}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="89*"/>
+                <ColumnDefinition Width="184*"/>
             </Grid.ColumnDefinitions>
-            <Button Width="128">Créer</Button>
+            <Button Width="128" Grid.ColumnSpan="2" Margin="28,16">Créer</Button>
             <Button Width="128"
-                    Grid.Column="1">Supprimer</Button>
+                    Grid.Column="2" Margin="28,16">Supprimer</Button>
         </Grid>
 
         <!-- Partie de droite -->
