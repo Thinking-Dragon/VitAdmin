@@ -28,7 +28,7 @@ namespace VitAdmin.Control
          InitializeComponent();
          GestionnaireEcrans = gestionnaireEcrans;
          DataContext = new ControlModelMenuUtilisateur(GestionnaireEcrans);
-
       }
-   }
+
+    }
 }

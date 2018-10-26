@@ -1,11 +1,11 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using VitAdmin.MVVM;
 using VitAdmin.View;
 
@@ -14,11 +14,22 @@ namespace VitAdmin.ControlModel
    class ControlModelMenuUtilisateur : ObjetObservable
    {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
+        private bool IsBtnHoraireEnabledPrivate { get; set; }
+        public bool IsBtnHoraireEnabled
+        {
+            get
+            {
+                return IsBtnHoraireEnabledPrivate;
+            }
+            set
+            {
+                IsBtnHoraireEnabledPrivate = value;
+                RaisePropertyChangedEvent("IsBtnHoraireEnabled");
+            }
+        }
 
-        public bool IsBtnHoraireEnabled { get; set; }
-
-        private Brush FillPrivate { get; set; }
-        public Brush FillBtnHoraire
+        private Color FillPrivate { get; set; }
+        public Color FillBtnHoraire
         {
             get
             {
@@ -34,14 +45,18 @@ namespace VitAdmin.ControlModel
         public ControlModelMenuUtilisateur(GestionnaireEcrans gestionnaireEcrans)
         {
             GestionnaireEcrans = gestionnaireEcrans;
-            if(!(GestionnaireEcrans.GetEcranPresent() is ViewProfessionnelHoraire))
+            if (!(GestionnaireEcrans.GetEcranPresent() is ViewProfessionnelHoraire))
             {
                 IsBtnHoraireEnabled = true;
-                FillBtnHoraire = Brushes.LightGray;
+                FillBtnHoraire = Color.FromArgb(0,255,255,255);
+            }
+            else
+            {
+                FillBtnHoraire = Color.FromArgb(50, 0, 0, 0);
+                IsBtnHoraireEnabled = false;
             }
 
-            FillBtnHoraire = Brushes.Blue;
-            IsBtnHoraireEnabled = true;
+            
         }
         public ICommand CmdAfficheHoraire
         {

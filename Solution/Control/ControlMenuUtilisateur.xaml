@@ -18,24 +18,34 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Rectangle  Grid.Row="0" Cursor="Hand" Fill="Transparent" Panel.ZIndex="5">
-            <Rectangle.InputBindings>
-                <MouseBinding Gesture="LeftClick" Command="{Binding CmdModifierProfil}"></MouseBinding>
-            </Rectangle.InputBindings>
-        </Rectangle>
 
-        <Rectangle Grid.Row="1" Cursor="Hand" IsEnabled="{Binding IsBtnHoraireEnabled}" Opacity="0.5" Fill="{Binding FillBtnHoraire}" Panel.ZIndex="5" Name="RectHoraire">
-            <Rectangle.InputBindings>
+        <Border Grid.Row="0" Panel.ZIndex="5" Cursor="Hand" IsEnabled="{Binding IsBtnProfilEnabled}">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding CmdModifierProfil}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="{Binding FillBtnProfil}"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        
+        <Border Grid.Row="1" Panel.ZIndex="5" Cursor="Hand" IsEnabled="{Binding IsBtnHoraireEnabled}">
+            <Border.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdAfficheHoraire}"></MouseBinding>
-            </Rectangle.InputBindings>
-        </Rectangle>
-        
-        <Rectangle Grid.Row="2" Cursor="Hand" Fill="Transparent" Panel.ZIndex="5">
-            <Rectangle.InputBindings>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="{Binding FillBtnHoraire}"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+
+        <Border Grid.Row="2" Panel.ZIndex="5" Cursor="Hand">
+            <Border.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdLogOut}"></MouseBinding>
-            </Rectangle.InputBindings>
-        </Rectangle>
-        
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="{Binding FillBtnLogOut}"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+
         <materialDesign:PackIcon Kind="Settings"
                                  Grid.Row="0"
                                  Margin="10,10,10,10"

@@ -91,7 +91,7 @@ namespace VitAdmin.View
 
             });
 
-            return 
+            return new List<Grid>();
         }
 
         /// <summary>
