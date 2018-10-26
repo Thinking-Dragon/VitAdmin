@@ -19,7 +19,7 @@ namespace VitAdmin.ViewModel
         public Hospitalisation Hospitalisation { get; set; }
         public int TotalEtape { get; set; }
         public int NumEtape { get; set; }
-        private UserControl contenu;
+        /*private UserControl contenu;
         public UserControl Contenu
         {
             get { return contenu; }
@@ -28,7 +28,7 @@ namespace VitAdmin.ViewModel
                 contenu = value;
                 RaisePropertyChangedEvent("Contenu");
             }
-        }
+        }*/
 
         public ViewModelProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
@@ -36,7 +36,6 @@ namespace VitAdmin.ViewModel
             Hospitalisation = new Hospitalisation();
             LstUserControl.Add(new ControlTextBoxHospitalisation(Hospitalisation.Contexte, "Contexte"));
             LstUserControl.Add(new ControlTextBoxHospitalisation(Hospitalisation.Contexte, "Contexte"));
-            //Contenu = LstUserControl[0];
 
             TotalEtape = LstUserControl.Count();
             NumEtape = 1;

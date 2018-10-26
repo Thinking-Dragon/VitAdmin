@@ -49,10 +49,6 @@ namespace VitAdmin.Data
                     });
             }
 
-            foreach (NoteInfirmiere note in lstNoteInfirmiere)
-            {
-                note.addISOEvenement();
-            }
 
             return lstNoteInfirmiere;
         }
@@ -60,7 +56,6 @@ namespace VitAdmin.Data
         public static void AddNoteInf(Hospitalisation hospit, NoteInfirmiere noteInf, int numEmp)
         {
             noteInf.DateEvenement = DateTime.Now;
-            noteInf.addISOEvenement();
             noteInf.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())

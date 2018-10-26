@@ -42,22 +42,12 @@ namespace VitAdmin.Data
                     );
             }
 
-            foreach (Prescription prescrip in lstPrescriptions)
-            {
-                prescrip.addISOEvenement();
-                prescrip.addISODateDebut();
-            }
-
-
-
             return lstPrescriptions;
         }
 
         public static void AddPrescription(Hospitalisation hospit, Prescription prescript, int numEmp)
         {
             prescript.DateEvenement = DateTime.Now;
-            prescript.addISOEvenement();
-            prescript.addISODateDebut();
             prescript.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())

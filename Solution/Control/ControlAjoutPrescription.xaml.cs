@@ -56,14 +56,29 @@ namespace VitAdmin.Control
                     EstDeuxiemeClick = true;
                 }
             }
+            else if (EstValide())
+            {
+                (DataContext as ControlModelAjoutPrescription).MessageErreur = "La limite de caractère est atteinte";
+            }
+            else if(EstDateDebutValide())
+            {
+                (DataContext as ControlModelAjoutPrescription).MessageErreur = "Une prescription ne doit pas débuter dans le passé";
+            }
             else
             {
                 (DataContext as ControlModelAjoutPrescription).MessageErreur = "Vous devez remplir tous les champs";
+
             }
+        }
 
+        private bool EstValide()
+        {
+            return produit.Text.Length < 50 && posologie.Text.Length < 255;
+        }
 
-
-
+        private bool EstDateDebutValide()
+        {
+            return (DateTime)dateDebut.SelectedDate >= DateTime.Now;
         }
     }
 }

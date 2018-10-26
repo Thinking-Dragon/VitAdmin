@@ -11,7 +11,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Produit}" Header="Médicament" Width="*" />
                 <DataGridTextColumn Binding="{Binding Posologie}" Header="Posologie" Width="*" />
-                <DataGridTextColumn Binding="{Binding DateDebutISO}" Header="Date de début" Width="*" />
+                <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date de début" Width="*" />
                 <DataGridTextColumn Binding="{Binding NbJour}" Header="Nombre de jour" Width="*" />
             </DataGrid.Columns>
         </DataGrid>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
+using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
@@ -20,17 +21,24 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewProfessionnelProfil.xaml
     /// </summary>
-    public partial class ViewProfessionnelProfil : Page
+    public partial class ViewProfessionnelProfil : Page, IEcranRetour
     {
-        public ViewProfessionnelProfil(Employe employe)
+        GestionnaireEcrans GestEcran { get; set; }
+        //GestionnaireEcrans previousView { get; set; }
+        Employe employe_ { get; set; }
+        public ViewProfessionnelProfil(GestionnaireEcrans gestionnaireEcrans, Employe employe = null)
         {
             InitializeComponent();
             DataContext = new ViewModelProfessionnelProfil();
+            employe_ = employe;
+            GestEcran = gestionnaireEcrans;
 
+            // Configure le control affichant les infos de la partie employé de l'employé
             Control.ControlDossierPatientInfos CDPI = new Control.ControlDossierPatientInfos(employe);
             Grid.SetColumn(CDPI, 0);
             Grid.SetRow(CDPI, 0);
 
+            // Configure le control affichant les infos de la partie citoyen de l'employé
             Control.ControlProfessionnelProfil CPP = new Control.ControlProfessionnelProfil(employe);
             Grid.SetColumn(CPP, 1);
             Grid.SetRow(CPP, 0);
@@ -38,5 +46,11 @@ namespace VitAdmin.View
             grdViewPro.Children.Add(CDPI);
             grdViewPro.Children.Add(CPP);
         }
+
+        public Action CmdRetourEcranPrecedent
+        {
+            get { return () => { GestEcran.RetourAncienEcran(); }; }
+        }
+        public string TexteBoutonRetourEcran => "< Retour";
     }
 }
