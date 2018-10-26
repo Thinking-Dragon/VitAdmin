@@ -40,9 +40,13 @@ namespace VitAdmin.Control
             {
                 (DataContext as ControlModelAjoutNote).MessageErreur = "Vous devez remplir tous les champs";
             }
+            else if (!EstValide())
+            {
+                (DataContext as ControlModelAjoutNote).MessageErreur = "La limite de caractère de la note est atteinte";
+            }
             else
             {
-                if (EstDeuxiemeClick == true)
+                if (EstDeuxiemeClick)
                 {
 
                     if (Parameter.UsagerConnecte.Usager.Poste == "admin")
@@ -50,36 +54,12 @@ namespace VitAdmin.Control
                         DialogHost.CloseDialogCommand.Execute(null, null);
                         DialogHost.Show(new QuelPosteOccupesTuAdmin(() =>
                         {
-
-                            if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
-                            {
-                                ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
-                                DialogHost.CloseDialogCommand.Execute(null, null);
-                                Parameter.UsagerConnecte.Usager.Poste = "admin";
-                            }
-                            else if (Parameter.UsagerConnecte.Usager.Poste == "infirmière")
-                            {
-                                ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
-                                DialogHost.CloseDialogCommand.Execute(null, null);
-                                Parameter.UsagerConnecte.Usager.Poste = "admin";
-                            }
-
+                            ExecuteCmdClicNoteETgereDialog();
                         }), "dialogGeneral");
                     }
                     else
                     {
-                        if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
-                        {
-                            ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
-                            DialogHost.CloseDialogCommand.Execute(null, null);
-                            Parameter.UsagerConnecte.Usager.Poste = "admin";
-                        }
-                        else if (Parameter.UsagerConnecte.Usager.Poste == "infirmière")
-                        {
-                            ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
-                            DialogHost.CloseDialogCommand.Execute(null, null);
-                            Parameter.UsagerConnecte.Usager.Poste = "admin";
-                        }
+                        ExecuteCmdClicNoteETgereDialog();
                     }
                 }
                 else
@@ -87,6 +67,27 @@ namespace VitAdmin.Control
                     (DataContext as ControlModelAjoutNote).MessageErreur = "Voulez-vous vraiment confirmer?";
                     EstDeuxiemeClick = true;
                 }
+            }
+        }
+
+        private bool EstValide()
+        {
+            return Note.Text.Length > 254;
+        }
+
+        private void ExecuteCmdClicNoteETgereDialog()
+        {
+            if (Parameter.UsagerConnecte.Usager.Poste == "médecin")
+            {
+                ControlModelNote.CmdBtnClicConfirmerNoteMed.Execute(new NoteMedecin(Note.Text, (bool)Notifier.IsChecked));
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                Parameter.UsagerConnecte.Usager.Poste = "admin";
+            }
+            else if (Parameter.UsagerConnecte.Usager.Poste == "infirmière")
+            {
+                ControlModelNote.CmdBtnClicConfirmerNoteInf.Execute(new NoteInfirmiere(Note.Text, (bool)Notifier.IsChecked));
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                Parameter.UsagerConnecte.Usager.Poste = "admin";
             }
         }
     }

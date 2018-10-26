@@ -18,7 +18,7 @@
         <DataGrid SelectedCellsChanged="DataGrid_SelectedCellsChanged" ItemsSource="{Binding LstResultsLabo}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NomAnalyse}" Header="Note" Width="*"/>
-                <DataGridTextColumn Binding="{Binding DateISO}" Header="Date" Width="*" />
+                <DataGridTextColumn Binding="{Binding DateEvenement, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date" Width="*" />
                 <DataGridTextColumn Binding="{Binding EmployeImplique.NumEmploye}" Header="Numéro de l'employé" Width="*" />
             </DataGrid.Columns>
         </DataGrid>

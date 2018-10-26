@@ -47,10 +47,6 @@ namespace VitAdmin.Data
                     });
             }
 
-            foreach (NoteMedecin note in lstNoteMedecin)
-            {
-                note.addISOEvenement();
-            }
 
 
             return lstNoteMedecin;
@@ -60,7 +56,6 @@ namespace VitAdmin.Data
         {
             noteMed.DateEvenement = DateTime.Now;
             noteMed.DateEvenement = DateTime.Now;
-            noteMed.addISOEvenement();
             noteMed.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())

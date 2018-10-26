@@ -38,7 +38,11 @@ namespace VitAdmin.Control
         {
             if (lienImage.Text != "" && nomAnalyse.Text != "")
             {
-                if (EstDeuxiemeClick == true)
+                if (!EstNomImageValide())
+                {
+                    (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "L'image n'existe pas";
+                }
+                else if (EstDeuxiemeClick == true)
                 {
                     ControlModelResultatLabo.CmdBtnClicConfirmerResultatLabo.Execute(new ResultatLabo(lienImage.Text, nomAnalyse.Text, (bool)Notifier.IsChecked));
                     DialogHost.CloseDialogCommand.Execute(null, null);
@@ -53,6 +57,29 @@ namespace VitAdmin.Control
             {
                 (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Vous devez remplir tous les champs";
             }
+            
+        }
+
+        private bool EstValide()
+        {
+            return nomAnalyse.Text.Length > 255;
+        }
+
+        private bool EstNomImageValide()
+        {
+            BitmapImage img = null;
+            //420.cstj.qc.ca/2016/1524043/VitAdmin/radio1.jpg
+            try
+            {
+                img = new BitmapImage(new Uri(lienImage.Text));
+                return img != null;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
+
             
         }
     }

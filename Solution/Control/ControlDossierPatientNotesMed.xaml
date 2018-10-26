@@ -10,7 +10,7 @@
         <DataGrid ItemsSource="{Binding LstNotesMed}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NotesMed}" Header="Note" Width="*" />
-                <DataGridTextColumn Binding="{Binding DateISO}" Header="Date" Width="*" />
+                <DataGridTextColumn Binding="{Binding DateEvenement, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date" Width="*" />
                 <DataGridTextColumn Binding="{Binding EmployeImplique.Nom}" Header="Nom de l'employé" Width="*" />
                 <DataGridTextColumn Binding="{Binding EmployeImplique.Prenom}" Header="Prenom de l'employé" Width="*" />
                 <DataGridTextColumn Binding="{Binding EmployeImplique.NumEmploye}" Header="Numéro de l'employé" Width="*" />

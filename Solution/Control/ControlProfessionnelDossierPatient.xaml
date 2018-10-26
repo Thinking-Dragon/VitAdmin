@@ -23,8 +23,8 @@
            <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DataContext.DepartementAssocie.Nom, 
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd/MM/yy HH:mm:ss\}}" Header="Date début"/>
-                <DataGridTextColumn Binding="{Binding DateFin, StringFormat=\{0:dd/MM/yy HH:mm:ss\}}" Header="Date fin"/>
+                <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date début"/>
+                <DataGridTextColumn Binding="{Binding DateFin, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date fin"/>
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick"

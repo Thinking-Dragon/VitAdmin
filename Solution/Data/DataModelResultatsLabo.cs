@@ -56,18 +56,12 @@ namespace VitAdmin.Data
 
             }
 
-            foreach (ResultatLabo result in lstResultatLabo)
-            {
-                result.addISOEvenement();
-            }
-
             return lstResultatLabo;
         }
 
         public static void AddResultatLabo(Hospitalisation hospit, ResultatLabo resultLabo, int numEmp)
         {
             resultLabo.DateEvenement = DateTime.Now;
-            resultLabo.addISOEvenement();
             resultLabo.EmployeImplique = DataModelEmploye.GetEmploye(numEmp);
 
             if (ConnexionBD.Instance().EstConnecte())
