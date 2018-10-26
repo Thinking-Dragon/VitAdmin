@@ -24,15 +24,23 @@ namespace VitAdmin.View
     public partial class ViewProfessionnelDossierPatientCreerHospitalisation : Page
     {
 
-        ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide> Slides { get; set; }
+        //ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide> Slides { get; set; }
 
         public ViewProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
             InitializeComponent();
-
-            Slides = new ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide>();
-            MaterialDesignThemes.Wpf.Transitions.Transitioner transitioner = new MaterialDesignThemes.Wpf.Transitions.Transitioner { SelectedIndex = 0 };
             DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation(gestionnaireEcrans, citoyen);
+
+            MaterialDesignThemes.Wpf.Transitions.Transitioner transitioner = new MaterialDesignThemes.Wpf.Transitions.Transitioner { SelectedIndex = 0 };
+
+            List<Grid> lstGrids = CreerListGridPourChaqueUC();
+            CreerBoutonSuivantPrecedentPourUserControl(lstGrids);
+            transitioner.ItemsSource = CreerOCtransitionerSlides(lstGrids);
+
+            Grid.SetRow(transitioner, 1);
+
+            grdCreerHospitalisation.Children.Add(transitioner);
+            /*Slides = new ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide>();
 
             #region Création des Grid et buttons
             
@@ -66,36 +74,41 @@ namespace VitAdmin.View
             Slides.Add(transitionerSlideContexte);
             Slides.Add(transitionerSlideContexte2);
 
-            #endregion
+            #endregion*/
 
-            transitioner.ItemsSource =  Slides;
+            
 
-            Grid.SetRow(transitioner, 1);
-
-            grdCreerHospitalisation.Children.Add(transitioner);
          
 
 
         }
 
+        /// <summary>
+        /// Cette fonction crée des Grids contenant chacun un UserControl qui sont destiné à être chacun ajouter à un transitionerSlide. 
+        /// </summary>
+        /// <returns></returns>
         private List<Grid> CreerListGridPourChaqueUC()
         {
             List<Grid> lstGrid = new List<Grid>();
             int iCompteur = 0;
 
+            // Pour chaque usercontrol dans la liste, on crée une grid qui va contenir l'usercontrol.
             (DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl.ForEach(uc =>
             {
-                Grid grdTempAjoutChildren; // grid tem
-                lstGrid.Add(new Grid { Name = new StringBuilder("grd" + iCompteur.ToString()).ToString()});
-                grdTempAjoutChildren = lstGrid.Find(grid => grid.Name == new StringBuilder("grd" + iCompteur.ToString()).ToString());
+                Grid grdTempAjoutChildren; // grid temporaire pour ajouter des éléments dans le grid
+                lstGrid.Add(new Grid { Name = new StringBuilder("grd" + iCompteur.ToString()).ToString()}); // On ajoute dans la liste un nouveau grid pour chaque UC
+                grdTempAjoutChildren = lstGrid.Find(grid => grid.Name == new StringBuilder("grd" + iCompteur.ToString()).ToString()); // On retourne dans le grid temporaire le grid dans lequel on ajoute dans son children le UC
+
+                // On ajoute dans le grid un usercontrol
+                grdTempAjoutChildren.Children.Add(uc);
 
             });
 
-            return new List<Grid>();
+            return lstGrid;
         }
 
         /// <summary>
-        /// Fonction qui créer dans chaque grid un bouton suivant et un bouton précédent qui sont lié au transitioner.
+        /// Fonction qui crée dans chaque grid un bouton suivant et un bouton précédent qui sont lié au transitioner.
         /// </summary>
         /// <param name="lstGrid">liste de grid qui contient chaque usercontrol pour la création d'une hospitalisation</param>
         private void CreerBoutonSuivantPrecedentPourUserControl(List<Grid> lstGrid)
@@ -131,6 +144,31 @@ namespace VitAdmin.View
                     Command = MaterialDesignThemes.Wpf.Transitions.Transitioner.MovePreviousCommand
                 });
             });
+        }
+
+        /// <summary>
+        /// On crée des transitionerSlides qui vont détenir un grid comme contexte.
+        /// </summary>
+        /// <param name="lstGrid"></param>
+        /// <returns></returns>
+        private ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide> CreerOCtransitionerSlides(List<Grid> lstGrid)
+        {
+            ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide> slides = new ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide>();
+
+            // On ajoute au Content de chaque transitionerSlide une grid contenant un UC
+            lstGrid.ForEach(grid =>
+            {
+                MaterialDesignThemes.Wpf.Transitions.TransitionerSlide newSlide = new MaterialDesignThemes.Wpf.Transitions.TransitionerSlide
+                {
+                    Content = grid
+                    // TODO: Voir ici pour modifier les transitions effects
+                };
+
+                slides.Add(newSlide);
+
+            });
+
+            return slides;
         }
     }
 }
