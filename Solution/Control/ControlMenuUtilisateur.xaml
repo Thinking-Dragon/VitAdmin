@@ -42,7 +42,7 @@
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdLogOut}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
-                <SolidColorBrush Color="{Binding FillBtnLogOut}"></SolidColorBrush>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
             </Border.Background>
         </Border>
 

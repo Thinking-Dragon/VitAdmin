@@ -29,13 +29,10 @@ namespace VitAdmin.Control
         {
             InitializeComponent();
 
-            // Prévient la modification involontaire des champs.
-            if (isJobActive)
-                txtPosteEmploye.IsEnabled = true;
-            if (isNASActive)
-                txtNASEmploye.IsEnabled = true;
-            if (isCodeActive)
-                txtNumPermisEmploye.IsEnabled = true;
+            // Prévient la modification involontaire des champs.            
+            txtPosteEmploye.IsEnabled = isJobActive;            
+            txtNASEmploye.IsEnabled = isNASActive;            
+            txtNumPermisEmploye.IsEnabled = isCodeActive;
 
             DataContext = CMPP = new ControlModelProfessionnelProfil(employe);
         }
