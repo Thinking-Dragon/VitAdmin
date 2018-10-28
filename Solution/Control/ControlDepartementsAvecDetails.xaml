@@ -103,7 +103,7 @@
                       IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Local" Width="*"
-                                        Binding="{Binding Nom}"/>
+                                        Binding="{Binding Numero}"/>
                     <DataGridTextColumn Header="Nb. Lits" Width="128"
                                         Binding="{Binding Lits.Count}"/>
                     <DataGridTextColumn Header="Matériel" Width="*"

@@ -26,7 +26,7 @@ namespace VitAdmin.Data
                         idDepartement
                     ), lecteur =>
                     {
-                        chambres.Add( new Chambre { Nom = lecteur.GetString("nom") } );
+                        chambres.Add( new Chambre { Numero = lecteur.GetString("nom") } );
                         if (extends != "")
                             idChambres.Add(int.Parse(lecteur.GetString("idChambre")));
                     }

@@ -10,7 +10,7 @@ namespace VitAdmin.Model
     {
         Libre,
         Occupé,
-        Maintenance,
-        Nettoyage
+        Nettoyage,
+        Maintenance
     }
 }

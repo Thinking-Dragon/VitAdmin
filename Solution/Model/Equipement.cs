@@ -8,6 +8,7 @@ namespace VitAdmin.Model
 {    // TODO: Max
     public class Equipement
     {
+        public int _identifiant { get; set; }
         public String Nom { get; set; }
         public String Description { get; set; }
     }

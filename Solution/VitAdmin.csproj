@@ -129,6 +129,8 @@
     <Compile Include="ControlModel\ControlModelDossierPatientNotesMed.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientPrescriptions.cs" />
     <Compile Include="ControlModel\ControlModelDossierPatientResultatsLabo.cs" />
+    <Compile Include="ControlModel\ControlModelEditionChambre.cs" />
+    <Compile Include="ControlModel\ControlModelEditionEquipement.cs" />
     <Compile Include="ControlModel\ControlModelEditionTraitement.cs" />
     <Compile Include="ControlModel\ControlModelListeChoixDepartementsCRD.cs" />
     <Compile Include="ControlModel\ControlModelListePatient.cs" />
@@ -152,6 +154,12 @@
     </Compile>
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlEditionChambre.xaml.cs">
+      <DependentUpon>ControlEditionChambre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlEditionEquipement.xaml.cs">
+      <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlSymptome.xaml.cs">
       <DependentUpon>ControlSymptome.xaml</DependentUpon>
@@ -261,6 +269,8 @@
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\DataModelUsager.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
+    <Compile Include="EnumBindingSourceExtension.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Notifications\GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
@@ -298,6 +308,7 @@
     <Compile Include="ViewModel\ViewModelChargementApp.cs" />
     <Compile Include="ViewModel\ViewModelConnexion.cs" />
     <Compile Include="ViewModel\ViewModelCreerDepartement.cs" />
+    <Compile Include="ViewModel\ViewModelGestionEquipements.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -325,6 +336,9 @@
     </Compile>
     <Compile Include="View\ViewCreerNotifications.xaml.cs">
       <DependentUpon>ViewCreerNotifications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewGestionEquipements.xaml.cs">
+      <DependentUpon>ViewGestionEquipements.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewModifierDepartement.xaml.cs">
       <DependentUpon>ViewModifierDepartement.xaml</DependentUpon>
@@ -372,6 +386,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlAjoutSuppression.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlEditionChambre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlEditionEquipement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -525,6 +547,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewCreerNotifications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewGestionEquipements.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

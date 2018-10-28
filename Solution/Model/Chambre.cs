@@ -12,7 +12,7 @@ namespace VitAdmin.Model
         public ObservableCollection<Equipement> Equipements { get; set; }
         public ObservableCollection<Lit> Lits { get; set; }
         public Departement UnDepartement { get; set; }
-        public String Nom { get; set; }
+        public String Numero { get; set; }
 
         public String EquipementsString
         {

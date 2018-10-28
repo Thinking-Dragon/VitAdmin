@@ -79,7 +79,7 @@ namespace VitAdmin.Data
                                 EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), SqlDR.GetString("EtLitNom")),
                                 Chambre = new Chambre
                                 {
-                                    Nom = SqlDR.GetString("nomCh"),
+                                    Numero = SqlDR.GetString("nomCh"),
                                     UnDepartement = new Departement
                                     {
                                         Nom = SqlDR.GetString("nomDep"),
@@ -141,7 +141,7 @@ namespace VitAdmin.Data
                                 EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), SqlDR.GetString("EtLitNom")),
                                 Chambre = new Chambre
                                 {
-                                    Nom = SqlDR.GetString("nomCh"),
+                                    Numero = SqlDR.GetString("nomCh"),
                                     UnDepartement = new Departement
                                     {
                                         Nom = SqlDR.GetString("nomDep"),
