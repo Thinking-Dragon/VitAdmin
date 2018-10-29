@@ -31,10 +31,10 @@
             </Grid.RowDefinitions>
             <Label VerticalAlignment="Center">Nom:</Label>
             <TextBox Grid.Row="1" Text="{Binding Nom}">
-                <TextBox.InputBindings>
+                <!--<TextBox.InputBindings>
                     <KeyBinding Command="{Binding CmdConfirmer}" Key="Return"/>
                     <KeyBinding Command="{Binding CmdConfirmer}" Key="Enter"/>
-                </TextBox.InputBindings>
+                </TextBox.InputBindings>-->
             </TextBox>
         </Grid>
         <Grid Grid.Column="1"
@@ -45,10 +45,10 @@
             </Grid.RowDefinitions>
             <Label VerticalAlignment="Center">Description:</Label>
             <TextBox Grid.Row="1" Text="{Binding Description}">
-                <TextBox.InputBindings>
+                <!--<TextBox.InputBindings>
                     <KeyBinding Command="{Binding CmdConfirmer}" Key="Return"/>
                     <KeyBinding Command="{Binding CmdConfirmer}" Key="Enter"/>
-                </TextBox.InputBindings>
+                </TextBox.InputBindings>-->
             </TextBox>
         </Grid>
         <Button Grid.Column="1"

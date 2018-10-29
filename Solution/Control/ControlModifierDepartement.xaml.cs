@@ -36,5 +36,8 @@ namespace VitAdmin.Control
 
         private void btnCreerLocal_Click(object sender, RoutedEventArgs e)
             => (DataContext as ControlModelModifierDepartement).CmdCreerLocal.Execute(null);
+
+        private void btnSupprimerLocal_Click(object sender, RoutedEventArgs e)
+            => (DataContext as ControlModelModifierDepartement).CmdSupprimerLocal.Execute(null);
     }
 }

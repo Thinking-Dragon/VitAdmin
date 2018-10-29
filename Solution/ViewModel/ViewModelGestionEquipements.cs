@@ -18,7 +18,12 @@ namespace VitAdmin.ViewModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public ObservableCollection<Equipement> Equipements { get; set; }
+        private ObservableCollection<Equipement> _equipements;
+        public ObservableCollection<Equipement> Equipements
+        {
+            get => _equipements;
+            set { _equipements = value; RaisePropertyChangedEvent("Equipements"); }
+        }
 
         private Equipement _equipementSelectionne;
         public Equipement EquipementSelectionne

@@ -106,7 +106,7 @@
                                         Binding="{Binding Numero}"/>
                     <DataGridTextColumn Header="Nb. Lits" Width="128"
                                         Binding="{Binding Lits.Count}"/>
-                    <DataGridTextColumn Header="Matériel" Width="*"
+                    <DataGridTextColumn Header="Équipements" Width="*"
                                         Binding="{Binding EquipementsString}"/>
                 </DataGrid.Columns>
             </DataGrid>

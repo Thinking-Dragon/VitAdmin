@@ -141,6 +141,7 @@
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelProfil.cs" />
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
+    <Compile Include="ControlModel\ControlModelRechercheEquipement.cs" />
     <Compile Include="ControlModel\ControlModelSymptome.cs" />
     <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
     <Compile Include="Control\ControlAjoutNote.xaml.cs">
@@ -160,6 +161,9 @@
     </Compile>
     <Compile Include="Control\ControlEditionEquipement.xaml.cs">
       <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlRechercheEquipement.xaml.cs">
+      <DependentUpon>ControlRechercheEquipement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlSymptome.xaml.cs">
       <DependentUpon>ControlSymptome.xaml</DependentUpon>
@@ -394,6 +398,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlEditionEquipement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlRechercheEquipement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

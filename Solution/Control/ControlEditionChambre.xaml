@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:VitAdmin.Control"
              xmlns:model="clr-namespace:VitAdmin.Model"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -17,114 +18,132 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Grid Width="800"
-          Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="64"/>
-            <RowDefinition Height="128"/>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="64"/>
-        </Grid.RowDefinitions>
-        <Label Content="{Binding Titre}"
-               FontSize="16"
-               FontWeight="Light"/>
-
-        <Grid Grid.Row="1">
+    <Grid>
+        <Grid Width="800"
+              Margin="16">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label Margin="120 0 0 0">Numéro</Label>
-            <TextBox Text="{Binding Chambre.Numero}"
-                     Margin="120 0 0 0"
-                     HorizontalAlignment="Left"
-                     Width="256"/>
-        </Grid>
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label FontSize="12"
-                   FontWeight="Light">Lits</Label>
-            <Label Grid.Column="1"
-                   FontSize="12"
-                   FontWeight="Light">Équipements</Label>
-        </Grid>
-        
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+                <RowDefinition Height="128"/>
+                <RowDefinition Height="32"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="64"/>
+                <RowDefinition Height="32"/>
             </Grid.RowDefinitions>
-            <DataGrid Grid.ColumnSpan="2"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      ItemsSource="{Binding Chambre.Lits}"
-                      Height="256">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="#"
-                                        Binding="{Binding Numero}"
-                                        Width="*"/>
-                    <DataGridComboBoxColumn Header="État"
-                                            Width="*"
-                                            ItemsSource="{Binding Source={StaticResource EtatLitEnumValues}}"
-                                            SelectedItemBinding="{Binding EtatLit}"/>
-                    <DataGridTemplateColumn Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button>Modifier</Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <DataGrid Grid.Column="2"
-                      Grid.ColumnSpan="2"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      ItemsSource="{Binding Chambre.Equipements}"
-                      Height="320">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nom" Width="*"/>
-                    <DataGridTextColumn Header="Description" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Margin="16"
-                    Grid.Row="1"
-                    HorizontalAlignment="Right">Ajouter</Button>
-            <Button Margin="16"
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    HorizontalAlignment="Left">Supprimer</Button>
-            <Button Margin="16"
-                    Grid.Column="2"
-                    Grid.Row="1"
-                    HorizontalAlignment="Right">Ajouter</Button>
-            <Button Margin="16"
-                    Grid.Column="3"
-                    Grid.Row="1"
-                    HorizontalAlignment="Left">Retirer</Button>
-        </Grid>
+            <Label Content="{Binding Titre}"
+                   FontSize="16"
+                   FontWeight="Light"/>
 
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="1"
-                    Width="128"
-                    Command="{Binding CmdConfirmer}">
-                Confirmer
-            </Button>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Margin="120 0 0 0">Numéro</Label>
+                <TextBox Text="{Binding Chambre.Numero}"
+                         Margin="120 0 0 0"
+                         HorizontalAlignment="Left"
+                         Width="256"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="12"
+                       FontWeight="Light">Lits</Label>
+                <Label Grid.Column="1"
+                       FontSize="12"
+                       FontWeight="Light">Équipements</Label>
+            </Grid>
+        
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="64"/>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.ColumnSpan="2"
+                          Margin="16"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          ItemsSource="{Binding Chambre.Lits}"
+                          SelectedItem="{Binding LitSelectionne}"
+                          Height="256">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="#"
+                                            Binding="{Binding Numero}"
+                                            IsReadOnly="True"
+                                            Width="*"/>
+                        <DataGridComboBoxColumn Header="État"
+                                                Width="*"
+                                                ItemsSource="{Binding Source={StaticResource EtatLitEnumValues}}"
+                                                SelectedItemBinding="{Binding EtatLit}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Grid.Column="2"
+                          Grid.ColumnSpan="2"
+                          Margin="16"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          ItemsSource="{Binding Chambre.Equipements}"
+                          SelectedItem="{Binding EquipementSelectionne}"
+                          Height="320">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nom"
+                                            Binding="{Binding Nom}"
+                                            Width="*"/>
+                        <DataGridTextColumn Header="Description"
+                                            Binding="{Binding Description}"
+                                            Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Margin="16"
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
+                        Command="{Binding CmdCreerLit}">Créer</Button>
+                <Button Margin="16"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        Command="{Binding CmdSupprimerLit}">Supprimer</Button>
+                <Button Margin="16"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        HorizontalAlignment="Right"
+                        Command="{Binding CmdAjouterEquipement}">Ajouter</Button>
+                <Button Margin="16"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        Command="{Binding CmdRetirerEquipement}">Retirer</Button>
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1"
+                        Width="128"
+                        Command="{Binding CmdConfirmer}">
+                    Confirmer
+                </Button>
+            </Grid>
+            <Label Grid.Row="5"
+                   Foreground="Red"
+                   FontWeight="Light"
+                   FontSize="16"
+                   Content="{Binding MessageErreur}"/>
         </Grid>
+        <materialDesign:DialogHost Identifier="dialogEditionChambre"
+                                   CloseOnClickAway="True"
+                                   Panel.ZIndex="98">
+        </materialDesign:DialogHost>
     </Grid>
 </UserControl>

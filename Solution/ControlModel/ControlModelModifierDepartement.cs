@@ -33,18 +33,16 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdValider => new CommandeDeleguee(param =>
         {
-            DataModelDepartement.PutDepartement(AbrevInitiale, Departement);
+            DataModelDepartement.PutDepartement(Departement);
             GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
         });
 
         public ICommand CmdCreerLocal => new CommandeDeleguee(param =>
         {
-            DialogHost.Show(new ControlEditionChambre(
-                chambre =>
-                {
-
-                }
-            ), "dialogGeneral");
+            DialogHost.Show(new ControlEditionChambre(chambre =>
+            {
+                Departement.Chambres.Add(chambre);
+            }), "dialogGeneral");
         });
 
         public ICommand CmdModifierLocal => new CommandeDeleguee(param =>
@@ -52,10 +50,15 @@ namespace VitAdmin.ControlModel
             DialogHost.Show(new ControlEditionChambre(
                 chambre =>
                 {
-                    
+                    ChambreSelectionnee.Numero = chambre.Numero;
+                    ChambreSelectionnee.Lits = chambre.Lits;
+                    ChambreSelectionnee.Equipements = chambre.Equipements;
+                    Departement.Chambres = new ObservableCollection<Chambre>(Departement.Chambres);
                 }, ChambreSelectionnee
             ), "dialogGeneral");
         });
+
+        public ICommand CmdSupprimerLocal => new CommandeDeleguee(param => Departement.Chambres.Remove(ChambreSelectionnee));
 
         public ControlModelModifierDepartement(GestionnaireEcrans gestionnaireEcrans, Departement departement)
         {

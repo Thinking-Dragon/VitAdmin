@@ -56,7 +56,7 @@
                                         Binding="{Binding Numero}"/>
                 <DataGridTextColumn Header="Nb. Lits" Width="128"
                                         Binding="{Binding Lits.Count}"/>
-                <DataGridTextColumn Header="Matériel" Width="*"
+                <DataGridTextColumn Header="Équipements" Width="*"
                                         Binding="{Binding EquipementsString}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
@@ -79,8 +79,12 @@
                     Margin="28,16">
                 Créer
             </Button>
-            <Button Width="128"
-                    Grid.Column="2" Margin="28,16">Supprimer</Button>
+            <Button Click="btnSupprimerLocal_Click"
+                    Width="128"
+                    Grid.Column="2"
+                    Margin="28,16">
+                Supprimer
+            </Button>
         </Grid>
 
         <!-- Partie de droite -->

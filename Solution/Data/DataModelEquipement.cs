@@ -29,6 +29,36 @@ namespace VitAdmin.Data
             }
         }
 
+        /// <summary>
+        /// Links an "Equipement" to a "Chambre"
+        /// </summary>
+        /// <param name="idChambre">Id of the "Chambre" to link</param>
+        /// <param name="equipement">"Equipement" to link</param>
+        public static void PostEquipementChambres(int idChambre, Equipement equipement)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "INSERT INTO ChambresEquipements (idChambre, idEquipement) " +
+                        "VALUES ({0}, {1})",
+                        idChambre, equipement._identifiant
+                    )
+                );
+            }
+        }
+
+        /// <summary>
+        /// Links every "Equipement" in {equipements} to the "Chambre" with id {idChambre}
+        /// </summary>
+        /// <param name="idChambre">Id of the "Chambre" to be linked</param>
+        /// <param name="equipements">"Equipements" to link with the "Chambre"</param>
+        public static void PostEquipementsChambres(int idChambre, List<Equipement> equipements)
+        {
+            foreach (var equipement in equipements)
+                PostEquipementChambres(idChambre, equipement);
+        }
+
         #endregion
 
         #region READ
@@ -74,7 +104,7 @@ namespace VitAdmin.Data
             {
                 ConnexionBD.Instance().ExecuterRequete(
                     string.Format(
-                        "SELECT nom, description " +
+                        "SELECT e.idEquipement _id, nom, description " +
                         "FROM Equipements e " +
                         "JOIN ChambresEquipements ce ON e.idEquipement = ce.idEquipement " +
                         "WHERE ce.idChambre = {0}",
@@ -82,6 +112,7 @@ namespace VitAdmin.Data
                     ), lecteur => equipements.Add(
                         new Equipement
                         {
+                            _identifiant = int.Parse(lecteur.GetString("_id")),
                             Nom = lecteur.GetString("nom"),
                             Description = lecteur.GetString("description")
                         }
@@ -160,6 +191,24 @@ namespace VitAdmin.Data
                         "DELETE FROM Equipements " +
                         "WHERE idEquipement = {0}",
                         equipement._identifiant
+                    )
+                );
+            }
+        }
+
+        /// <summary>
+        /// Deletes every link connected to the "Chambre" with id {idChambre}
+        /// </summary>
+        /// <param name="idChambre">The id of the "Chambre" to unlink with "Equipements"</param>
+        public static void DeleteEquipementsChambre(int idChambre)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "DELETE FROM ChambresEquipements " +
+                        "WHERE idChambre = {0}",
+                        idChambre
                     )
                 );
             }
