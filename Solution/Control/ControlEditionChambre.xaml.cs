@@ -15,5 +15,10 @@ namespace VitAdmin.Control
             InitializeComponent();
             DataContext = new ControlModelEditionChambre(chambre, callback);
         }
+
+        private void LitSelectionneEtat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

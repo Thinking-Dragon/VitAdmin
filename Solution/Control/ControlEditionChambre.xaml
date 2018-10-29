@@ -19,7 +19,7 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <Grid>
-        <Grid Width="800"
+        <Grid Width="850"
               Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"/>
@@ -74,7 +74,7 @@
                           CanUserAddRows="False"
                           ItemsSource="{Binding Chambre.Lits}"
                           SelectedItem="{Binding LitSelectionne}"
-                          Height="256">
+                          Height="200">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="#"
                                             Binding="{Binding Numero}"
@@ -82,8 +82,15 @@
                                             Width="*"/>
                         <DataGridComboBoxColumn Header="État"
                                                 Width="*"
+                                                
                                                 ItemsSource="{Binding Source={StaticResource EtatLitEnumValues}}"
-                                                SelectedItemBinding="{Binding EtatLit}"/>
+                                                SelectedItemBinding="{Binding EtatLit}">
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="{x:Type ComboBox}">
+                                    <EventSetter Event="SelectionChanged" Handler="LitSelectionneEtat_SelectionChanged" />
+                                </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+                        </DataGridComboBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <DataGrid Grid.Column="2"
@@ -93,7 +100,7 @@
                           IsReadOnly="True"
                           ItemsSource="{Binding Chambre.Equipements}"
                           SelectedItem="{Binding EquipementSelectionne}"
-                          Height="320">
+                          Height="200">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nom"
                                             Binding="{Binding Nom}"
@@ -111,7 +118,19 @@
                         Grid.Column="1"
                         Grid.Row="1"
                         HorizontalAlignment="Left"
-                        Command="{Binding CmdSupprimerLit}">Supprimer</Button>
+                        Command="{Binding CmdSupprimerLit}">
+                    Supprimer
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding LitSelectionne.EstDisponible}" Value="True">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Margin="16"
                         Grid.Column="2"
                         Grid.Row="1"

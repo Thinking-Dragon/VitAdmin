@@ -57,7 +57,7 @@ namespace VitAdmin.Data
                     string.Format(
                         "SELECT idChambre _id " +
                         "FROM Chambres " +
-                        "WHERE numero = '{0}'",
+                        "WHERE nom = '{0}'",
                         numero
                     ), lecteur => resultat = int.Parse(lecteur.GetString("_id"))
                 );
