@@ -243,9 +243,6 @@
     <Compile Include="Control\ControlRechercheDepartement.xaml.cs">
       <DependentUpon>ControlRechercheDepartement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\ControlRechercheTraitement.xaml.cs">
-      <DependentUpon>ControlRechercheTraitement.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Control\ControlTableauHoraire.xaml.cs">
       <DependentUpon>ControlTableauHoraire.xaml</DependentUpon>
     </Compile>
@@ -509,10 +506,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlRechercheDepartement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\ControlRechercheTraitement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

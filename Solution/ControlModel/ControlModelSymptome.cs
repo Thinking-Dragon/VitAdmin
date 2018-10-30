@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,17 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    public class ControlModelSymptome
+    public class ControlModelSymptome : ObjetObservable
     {
-        public Hospitalisation Hospitalisation { get; set; }
+        public ObservableCollection<Symptome> Symptomes { get; set; }
 
         public ControlModelSymptome(Hospitalisation hospitalisation)
         {
-            Hospitalisation = hospitalisation;
+            if (hospitalisation.LstSymptomes == null)
+                hospitalisation.LstSymptomes = new List<Symptome>();
+
+            Symptomes = new ObservableCollection<Symptome>();
+            hospitalisation.LstSymptomes.ForEach(s => Symptomes.Add(s));
         }
 
         public ICommand CmdAjoutSymptome
@@ -26,10 +31,20 @@ namespace VitAdmin.ControlModel
                 {
                     Symptome symptomeAjout = new Symptome { Description = "Ajouter la description"};
 
-                    if (Hospitalisation.LstSymptomes == null)
-                        Hospitalisation.LstSymptomes = new List<Symptome>();
+                    Symptomes.Add(symptomeAjout);
 
-                    Hospitalisation.LstSymptomes.Add(symptomeAjout);
+                });
+            }
+        }
+
+        public ICommand CmdBtnSupprimer
+        {
+            get
+            {
+                return new CommandeDeleguee(symptome =>
+                {
+
+                    Symptomes.Remove((Symptome)symptome);
 
                 });
             }

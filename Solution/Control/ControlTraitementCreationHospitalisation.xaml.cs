@@ -30,9 +30,9 @@ namespace VitAdmin.Control
 
         private void InitialiserControlRechercheTraitement()
         {
-            ControlRechercheTraitement controlRechercheTraitement = new ControlRechercheTraitement();
+            //ControlRechercheTraitement controlRechercheTraitement = new ControlRechercheTraitement();
 
-            Grid.SetRow(controlRechercheTraitement, 1);
+            //Grid.SetRow(controlRechercheTraitement, 1);
         }
 
         

@@ -29,15 +29,10 @@ namespace VitAdmin.Control
             DataContext = new ControlModelSymptome(hospitalisation);
         }
 
-        /*private void btnAjouterSymptome_Click(object sender, RoutedEventArgs e)
+        private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            Symptome symptomeAjout = new Symptome { Description = "Ajouter la description" };
-
-            if (DataContext.LstSymptomes.Any<Symptome>())
-                (DataContext as Hospitalisation).LstSymptomes = new List<Symptome>();
-
-            (DataContext as Hospitalisation).LstSymptomes.Add(symptomeAjout);
-            //dtgSymptome.Items.Add(symptomeAjout);
-        }*/
+            if((DataContext as ControlModelSymptome).Symptomes.Count() > 0)
+            (DataContext as ControlModelSymptome).Symptomes.Remove((Symptome)dtgSymptome.SelectedItem);
+        }
     }
 }

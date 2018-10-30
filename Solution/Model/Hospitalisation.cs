@@ -17,7 +17,6 @@ namespace VitAdmin.Model
 
         public Hospitalisation()
         {
-
         }
 
         public Hospitalisation(DateTime dt)
