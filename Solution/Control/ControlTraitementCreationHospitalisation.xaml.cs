@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Data;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
@@ -30,9 +33,15 @@ namespace VitAdmin.Control
 
         private void InitialiserControlRechercheTraitement()
         {
-            //ControlRechercheTraitement controlRechercheTraitement = new ControlRechercheTraitement();
+            ControlBarreRechercheTraitement controlBarreRechercheTraitement = new ControlBarreRechercheTraitement(
+                new ObservableCollection<Traitement>(DataModelTraitement.GetTraitements()));
+            controlBarreRechercheTraitement.HorizontalAlignment = HorizontalAlignment.Left;
+            controlBarreRechercheTraitement.VerticalAlignment = VerticalAlignment.Center;
+            controlBarreRechercheTraitement.Width = 120;
 
-            //Grid.SetRow(controlRechercheTraitement, 1);
+            Grid.SetRow(controlBarreRechercheTraitement, 1);
+
+            grdTraitements.Children.Add(controlBarreRechercheTraitement);
         }
 
         
