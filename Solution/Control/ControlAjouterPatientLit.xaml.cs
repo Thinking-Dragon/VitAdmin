@@ -12,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using VitAdmin.ControlModel;
-using VitAdmin.Model;
-using VitAdmin.View;
 
 namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour ControlContexte.xaml
+    /// Logique d'interaction pour ControlAjouterPatientLit.xaml
     /// </summary>
-    public partial class ControlTextBoxHospitalisation : UserControl
+    public partial class ControlAjouterPatientLit : UserControl
     {
-        public ControlTextBoxHospitalisation(string nomLabel)
+        public ControlAjouterPatientLit()
         {
             InitializeComponent();
-            DataContext = new ControlModelTextBoxHospitalisation(nomLabel);
-            
         }
     }
 }

@@ -3,24 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Name="grdContexte">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
             <RowDefinition/>
 
         </Grid.RowDefinitions>
 
         <Label Content="{Binding NomLabel}"
-               FontSize="70"
+               FontSize="40"
                FontWeight="DemiBold"
                VerticalAlignment="Top"
                HorizontalAlignment="Left"/>
         
         <Border Grid.Row="1"
-                Background="LightGray" BorderBrush="GhostWhite" BorderThickness="2" Margin="10">
+                Background="LightGray" BorderBrush="GhostWhite" BorderThickness="2" Margin="105,10,105,10">
 
             <TextBox Grid.Row="1"
                      TextWrapping="Wrap"
@@ -28,8 +30,16 @@
                      AcceptsTab="True"
                      SpellCheck.IsEnabled="True"
                      VerticalContentAlignment="Top"
-                     Text="{Binding datatext}" Margin="10"/>
+                     Text="{Binding Hospitalisation.Contexte}" Margin="65,8,65,10"/>
         </Border>
+
+        <Button Grid.Row="2"
+                Width="130"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
+            Suivant
+        </Button>
 
     </Grid>
 </UserControl>

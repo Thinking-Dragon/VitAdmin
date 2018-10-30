@@ -13,45 +13,13 @@
 
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Création d'une hospitalisation"/>
-        <!-- <materialDesign:Transitioner Name="transitionnerUC" Grid.Row="1" SelectedIndex="0">
-
-            <Grid>
-                <Grid>
-                    <Label Content="Page1"/>
-                    <Button Grid.Row="2"
-                    Content="Suivant"
-                    Width="100"
-                    HorizontalAlignment="Right"
-                    Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"/>
-                    <Button Grid.Row="2"
-                    Content="Précédent"
-                    Width="100"
-                    HorizontalAlignment="Left"
-                    Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"
-                    />
-
-                </Grid>
-                <Grid>
-                    <Label Content="Page2"/>
-                </Grid>
-            </Grid>
-            
-        </materialDesign:Transitioner>-->
-
-        
-        
-        
-        <Label Content="{Binding NumEtape}"
-               HorizontalAlignment="Center"
-               Grid.Row="2" Margin="139,0,151,0"/>
-        <Label Content="{Binding TotalEtape}"
-               HorizontalAlignment="Center"
-               Grid.Row="2" Margin="151,0,139,0"/>
+        <Label Content="Création d'une hospitalisation"
+               FontSize="15"/>
+        <materialDesign:Transitioner Name="transitionnerUC" Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding LstUserControl}">
+        </materialDesign:Transitioner>
 
         <!-- <materialDesign:PackIcon Kind="Close" Margin="124,36,0,0" Grid.Row="2"></materialDesign:PackIcon>-->
         

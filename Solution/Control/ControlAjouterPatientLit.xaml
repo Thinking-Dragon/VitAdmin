@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VitAdmin.Control.ControlTraitementCreationHospitalisation"
+﻿<UserControl x:Class="VitAdmin.Control.ControlAjouterPatientLit"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,29 +6,36 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
             <RowDefinition Height="3*"/>
             <RowDefinition/>
-
         </Grid.RowDefinitions>
 
-        <Label Content="Traitements"
+        <Label Content="Sélectionner un lit"
                FontSize="40"/>
-        <DataGrid Grid.Row="2"
-                  ItemsSource="{Binding Traitements}"/>
+        <DataGrid ItemsSource="{Binding Lits}"
+          AutoGenerateColumns="False"
+                 Grid.Row="1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Lit.Chambre.UnDepartement.Nom}" Header="Département"/>
+                <DataGridTextColumn Binding="{Binding Lit.Chambre.Nom}" Header="N°Chambre"/>
+                <DataGridTextColumn Binding="{Binding Lit.Numero}" Header="N°Lit"/>
+                <DataGridTextColumn Binding="{Binding Lit.EtatLit}" Header="N°Lit"/>
+            </DataGrid.Columns>
+        
+        </DataGrid>
 
-        <Button Grid.Row="3"
+        <Button Grid.Row="2"
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
-                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
-            Suivant
+                Command="{Binding Terminer}">
+            Terminer
         </Button>
-        <Button Grid.Row="3"
+        <Button Grid.Row="2"
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"

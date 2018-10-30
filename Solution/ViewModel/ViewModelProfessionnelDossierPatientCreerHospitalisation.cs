@@ -19,6 +19,7 @@ namespace VitAdmin.ViewModel
         public Hospitalisation Hospitalisation { get; set; }
         public int TotalEtape { get; set; }
         public int NumEtape { get; set; }
+
         /*private UserControl contenu;
         public UserControl Contenu
         {
@@ -34,8 +35,11 @@ namespace VitAdmin.ViewModel
         {
             LstUserControl = new List<UserControl>();
             Hospitalisation = new Hospitalisation();
-            LstUserControl.Add(new ControlTextBoxHospitalisation(Hospitalisation.Contexte, "Contexte"));
-            LstUserControl.Add(new ControlTextBoxHospitalisation(Hospitalisation.Contexte, "Contexte"));
+
+            LstUserControl.Add(new ControlTextBoxHospitalisation("Contexte"));
+            LstUserControl.Add(new ControlSymptome(Hospitalisation));
+            LstUserControl.Add(new ControlTraitementCreationHospitalisation());
+            LstUserControl.Add(new ControlAjouterPatientLit());
 
             TotalEtape = LstUserControl.Count();
             NumEtape = 1;
@@ -43,15 +47,6 @@ namespace VitAdmin.ViewModel
         }
 
 
-        public ICommand CmdSuivant
-        {
-            get
-            {
-                return new CommandeDeleguee(action =>
-                {
-
-                });
-            }
-        }
+     
     }
 }

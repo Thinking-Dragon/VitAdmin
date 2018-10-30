@@ -141,6 +141,9 @@
     <Compile Include="ControlModel\ControlModelRechercheDepartement.cs" />
     <Compile Include="ControlModel\ControlModelSymptome.cs" />
     <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
+    <Compile Include="Control\ControlAjouterPatientLit.xaml.cs">
+      <DependentUpon>ControlAjouterPatientLit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ControlAjoutNote.xaml.cs">
       <DependentUpon>ControlAjoutNote.xaml</DependentUpon>
     </Compile>
@@ -359,6 +362,10 @@
     <Compile Include="View\ViewSuperEcran.xaml.cs">
       <DependentUpon>ViewSuperEcran.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\ControlAjouterPatientLit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ControlAjoutNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

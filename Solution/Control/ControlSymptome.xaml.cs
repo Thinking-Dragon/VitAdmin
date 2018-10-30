@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
+using VitAdmin.ViewModel;
+using VitAdmin.ControlModel;
 
 namespace VitAdmin.Control
 {
@@ -20,11 +23,21 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlSymptome : UserControl
     {
-        public ControlSymptome()
+        public ControlSymptome(Hospitalisation hospitalisation)
         {
             InitializeComponent();
+            DataContext = new ControlModelSymptome(hospitalisation);
         }
 
-       
+        /*private void btnAjouterSymptome_Click(object sender, RoutedEventArgs e)
+        {
+            Symptome symptomeAjout = new Symptome { Description = "Ajouter la description" };
+
+            if (DataContext.LstSymptomes.Any<Symptome>())
+                (DataContext as Hospitalisation).LstSymptomes = new List<Symptome>();
+
+            (DataContext as Hospitalisation).LstSymptomes.Add(symptomeAjout);
+            //dtgSymptome.Items.Add(symptomeAjout);
+        }*/
     }
 }

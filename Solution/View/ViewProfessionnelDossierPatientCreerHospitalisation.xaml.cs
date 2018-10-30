@@ -31,57 +31,10 @@ namespace VitAdmin.View
             InitializeComponent();
             DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation(gestionnaireEcrans, citoyen);
 
-            MaterialDesignThemes.Wpf.Transitions.Transitioner transitioner = new MaterialDesignThemes.Wpf.Transitions.Transitioner { SelectedIndex = 0 };
-
-            List<Grid> lstGrids = CreerListGridPourChaqueUC();
-            CreerBoutonSuivantPrecedentPourUserControl(lstGrids);
-            transitioner.ItemsSource = CreerOCtransitionerSlides(lstGrids);
-
-            Grid.SetRow(transitioner, 1);
-
-            grdCreerHospitalisation.Children.Add(transitioner);
-            /*Slides = new ObservableCollection<MaterialDesignThemes.Wpf.Transitions.TransitionerSlide>();
-
-            #region Création des Grid et buttons
-            
-
-            Grid grdContexte = new Grid();
-            Grid grdContexte2 = new Grid();
-
-            grdContexte.Children.Add((DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl[0]);
-
-      
-
-            grdContexte2.Children.Add(new Control.ControlTextBoxHospitalisation("","Contexte 2"));
-
-            #endregion
-
-            #region Création des transitions slides
-            MaterialDesignThemes.Wpf.Transitions.TransitionerSlide transitionerSlideContexte = new MaterialDesignThemes.Wpf.Transitions.TransitionerSlide
-            {
-                Content = grdContexte,
-                //OpeningEffect = new MaterialDesignThemes.Wpf.Transitions.TransitionEffect(MaterialDesignThemes.Wpf.Transitions.TransitionEffectKind.SlideInFromLeft)
-                
-
-            };
-          
-
-            MaterialDesignThemes.Wpf.Transitions.TransitionerSlide transitionerSlideContexte2 = new MaterialDesignThemes.Wpf.Transitions.TransitionerSlide
-            {
-                Content = grdContexte2
-            };
-
-            Slides.Add(transitionerSlideContexte);
-            Slides.Add(transitionerSlideContexte2);
-
-            #endregion*/
-
-            
-
-         
-
 
         }
+
+        
 
         /// <summary>
         /// Cette fonction crée des Grids contenant chacun un UserControl qui sont destiné à être chacun ajouter à un transitionerSlide. 
@@ -96,8 +49,18 @@ namespace VitAdmin.View
             (DataContext as ViewModelProfessionnelDossierPatientCreerHospitalisation).LstUserControl.ForEach(uc =>
             {
                 Grid grdTempAjoutChildren; // grid temporaire pour ajouter des éléments dans le grid
-                lstGrid.Add(new Grid { Name = new StringBuilder("grd" + iCompteur.ToString()).ToString()}); // On ajoute dans la liste un nouveau grid pour chaque UC
+                lstGrid.Add(new Grid
+                {
+                    Name = new StringBuilder("grd" + iCompteur.ToString()).ToString()
+                });
+
+
+                // On ajoute dans la liste un nouveau grid pour chaque UC
                 grdTempAjoutChildren = lstGrid.Find(grid => grid.Name == new StringBuilder("grd" + iCompteur.ToString()).ToString()); // On retourne dans le grid temporaire le grid dans lequel on ajoute dans son children le UC
+               /* grdTempAjoutChildren.RowDefinitions.Add(new RowDefinition());
+                grdTempAjoutChildren.RowDefinitions.Add(new RowDefinition { Height = new GridLength(5, GridUnitType.Star) });
+                grdTempAjoutChildren.RowDefinitions.Add(new RowDefinition());*/
+
 
                 // On ajoute dans le grid un usercontrol
                 grdTempAjoutChildren.Children.Add(uc);
