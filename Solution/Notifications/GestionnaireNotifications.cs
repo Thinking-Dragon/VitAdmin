@@ -87,6 +87,9 @@ namespace VitAdmin.Notifications
                 return _instance;
             }
         }
+
+        public static void DetruireInstance()
+            => _instance = null;
     
         #endregion
     }
