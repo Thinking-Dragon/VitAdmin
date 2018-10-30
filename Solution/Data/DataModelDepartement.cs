@@ -32,6 +32,8 @@ namespace VitAdmin.Data
             // On vérifie si la BD est connecté
             if (ConnexionBD.Instance().EstConnecte())
             {
+                List<int> idEmployesChefs = new List<int>();
+
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
@@ -44,8 +46,12 @@ namespace VitAdmin.Data
                             Nom = SqlDR.GetString("nom"),
                             Abreviation = SqlDR.GetString("abreviation")
                         });
+                        idEmployesChefs.Add(SqlDR.IsDBNull(SqlDR.GetOrdinal("idEmploye")) ? -1 : int.Parse(SqlDR.GetString("idEmploye")));
                     }
                 );
+
+                for (int i = 0; i < lstDepartement.Count; i++)
+                    lstDepartement[i].PersonnelMedicalEnChef = DataModelEmploye.GetEmploye(idEmployesChefs[i]);
 
                 for (int i = 0; i < lstDepartement.Count; i++)
                     lstDepartement[i].Chambres = new ObservableCollection<Chambre>(DataModelChambre.GetChambres(lstDepartement[i]._identifiant.ToString(), "lits, equipements"));
