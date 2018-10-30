@@ -13,6 +13,7 @@ namespace VitAdmin.Model
         public int _identifiant { get; set; }
         public String Nom { get; set; }
         public String Abreviation { get; set; }
+        public Employe PersonnelMedicalEnChef { get; set; }
         private ObservableCollection<Chambre> _chambres;
         public ObservableCollection<Chambre> Chambres
         {

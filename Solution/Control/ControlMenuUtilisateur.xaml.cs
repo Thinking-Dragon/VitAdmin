@@ -22,13 +22,15 @@ namespace VitAdmin.Control
    /// </summary>
    public partial class ControlMenuUtilisateur : UserControl
    {
-      private GestionnaireEcrans GestionnaireEcrans { get; set; }
-      public ControlMenuUtilisateur(GestionnaireEcrans gestionnaireEcrans)
-      {
-         InitializeComponent();
-         GestionnaireEcrans = gestionnaireEcrans;
-         DataContext = new ControlModelMenuUtilisateur(GestionnaireEcrans);
-      }
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
+        private GestionnaireEcrans GestionnaireSousEcrans { get; set; }
+        public ControlMenuUtilisateur(GestionnaireEcrans gestionnaireEcrans, GestionnaireEcrans gestionnaireSousEcrans)
+        {
+            InitializeComponent();
+            GestionnaireEcrans = gestionnaireEcrans;
+            GestionnaireSousEcrans = gestionnaireSousEcrans;
+            DataContext = new ControlModelMenuUtilisateur(GestionnaireEcrans, GestionnaireSousEcrans);
+        }
 
     }
 }

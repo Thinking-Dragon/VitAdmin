@@ -22,7 +22,12 @@ namespace VitAdmin.Notifications
         public BackgroundWorkerNotifications(uint interval)
         {
             Timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(interval) };
-            Timer.Tick += (object sender, EventArgs args) => ObtenirNotifications();
+            Timer.Tick += (object sender, EventArgs args) => {
+                if (!UsagerConnecte.EstConnecte)
+                    Timer.Stop();
+                else
+                    ObtenirNotifications();
+            };
             Timer.Start();
             DispatcherTimer dtFirst = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
             dtFirst.Tick += (object sender, EventArgs args) =>

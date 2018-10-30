@@ -15,6 +15,7 @@ namespace VitAdmin.ControlModel
     class ControlModelMenuUtilisateur : ObjetObservable
     {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
+        GestionnaireEcrans GestionnaireSousEcrans { get; set; }
 
         // Flag du bouton pour horaire
         private bool IsBtnHoraireEnabledPrivate { get; set; }
@@ -77,9 +78,10 @@ namespace VitAdmin.ControlModel
         }
 
         // Modification apparence btn sélectionné
-        public ControlModelMenuUtilisateur(GestionnaireEcrans gestionnaireEcrans)
+        public ControlModelMenuUtilisateur(GestionnaireEcrans gestionnaireEcrans, GestionnaireEcrans gestionnaireSousEcrans)
         {
             GestionnaireEcrans = gestionnaireEcrans;
+            GestionnaireSousEcrans = gestionnaireSousEcrans;
 
             // Bouton horaire
             if (!(GestionnaireEcrans.GetEcranPresent() is ViewProfessionnelHoraire))
@@ -116,7 +118,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                    param =>
                    {
-                       GestionnaireEcrans.Changer(new ViewProfessionnelHoraire(GestionnaireEcrans));
+                       GestionnaireSousEcrans.Changer(new ViewProfessionnelHoraire(GestionnaireSousEcrans));
                        DialogHost.CloseDialogCommand.Execute(null, null);
                    }
           );
@@ -131,7 +133,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        GestionnaireEcrans.Changer(new ViewProfessionnelProfil(GestionnaireEcrans, UsagerConnecte.Usager));
+                        GestionnaireSousEcrans.Changer(new ViewProfessionnelProfil(GestionnaireSousEcrans, UsagerConnecte.Usager));
                         DialogHost.CloseDialogCommand.Execute(null, null);
                     }
                 );
