@@ -49,14 +49,22 @@
                   Margin="16"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
+                  SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChambreSelectionnee}"
                   ItemsSource="{Binding Chambres}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Local" Width="*"
-                                        Binding="{Binding Nom}"/>
+                                        Binding="{Binding Numero}"/>
                 <DataGridTextColumn Header="Nb. Lits" Width="128"
                                         Binding="{Binding Lits.Count}"/>
-                <DataGridTextColumn Header="Matériel" Width="*"
+                <DataGridTextColumn Header="Équipements" Width="*"
                                         Binding="{Binding EquipementsString}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnModifierChambre_Click">Modifier</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="3">
@@ -65,9 +73,18 @@
                 <ColumnDefinition Width="89*"/>
                 <ColumnDefinition Width="184*"/>
             </Grid.ColumnDefinitions>
-            <Button Width="128" Grid.ColumnSpan="2" Margin="28,16">Créer</Button>
-            <Button Width="128"
-                    Grid.Column="2" Margin="28,16">Supprimer</Button>
+            <Button Click="btnCreerLocal_Click"
+                    Width="128"
+                    Grid.ColumnSpan="2"
+                    Margin="28,16">
+                Créer
+            </Button>
+            <Button Click="btnSupprimerLocal_Click"
+                    Width="128"
+                    Grid.Column="2"
+                    Margin="28,16">
+                Supprimer
+            </Button>
         </Grid>
 
         <!-- Partie de droite -->

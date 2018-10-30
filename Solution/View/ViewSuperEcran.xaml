@@ -16,10 +16,11 @@
         <Grid Grid.Row="1" x:Name="grdSousEcran"></Grid>
 
         <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}" />
-        
+
         <materialDesign:DialogHost Identifier="dialogGeneral"
                                    CloseOnClickAway="True"
-                                   Panel.ZIndex="99"
-                                   Grid.RowSpan="2"></materialDesign:DialogHost>
+                                   Panel.ZIndex="97"
+                                   Grid.RowSpan="2">
+        </materialDesign:DialogHost>
     </Grid>
 </Page>

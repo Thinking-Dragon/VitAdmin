@@ -4,15 +4,30 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VitAdmin.MVVM;
 
 namespace VitAdmin.Model
 {    // TODO: Max
-    public class Chambre
+    public class Chambre : ObjetObservable
     {
-        public ObservableCollection<Equipement> Equipements { get; set; }
-        public ObservableCollection<Lit> Lits { get; set; }
+        public int _identifiant { get; set; } = -1;
+
+        private ObservableCollection<Equipement> _equipements = null;
+        public ObservableCollection<Equipement> Equipements
+        {
+            get => _equipements;
+            set { _equipements = value; RaisePropertyChangedEvent("Equipements"); }
+        }
+
+        private ObservableCollection<Lit> _lits = null;
+        public ObservableCollection<Lit> Lits
+        {
+            get => _lits;
+            set { _lits = value; RaisePropertyChangedEvent("Lits"); }
+        }
+
         public Departement UnDepartement { get; set; }
-        public String Nom { get; set; }
+        public String Numero { get; set; }
 
         public String EquipementsString
         {

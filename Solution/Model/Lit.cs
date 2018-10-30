@@ -8,10 +8,11 @@ namespace VitAdmin.Model
 {    // TODO: Max
     public class Lit
     {
+        public int _identifiant { get; set; }
         public String Numero { get; set; }
         public Chambre Chambre { get; set; } // ?????????????????????????
         public EtatLit EtatLit { get; set; }
-        bool EstDispo() { return new bool(); }
+        public bool EstDisponible => EtatLit != EtatLit.Occupé;
 
     }
 }

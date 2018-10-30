@@ -115,7 +115,7 @@ namespace VitAdmin.Data
                         "WHERE (ch.nom = @NomChambre) AND " +
                         "(l.numero = @NumLit) ",
                         new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
-                        new Tuple<string, string>("@NomChambre", chambre.Nom),
+                        new Tuple<string, string>("@NomChambre", chambre.Numero),
                         new Tuple<string, string>("@NumLit", lit.Numero)
 
                 );

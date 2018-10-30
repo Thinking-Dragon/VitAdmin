@@ -30,5 +30,14 @@ namespace VitAdmin.Control
 
         private void btnValiderClic(object sender, RoutedEventArgs e)
             => (DataContext as ControlModelModifierDepartement).CmdValider.Execute(null);
+
+        private void btnModifierChambre_Click(object sender, RoutedEventArgs e)
+            => (DataContext as ControlModelModifierDepartement).CmdModifierLocal.Execute(null);
+
+        private void btnCreerLocal_Click(object sender, RoutedEventArgs e)
+            => (DataContext as ControlModelModifierDepartement).CmdCreerLocal.Execute(null);
+
+        private void btnSupprimerLocal_Click(object sender, RoutedEventArgs e)
+            => (DataContext as ControlModelModifierDepartement).CmdSupprimerLocal.Execute(null);
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.View;
 
 namespace VitAdmin.ViewModel
 {
@@ -26,7 +27,7 @@ namespace VitAdmin.ViewModel
             {
                 return new CommandeDeleguee(param =>
                 {
-                    // TODO: GestionnaireEcrans.Changer(new (...)(GestionnaireEcrans));
+                    GestionnaireEcrans.Changer(new ViewGestionEquipements(GestionnaireEcrans));
                 });
             }
         }
