@@ -25,26 +25,28 @@ namespace VitAdmin.View
     {
         GestionnaireEcrans GestEcran { get; set; }
         //GestionnaireEcrans previousView { get; set; }
-        Employe employe_ { get; set; }
+        Employe Employe_ { get; set; }
         public ViewProfessionnelProfil(GestionnaireEcrans gestionnaireEcrans, Employe employe = null)
         {
             InitializeComponent();
             DataContext = new ViewModelProfessionnelProfil();
-            employe_ = employe;
+            Employe_ = employe;
             GestEcran = gestionnaireEcrans;
 
             // Configure le control affichant les infos de la partie employé de l'employé
             Control.ControlDossierPatientInfos CDPI = new Control.ControlDossierPatientInfos(employe);
             Grid.SetColumn(CDPI, 0);
             Grid.SetRow(CDPI, 0);
+            Grid.SetRowSpan(CDPI,7);
 
             // Configure le control affichant les infos de la partie citoyen de l'employé
             Control.ControlProfessionnelProfil CPP = new Control.ControlProfessionnelProfil(employe);
             Grid.SetColumn(CPP, 1);
-            Grid.SetRow(CPP, 0);
+            Grid.SetRow(CPP, 4);
+            Grid.SetRowSpan(CPP, 3);
 
-            grdViewPro.Children.Add(CDPI);
-            grdViewPro.Children.Add(CPP);
+            grdViewCit.Children.Add(CDPI);
+            grdViewCit.Children.Add(CPP);
         }
 
         public Action CmdRetourEcranPrecedent

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="400">
+             Height="203.347" Width="400">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,25 +13,27 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!-- Info Profession -->
-        <Label Content="NAS" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
-               Grid.Row="1" Grid.Column="0"/>
-        <TextBox Name="txtNASEmploye" Margin="5" Height="30" VerticalAlignment="Center"
-                 Grid.Row="1" Grid.Column="1"
-                 Text="{Binding Employe.NAS}"/>
-        <Label Content="Profession" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
+        <Label Content="Profession" VerticalAlignment="Center" HorizontalAlignment="Left"
                Grid.Row="0" Grid.Column="0"/>
-        <TextBox Name="txtPosteEmploye" Margin="5" Height="30" VerticalAlignment="Center"
+        <TextBox Name="txtPosteEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
                  Grid.Row="0" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
-        <Label Content="Numéro de permis" Margin="5,40,5,40" HorizontalAlignment="Right" VerticalAlignment="Center"
+
+        <Label Content="NAS" VerticalAlignment="Center" HorizontalAlignment="Left"
+               Grid.Row="1" Grid.Column="0"/>
+        <TextBox Name="txtNASEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
+                 Grid.Row="1" Grid.Column="1"
+                 Text="{Binding Employe.NAS}"/>
+
+        <Label Content="Numéro de permis" VerticalAlignment="Center" HorizontalAlignment="Left"
                Grid.Row="2" Grid.Column="0"/>
-        <TextBox Name="txtNumPermisEmploye" Margin="5" Height="30" VerticalAlignment="Center"
+        <TextBox Name="txtNumPermisEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
                  Grid.Row="2" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
 
