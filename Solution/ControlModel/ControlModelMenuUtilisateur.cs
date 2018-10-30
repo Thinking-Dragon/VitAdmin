@@ -47,31 +47,31 @@ namespace VitAdmin.ControlModel
         }
 
         // Couleur border horaire
-        private Color FillBtnHoraire { get; set; }
-        public Color fillBtnHoraire
+        private Color PrivateFillBtnHoraire { get; set; }
+        public Color FillBtnHoraire
         {
             get
             {
-                return FillBtnHoraire;
+                return PrivateFillBtnHoraire;
             }
             set
             {
-                FillBtnHoraire = value;
+                PrivateFillBtnHoraire = value;
                 RaisePropertyChangedEvent("FillBtnHoraire");
             }
         }
 
         // Couleur border profil
-        private Color FillBtnProfil { get; set; }
-        public Color fillBtnProfil
+        private Color PrivateFillBtnProfil { get; set; }
+        public Color FillBtnProfil
         {
             get
             {
-                return FillBtnHoraire;
+                return PrivateFillBtnProfil;
             }
             set
             {
-                FillBtnProfil = value;
+                PrivateFillBtnProfil = value;
                 RaisePropertyChangedEvent("FillBtnProfil");
             }
         }
@@ -85,11 +85,11 @@ namespace VitAdmin.ControlModel
             if (!(GestionnaireEcrans.GetEcranPresent() is ViewProfessionnelHoraire))
             {
                 IsBtnHoraireEnabled = true;
-                fillBtnHoraire = Color.FromArgb(0, 255, 255, 255);
+                FillBtnHoraire = Color.FromArgb(0, 255, 255, 255);
             }
             else
             {
-                fillBtnHoraire = Color.FromArgb(50, 0, 0, 0);
+                FillBtnHoraire = Color.FromArgb(50, 0, 0, 0);
                 IsBtnHoraireEnabled = false;
             }
 
@@ -137,5 +137,21 @@ namespace VitAdmin.ControlModel
                 );
             }
         }
-   }
+
+        public ICommand CmdLogOut
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+                        UsagerConnecte.Deconnecter();
+                        Notifications.GestionnaireNotifications.DetruireInstance();
+                        GestionnaireEcrans.Changer(new ViewConnexion(GestionnaireEcrans));
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                    }
+                );
+            }
+        }
+    }
 }
