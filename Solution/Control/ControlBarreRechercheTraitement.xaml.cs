@@ -24,10 +24,19 @@ namespace VitAdmin.Control
     public partial class ControlBarreRechercheTraitement : UserControl
     {
         List<Traitement> LstTraitementsTemp { get; set; }
-        public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitements)
+        UserControl UserControl { get; set; }
+        // Ce dictionnaire permet d'ajouter des types de usercontrol pour trouver le type précis d'un control que l'on recherche.
+        public Dictionary<Type, int> userControlDictionary = new Dictionary<Type, int>
+        {
+            { typeof(ControlTraitementCreationHospitalisation), 0 }
+        };
+
+        // Constructeur
+        public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitements, UserControl userControl)
         {
             InitializeComponent();
-            DataContext = new ControlModelBarreRechercheTraitement(traitements);
+            DataContext = new ControlModelBarreRechercheTraitement(traitements, userControl);
+            UserControl = userControl;
             LstTraitementsTemp = traitements.ToList<Traitement>();
         }
 
@@ -36,5 +45,19 @@ namespace VitAdmin.Control
             (DataContext as ControlModelBarreRechercheTraitement).Traitements = new ObservableCollection<Traitement>(LstTraitementsTemp.FindAll(traitement => traitement.Nom.IndexOf(cboRecherche.Text) != -1));
             (sender as ComboBox).IsDropDownOpen = true;
         }
+
+        private void cboRecherche_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Fonctionne pas, je pense qu'il faudrait tout simplement passé la liste des traitements de la nouvelle hospitalisation au lieu d'aller ajouter le traitement par le datagrid
+            switch (userControlDictionary[(DataContext as ControlModelBarreRechercheTraitement).UserControl.GetType()])
+            {
+                case 0 : (UserControl as ControlTraitementCreationHospitalisation).dtgTraitements.Items.Add((Traitement)cboRecherche.SelectedItem);
+                    break;
+                default:
+                    break;
+            }
+           
+        }
+
     }
 }

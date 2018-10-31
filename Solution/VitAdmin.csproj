@@ -144,6 +144,7 @@
     <Compile Include="ControlModel\ControlModelRechercheEquipement.cs" />
     <Compile Include="ControlModel\ControlModelSymptome.cs" />
     <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
+    <Compile Include="ControlModel\ControlModelTraitementCreationHospitalisation.cs" />
     <Compile Include="Control\ControlAjouterPatientLit.xaml.cs">
       <DependentUpon>ControlAjouterPatientLit.xaml</DependentUpon>
     </Compile>

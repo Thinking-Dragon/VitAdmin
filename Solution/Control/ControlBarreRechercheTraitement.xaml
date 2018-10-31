@@ -10,6 +10,7 @@
               KeyUp="cboRecherche_KeyUp"
               IsEditable="True"
               ItemsSource="{Binding Traitements}"
+              SelectionChanged="cboRecherche_SelectionChanged"
               DisplayMemberPath="Nom">
     </ComboBox>
 </UserControl>

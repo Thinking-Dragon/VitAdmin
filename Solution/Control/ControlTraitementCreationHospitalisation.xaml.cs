@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Data;
 using VitAdmin.Model;
+using VitAdmin.ControlModel;
 
 namespace VitAdmin.Control
 {
@@ -23,9 +24,13 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlTraitementCreationHospitalisation : UserControl
     {
-        public ControlTraitementCreationHospitalisation()
+        ObservableCollection<Traitement> Traitements { get; set; }
+
+        public ControlTraitementCreationHospitalisation(List<Traitement> traitements) // IMPORTANT : cette liste de traitement est associé à l'hospitalisation nouvellement créée.
         {
             InitializeComponent();
+            Traitements = new ObservableCollection<Traitement>(traitements);
+            DataContext = new ControlModelTraitementCreationHospitalisation(Traitements);
 
             InitialiserControlRechercheTraitement();
 
@@ -33,8 +38,10 @@ namespace VitAdmin.Control
 
         private void InitialiserControlRechercheTraitement()
         {
+            // On crée une nouvelle liste de traitements indépendante qui va stocker tous les traitements existants
             ControlBarreRechercheTraitement controlBarreRechercheTraitement = new ControlBarreRechercheTraitement(
-                new ObservableCollection<Traitement>(DataModelTraitement.GetTraitements()));
+                new ObservableCollection<Traitement>(DataModelTraitement.GetTraitements()), this);
+
             controlBarreRechercheTraitement.HorizontalAlignment = HorizontalAlignment.Left;
             controlBarreRechercheTraitement.VerticalAlignment = VerticalAlignment.Center;
             controlBarreRechercheTraitement.Width = 120;

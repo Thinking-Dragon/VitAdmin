@@ -19,6 +19,7 @@
         <Label Content="Traitements"
                FontSize="40"/>
         <DataGrid Grid.Row="2"
+                  Name="dtgTraitements"
                   ItemsSource="{Binding Traitements}"/>
 
         <Button Grid.Row="3"
