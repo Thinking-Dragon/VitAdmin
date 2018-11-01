@@ -27,7 +27,20 @@ namespace VitAdmin.ControlModel
             set { _chambreSelectionnee = value; RaisePropertyChangedEvent("ChambreSelectionnee"); }
         }
 
-        public ObservableCollection<string> InfirmieresChef { get; set; }
+        private ObservableCollection<Usager> _infirmieresChef;
+
+        public ObservableCollection<Usager> InfirmieresChef
+        {
+            get => _infirmieresChef;
+            set { _infirmieresChef = value; RaisePropertyChangedEvent("InfirmieresChef"); }
+        }
+
+        private Usager _personnelMedicalEnChef;
+        public Usager PersonnelMedicalEnChef
+        {
+            get => _personnelMedicalEnChef;
+            set { _personnelMedicalEnChef = value; RaisePropertyChangedEvent("PersonnelMedicalEnChef"); }
+        }
 
         private string AbrevInitiale { get; set; }
 
@@ -66,11 +79,12 @@ namespace VitAdmin.ControlModel
             Departement = departement;
             AbrevInitiale = departement.Abreviation;
 
-            InfirmieresChef = new ObservableCollection<string>();
+            InfirmieresChef = new ObservableCollection<Usager>(DataModelUsager.GetInfirmieresChef());
 
-            List<Usager> infirmieresChef = DataModelUsager.GetInfirmieresChef();
-            for (int i = 0; i < infirmieresChef.Count; i++)
-                InfirmieresChef.Add(infirmieresChef[i].NomComplet);
+            if (departement.PersonnelMedicalEnChef != null)
+                foreach (var inf in InfirmieresChef)
+                    if (inf.NomComplet == departement.PersonnelMedicalEnChef.NomComplet)
+                        PersonnelMedicalEnChef = inf;
         }
     }
 }
