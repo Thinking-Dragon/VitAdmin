@@ -9,7 +9,7 @@
     <ComboBox x:Name="cboRecherche"
               KeyUp="cboRecherche_KeyUp"
               IsEditable="True"
-              ItemsSource="{Binding Traitements}"
+              ItemsSource="{Binding TraitementsTemp}"
               SelectionChanged="cboRecherche_SelectionChanged"
               DisplayMemberPath="Nom">
     </ComboBox>

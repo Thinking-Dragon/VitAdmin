@@ -24,39 +24,40 @@ namespace VitAdmin.Control
     public partial class ControlBarreRechercheTraitement : UserControl
     {
         List<Traitement> LstTraitementsTemp { get; set; }
-        UserControl UserControl { get; set; }
         // Ce dictionnaire permet d'ajouter des types de usercontrol pour trouver le type précis d'un control que l'on recherche.
-        public Dictionary<Type, int> userControlDictionary = new Dictionary<Type, int>
+        /*public Dictionary<Type, int> userControlDictionary = new Dictionary<Type, int>
         {
             { typeof(ControlTraitementCreationHospitalisation), 0 }
-        };
+        };*/
 
         // Constructeur
-        public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitements, UserControl userControl)
+        public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitementsTemps, ObservableCollection<Traitement> traitements) // Pour rendre la barre de recherche un jour accessible à plus de contexte
         {
             InitializeComponent();
-            DataContext = new ControlModelBarreRechercheTraitement(traitements, userControl);
-            UserControl = userControl;
-            LstTraitementsTemp = traitements.ToList<Traitement>();
+            DataContext = new ControlModelBarreRechercheTraitement(traitementsTemps, traitements);
+            LstTraitementsTemp = traitementsTemps.ToList<Traitement>();
         }
 
         private void cboRecherche_KeyUp(object sender, KeyEventArgs e)
         {
-            (DataContext as ControlModelBarreRechercheTraitement).Traitements = new ObservableCollection<Traitement>(LstTraitementsTemp.FindAll(traitement => traitement.Nom.IndexOf(cboRecherche.Text) != -1));
+            (DataContext as ControlModelBarreRechercheTraitement).TraitementsTemp = new ObservableCollection<Traitement>(LstTraitementsTemp.FindAll(traitement => traitement.Nom.IndexOf(cboRecherche.Text) != -1));
             (sender as ComboBox).IsDropDownOpen = true;
         }
 
         private void cboRecherche_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Fonctionne pas, je pense qu'il faudrait tout simplement passé la liste des traitements de la nouvelle hospitalisation au lieu d'aller ajouter le traitement par le datagrid
-            switch (userControlDictionary[(DataContext as ControlModelBarreRechercheTraitement).UserControl.GetType()])
+            /*switch (userControlDictionary[(DataContext as ControlModelBarreRechercheTraitement).UserControl.GetType()])
             {
                 case 0 : (UserControl as ControlTraitementCreationHospitalisation).dtgTraitements.Items.Add((Traitement)cboRecherche.SelectedItem);
                     break;
                 default:
                     break;
-            }
-           
+            }*/
+
+            (DataContext as ControlModelBarreRechercheTraitement).Traitements.Add((Traitement)cboRecherche.SelectedItem);
+
+
         }
 
     }

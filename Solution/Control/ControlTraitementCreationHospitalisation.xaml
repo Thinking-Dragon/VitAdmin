@@ -20,9 +20,15 @@
                FontSize="40"/>
         <DataGrid Grid.Row="2"
                   Name="dtgTraitements"
-                  ItemsSource="{Binding Traitements}"/>
+                  ItemsSource="{Binding Traitements}"
+                  AutoGenerateColumns="False"
+                  MouseDoubleClick="dtgTraitements_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Nom}" Header="Traitement"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
-        <Button Grid.Row="3"
+            <Button Grid.Row="3"
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"

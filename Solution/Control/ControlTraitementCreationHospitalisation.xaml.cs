@@ -40,7 +40,7 @@ namespace VitAdmin.Control
         {
             // On crée une nouvelle liste de traitements indépendante qui va stocker tous les traitements existants
             ControlBarreRechercheTraitement controlBarreRechercheTraitement = new ControlBarreRechercheTraitement(
-                new ObservableCollection<Traitement>(DataModelTraitement.GetTraitements()), this);
+                new ObservableCollection<Traitement>(DataModelTraitement.GetTraitements()), Traitements);
 
             controlBarreRechercheTraitement.HorizontalAlignment = HorizontalAlignment.Left;
             controlBarreRechercheTraitement.VerticalAlignment = VerticalAlignment.Center;
@@ -51,6 +51,9 @@ namespace VitAdmin.Control
             grdTraitements.Children.Add(controlBarreRechercheTraitement);
         }
 
-        
+        private void dtgTraitements_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ControlModelTraitementCreationHospitalisation cd = (DataContext as ControlModelTraitementCreationHospitalisation);
+        }
     }
 }
