@@ -25,14 +25,15 @@ namespace VitAdmin.Control
         ControlModelProfessionnelProfil CMPP;
         // Dépendamment de si le Control reçoit un employé ou non, il modifiera ou créera un employé
         // On peut choisir spécifiquement quel champ sera modifiable
-        public ControlProfessionnelProfil(Employe employe = null, bool isJobActive = false, bool isNASActive = false, bool isCodeActive = false)
+        public ControlProfessionnelProfil(Employe employe = null, bool isPosteActive = false, bool isNASActive = false, bool isNumEmployeActive = false, bool isNumPermisActive = false)
         {
             InitializeComponent();
 
-            // Prévient la modification involontaire des champs.            
-            txtPosteEmploye.IsEnabled = isJobActive;            
-            txtNASEmploye.IsEnabled = isNASActive;            
-            txtNumPermisEmploye.IsEnabled = isCodeActive;
+            // Prévient la modification involontaire des champs.
+            txtPosteEmploye.IsEnabled = isPosteActive;
+            txtNASEmploye.IsEnabled = isNASActive;
+            txtNumEmploye.IsEnabled = isNumEmployeActive;
+            txtNumPermisEmploye.IsEnabled = isNumPermisActive;
 
             DataContext = CMPP = new ControlModelProfessionnelProfil(employe);
         }

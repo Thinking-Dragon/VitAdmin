@@ -22,7 +22,7 @@ namespace VitAdmin.Data
                                  "WHERE us.nomUtilisateur = '" + UsagerConnecte.Usager.NomUtilisateur + "' ";
                 ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
                 {
-                    UsagerConnecte.Usager.idEmploye = SqlDR.GetUInt16("emp");
+                    UsagerConnecte.Usager.idEmploye = SqlDR.GetUInt32("emp");
                     UsagerConnecte.Usager.Poste = SqlDR.GetString("pos");
                 });
             }
