@@ -13,13 +13,13 @@ namespace VitAdmin.ControlModel
 {
     public class ControlModelBarreRechercheTraitement : ObjetObservable
     {
+        public ObservableCollection<Traitement> TraitementsTemp { get; set; }
         public ObservableCollection<Traitement> Traitements { get; set; }
-        public UserControl UserControl { get; set; }
 
-        public ControlModelBarreRechercheTraitement(ObservableCollection<Traitement> traitements, UserControl userControl)
+        public ControlModelBarreRechercheTraitement(ObservableCollection<Traitement> traitementsTemp, ObservableCollection<Traitement> traitements)
         {
+            TraitementsTemp = traitementsTemp;
             Traitements = traitements;
-            UserControl = userControl;
         }
 
     }
