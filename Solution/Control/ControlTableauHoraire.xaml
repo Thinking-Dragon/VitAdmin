@@ -41,26 +41,5 @@
         <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Jour</Label>
         <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">Soir</Label>
 
-        <Rectangle Grid.Column="2" Grid.Row="2" Fill="AliceBlue"></Rectangle>
-        <Rectangle Grid.Column="2" Grid.Row="3" Fill="AntiqueWhite"></Rectangle>
-        <Rectangle Grid.Column="2" Grid.Row="4" Fill="Aqua"></Rectangle>
-        <Rectangle Grid.Column="3" Grid.Row="2" Fill="Aquamarine"></Rectangle>
-        <Rectangle Grid.Column="3" Grid.Row="3" Fill="Azure"></Rectangle>
-        <Rectangle Grid.Column="3" Grid.Row="4" Fill="Beige"></Rectangle>
-        <Rectangle Grid.Column="4" Grid.Row="2" Fill="Bisque"></Rectangle>
-        <Rectangle Grid.Column="4" Grid.Row="3" Fill="Black"></Rectangle>
-        <Rectangle Grid.Column="4" Grid.Row="4" Fill="BlanchedAlmond"></Rectangle>
-        <Rectangle Grid.Column="5" Grid.Row="2" Fill="BlueViolet"></Rectangle>
-        <Rectangle Grid.Column="5" Grid.Row="3" Fill="Cyan"></Rectangle>
-        <Rectangle Grid.Column="5" Grid.Row="4" Fill="DarkBlue"></Rectangle>
-        <Rectangle Grid.Column="6" Grid.Row="2" Fill="DarkOrange"></Rectangle>
-        <Rectangle Grid.Column="6" Grid.Row="3" Fill="DarkKhaki"></Rectangle>
-        <Rectangle Grid.Column="6" Grid.Row="4" Fill="Cornsilk"></Rectangle>
-        <Rectangle Grid.Column="7" Grid.Row="2" Fill="DarkGoldenrod"></Rectangle>
-        <Rectangle Grid.Column="7" Grid.Row="3" Fill="DarkViolet"></Rectangle>
-        <Rectangle Grid.Column="7" Grid.Row="4" Fill="Khaki"></Rectangle>
-        <Rectangle Grid.Column="8" Grid.Row="2" Fill="Firebrick"></Rectangle>
-        <Rectangle Grid.Column="8" Grid.Row="3" Fill="Crimson"></Rectangle>
-        <Rectangle Grid.Column="8" Grid.Row="4" Fill="MidnightBlue"></Rectangle>
     </Grid>
 </UserControl>
