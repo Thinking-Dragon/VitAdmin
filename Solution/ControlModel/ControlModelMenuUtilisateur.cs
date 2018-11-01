@@ -84,7 +84,7 @@ namespace VitAdmin.ControlModel
             GestionnaireSousEcrans = gestionnaireSousEcrans;
 
             // Bouton horaire
-            if (!(GestionnaireEcrans.GetEcranPresent() is ViewProfessionnelHoraire))
+            if (!(GestionnaireSousEcrans.GetEcranPresent() is ViewProfessionnelHoraire))
             {
                 IsBtnHoraireEnabled = true;
                 FillBtnHoraire = Color.FromArgb(0, 255, 255, 255);
@@ -96,7 +96,7 @@ namespace VitAdmin.ControlModel
             }
 
             // Bouton Profil
-            if (GestionnaireEcrans.GetEcranPresent() is ViewProfessionnelProfil)
+            if (GestionnaireSousEcrans.GetEcranPresent() is ViewProfessionnelProfil)
             {
                 IsBtnProfilEnabled = false;
                 FillBtnProfil = Color.FromArgb(50, 0, 0, 0);

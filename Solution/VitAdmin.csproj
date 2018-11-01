@@ -270,6 +270,7 @@
     <Compile Include="Data\DataModelNotesMed.cs" />
     <Compile Include="Data\DataModelNotification.cs" />
     <Compile Include="Data\DataModelPrescriptions.cs" />
+    <Compile Include="Data\DataModelQuartEmploye.cs" />
     <Compile Include="Data\DataModelResultatsLabo.cs" />
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\DataModelUsager.cs" />

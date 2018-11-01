@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace VitAdmin.Model
 {
-    public class QuartIndisponible
+    public class QuartIndisponible : Quart
     {
-        public string TypeQuart { get; set; }
         public string Raison { get; set; }
-        public Employe EmployerIndisponible { get; set; }
+        public Employe EmployeIndisponible { get; set; }
+
     }
 }
