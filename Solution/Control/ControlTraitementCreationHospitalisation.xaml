@@ -20,22 +20,34 @@
                FontSize="40"/>
         <DataGrid Grid.Row="2"
                   Name="dtgTraitements"
-                  ItemsSource="{Binding Traitements}"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False"
-                  MouseDoubleClick="dtgTraitements_MouseDoubleClick">
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Traitement"/>
             </DataGrid.Columns>
+            <!--<DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Name="BtnSupprimer" Click="BtnSupprimer_Click">Supprimer</Button>
+                        
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>-->
         </DataGrid>
 
             <Button Grid.Row="3"
+                    Name="btnSuivant"
+                    IsEnabled="False"
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
-                Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
+                
+                Command="{Binding CmdBtnSuivant}">
             Suivant
         </Button>
         <Button Grid.Row="3"
+                Name="btnPrecedent"
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"

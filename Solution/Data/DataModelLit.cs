@@ -58,10 +58,7 @@ namespace VitAdmin.Data
                             _identifiant = int.Parse(lecteur.GetString("_id")),
                             Numero = lecteur.GetString("numero"),
                             EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), lecteur.GetString("etat")),
-                            Chambre = new Chambre
-                            {
-                                
-                            }
+                            
                             
                         }
                     )

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.ControlModel;
+using System.Collections.Specialized;
 
 namespace VitAdmin.Control
 {
@@ -25,12 +26,18 @@ namespace VitAdmin.Control
     public partial class ControlTraitementCreationHospitalisation : UserControl
     {
         ObservableCollection<Traitement> Traitements { get; set; }
+        
 
-        public ControlTraitementCreationHospitalisation(List<Traitement> traitements) // IMPORTANT : cette liste de traitement est associé à l'hospitalisation nouvellement créée.
+        public ControlTraitementCreationHospitalisation(List<Traitement> traitements, Action callRequeteLits) // IMPORTANT : cette liste de traitement est associé à l'hospitalisation nouvellement créée.
         {
             InitializeComponent();
             Traitements = new ObservableCollection<Traitement>(traitements);
-            DataContext = new ControlModelTraitementCreationHospitalisation(Traitements);
+            DataContext = new ControlModelTraitementCreationHospitalisation(Traitements, callRequeteLits);
+
+            // Pas le choix pour être en mesure d'ajouter l'event CollectionChanged... aye
+            dtgTraitements.ItemsSource = Traitements;
+
+            (dtgTraitements.ItemsSource as ObservableCollection<Traitement>).CollectionChanged += new NotifyCollectionChangedEventHandler(DataGrid_CollectionChanged);
 
             InitialiserControlRechercheTraitement();
 
@@ -51,9 +58,19 @@ namespace VitAdmin.Control
             grdTraitements.Children.Add(controlBarreRechercheTraitement);
         }
 
-        private void dtgTraitements_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void BtnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            ControlModelTraitementCreationHospitalisation cd = (DataContext as ControlModelTraitementCreationHospitalisation);
+            (DataContext as ControlModelTraitementCreationHospitalisation).Traitements.Remove((Traitement)dtgTraitements.SelectedItem);
+
+            // Il faut s'assurer qu'il y a au moins un traitement avant de passer à la sélection du lit, sinon aucun lit sera trouvé.
+            if ((DataContext as ControlModelTraitementCreationHospitalisation).Traitements.Count == 0)
+                btnSuivant.IsEnabled = false;
+        }
+
+        void DataGrid_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if ((DataContext as ControlModelTraitementCreationHospitalisation).Traitements.Count > 0)
+                btnSuivant.IsEnabled = true;
         }
     }
 }
