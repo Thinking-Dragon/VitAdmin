@@ -38,6 +38,7 @@ namespace VitAdmin.View
             Grid.SetColumn(CDPI, 0);
             Grid.SetRow(CDPI, 0);
             Grid.SetRowSpan(CDPI,7);
+            //MessageBox.Show(employe.Poste);
 
             // Configure le control affichant les infos de la partie citoyen de l'employé
             Control.ControlProfessionnelProfil CPP = new Control.ControlProfessionnelProfil(employe);

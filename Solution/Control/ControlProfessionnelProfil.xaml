@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
-             Height="203.347" Width="400">
+             Height="271.13" Width="400">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,6 +16,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!-- Info Profession -->
@@ -23,7 +24,7 @@
                Grid.Row="0" Grid.Column="0"/>
         <TextBox Name="txtPosteEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
                  Grid.Row="0" Grid.Column="1"
-                 Text="{Binding Employe.NAS}"/>
+                 Text="{Binding Employe.Poste}"/>
 
         <Label Content="NAS" VerticalAlignment="Center" HorizontalAlignment="Left"
                Grid.Row="1" Grid.Column="0"/>
@@ -31,11 +32,17 @@
                  Grid.Row="1" Grid.Column="1"
                  Text="{Binding Employe.NAS}"/>
 
-        <Label Content="Numéro de permis" VerticalAlignment="Center" HorizontalAlignment="Left"
+        <Label Content="Numéro d'employé" VerticalAlignment="Center" HorizontalAlignment="Left"
                Grid.Row="2" Grid.Column="0"/>
-        <TextBox Name="txtNumPermisEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
+        <TextBox Name="txtNumEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
                  Grid.Row="2" Grid.Column="1"
-                 Text="{Binding Employe.NAS}"/>
+                 Text="{Binding Employe.NumEmploye}"/>
+
+        <Label Content="Numéro de permis" VerticalAlignment="Center" HorizontalAlignment="Left"
+               Grid.Row="3" Grid.Column="0"/>
+        <TextBox Name="txtNumPermisEmploye" VerticalAlignment="Center" HorizontalAlignment="Left"
+                 Grid.Row="3" Grid.Column="1"
+                 Text="{Binding Employe.NumPermis}"/>
 
     </Grid>
 </UserControl>

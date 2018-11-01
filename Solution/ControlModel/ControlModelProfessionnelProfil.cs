@@ -9,7 +9,7 @@ namespace VitAdmin.ControlModel
 {
     public class ControlModelProfessionnelProfil
     {
-        Employe Employe { get; set; }
+        public Employe Employe { get; set; }
 
         public ControlModelProfessionnelProfil(Employe employe)
         {

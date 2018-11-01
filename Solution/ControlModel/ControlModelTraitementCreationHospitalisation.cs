@@ -11,7 +11,7 @@ namespace VitAdmin.ControlModel
 {
     public class ControlModelTraitementCreationHospitalisation : ObjetObservable
     {
-        ObservableCollection<Traitement> Traitements { get; set; }
+        public ObservableCollection<Traitement> Traitements { get; set; }
 
         public ControlModelTraitementCreationHospitalisation(ObservableCollection<Traitement> traitements)
         {
