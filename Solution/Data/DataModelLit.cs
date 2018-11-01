@@ -38,6 +38,38 @@ namespace VitAdmin.Data
             return lits;
         }
 
+        public static List<Lit> GetLitsDepartement(Departement departement)
+        {
+            List<Lit> lits = new List<Lit>();
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "SELECT l.numero NumLit, el.nom etat, c. " +
+                        "FROM Lits l " +
+                        "JOIN EtatsLits el ON l.idEtatLit = el.idEtatLit " +
+                        "JOIN Chambres c ON c.idChambre = l.idLit" +
+                        "JOIN Departement d ON d.idDepartement = c.idDepartement " +
+                        "WHERE d.Nom = '" + departement.Nom + "' "
+                    ), lecteur => lits.Add(
+                        new Lit
+                        {
+                            _identifiant = int.Parse(lecteur.GetString("_id")),
+                            Numero = lecteur.GetString("numero"),
+                            EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), lecteur.GetString("etat")),
+                            Chambre = new Chambre
+                            {
+                                
+                            }
+                            
+                        }
+                    )
+                );
+            }
+
+            return lits;
+        }
         #endregion
 
         #region POST
