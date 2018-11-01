@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
+using VitAdmin.ControlModel;
 
 namespace VitAdmin.Control
 {
@@ -20,9 +22,10 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlAjouterPatientLit : UserControl
     {
-        public ControlAjouterPatientLit()
+        public ControlAjouterPatientLit(Citoyen citoyen, Hospitalisation hospitalisation)
         {
             InitializeComponent();
+            DataContext = new ControlModelAjouterPatientLit(citoyen, hospitalisation);
         }
     }
 }

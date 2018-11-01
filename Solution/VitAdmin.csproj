@@ -114,6 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlModel\ControlModelAjouterPatientLit.cs" />
     <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
     <Compile Include="ControlModel\ControlModelAjoutPrescription.cs" />
     <Compile Include="ControlModel\ControlModelAjoutResultatLabo.cs" />
