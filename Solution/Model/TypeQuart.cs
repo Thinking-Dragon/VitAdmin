@@ -8,8 +8,8 @@ namespace VitAdmin.Model
 {
     public enum TypeQuart
     {
-        Jour,
-        Soir,
-        Nuit
+        jour,
+        soir,
+        nuit
     }
 }

@@ -39,7 +39,7 @@ namespace VitAdmin.ViewModel
             LstUserControl.Add(new ControlTextBoxHospitalisation("Contexte"));
             LstUserControl.Add(new ControlSymptome(Hospitalisation));
             LstUserControl.Add(new ControlTraitementCreationHospitalisation(Hospitalisation.LstTraitements = new List<Traitement>()));
-            LstUserControl.Add(new ControlAjouterPatientLit());
+            LstUserControl.Add(new ControlAjouterPatientLit(Citoyen, Hospitalisation));
 
             TotalEtape = LstUserControl.Count();
             NumEtape = 1;

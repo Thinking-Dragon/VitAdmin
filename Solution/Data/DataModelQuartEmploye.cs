@@ -9,7 +9,7 @@ namespace VitAdmin.Data
 {
     class DataModelQuartEmploye
     {
-        public List<QuartEmploye> GetHoraire()
+        public static List<QuartEmploye> GetHoraire()
         {
             List<QuartEmploye> horaire = new List<QuartEmploye>();
 
@@ -19,12 +19,12 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT  date, cit.nom nm, cit.prenom pm, dep.nom nmDep, shift.periode typeQ" +
-                          "FROM quartEmployes " +
+                    "SELECT date dt, cit.nom nm, cit.prenom pm, dep.nom nmDep, shift.periode typeQ " +
+                          "FROM quartsemployes qe " +
                               "INNER JOIN quarts q on qe.idQuart = q.idQuart " +
                               "INNER JOIN employes em  on em.idEmploye = qe.idEmploye " +
                               "INNER JOIN citoyens cit on cit.idCitoyen = em.idCitoyen " +
-                              "INNER JOIN periodesjournee shift on shift.idPeriodesJournee = q.idPeriodesJournee " +
+                              "INNER JOIN periodesjournee shift on shift.idPeriodeJournee = q.idPeriodeJournee " +
                               "INNER JOIN departements dep on dep.idDepartement = q.idDepartement " +
                                   "WHERE em.idEmploye = " + Parameter.UsagerConnecte.Usager.idEmploye + ";"
 
@@ -32,7 +32,7 @@ namespace VitAdmin.Data
                         horaire.Add(new QuartEmploye
                         {
                             TypeDeQuart = (TypeQuart)System.Enum.Parse(typeof(TypeQuart), SqlDR.GetString("typeQ")),
-                            Date = SqlDR.GetDateTime("date"),
+                            Date = SqlDR.GetDateTime("dt"),
                             DepartementAssocie = new Departement
                             {
                                 Nom = SqlDR.GetString("nmDep")
