@@ -51,7 +51,7 @@ namespace VitAdmin.Data
                 );
 
                 for (int i = 0; i < lstDepartement.Count; i++)
-                    lstDepartement[i].PersonnelMedicalEnChef = DataModelEmploye.GetEmploye(idEmployesChefs[i]);
+                    lstDepartement[i].PersonnelMedicalEnChef = (idEmployesChefs[i] == -1 ? null : DataModelEmploye.GetEmploye(idEmployesChefs[i]));
 
                 for (int i = 0; i < lstDepartement.Count; i++)
                     lstDepartement[i].Chambres = new ObservableCollection<Chambre>(DataModelChambre.GetChambres(lstDepartement[i]._identifiant.ToString(), "lits, equipements"));

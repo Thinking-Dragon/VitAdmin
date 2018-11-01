@@ -275,8 +275,6 @@
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\DataModelUsager.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
-    <Compile Include="EnumBindingSourceExtension.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Notifications\GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />

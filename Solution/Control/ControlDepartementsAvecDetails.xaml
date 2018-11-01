@@ -94,7 +94,8 @@
                 <TextBox Grid.Column="1"
                          HorizontalAlignment="Left"
                          IsEnabled="False"
-                         VerticalAlignment="Top"/>
+                         VerticalAlignment="Top"
+                         Text="{Binding PersonnelMedicalEnChef.NomComplet}"/>
             </Grid>
             <DataGrid Grid.Row="3"
                       Margin="16"

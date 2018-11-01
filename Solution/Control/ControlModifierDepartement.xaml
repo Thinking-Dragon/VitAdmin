@@ -97,7 +97,9 @@
         <ComboBox Grid.Column="1"
                   Grid.Row="2"
                   Width="256"
-                  VerticalAlignment="Top">
+                  VerticalAlignment="Top"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding InfirmieresChef}">
             Note: il n'y a pas de lien entre département et les infirmières chef.
             J'afficherai les infirmières chef ici dès que la personne en charge des infirmières chef règlera le problème.
         </ComboBox>

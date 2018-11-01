@@ -10,10 +10,21 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin
 {
+    /// <summary>
+    /// Gestionnaire des écrans de l'application: affiche des pages dans une frame de façon dynamique (on peut changer la page)
     public class GestionnaireEcrans
     {
+        /// <summary>
+        /// Conteneur de la page présente
+        /// </summary>
         private FrameSansNavigation Frame { get; set; }
+        /// <summary>
+        /// Callback qui est appelé lorsque la fenêtre change s'il est défini
+        /// </summary>
         private Action<Page> ActionLorsqueFenetreChange { get; set; } = null;
+        /// <summary>
+        /// L'écran qui a été utilisé en dernier
+        /// </summary>
         private Page AncienEcran { get; set; } = null;
 
         public GestionnaireEcrans(Panel parent)
