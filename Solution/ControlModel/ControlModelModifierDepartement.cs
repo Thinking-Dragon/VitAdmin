@@ -46,13 +46,14 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdValider => new CommandeDeleguee(param =>
         {
+            Departement.PersonnelMedicalEnChef = (PersonnelMedicalEnChef.Nom == "S/O" ? null : PersonnelMedicalEnChef);
             DataModelDepartement.PutDepartement(Departement);
             GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
         });
 
         public ICommand CmdCreerLocal => new CommandeDeleguee(param =>
         {
-            DialogHost.Show(new ControlEditionChambre(chambre =>
+            DialogHost.Show(new ControlEditionChambre(GestionnaireEcrans, chambre =>
             {
                 Departement.Chambres.Add(chambre);
             }), "dialogGeneral");
@@ -61,7 +62,7 @@ namespace VitAdmin.ControlModel
         public ICommand CmdModifierLocal => new CommandeDeleguee(param =>
         {
             DialogHost.Show(new ControlEditionChambre(
-                chambre =>
+                GestionnaireEcrans, chambre =>
                 {
                     ChambreSelectionnee.Numero = chambre.Numero;
                     ChambreSelectionnee.Lits = chambre.Lits;
@@ -80,11 +81,16 @@ namespace VitAdmin.ControlModel
             AbrevInitiale = departement.Abreviation;
 
             InfirmieresChef = new ObservableCollection<Usager>(DataModelUsager.GetInfirmieresChef());
+            InfirmieresChef.Add(new Usager { Nom = "S/O" });
 
             if (departement.PersonnelMedicalEnChef != null)
-                foreach (var inf in InfirmieresChef)
-                    if (inf.NomComplet == departement.PersonnelMedicalEnChef.NomComplet)
-                        PersonnelMedicalEnChef = inf;
+            {
+                for (int i = 0; i < InfirmieresChef.Count; i++)
+                    if (InfirmieresChef[i].NumEmploye == departement.PersonnelMedicalEnChef.NumEmploye)
+                        PersonnelMedicalEnChef = InfirmieresChef[i];
+            }
+            else
+                PersonnelMedicalEnChef = InfirmieresChef[InfirmieresChef.Count - 1];
         }
     }
 }

@@ -54,7 +54,7 @@ namespace VitAdmin
 
         public Page GetEcranPresent() => (Frame.Content != null ? Frame.Content as Page : null);
 
-        public void AfficherMessage(string message, string texteBouton = "Okay")
+        public void AfficherMessage(string message, string texteBouton = "Okay", string nomDialogue = "dialogGeneral")
         {
             Grid grid = new Grid();
             grid.RowDefinitions.Add(new RowDefinition());
@@ -65,7 +65,7 @@ namespace VitAdmin
             Grid.SetRow(buttonClose, 1);
             grid.Children.Add(buttonClose);
 
-            DialogHost.Show(grid, "dialogGeneral");
+            DialogHost.Show(grid, nomDialogue);
         }
     }
 }

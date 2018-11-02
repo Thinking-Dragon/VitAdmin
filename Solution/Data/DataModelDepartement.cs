@@ -64,16 +64,33 @@ namespace VitAdmin.Data
         {
             if (ConnexionBD.Instance().EstConnecte())
             {
-                ConnexionBD.Instance().ExecuterRequete(
-                    string.Format(
-                        "UPDATE Departements " +
-                        "SET nom = '{0}', abreviation = '{1}'" +
-                        "WHERE idDepartement = {2} ",
-                        departement.Nom,
-                        departement.Abreviation,
-                        departement._identifiant
-                    )
-                );
+                if(departement.PersonnelMedicalEnChef == null)
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        string.Format(
+                            "UPDATE Departements " +
+                            "SET nom = '{0}', abreviation = '{1}', idEmploye = null " +
+                            "WHERE idDepartement = {2} ",
+                            departement.Nom,
+                            departement.Abreviation,
+                            departement._identifiant
+                        )
+                    );
+                }
+                else
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        string.Format(
+                            "UPDATE Departements " +
+                            "SET nom = '{0}', abreviation = '{1}', idEmploye = (SELECT idEmploye FROM Employes WHERE numEmploye = '{2}') " +
+                            "WHERE idDepartement = {3} ",
+                            departement.Nom,
+                            departement.Abreviation,
+                            departement.PersonnelMedicalEnChef.NumEmploye,
+                            departement._identifiant
+                        )
+                    );
+                }
                 DataModelChambre.PutChambres(departement._identifiant, new List<Chambre>(departement.Chambres));
             }
         }

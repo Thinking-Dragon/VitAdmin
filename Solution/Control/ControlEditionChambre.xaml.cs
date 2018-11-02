@@ -10,10 +10,10 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlEditionChambre : UserControl
     {
-        public ControlEditionChambre(Action<Chambre> callback, Chambre chambre = null)
+        public ControlEditionChambre(GestionnaireEcrans gestionnaireEcrans, Action<Chambre> callback, Chambre chambre = null)
         {
             InitializeComponent();
-            DataContext = new ControlModelEditionChambre(chambre, callback);
+            DataContext = new ControlModelEditionChambre(gestionnaireEcrans, chambre, callback);
         }
 
         private void LitSelectionneEtat_SelectionChanged(object sender, SelectionChangedEventArgs e)

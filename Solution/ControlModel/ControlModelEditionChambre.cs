@@ -17,13 +17,15 @@ namespace VitAdmin.ControlModel
     /// </summary>
     public class ControlModelEditionChambre : ObjetObservable
     {
+        private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
         private Action<Chambre> CallBack { get; set; }
         public Chambre Chambre { get; set; }
-        
+
         /// <summary>
         /// État du bouton de suppression d'un lit (Activé ou Désactivé; change selon l'état du lit sélectionné)
         /// </summary>
-        public bool EstBtnSupprimerLitActive => LitSelectionne == null ? false : LitSelectionne.EtatLit != EtatLit.Occupé;
+        public bool EstBtnSupprimerLitActive => true; // LitSelectionne == null ? false : LitSelectionne.EtatLit != EtatLit.Occupé;
 
         /// <summary>
         /// Actualise l'état du bouton de suppression d'un lit
@@ -95,7 +97,13 @@ namespace VitAdmin.ControlModel
         /// <summary>
         /// Retire le lit sélectionné de la liste des lits de la chambre
         /// </summary>
-        public ICommand CmdSupprimerLit => new CommandeDeleguee(param => Chambre.Lits.Remove(LitSelectionne));
+        public ICommand CmdSupprimerLit => new CommandeDeleguee(param =>
+        {
+            if (LitSelectionne != null && LitSelectionne.EstDisponible)
+                Chambre.Lits.Remove(LitSelectionne);
+            else
+                GestionnaireEcrans.AfficherMessage("Vous ne pouvez pas supprimer un lit s'il est occupé!", "Okay", "dialogEditionChambre");
+        });
 
         /// <summary>
         /// Ouvre l'écran de recherche d'un équipement et l'ajoute à la liste des équipements de la chambre si la recherche aboutit à un choix
@@ -126,8 +134,15 @@ namespace VitAdmin.ControlModel
             }
         });
 
-        public ControlModelEditionChambre(Chambre chambre, Action<Chambre> callback)
+        /// <summary>
+        /// Crée un contexte de données pour une instance de contrôle de modification/création d'une chambre.
+        /// </summary>
+        /// <param name="chambre">La chambre à modifier (null si on en veut créer une)</param>
+        /// <param name="callback">Fonction de retour qui est appelée lorsque l'utilisateur confirme la modification ou la création de la chambre</param>
+        public ControlModelEditionChambre(GestionnaireEcrans gestionnaireEcrans, Chambre chambre, Action<Chambre> callback)
         {
+            GestionnaireEcrans = gestionnaireEcrans;
+
             CallBack = callback;
             if (chambre != null)
             {
