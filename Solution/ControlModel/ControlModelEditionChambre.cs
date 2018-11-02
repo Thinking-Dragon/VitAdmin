@@ -19,6 +19,16 @@ namespace VitAdmin.ControlModel
     {
         private Action<Chambre> CallBack { get; set; }
         public Chambre Chambre { get; set; }
+        
+        /// <summary>
+        /// État du bouton de suppression d'un lit (Activé ou Désactivé; change selon l'état du lit sélectionné)
+        /// </summary>
+        public bool EstBtnSupprimerLitActive => LitSelectionne == null ? false : LitSelectionne.EtatLit != EtatLit.Occupé;
+
+        /// <summary>
+        /// Actualise l'état du bouton de suppression d'un lit
+        /// </summary>
+        public void ActualiserEtatBtnSupprimerLit() => RaisePropertyChangedEvent("EstBtnSupprimerLitActive");
 
         private Lit _litSelectionne;
         /// <summary>

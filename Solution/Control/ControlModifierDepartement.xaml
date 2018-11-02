@@ -99,10 +99,9 @@
                   Width="256"
                   VerticalAlignment="Top"
                   IsReadOnly="True"
-                  ItemsSource="{Binding InfirmieresChef}">
-            Note: il n'y a pas de lien entre département et les infirmières chef.
-            J'afficherai les infirmières chef ici dès que la personne en charge des infirmières chef règlera le problème.
-        </ComboBox>
+                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.InfirmieresChef}"
+                  SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PersonnelMedicalEnChef}"
+                  DisplayMemberPath="NomComplet"/>
         <Button Grid.Column="1"
                 Grid.Row="3"
                 Width="256"

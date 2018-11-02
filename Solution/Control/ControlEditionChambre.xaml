@@ -74,15 +74,16 @@
                           CanUserAddRows="False"
                           ItemsSource="{Binding Chambre.Lits}"
                           SelectedItem="{Binding LitSelectionne}"
+                          SelectionChanged="dtgLits_SelectionChanged"
                           Height="200">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="#"
                                             Binding="{Binding Numero}"
                                             IsReadOnly="True"
                                             Width="*"/>
-                        <DataGridComboBoxColumn Header="État"
+                        <DataGridComboBoxColumn x:Name="dtgcboEtatLit"
+                                                Header="État"
                                                 Width="*"
-                                                
                                                 ItemsSource="{Binding Source={StaticResource EtatLitEnumValues}}"
                                                 SelectedItemBinding="{Binding EtatLit}">
                             <DataGridComboBoxColumn.EditingElementStyle>
@@ -114,13 +115,15 @@
                         Grid.Row="1"
                         HorizontalAlignment="Right"
                         Command="{Binding CmdCreerLit}">Créer</Button>
-                <Button Margin="16"
+                <Button x:Name="btnSupprimerLit"
+                        Margin="16"
                         Grid.Column="1"
                         Grid.Row="1"
                         HorizontalAlignment="Left"
+                        IsEnabled="{Binding EstBtnSupprimerLitActive}"
                         Command="{Binding CmdSupprimerLit}">
                     Supprimer
-                    <Button.Style>
+                    <!--<Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="IsEnabled" Value="False"/>
                             <Style.Triggers>
@@ -129,7 +132,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Button.Style>
+                    </Button.Style>-->
                 </Button>
                 <Button Margin="16"
                         Grid.Column="2"

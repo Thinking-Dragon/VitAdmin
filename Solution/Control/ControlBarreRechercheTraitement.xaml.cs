@@ -46,14 +46,6 @@ namespace VitAdmin.Control
 
         private void cboRecherche_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Fonctionne pas, je pense qu'il faudrait tout simplement passé la liste des traitements de la nouvelle hospitalisation au lieu d'aller ajouter le traitement par le datagrid
-            /*switch (userControlDictionary[(DataContext as ControlModelBarreRechercheTraitement).UserControl.GetType()])
-            {
-                case 0 : (UserControl as ControlTraitementCreationHospitalisation).dtgTraitements.Items.Add((Traitement)cboRecherche.SelectedItem);
-                    break;
-                default:
-                    break;
-            }*/
 
             (DataContext as ControlModelBarreRechercheTraitement).Traitements.Add((Traitement)cboRecherche.SelectedItem);
 

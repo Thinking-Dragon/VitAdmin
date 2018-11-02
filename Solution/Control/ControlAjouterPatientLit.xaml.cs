@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using VitAdmin.Model;
 using VitAdmin.ControlModel;
 using VitAdmin.Data;
+using System.Collections.ObjectModel;
 
 namespace VitAdmin.Control
 {
@@ -23,11 +24,13 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlAjouterPatientLit : UserControl
     {
-        List<Lit> LstLits { get; set; }
+        public Action CallRequeteLits { get; set; }
+        //ObservableCollection<Lit> Lits { get; set; }
         public ControlAjouterPatientLit(Citoyen citoyen, Hospitalisation hospitalisation)
         {
             InitializeComponent();
-            DataContext = new ControlModelAjouterPatientLit(citoyen, hospitalisation, LstLits);
+
+            DataContext = new ControlModelAjouterPatientLit(citoyen, hospitalisation, new List<Lit>(), CallRequeteLits);
         }
     }
 }

@@ -17,8 +17,9 @@ namespace VitAdmin.Control
         }
 
         private void LitSelectionneEtat_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            => (DataContext as ControlModelEditionChambre).ActualiserEtatBtnSupprimerLit();
 
-        }
+        private void dtgLits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            => (DataContext as ControlModelEditionChambre).ActualiserEtatBtnSupprimerLit();
     }
 }
