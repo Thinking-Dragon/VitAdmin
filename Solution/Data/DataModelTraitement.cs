@@ -237,7 +237,7 @@ namespace VitAdmin.Data
 
                 for (int i = 0; i < traitementsExistants.Count; ++i)
                   for(int j = 0; j < traitements.Count; ++j)
-                     if(traitements[i].IdTraitment == traitementsExistants[j].IdTraitment)
+                     if(traitementsExistants[i].IdTraitment == traitements[j].IdTraitment)
                         PutTraitement(traitements[i]);
                 
             }
