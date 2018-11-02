@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -17,16 +18,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray">Liste des patients</Label>
+        <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Patient:"/>
 
-        <ComboBox x:Name="cboRecherche" Grid.Column="1" MaxWidth="500" MinWidth="175" VerticalAlignment="Center" HorizontalAlignment="Left"
+        <ComboBox x:Name="cboRecherche" Grid.Column="1" Grid.Row="1" MaxWidth="500" MinWidth="175" VerticalAlignment="Center" HorizontalAlignment="Left"
               KeyUp="CboRecherche_KeyUp"
               IsEditable="True"
               ItemsSource="{Binding Citoyens}"
               DisplayMemberPath="Nom">
         </ComboBox>
 
-        <DataGrid Name="dtgPatient" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="dtgPatient" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"/>
                 <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"/>
@@ -42,7 +44,7 @@
 
             </DataGrid.InputBindings>
         </DataGrid>
-        <StackPanel Name="stpnlFiltres" Grid.Row="1" Grid.Column="2" Height="100" VerticalAlignment="Top">
+        <StackPanel Name="stpnlFiltres" Grid.Row="2" Grid.Column="2" Height="100" VerticalAlignment="Top">
             <Label Content="Filtres"/>
         </StackPanel>
 

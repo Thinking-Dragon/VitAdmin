@@ -40,7 +40,7 @@ namespace VitAdmin.Control
             {
                 (DataContext as ControlModelAjoutNote).MessageErreur = "Vous devez remplir tous les champs";
             }
-            else if (!EstValide())
+            else if (EstValide())
             {
                 (DataContext as ControlModelAjoutNote).MessageErreur = "La limite de caractère de la note est atteinte";
             }

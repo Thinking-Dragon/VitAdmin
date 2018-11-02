@@ -24,10 +24,11 @@ namespace VitAdmin.Control
     public partial class ControlProfessionnelDossierPatient : UserControl
     {
         List<Hospitalisation> LstHospitalisation; // List temporaire qui garde en mémoire tous les hospitalisations trouvées lors de l'accès au dossier du patient. Cela permet d'augmenter la vitesse de l'application et diminuer le nombre de demande à la bd.
-        ComboBox cboDepartements = new ComboBox
+        //Ta combo box est déclarée dans le XAML
+        /*ComboBox cboDepartements = new ComboBox
         {
-            VerticalAlignment = VerticalAlignment.Center,
-        };
+            VerticalAlignment = VerticalAlignment.Center
+        };*/
 
         ControlModelProfessionnelDossierPatient controlModelProfessionnelDossierPatient;
 
@@ -75,7 +76,8 @@ namespace VitAdmin.Control
             cboDepartements.DisplayMemberPath = "Nom";
             cboDepartements.SelectionChanged += cboDepartement_SelectionChanged;
 
-            grdDossierPatient.Children.Add(cboDepartements);
+            //Plus besoin de l'ajouter, il est déjà dans le xaml
+            //grdDossierPatient.Children.Add(cboDepartements);
         }
 
         private void dtpkrDebut_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

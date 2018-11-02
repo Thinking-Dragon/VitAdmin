@@ -8,7 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1180">
     <Grid>
-        <dragablz:TabablzControl HorizontalAlignment="Center" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" FixedHeaderCount="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="18*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="24" Foreground="Gray">Dossier patient</Label>
+        
+        <dragablz:TabablzControl Grid.Row="1" HorizontalAlignment="Center" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="1180" FixedHeaderCount="5">
             <TabItem Name="Apercu" Header="Aperçu" HorizontalAlignment="Center">
 
             </TabItem>

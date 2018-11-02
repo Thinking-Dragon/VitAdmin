@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,20 +39,27 @@ namespace VitAdmin.Control
         {
             if (lienImage.Text != "" && nomAnalyse.Text != "")
             {
-                if (!EstNomImageValide())
+                
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(ConfigurationManager.ConnectionStrings["FTP"].ConnectionString + lienImage.Text);
+                image.DownloadFailed += (object senderc, ExceptionEventArgs ec) => { (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "L'image n'existe pas"; };
+                image.DownloadCompleted += (object sendercd, EventArgs ecd) =>
                 {
-                    (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "L'image n'existe pas";
-                }
-                else if (EstDeuxiemeClick == true)
-                {
-                    ControlModelResultatLabo.CmdBtnClicConfirmerResultatLabo.Execute(new ResultatLabo(lienImage.Text, nomAnalyse.Text, (bool)Notifier.IsChecked));
-                    DialogHost.CloseDialogCommand.Execute(null, null);
-                }
-                else
-                {
-                    (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Voulez-vous vraiment confirmer?";
-                    EstDeuxiemeClick = true;
-                }
+                    if (EstDeuxiemeClick == true)
+                    {
+                        ControlModelResultatLabo.CmdBtnClicConfirmerResultatLabo.Execute(new ResultatLabo(ConfigurationManager.ConnectionStrings["FTP"].ConnectionString + lienImage.Text, nomAnalyse.Text, (bool)Notifier.IsChecked));
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                    }
+                    else
+                    {
+                        (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Voulez-vous vraiment confirmer?";
+                        EstDeuxiemeClick = true;
+                    }
+                };
+
+                image.EndInit();
+                
             }
             else
             {
@@ -65,22 +73,5 @@ namespace VitAdmin.Control
             return nomAnalyse.Text.Length > 255;
         }
 
-        private bool EstNomImageValide()
-        {
-            BitmapImage img = null;
-            //420.cstj.qc.ca/2016/1524043/VitAdmin/radio1.jpg
-            try
-            {
-                img = new BitmapImage(new Uri(lienImage.Text));
-                return img != null;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            
-
-            
-        }
     }
 }

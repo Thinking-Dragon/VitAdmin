@@ -74,7 +74,17 @@ namespace VitAdmin.Control
                     dimanche = aujourdhui.AddDays(-6);
                     break;
             }
-            
+
+            Label nom = new Label
+            {
+                Content =  "Horaire de " + Parameter.UsagerConnecte.Usager.NomComplet + " \nPoste : " + Parameter.UsagerConnecte.Usager.Poste ,
+                FontSize = 20
+            };
+
+            Grid.SetColumnSpan(nom, 8);
+            Grid.SetColumn(nom, 1);
+            Grid.SetRow(nom, 0);
+            GrdHoraire.Children.Add(nom);
 
             for (int i = 0; i < 7; i++)
             {

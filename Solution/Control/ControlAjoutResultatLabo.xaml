@@ -19,9 +19,9 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="10,10,10,10">Mettre ici le chemin (FTP ou Absolu local) de l'image :</Label>
-        <TextBox Grid.Column="1" Grid.Row="0" Width="100" Name="lienImage" Margin="10,10,10,10"></TextBox>
-        <Button Grid.Column="2" Grid.Row="0" Margin="10,10,10,10">Parcourir</Button>
+        <Label Grid.Column="0" Grid.Row="0" Margin="10,10,10,10">Mettre ici le nom de l'image et son extension :</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Name="lienImage" Margin="10,10,10,10"></TextBox>
+        <!--<Button Grid.Column="2" Grid.Row="0" Margin="10,10,10,10">Parcourir</Button>-->
 
         <Label Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">Nom de l'analyse:</Label>
         <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="nomAnalyse" Margin="10,10,10,10"></TextBox>

@@ -37,6 +37,7 @@ namespace VitAdmin.Data
                 try
                 {
                     if (String.IsNullOrEmpty(NomBD)) return false;
+                    //POUR LAURENCE : Utilisation de l'alias 420
                     string strConnexion = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
                     connexion = new MySqlConnection(strConnexion);
                     Connexion.Open();

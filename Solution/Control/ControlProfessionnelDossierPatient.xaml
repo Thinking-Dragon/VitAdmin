@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200">
     <Grid Name="grdDossierPatient">
+        
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -16,26 +18,30 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-
         </Grid.ColumnDefinitions>
 
-        <DataGrid Name="dtgDossierPatient" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
+        <ComboBox VerticalAlignment="Center" Name="cboDepartements" Grid.Row="1"></ComboBox>
+        
+        <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray">Liste des hospitalisations</Label>
+
+        <DataGrid Name="dtgDossierPatient" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
+            
            <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DataContext.DepartementAssocie.Nom, 
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
                 <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date début"/>
                 <DataGridTextColumn Binding="{Binding DateFin, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date fin"/>
             </DataGrid.Columns>
+            
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick"
                               Command="{Binding CmdMouseDoubleClickHospit}"
-                              CommandParameter="{Binding SelectedItem, ElementName=dtgDossierPatient}"
-                />
+                              CommandParameter="{Binding SelectedItem, ElementName=dtgDossierPatient}"/>
 
             </DataGrid.InputBindings>
         </DataGrid>
-        <DatePicker Name="dtpkrDebut" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
-        <DatePicker Name="dtpkrFin" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
-        <Button Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
+        <DatePicker Name="dtpkrDebut" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
+        <DatePicker Name="dtpkrFin" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
+        <Button Grid.Row="1" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
     </Grid>
 </UserControl>
