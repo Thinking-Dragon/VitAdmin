@@ -24,13 +24,18 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlAjouterPatientLit : UserControl
     {
-        public Action CallRequeteLits { get; set; }
+        public void CallRequeteLits() => (DataContext as ControlModelAjouterPatientLit).CallRequeteLit();
         //ObservableCollection<Lit> Lits { get; set; }
         public ControlAjouterPatientLit(Citoyen citoyen, Hospitalisation hospitalisation)
         {
             InitializeComponent();
 
-            DataContext = new ControlModelAjouterPatientLit(citoyen, hospitalisation, new List<Lit>(), CallRequeteLits);
+            DataContext = new ControlModelAjouterPatientLit(citoyen, hospitalisation, new List<Lit>());
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+           Hospitalisation hops = (DataContext as ControlModelAjouterPatientLit).Hospitalisation;
         }
     }
 }

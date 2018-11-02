@@ -18,12 +18,14 @@
                FontSize="40"/>
         <DataGrid ItemsSource="{Binding Lits}"
           AutoGenerateColumns="False"
+                  MouseDoubleClick="DataGrid_MouseDoubleClick"
+                  IsReadOnly="True"
                  Grid.Row="1" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Lits.Chambre.UnDepartement.Nom}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding Lits.Chambre.Nom}" Header="N°Chambre"/>
-                <DataGridTextColumn Binding="{Binding Lits.Numero}" Header="N°Lit"/>
-                <DataGridTextColumn Binding="{Binding Lits.EtatLit}" Header="N°Lit"/>
+                <DataGridTextColumn Binding="{Binding Chambre.UnDepartement.Nom}" Header="Département"/>
+                <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="N°Chambre"/>
+                <DataGridTextColumn Binding="{Binding Numero}" Header="N°Lit"/>
+                <DataGridTextColumn Binding="{Binding EtatLit}" Header="N°Lit"/>
             </DataGrid.Columns>
         
         </DataGrid>

@@ -32,7 +32,7 @@ namespace VitAdmin.Control
         {
             InitializeComponent();
             Traitements = new ObservableCollection<Traitement>(traitements);
-            DataContext = new ControlModelTraitementCreationHospitalisation(Traitements, callRequeteLits);
+            DataContext = new ControlModelTraitementCreationHospitalisation(Traitements, callRequeteLits, traitements);
 
             // Pas le choix pour être en mesure d'ajouter l'event CollectionChanged... aye
             dtgTraitements.ItemsSource = Traitements;

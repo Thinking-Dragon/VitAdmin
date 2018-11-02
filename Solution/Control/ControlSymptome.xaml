@@ -33,9 +33,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Name="BtnSupprimer" Click="BtnSupprimer_Click">Supprimer</Button>
-                            <!--<Button Name="btnSupprimer" 
-                                    Command="{Binding Path=DataContext.ControlModelSymptome.CmdBtnSupprimer, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    CommandParameter="{Binding SelectedItem, ElementName=dtgSymptome}">Supprimer</Button>-->
+                           
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
