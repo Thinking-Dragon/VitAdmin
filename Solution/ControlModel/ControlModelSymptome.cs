@@ -13,14 +13,18 @@ namespace VitAdmin.ControlModel
     public class ControlModelSymptome : ObjetObservable
     {
         public ObservableCollection<Symptome> Symptomes { get; set; }
+        public Hospitalisation Hospitalisation { get; set; }
 
         public ControlModelSymptome(Hospitalisation hospitalisation)
         {
             if (hospitalisation.LstSymptomes == null)
                 hospitalisation.LstSymptomes = new List<Symptome>();
 
-            Symptomes = new ObservableCollection<Symptome>();
-            hospitalisation.LstSymptomes.ForEach(s => Symptomes.Add(s));
+            Hospitalisation = hospitalisation;
+
+            Symptomes = new ObservableCollection<Symptome>(hospitalisation.LstSymptomes);
+            /*if(hospitalisation.LstSymptomes.Count > 0)
+                hospitalisation.LstSymptomes.ForEach(s => Symptomes.Add(s));*/
         }
 
         public ICommand CmdAjoutSymptome
@@ -32,6 +36,7 @@ namespace VitAdmin.ControlModel
                     Symptome symptomeAjout = new Symptome { Description = "Ajouter la description"};
 
                     Symptomes.Add(symptomeAjout);
+                    Hospitalisation.LstSymptomes.Add(symptomeAjout);
 
                 });
             }
@@ -45,6 +50,7 @@ namespace VitAdmin.ControlModel
                 {
 
                     Symptomes.Remove((Symptome)symptome);
+                    Hospitalisation.LstSymptomes.Remove((Symptome)symptome);
 
                 });
             }

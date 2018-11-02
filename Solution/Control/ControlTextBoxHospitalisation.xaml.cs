@@ -23,10 +23,10 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlTextBoxHospitalisation : UserControl
     {
-        public ControlTextBoxHospitalisation(string nomLabel)
+        public ControlTextBoxHospitalisation(string nomLabel, Hospitalisation hospitalisation)
         {
             InitializeComponent();
-            DataContext = new ControlModelTextBoxHospitalisation(nomLabel);
+            DataContext = new ControlModelTextBoxHospitalisation(nomLabel, hospitalisation);
             
         }
     }

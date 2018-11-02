@@ -11,12 +11,13 @@ namespace VitAdmin.ControlModel
 
     public class ControlModelTextBoxHospitalisation : ObjetObservable
     {
-        //public Hospitalisation Hospitalisation { get; set; }
+        public Hospitalisation Hospitalisation { get; set; }
         public string NomLabel { get; set; }
 
-        public ControlModelTextBoxHospitalisation(string nomLabel)
+        public ControlModelTextBoxHospitalisation(string nomLabel, Hospitalisation hospitalisation)
         {
             NomLabel = nomLabel;
+            Hospitalisation = hospitalisation;
         }
     }
 }

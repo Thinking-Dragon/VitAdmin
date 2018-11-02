@@ -14,17 +14,25 @@ namespace VitAdmin.ControlModel
     {
         public ObservableCollection<Traitement> Traitements { get; set; }
         private Action CallRequeteLits { get; set; }
+        public List<Traitement> LstTraitements { get; set; }
 
         public ICommand CmdBtnSuivant => new CommandeDeleguee(param =>
         {
-            CallRequeteLits();
             MaterialDesignThemes.Wpf.Transitions.Transitioner.MoveNextCommand.Execute(null, null);
+
+            foreach (Traitement traitement in Traitements)
+            {
+                LstTraitements.Add(traitement);
+            }
+
+            CallRequeteLits();
         });
 
-        public ControlModelTraitementCreationHospitalisation(ObservableCollection<Traitement> traitements, Action callRequeteLits)
+        public ControlModelTraitementCreationHospitalisation(ObservableCollection<Traitement> traitements, Action callRequeteLits, List<Traitement> lstTraitement)
         {
             Traitements = traitements;
             CallRequeteLits = callRequeteLits;
+            LstTraitements = lstTraitement;
         }
     }
 }
