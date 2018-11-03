@@ -37,38 +37,47 @@ namespace VitAdmin.Control
         {
             if (produit.Text != "" && posologie.Text != "" && dateDebut.SelectedDate != null && nbJour.Text != null)
             {
-                if (EstDeuxiemeClick == true)
+                if (EstValide())
                 {
-                    if (Parameter.UsagerConnecte.Usager.Poste == "médecin" || Parameter.UsagerConnecte.Usager.Poste == "infirmière" || Parameter.UsagerConnecte.Usager.Poste == "admin")
+                    if (EstDateDebutValide())
                     {
-                        ControlModelPrescription.CmdBtnClicConfirmerPrescription.Execute(new Prescription(produit.Text, posologie.Text, new DateTime(dateDebut.SelectedDate.Value.Year, dateDebut.SelectedDate.Value.Month, dateDebut.SelectedDate.Value.Day), (int)nbJour.Value, (bool)Notifier.IsChecked));
-                        DialogHost.CloseDialogCommand.Execute(null, null);
+                        if (EstDeuxiemeClick == true)
+                        {
+                            if (Parameter.UsagerConnecte.Usager.Poste == "médecin" || Parameter.UsagerConnecte.Usager.Poste == "infirmière" || Parameter.UsagerConnecte.Usager.Poste == "admin")
+                            {
+                                ControlModelPrescription.CmdBtnClicConfirmerPrescription.Execute(new Prescription(produit.Text, posologie.Text, new DateTime(dateDebut.SelectedDate.Value.Year, dateDebut.SelectedDate.Value.Month, dateDebut.SelectedDate.Value.Day), (int)nbJour.Value, (bool)Notifier.IsChecked));
+                                DialogHost.CloseDialogCommand.Execute(null, null);
 
+                            }
+                            else
+                            {
+                                (DataContext as ControlModelAjoutPrescription).MessageErreur = "Vous n'êtes pas autorisé à ajouter une prescription";
+                            }
+                        }
+                        else
+                        {
+                            (DataContext as ControlModelAjoutPrescription).MessageErreur = "Voulez-vous vraiment confirmer?";
+                            EstDeuxiemeClick = true;
+                        }
                     }
                     else
                     {
-                        (DataContext as ControlModelAjoutPrescription).MessageErreur = "Vous n'êtes pas autorisé à ajouter une prescription";
+                        (DataContext as ControlModelAjoutPrescription).MessageErreur = "Une prescription ne doit pas débuter dans le passé";
                     }
+                    
                 }
                 else
                 {
-                    (DataContext as ControlModelAjoutPrescription).MessageErreur = "Voulez-vous vraiment confirmer?";
-                    EstDeuxiemeClick = true;
+                    (DataContext as ControlModelAjoutPrescription).MessageErreur = "La limite de caractère est atteinte";
                 }
-            }
-            else if (EstValide())
-            {
-                (DataContext as ControlModelAjoutPrescription).MessageErreur = "La limite de caractère est atteinte";
-            }
-            else if(EstDateDebutValide())
-            {
-                (DataContext as ControlModelAjoutPrescription).MessageErreur = "Une prescription ne doit pas débuter dans le passé";
+                
             }
             else
             {
                 (DataContext as ControlModelAjoutPrescription).MessageErreur = "Vous devez remplir tous les champs";
 
             }
+
         }
 
         private bool EstValide()
