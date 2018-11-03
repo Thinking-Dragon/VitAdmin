@@ -31,7 +31,7 @@ namespace VitAdmin.Data
                         lstHospitalisation.Add(new Hospitalisation
                         {
                             DateDebut = (DateTime)SqlDR.GetMySqlDateTime("dDebut"),
-                            DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin") , 
+                            //DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin") , 
                             
                         });
 
@@ -79,6 +79,7 @@ namespace VitAdmin.Data
 
         public static void PostHospitalisation(Citoyen citoyen, Hospitalisation hospitalisation, Traitement traitement, Chambre chambre, Lit lit)
         {
+
             if (ConnexionBD.Instance().EstConnecte())
             {
 
@@ -86,22 +87,22 @@ namespace VitAdmin.Data
                 ConnexionBD.Instance().ExecuterRequete(
                     
                         "INSERT INTO hospitalisations (idCitoyen, dateDebut, dateFin, contexte) " +
-                        "VALUES ((SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '@AssMaladie'), " +
-                        "'@DateDebut', " +
-                        "'@DateFin ', " +
-                        "'@Contexte' , " ,
+                        "VALUES ((SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "'), " +
+                        "'" + hospitalisation.DateDebut.ToString() + "', " +
+                        "'@DateFin', " +
+                        "'@Contexte') " ,
                         new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
                         new Tuple<string, string>("@DateDebut", hospitalisation.DateDebut.ToString()),
-                        new Tuple<string, string>("@DateDebut", hospitalisation.DateFin.ToString()),
-                        new Tuple<string, string>("@DateDebut", hospitalisation.Contexte)
+                        new Tuple<string, string>("@DateFin", hospitalisation.DateFin.ToString()),
+                        new Tuple<string, string>("@Contexte", hospitalisation.Contexte)
                 );
 
                 // Ensuite, il faut créer le lien en bd entre l'hospitalisation et le traitement assigné
                 ConnexionBD.Instance().ExecuterRequete(
 
                         "INSERT INTO hospitalisationstraitements (idHospitalisation, idTraitement) " +
-                        "VALUES ((SELECT idHospitalisation FROM hospitalisations h JOIN citoyens c WHERE c.numAssuranceMaladie = '@AssMaladie'), " +
-                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '@TraitementNom'), " ,
+                        "VALUES ((SELECT idHospitalisation FROM hospitalisations h INNER JOIN citoyens c WHERE (c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') AND (h.dateDebut = '" + hospitalisation.DateDebut.ToString() + "')), " +
+                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '" + traitement.Nom + "')) " ,
                         new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
                         new Tuple<string, string>("@TraitementNom", traitement.Nom)
                 );
@@ -111,15 +112,20 @@ namespace VitAdmin.Data
 
                         "UPDATE lits l " +
                         "JOIN chambres ch ON ch.idChambre = l.idChambre " +
-                        "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = @AssMaladie), " +
-                        "WHERE (ch.nom = @NomChambre) AND " +
-                        "(l.numero = @NumLit) ",
+                        "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') " +
+                        "WHERE (ch.nom = '" + chambre.Numero + "') AND " +
+                        "(l.numero = '" + lit.Numero + "') ",
                         new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
                         new Tuple<string, string>("@NomChambre", chambre.Numero),
                         new Tuple<string, string>("@NumLit", lit.Numero)
 
                 );
             }
+        }
+
+        public void PostHospitalisation2(Hospitalisation hospitalisation)
+        {
+
         }
     }
 }

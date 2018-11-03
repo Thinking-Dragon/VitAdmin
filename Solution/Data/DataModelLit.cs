@@ -46,7 +46,7 @@ namespace VitAdmin.Data
             {
                 ConnexionBD.Instance().ExecuterRequete(
                     string.Format(
-                        "SELECT l.numero NumLit, el.nom etat, c.Nom chNom, d.Nom depNom " +
+                        "SELECT idLit _id, l.numero NumLit, el.nom etat, c.Nom chNom, d.Nom depNom " +
                         "FROM Lits l " +
                         "JOIN EtatsLits el ON l.idEtatLit = el.idEtatLit " +
                         "JOIN Chambres c ON c.idChambre = l.idChambre " +
@@ -55,6 +55,7 @@ namespace VitAdmin.Data
                     ), lecteur => lits.Add(
                         new Lit
                         {
+                            _identifiant = int.Parse(lecteur.GetString("_id")),
                             Numero = lecteur.GetString("NumLit"),
                             EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), lecteur.GetString("etat")),
                             Chambre = new Chambre
@@ -144,6 +145,21 @@ namespace VitAdmin.Data
                     PostLit(idChambre, lit);
                 else
                     PutLit(lit);
+            }
+        }
+
+        public static void PutLitCitoyen(Lit lit, Citoyen citoyen)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "UPDATE Lits " +
+                        "SET idCitoyen = (SELECT idCitoyen FROM citoyens WHERE numAssuranceMaladie = '{0}') " + 
+                        "WHERE idLit = {1}",
+                        citoyen.AssMaladie, lit._identifiant
+                    )
+                );
             }
         }
 

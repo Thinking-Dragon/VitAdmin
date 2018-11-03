@@ -36,7 +36,7 @@
             </DataGridTemplateColumn>-->
         </DataGrid>
 
-            <Button Grid.Row="3"
+        <Button Grid.Row="3"
                     Name="btnSuivant"
                     IsEnabled="False"
                 Width="130"
@@ -54,5 +54,6 @@
                 Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
             Précédent
         </Button>
+        <Label Content="Seul le traitement test chirurgie fonctionne" HorizontalAlignment="Left" Margin="564,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

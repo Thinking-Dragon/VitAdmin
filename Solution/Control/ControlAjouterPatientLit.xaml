@@ -16,7 +16,8 @@
 
         <Label Content="Sélectionner un lit"
                FontSize="40"/>
-        <DataGrid ItemsSource="{Binding Lits}"
+        <DataGrid Name="dtgSelectionLit"
+            ItemsSource="{Binding Lits}"
           AutoGenerateColumns="False"
                   MouseDoubleClick="DataGrid_MouseDoubleClick"
                   IsReadOnly="True"
@@ -31,10 +32,12 @@
         </DataGrid>
 
         <Button Grid.Row="2"
+                Name="btnTerminer"
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
-                Command="{Binding Terminer}">
+                IsEnabled="False"
+                Command="{Binding CmdBtnTerminer}">
             Terminer
         </Button>
         <Button Grid.Row="2"
