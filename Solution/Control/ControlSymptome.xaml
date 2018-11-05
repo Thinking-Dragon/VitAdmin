@@ -23,6 +23,7 @@
           ItemsSource="{Binding Symptomes}"
           AutoGenerateColumns="False"
           CanUserAddRows="True"
+          MouseDoubleClick="dtgSymptome_MouseDoubleClick"
           Grid.Row="1" >
             <DataGrid.Columns>
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding Description}"

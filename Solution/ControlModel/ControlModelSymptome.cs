@@ -23,8 +23,7 @@ namespace VitAdmin.ControlModel
             Hospitalisation = hospitalisation;
 
             Symptomes = new ObservableCollection<Symptome>(hospitalisation.LstSymptomes);
-            /*if(hospitalisation.LstSymptomes.Count > 0)
-                hospitalisation.LstSymptomes.ForEach(s => Symptomes.Add(s));*/
+
         }
 
         public ICommand CmdAjoutSymptome

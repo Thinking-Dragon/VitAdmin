@@ -34,5 +34,10 @@ namespace VitAdmin.Control
             if((DataContext as ControlModelSymptome).Symptomes.Count() > 0)
             (DataContext as ControlModelSymptome).Symptomes.Remove((Symptome)dtgSymptome.SelectedItem);
         }
+
+        private void dtgSymptome_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Hospitalisation h = (DataContext as ControlModelSymptome).Hospitalisation;
+        }
     }
 }

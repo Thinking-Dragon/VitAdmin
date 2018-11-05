@@ -9,6 +9,8 @@ using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 using VitAdmin.Control;
+using VitAdmin.View;
+
 namespace VitAdmin.ViewModel
 {
     public class ViewModelProfessionnelDossierPatientCreerHospitalisation : ObjetObservable
@@ -19,17 +21,6 @@ namespace VitAdmin.ViewModel
         public Hospitalisation Hospitalisation { get; set; }
         public int TotalEtape { get; set; }
         public int NumEtape { get; set; }
-
-        /*private UserControl contenu;
-        public UserControl Contenu
-        {
-            get { return contenu; }
-            set
-            {
-                contenu = value;
-                RaisePropertyChangedEvent("Contenu");
-            }
-        }*/
 
         public ViewModelProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
@@ -50,7 +41,19 @@ namespace VitAdmin.ViewModel
             
         }
 
+        public ICommand CmdBtnAnnuler
+        {
+            get
+            {
+                return new CommandeDeleguee(action =>
+                {
 
-     
+                    this.GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, Citoyen));
+
+                });
+            }
+        }
+
+
     }
 }
