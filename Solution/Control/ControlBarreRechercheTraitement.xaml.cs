@@ -24,11 +24,6 @@ namespace VitAdmin.Control
     public partial class ControlBarreRechercheTraitement : UserControl
     {
         List<Traitement> LstTraitementsTemp { get; set; }
-        // Ce dictionnaire permet d'ajouter des types de usercontrol pour trouver le type précis d'un control que l'on recherche.
-        /*public Dictionary<Type, int> userControlDictionary = new Dictionary<Type, int>
-        {
-            { typeof(ControlTraitementCreationHospitalisation), 0 }
-        };*/
 
         // Constructeur
         public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitementsTemps, ObservableCollection<Traitement> traitements) // Pour rendre la barre de recherche un jour accessible à plus de contexte

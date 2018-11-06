@@ -18,23 +18,50 @@ namespace VitAdmin.Data
             List<Citoyen> lstCitoyen = new List<Citoyen>();
 
             // On vérifie si la BD est connecté
-            if(ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte())
             {
+                // Ça plante, puisque des éléments sont null comme le lit, la chambre et le département...
+
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT * " +
-                    "FROM citoyens "
-                    ,  SqlDR => { lstCitoyen.Add(new Citoyen
-                    {
-                        Nom = SqlDR.GetString("nom"),
-                        Prenom = SqlDR.GetString("prenom"),
-                        AssMaladie = SqlDR.GetString("numAssuranceMaladie"),
-                        NumTelephone = SqlDR.GetString("telephone"),
-                        Adresse = SqlDR.GetString("adresse")
-                        
-                    });}
+                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.Nom GenreCit, c.dateNaissance DNaiss, c.telephone Tel, c.adresse AdresseCit, d.nom nomDep, ch.nom nomCh, l.numero numeroLit, el.nom EtLitNom " +
+                    "FROM citoyens c " +
+                    "INNER JOIN genres g ON g.idGenre = c.idGenre " +
+                    "LEFT JOIN lits l ON l.idCitoyen = c.idCitoyen " +
+                    "LEFT JOIN etatslits el ON el.idEtatLit = l.idEtatLit " +
+                    "LEFT JOIN chambres ch ON ch.idChambre = l.idChambre " +
+                    "LEFT JOIN departements d ON d.idDepartement = ch.idDepartement "
+                    , SqlDR => {
+                        lstCitoyen.Add(new Citoyen
+                        {
+                            Nom = SqlDR.GetString("nomCit"),
+                            Prenom = SqlDR.GetString("prenomCit"),
+                            AssMaladie = SqlDR.GetString("AssMal"),
+                            UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("GenreCit")),
+                            DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("DNaiss"),
+                            NumTelephone = SqlDR.GetString("Tel"),
+                            Adresse = SqlDR.GetString("AdresseCit"),
+                            Lit = new Lit
+                            {
+                                Numero = SqlDR.GetString("numeroLit"),
+                                EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), SqlDR.GetString("EtLitNom")),
+                                Chambre = new Chambre
+                                {
+                                    Numero = SqlDR.GetString("nomCh"),
+                                    UnDepartement = new Departement
+                                    {
+                                        Nom = SqlDR.GetString("nomDep"),
+
+                                    }
+                                }
+                            }
+
+                        });
+                    }
                     );
+
+
             }
 
             return lstCitoyen;

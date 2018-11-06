@@ -39,23 +39,24 @@ namespace VitAdmin.View
             DataContext = ViewModelProfessionnelHub;
 
             // TODO : À refactoriser ****
-            /*Control.ControlListePatient ctrlLstPatient = 
+            Control.ControlListePatient ctrlLstPatient = 
                 new Control.ControlListePatient(
                     gestionnaireEcrans, 
                     UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetTousCitoyensDepartement(new Departement { Nom = "Chirurgie", Abreviation = "CHR" })) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)), 
                     new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()), 
                     new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
                     departementEmploye, 
-                    employe);*/
+                    employe);
 
-            Control.ControlListePatient ctrlLstPatient =
+            // Le code que je modifie qui va être bon
+            /*Control.ControlListePatient ctrlLstPatient =
                 new Control.ControlListePatient(
                     gestionnaireEcrans,
-                    UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetTousCitoyensDepartement(new Departement { Nom = "Chirurgie", Abreviation = "CHR" })) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)),
+                    UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyens()) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)),
                     new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()),
                     new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
                     departementEmploye,
-                    employe);
+                    employe);*/
 
             Grid.SetColumnSpan(ctrlLstPatient, 2);
 
