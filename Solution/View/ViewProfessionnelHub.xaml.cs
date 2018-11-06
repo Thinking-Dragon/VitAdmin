@@ -39,13 +39,22 @@ namespace VitAdmin.View
             DataContext = ViewModelProfessionnelHub;
 
             // TODO : À refactoriser ****
-            Control.ControlListePatient ctrlLstPatient = 
+            /*Control.ControlListePatient ctrlLstPatient = 
                 new Control.ControlListePatient(
                     gestionnaireEcrans, 
                     UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetTousCitoyensDepartement(new Departement { Nom = "Chirurgie", Abreviation = "CHR" })) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)), 
                     new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()), 
                     new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
                     departementEmploye, 
+                    employe);*/
+
+            Control.ControlListePatient ctrlLstPatient =
+                new Control.ControlListePatient(
+                    gestionnaireEcrans,
+                    UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetTousCitoyensDepartement(new Departement { Nom = "Chirurgie", Abreviation = "CHR" })) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)),
+                    new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()),
+                    new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
+                    departementEmploye,
                     employe);
 
             Grid.SetColumnSpan(ctrlLstPatient, 2);

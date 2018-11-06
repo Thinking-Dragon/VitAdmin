@@ -9,6 +9,6 @@ namespace VitAdmin.Model
     public class Symptome
     {
         public String Description { get; set; }
-
+        public bool EstActif { get; set; }
     }
 }

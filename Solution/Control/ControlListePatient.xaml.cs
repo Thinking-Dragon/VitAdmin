@@ -42,7 +42,7 @@ namespace VitAdmin.Control
             // Permet de sélectionner par défaut le département du professionnel dans la combobox
             // Je dois créer mes combobox avant de les mettre dans mon stackpanel puisque l'event selectedchange 
             // s'enclenchait au démarrage et fait planter l'application à cause de mon système par défaut.
-            initialiserCboDepartement(departements, departement);
+            initialiserCboDepartement(departements, UsagerConnecte.Usager.NomUtilisateur == "admin" ? new Departement { Nom = "Tous"} : departement);
 
             // Ensuite, il faut afficher dans le cboProfessionnel le professionnel par défaut
             initialiserCboProfessionnel(employes, employe);
@@ -56,6 +56,7 @@ namespace VitAdmin.Control
         private void initialiserCboDepartement(ObservableCollection<Departement> departements, Departement departement)
         {           
             Departement deptRecherche = new Departement();
+            departements.Add(new Departement { Nom = "Tous" });
             foreach (Departement dep in departements)
             {
                 if (dep.Nom == departement.Nom)
@@ -65,7 +66,9 @@ namespace VitAdmin.Control
             cboDepartements.ItemsSource = departements;
             cboDepartements.DisplayMemberPath = "Nom";
             // Au cas qu'un admin se connecte, aucun département lui est associé, donc il faut enlever la fonction par défaut des filtres.
-            cboDepartements.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? departements[0] : departements[departements.IndexOf(deptRecherche)];
+            //cboDepartements.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? departements[0] : departements[departements.IndexOf(deptRecherche)];
+            cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
+
 
             cboDepartements.SelectionChanged += CboDepartements_SelectionChanged;
 
@@ -135,7 +138,6 @@ namespace VitAdmin.Control
             
         }
 
-        // À modifier pour le rendre en ICommand dans ControlModel?
         private void CboDepartements_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // On va chercher le contenu du DataContext pour modifier directement les valeurs

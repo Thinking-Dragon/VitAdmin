@@ -32,7 +32,7 @@ namespace VitAdmin.ControlModel
             {   
                 return new CommandeDeleguee(action =>
                 {
-                    Symptome symptomeAjout = new Symptome { Description = "Ajouter la description"};
+                    Symptome symptomeAjout = new Symptome { Description = "Ajouter la description", EstActif = true };
 
                     Symptomes.Add(symptomeAjout);
                     Hospitalisation.LstSymptomes.Add(symptomeAjout);

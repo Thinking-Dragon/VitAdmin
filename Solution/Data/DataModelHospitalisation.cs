@@ -89,13 +89,27 @@ namespace VitAdmin.Data
                         "INSERT INTO hospitalisations (idCitoyen, dateDebut, dateFin, contexte) " +
                         "VALUES ((SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "'), " +
                         "'" + hospitalisation.DateDebut.ToString() + "', " +
-                        "'@DateFin', " +
-                        "'@Contexte') " ,
+                        "'" + hospitalisation.DateFin.ToString() + "', " +
+                        "'" + hospitalisation.Contexte + "') " ,
                         new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
                         new Tuple<string, string>("@DateDebut", hospitalisation.DateDebut.ToString()),
                         new Tuple<string, string>("@DateFin", hospitalisation.DateFin.ToString()),
                         new Tuple<string, string>("@Contexte", hospitalisation.Contexte)
                 );
+
+                // On crée la nouvelle liste de symptôme lié à l'hospitalisation
+                hospitalisation.LstSymptomes.ForEach(symptome => {
+                    ConnexionBD.Instance().ExecuterRequete(
+
+                            "INSERT INTO symptomes (idHospitalisation, description, estActif) " +
+                            "VALUES ((SELECT idHospitalisation FROM hospitalisation h " +
+                            "INNER JOIN citoyen c ON c.idCitoyen = h.idCitoyen " +
+                            "WHERE h.dateDebut = '" + hospitalisation.DateDebut.ToString() + "' AND " +
+                            "c.numAssuranceMaladie = '" + citoyen.AssMaladie + "' ), " + // Fin de la valeur idHospitalisation
+                            "'" + symptome.Description + "', " +
+                            "'" + symptome.EstActif + "') ");
+                });
+
 
                 // Ensuite, il faut créer le lien en bd entre l'hospitalisation et le traitement assigné
                 ConnexionBD.Instance().ExecuterRequete(
