@@ -20,7 +20,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Interaction logic for ViewProfessionnelHoraire.xaml
     /// </summary>
-    public partial class ViewProfessionnelHoraire : Page, IEcranRetour
+    public partial class ViewProfessionnelHoraire : Page, IEcranRetour, IRetourEcranListeExclusion
     {
         GestionnaireEcrans GestEcrans { get; set; }
         public ViewProfessionnelHoraire(GestionnaireEcrans gestEcrans)
@@ -41,6 +41,7 @@ namespace VitAdmin.View
         {
             get { return "< Retour"; }
         }
-
+        
+        public List<Type> ListeExclusionEcransRetour => new List<Type> { typeof(ViewProfessionnelProfil) };
     }
 }

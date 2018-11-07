@@ -328,6 +328,7 @@
     <Compile Include="ViewModel\ViewModelProfessionnelProfil.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\Tool\IEcranRetour.cs" />
+    <Compile Include="View\Tool\IRetourEcranListeExclusion.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
     </Compile>

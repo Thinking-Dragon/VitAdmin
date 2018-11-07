@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using VitAdmin.MVVM;
+using VitAdmin.View.Tool;
 
 namespace VitAdmin
 {
@@ -18,6 +19,14 @@ namespace VitAdmin
         /// Conteneur de la page présente
         /// </summary>
         private FrameSansNavigation Frame { get; set; }
+        /// <summary>
+        /// Le type de l'écran présentement affiché
+        /// </summary>
+        private Type TypeEcranPresent { get; set; }
+        /// <summary>
+        /// Le type de l'écran affiché précédemment
+        /// </summary>
+        private Type TypeAncienEcran { get; set; }
         /// <summary>
         /// Callback qui est appelé lorsque la fenêtre change s'il est défini
         /// </summary>
@@ -44,9 +53,18 @@ namespace VitAdmin
 
         public void Changer(Page ecran)
         {
-            AncienEcran = Frame.Content as Page;
-            Frame.Content = ecran;
-            ActionLorsqueFenetreChange?.Invoke(ecran);
+            if (!(ecran.GetType() == TypeEcranPresent))
+            {
+                if(!(GetEcranPresent() is IRetourEcranListeExclusion &&
+                    (GetEcranPresent() as IRetourEcranListeExclusion).ListeExclusionEcransRetour.Exists(type => type == ecran.GetType())))
+                {
+                    AncienEcran = Frame.Content as Page;
+                    TypeAncienEcran = TypeEcranPresent;
+                }
+                Frame.Content = ecran;
+                ActionLorsqueFenetreChange?.Invoke(ecran);
+                TypeEcranPresent = ecran.GetType();
+            }
         }
 
         public void RetourAncienEcran()
