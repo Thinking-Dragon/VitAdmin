@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 using VitAdmin.Parameter;
@@ -15,31 +16,35 @@ namespace VitAdmin.ViewModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public ICommand CmdAccueilAdministrateur
+        private int _indexTransitionneur = 0;
+        /// <summary>
+        /// L'index du transitionneur qui affiche le message de bienvenue.
+        /// </summary>
+        public int IndexTransitionneur
         {
-            get
-            {
-                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans)));
-            }
-        }
-
-        public ICommand CmdAccueilProfessionnel
-        {
-            get
-            {
-                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager)));
-            }
-        }
-
-        public ICommand CmdCreationNotifications
-        {
-            get
-            {
-                return new CommandeDeleguee(password => GestionnaireEcrans.Changer(new ViewCreerNotifications(GestionnaireEcrans)));
-            }
+            get => _indexTransitionneur;
+            set { _indexTransitionneur = value; RaisePropertyChangedEvent("IndexTransitionneur"); }
         }
 
         public ViewModelChargementApp(GestionnaireEcrans gestionnaireEcrans)
-            => GestionnaireEcrans = gestionnaireEcrans;
+        {
+            GestionnaireEcrans = gestionnaireEcrans;
+
+            DispatcherTimer dt = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            dt.Tick += (object sender, EventArgs e) =>
+            {
+                if(dt.Interval == TimeSpan.FromSeconds(1))
+                {
+                    IndexTransitionneur = 1;
+                    dt.Interval = TimeSpan.FromMilliseconds(500);
+                }
+                else
+                {
+                    dt.Stop();
+                    GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
+                }
+            };
+            dt.Start();
+        }
     }
 }

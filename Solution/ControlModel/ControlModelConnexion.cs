@@ -18,6 +18,9 @@ namespace VitAdmin.ControlModel
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
         private string _usager = "admin";//string.Empty;
+        /// <summary>
+        /// Le texte entré dans le champ "Usager"
+        /// </summary>
         public string Usager
         {
             get { return _usager; }
@@ -29,6 +32,9 @@ namespace VitAdmin.ControlModel
         }
 
         private string _messageErreur = string.Empty;
+        /// <summary>
+        /// Contenu du message d'erreur qui s'affiche si une erreur advient lors de la connexion
+        /// </summary>
         public string MessageErreur
         {
             get { return _messageErreur; }
@@ -39,6 +45,9 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        /// <summary>
+        /// Commande qui s'éxécute lorsque l'utilisateur clique sur le bouton "Connexion" ou lorsqu'il appuie sur le bouton "Entrer" et qu'un des champs texte (usager et mot de passe) est "focusé"
+        /// </summary>
         public ICommand CmdConnexion
         {
             get
