@@ -13,9 +13,6 @@
     <Grid>
         <materialDesign:Transitioner SelectedIndex="{Binding IndexTransitionneur}">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect Kind=FadeIn}">
-                <materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:CircleWipe/>
-                </materialDesign:TransitionerSlide.BackwardWipe>
                 <Grid HorizontalAlignment="Center"
                       VerticalAlignment="Center">
                     <Image Width="512"
@@ -30,11 +27,7 @@
                     </Label>
                 </Grid>
             </materialDesign:TransitionerSlide>
-            <materialDesign:TransitionerSlide>
-                <materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:CircleWipe/>
-                </materialDesign:TransitionerSlide.BackwardWipe>
-            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide/>
         </materialDesign:Transitioner>
     </Grid>
 </Page>

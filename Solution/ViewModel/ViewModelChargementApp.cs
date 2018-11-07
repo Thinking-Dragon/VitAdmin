@@ -28,6 +28,9 @@ namespace VitAdmin.ViewModel
 
         public ViewModelChargementApp(GestionnaireEcrans gestionnaireEcrans)
         {
+            if (!UsagerConnecte.EstConnecte)
+                gestionnaireEcrans.RetourAncienEcran();
+
             GestionnaireEcrans = gestionnaireEcrans;
 
             DispatcherTimer dt = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
@@ -41,7 +44,24 @@ namespace VitAdmin.ViewModel
                 else
                 {
                     dt.Stop();
-                    GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
+                    switch(UsagerConnecte.Usager.RoleUsager)
+                    {
+                        case Role.admin:
+                            GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
+                            break;
+                        case Role.GestPersonnel:
+                            GestionnaireEcrans.AfficherMessage("L'écran d'accueil d'un gestionnaire du personnel n'existe pas encore");
+                            break;
+                        case Role.InfChef:
+                            GestionnaireEcrans.AfficherMessage("L'écran d'accueil d'une infirmière en chef n'existe pas encore");
+                            break;
+                        case Role.PersonnelSante:
+                            GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager));
+                            break;
+                        default:
+                            GestionnaireEcrans.RetourAncienEcran();
+                            break;
+                    }
                 }
             };
             dt.Start();
