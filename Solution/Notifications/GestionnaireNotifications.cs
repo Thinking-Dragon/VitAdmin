@@ -38,7 +38,7 @@ namespace VitAdmin.Notifications
                     bool bEstPresente = false;
                         for (int j = 0; j < NotificationsDerniereActualisation.Count; j++)
                             if (args.Notifications[i].Message == NotificationsDerniereActualisation[j].Message &&
-                                args.Notifications[i].LienVersFenetre == NotificationsDerniereActualisation[j].LienVersFenetre &&
+                                //args.Notifications[i].LienVersFenetre == NotificationsDerniereActualisation[j].LienVersFenetre &&
                                 args.Notifications[i].TempsReception == NotificationsDerniereActualisation[j].TempsReception)
                                 bEstPresente = true;
                     if (!bEstPresente)
@@ -46,6 +46,7 @@ namespace VitAdmin.Notifications
                             {
                                 notification.EstLu = true;
                                 DataModelNotification.Set("estLu", notification, "true");
+                                notification.Voir();
                             },
                             args.Notifications[i]
                         );
@@ -55,7 +56,7 @@ namespace VitAdmin.Notifications
             ANotifier?.Invoke(this, args);
         }
         
-        public void PostNotification(string message, string lien, Employe employe)
+        public void PostNotification(string message, LienNotificationEcran lien, Employe employe)
             => DataModelNotification.PostNotification(message, lien, employe);
 
         public List<Notification> GetNotifications() => NotificationsDerniereActualisation;

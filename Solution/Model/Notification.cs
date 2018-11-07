@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,11 @@ namespace VitAdmin.Model
         public string Message { get; set; }
         public DateTime TempsReception { get; set; }
         public bool EstLu { get; set; }
-        public string LienVersFenetre { get; set; }
+        public LienNotificationEcran LienNotificationEcran { get; set; }
+
+        public void Voir()
+        {
+            DialogHost.Show(Activator.CreateInstance(LienNotificationEcran.TypeEcran), "dialogGeneral");
+        }
     }
 }

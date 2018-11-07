@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Control;
+using VitAdmin.Model;
 using VitAdmin.Notifications;
 using VitAdmin.Parameter;
 using VitAdmin.View.Tool;
@@ -43,12 +45,32 @@ namespace VitAdmin.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GestionnaireNotifications.Instance.PostNotification("Vous avez un nouveau message : « Hello world ! »", "message", UsagerConnecte.Usager);
+            GestionnaireNotifications.Instance.PostNotification(
+                "Vous avez un nouveau message : « Hello world ! »",
+                new LienNotificationEcran
+                {
+                    TypeEcran = typeof(ViewModifierDepartement),
+                    Parametres = new List<object> { "Hey!" }
+                },
+                UsagerConnecte.Usager);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            GestionnaireNotifications.Instance.PostNotification("Le dossier du patient « Tourlou » nécessite votre attention", "dossier:tourlou", UsagerConnecte.Usager);
+            GestionnaireNotifications.Instance.PostNotification(
+                "Le dossier du patient « Tourlou » nécessite votre attention",
+                new LienNotificationEcran
+                {
+                    TypeEcran = typeof(ControlNotificationNoteInfirmiere),
+                    Parametres = new List<object>
+                    {
+                        new NoteInfirmiere
+                        {
+                            NotesInf = "Test"
+                        }
+                    }
+                },
+                UsagerConnecte.Usager);
         }
     }
 }

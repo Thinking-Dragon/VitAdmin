@@ -27,6 +27,9 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        /// <summary>
+        /// Commande qui s'exécute lorsque l'on clique sur une notification dans la liste
+        /// </summary>
         public ICommand CmdOuvrirNotification
         {
             get
@@ -39,6 +42,7 @@ namespace VitAdmin.ControlModel
                             NotificationSelectionnee.EstLu = true;
                             Data.DataModelNotification.Set("estLu", NotificationSelectionnee, "true");
                             DialogHost.CloseDialogCommand.Execute(null, null);
+                            NotificationSelectionnee.Voir();
                         }
                     }
                 );

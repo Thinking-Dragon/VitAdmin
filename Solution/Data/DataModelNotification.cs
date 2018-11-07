@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace VitAdmin.Data
 {
     public static class DataModelNotification
     {
-        public static void PostNotification(string message, string lien, Employe employe)
+        public static void PostNotification(string message, LienNotificationEcran lien, Employe employe)
         {
             if(ConnexionBD.Instance().EstConnecte())
             {
@@ -24,7 +25,7 @@ namespace VitAdmin.Data
                         "   ), " +
                         "   '{1}', '{2}', false " +
                         ")",
-                        employe.NumEmploye, message, lien
+                        employe.NumEmploye, message, JsonConvert.SerializeObject(lien)
                     )
                 );
             }
@@ -50,7 +51,7 @@ namespace VitAdmin.Data
                             new Notification
                             {
                                 Message = lecteur.GetString("message"),
-                                LienVersFenetre = lecteur.GetString("lien"),
+                                LienNotificationEcran = JsonConvert.DeserializeObject<LienNotificationEcran>(lecteur.GetString("lien")),
                                 EstLu = Boolean.Parse(lecteur.GetString("estLu"))
                             }
                         );
@@ -70,7 +71,7 @@ namespace VitAdmin.Data
                         "UPDATE Notifications " +
                         "SET {0} = {1} " +
                         "WHERE message = '{2}' AND lien = '{3}'",
-                        attribut, valeur, notification.Message, notification.LienVersFenetre
+                        attribut, valeur, notification.Message, JsonConvert.SerializeObject(notification.LienNotificationEcran)
                     )
                 );
             }

@@ -67,6 +67,9 @@
     <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.13\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -141,6 +144,7 @@
     <Compile Include="ControlModel\ControlModelListeTraitementsAvecEtapes.cs" />
     <Compile Include="ControlModel\ControlModelMenuUtilisateur.cs" />
     <Compile Include="ControlModel\ControlModelModifierDepartement.cs" />
+    <Compile Include="ControlModel\ControlModelNotificationNoteInfirmiere.cs" />
     <Compile Include="ControlModel\ControlModelNotifications.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelDossierPatient.cs" />
     <Compile Include="ControlModel\ControlModelProfessionnelProfil.cs" />
@@ -170,6 +174,9 @@
     </Compile>
     <Compile Include="Control\ControlEditionEquipement.xaml.cs">
       <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlNotificationNoteInfirmiere.xaml.cs">
+      <DependentUpon>ControlNotificationNoteInfirmiere.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlRechercheEquipement.xaml.cs">
       <DependentUpon>ControlRechercheEquipement.xaml</DependentUpon>
@@ -280,6 +287,7 @@
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\DataModelUsager.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
+    <Compile Include="Model\LienNotificationEcran.cs" />
     <Compile Include="Notifications\GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
     <Compile Include="Model\Citoyen.cs" />
@@ -408,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlEditionEquipement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlNotificationNoteInfirmiere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
