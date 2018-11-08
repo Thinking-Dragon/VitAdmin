@@ -42,7 +42,7 @@ namespace VitAdmin.Data
                             DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("DNaiss"),
                             NumTelephone = SqlDR.GetString("Tel"),
                             Adresse = SqlDR.GetString("AdresseCit"),
-                            Lit = new Lit
+                            Lit = SqlDR.IsDBNull(SqlDR.GetOrdinal("numeroLit")) ? new Lit() : new Lit
                             {
                                 Numero = SqlDR.GetString("numeroLit"),
                                 EtatLit = (EtatLit)Enum.Parse(typeof(EtatLit), SqlDR.GetString("EtLitNom")),

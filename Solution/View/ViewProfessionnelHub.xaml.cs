@@ -30,7 +30,7 @@ namespace VitAdmin.View
         // TODO: Modifier le paramètres pour qu'il recoit les infos du professionnel qui se connecte
         // Ainsi, le filtre département sera par défaut le département de l'employé ainsi la liste des
         // professionnels sera mis à jour.
-        public ViewProfessionnelHub(GestionnaireEcrans gestionnaireEcrans, Employe employe) //Remplacer tous les paramètres par Employe, voir avec Clément
+        public ViewProfessionnelHub(GestionnaireEcrans gestionnaireEcrans, Employe employe) 
         {
             InitializeComponent();
             Departement departementEmploye = DataModelDepartement.GetDepartementEmploye(employe);
@@ -39,24 +39,23 @@ namespace VitAdmin.View
             DataContext = ViewModelProfessionnelHub;
 
             // TODO : À refactoriser ****
-            Control.ControlListePatient ctrlLstPatient = 
+            /*Control.ControlListePatient ctrlLstPatient = 
                 new Control.ControlListePatient(
                     gestionnaireEcrans, 
                     UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetTousCitoyensDepartement(new Departement { Nom = "Chirurgie", Abreviation = "CHR" })) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)), 
                     new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()), 
                     new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
                     departementEmploye, 
-                    employe);
+                    employe);*/
 
             // Le code que je modifie qui va être bon
-            /*Control.ControlListePatient ctrlLstPatient =
+            Control.ControlListePatient ctrlLstPatient =
                 new Control.ControlListePatient(
                     gestionnaireEcrans,
-                    UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyens()) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)),
                     new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()),
                     new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
                     departementEmploye,
-                    employe);*/
+                    employe);
 
             Grid.SetColumnSpan(ctrlLstPatient, 2);
 

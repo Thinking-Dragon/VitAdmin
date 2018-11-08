@@ -18,6 +18,7 @@ using VitAdmin.ControlModel;
 using VitAdmin.Model;
 using VitAdmin.View;
 using VitAdmin.Parameter;
+using VitAdmin.Data;
 
 namespace VitAdmin.Control
 {
@@ -30,11 +31,11 @@ namespace VitAdmin.Control
         ComboBox cboDepartements = new ComboBox();
         List<Citoyen> LstCitoyenRecherche;
 
-        public ControlListePatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Citoyen> citoyens, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
+        public ControlListePatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
 
-            ControlModelListePatient controlModelListePatient = new ControlModelListePatient(gestionnaireEcrans, citoyens, departements, employes);
+            ControlModelListePatient controlModelListePatient = new ControlModelListePatient(gestionnaireEcrans, departement.EstNull() ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyens()) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)), departements, employes);
 
             // On met dans le datacontexte les infos qui seront liées dans le UserControl
             DataContext = controlModelListePatient;
@@ -42,10 +43,10 @@ namespace VitAdmin.Control
             // Permet de sélectionner par défaut le département du professionnel dans la combobox
             // Je dois créer mes combobox avant de les mettre dans mon stackpanel puisque l'event selectedchange 
             // s'enclenchait au démarrage et fait planter l'application à cause de mon système par défaut.
-            initialiserCboDepartement(departements, UsagerConnecte.Usager.NomUtilisateur == "admin" ? new Departement { Nom = "Tous"} : departement);
+            initialiserCboDepartement(departements, departement.EstNull() ? new Departement { Nom = "Tous"} : departement);
 
             // Ensuite, il faut afficher dans le cboProfessionnel le professionnel par défaut
-            initialiserCboProfessionnel(employes, employe);
+            initialiserCboProfessionnel(employes, employe, departement);
 
             // Pour la barre de recherche
             LstCitoyenRecherche = controlModelListePatient.Citoyens.ToList<Citoyen>();
@@ -76,26 +77,23 @@ namespace VitAdmin.Control
 
         }
 
-        private void initialiserCboProfessionnel(ObservableCollection<Employe> employes, Employe employe)
+        private void initialiserCboProfessionnel(ObservableCollection<Employe> employes, Employe employe, Departement departement)
         {
             Employe empRecherche = new Employe();
 
-            if(UsagerConnecte.Usager.NomUtilisateur != "admin")
+            foreach (Employe emp in employes)
             {
-
-                foreach (Employe emp in employes)
-                {
-                    if (emp.Nom == employe.Nom)
-                        empRecherche = emp;
-                }
+                if (emp.Nom == employe.Nom)
+                    empRecherche = emp;
             }
+            
 
             employes.Add(new Employe { Nom = "Tous" });
 
             cboProfessionnel.ItemsSource = employes;
             cboProfessionnel.DisplayMemberPath = "idPrenomNom";
-            // Au cas qu'un admin se connecte, aucun employé lui est associé, donc il faut enlever la fonction par défaut des filtres.
-            cboProfessionnel.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? employes[0] : employes[employes.IndexOf(empRecherche)];
+            // Au cas qu'un utilisateur se connecte et qu'il est associé à aucun département, il faut enlever la fonction par défaut des filtres.
+            cboProfessionnel.SelectedItem = departement.EstNull() ? employes[0] : employes[employes.IndexOf(empRecherche)];
             cboProfessionnel.SelectionChanged += CboProfessionnel_SelectionChanged;
 
             stpnlFiltres.Children.Add(cboProfessionnel);
@@ -114,6 +112,11 @@ namespace VitAdmin.Control
                 cboRecherche.Text = "Recherche";
         }
 
+        /// <summary>
+        /// C'est cette fonction qui effectue une requête à la bd pour prendre les citoyens.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CboProfessionnel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ControlModelListePatient controlModelListePatient = (ControlModelListePatient)DataContext;
@@ -124,11 +127,15 @@ namespace VitAdmin.Control
             {
                 List<Citoyen> lstPatients = new List<Citoyen>();
                 Employe employeSelectionne = (Employe)cboProfessionnel.SelectedItem;
+                Departement departementSelectionne = (Departement)cboDepartements.SelectedItem;
 
-                if (employeSelectionne.Nom == "Tous")
-                    lstPatients = Data.DataModelCitoyen.GetTousCitoyensDepartement((Departement)cboDepartements.SelectedItem);                   
+                if (employeSelectionne.Nom == "Tous" && departementSelectionne.Nom == "Tous")
+                    lstPatients = Data.DataModelCitoyen.GetCitoyens();
+                else if (employeSelectionne.Nom == "Tous")
+                    lstPatients = Data.DataModelCitoyen.GetTousCitoyensDepartement((Departement)cboDepartements.SelectedItem);
                 else
                     lstPatients = Data.DataModelCitoyen.GetCitoyensLstPatient(employeSelectionne);
+
 
                 controlModelListePatient.Citoyens.Clear();
                 lstPatients.ForEach(patient => controlModelListePatient.Citoyens.Add(patient));

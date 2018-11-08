@@ -26,5 +26,12 @@ namespace VitAdmin.Model
             set { _chambres = value; RaisePropertyChangedEvent("Chambres"); }
         }
 
+        public bool EstNull()
+        {
+            if (Nom == null)
+                return true;
+            else
+                return false;
+        }
     }
 }
