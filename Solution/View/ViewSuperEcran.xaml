@@ -18,6 +18,10 @@
         <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}" />
 
         <materialDesign:DialogHost Identifier="dialogGeneral"
+                                   Panel.ZIndex="97"
+                                   Grid.RowSpan="2">
+        </materialDesign:DialogHost>
+        <materialDesign:DialogHost Identifier="dialogGeneral:modal=false"
                                    CloseOnClickAway="True"
                                    Panel.ZIndex="97"
                                    Grid.RowSpan="2">

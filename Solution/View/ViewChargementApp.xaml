@@ -15,16 +15,16 @@
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect Kind=FadeIn}">
                 <Grid HorizontalAlignment="Center"
                       VerticalAlignment="Center">
-                    <Image Width="512"
-                           gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resource/Graphic/Animated/loading.gif"/>
-                    <Label FontSize="128"
+                    <Image Width="256"
+                           gif:ImageBehavior.AnimatedSource="{Binding UrlImage}"/>
+                    <!--<Label FontSize="128"
                            Margin="0 64 0 0"
                            Foreground="White"
                            Content="Bienvenue!">
                         <Label.BitmapEffect>
                             <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="5" Opacity="0.5" Softness="90"/>
                         </Label.BitmapEffect>
-                    </Label>
+                    </Label>-->
                 </Grid>
             </materialDesign:TransitionerSlide>
             <materialDesign:TransitionerSlide/>

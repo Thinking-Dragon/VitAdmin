@@ -62,7 +62,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlMenuUtilisateur(GestionnaireEcrans, GestionnaireSousEcrans), "dialogGeneral");
+                        DialogHost.Show(new ControlMenuUtilisateur(GestionnaireEcrans, GestionnaireSousEcrans), "dialogGeneral:modal=false");
                     }
                 );
             }
@@ -75,7 +75,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlNotifications(), "dialogGeneral");
+                        DialogHost.Show(new ControlNotifications(), "dialogGeneral:modal=false");
                     }
                 );
             }

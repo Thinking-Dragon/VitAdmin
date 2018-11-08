@@ -7,118 +7,125 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="32">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.RowSpan="2">
+        <Label FontSize="18">Liste des départements existants</Label>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="42"></RowDefinition>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="32"/>
             </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="42"></RowDefinition>
+                </Grid.RowDefinitions>
 
-            <DataGrid ItemsSource="{Binding Departements}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      SelectionChanged="dtgDepartements_SelectionChanged"
-                      SelectedItem="{Binding DepartementSelectionne}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Département"
-                                    Binding="{Binding Nom}"
-                                    Width="*" />
-                </DataGrid.Columns>
-            </DataGrid>
+                <DataGrid ItemsSource="{Binding Departements}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          SelectionChanged="dtgDepartements_SelectionChanged"
+                          SelectedItem="{Binding DepartementSelectionne}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Département"
+                                        Binding="{Binding Nom}"
+                                        Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Button VerticalAlignment="Bottom"
-                        IsEnabled="False"
-                        Width="128"
-                        Command="{Binding CmdCreerDepartement}">Créer</Button>
-                <Button Grid.Column="1"
-                        IsEnabled="False"
-                        Width="128"
-                        VerticalAlignment="Bottom"
-                        Command="{Binding CmdSupprimerDepartement}">Supprimer</Button>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button VerticalAlignment="Bottom"
+                            IsEnabled="False"
+                            Width="128"
+                            Command="{Binding CmdCreerDepartement}">Créer</Button>
+                    <Button Grid.Column="1"
+                            IsEnabled="False"
+                            Width="128"
+                            VerticalAlignment="Bottom"
+                            Command="{Binding CmdSupprimerDepartement}">Supprimer</Button>
+                </Grid>
             </Grid>
+
+            <Grid DataContext="{Binding DepartementSelectionne}"
+                  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"></RowDefinition>
+                    <RowDefinition Height="64"></RowDefinition>
+                    <RowDefinition Height="64"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom">Nom:</Label>
+                    <TextBox Grid.Column="1"
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Left"
+                             IsEnabled="False"
+                             Text="{Binding Nom}" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Right"
+                           VerticalAlignment="Center">Abréviation:</Label>
+                    <TextBox Grid.Column="1"
+                             HorizontalAlignment="Left"
+                             IsEnabled="False"
+                             VerticalAlignment="Center"
+                             Text="{Binding Abreviation}"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Right"
+                           VerticalAlignment="Top">Infirmière chef:</Label>
+                    <TextBox Grid.Column="1"
+                             HorizontalAlignment="Left"
+                             IsEnabled="False"
+                             VerticalAlignment="Top"
+                             Text="{Binding PersonnelMedicalEnChef.NomComplet}"/>
+                </Grid>
+                <DataGrid Grid.Row="3"
+                          Margin="16"
+                          ItemsSource="{Binding Chambres}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Local" Width="*"
+                                            Binding="{Binding Numero}"/>
+                        <DataGridTextColumn Header="Nb. Lits" Width="128"
+                                            Binding="{Binding Lits.Count}"/>
+                        <DataGridTextColumn Header="Équipements" Width="*"
+                                            Binding="{Binding EquipementsString}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Button x:Name="btnModifierDepartement"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Width="256"
+                    IsEnabled="False"
+                    Command="{Binding CmdModifierDepartement}">
+                Modifier le département
+            </Button>
         </Grid>
-
-        <Grid DataContext="{Binding DepartementSelectionne}"
-              Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="64"></RowDefinition>
-                <RowDefinition Height="64"></RowDefinition>
-                <RowDefinition Height="64"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label HorizontalAlignment="Right"
-                       VerticalAlignment="Bottom">Nom:</Label>
-                <TextBox Grid.Column="1"
-                         VerticalAlignment="Bottom"
-                         HorizontalAlignment="Left"
-                         IsEnabled="False"
-                         Text="{Binding Nom}" />
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label HorizontalAlignment="Right"
-                       VerticalAlignment="Center">Abréviation:</Label>
-                <TextBox Grid.Column="1"
-                         HorizontalAlignment="Left"
-                         IsEnabled="False"
-                         VerticalAlignment="Center"
-                         Text="{Binding Abreviation}"/>
-            </Grid>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label HorizontalAlignment="Right"
-                       VerticalAlignment="Top">Infirmière chef:</Label>
-                <TextBox Grid.Column="1"
-                         HorizontalAlignment="Left"
-                         IsEnabled="False"
-                         VerticalAlignment="Top"
-                         Text="{Binding PersonnelMedicalEnChef.NomComplet}"/>
-            </Grid>
-            <DataGrid Grid.Row="3"
-                      Margin="16"
-                      ItemsSource="{Binding Chambres}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Local" Width="*"
-                                        Binding="{Binding Numero}"/>
-                    <DataGridTextColumn Header="Nb. Lits" Width="128"
-                                        Binding="{Binding Lits.Count}"/>
-                    <DataGridTextColumn Header="Équipements" Width="*"
-                                        Binding="{Binding EquipementsString}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-        <Button x:Name="btnModifierDepartement"
-                Grid.Column="1"
-                Grid.Row="3"
-                Width="256"
-                IsEnabled="False"
-                Command="{Binding CmdModifierDepartement}">
-            Modifier le département
-        </Button>
     </Grid>
 </UserControl>
