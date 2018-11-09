@@ -15,8 +15,15 @@
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect Kind=FadeIn}">
                 <Grid HorizontalAlignment="Center"
                       VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Width="512"
+                           Source="pack://application:,,,/Resource/Graphic/Titre_chargement.png"/>
                     <Image Width="256"
-                           gif:ImageBehavior.AnimatedSource="{Binding UrlImage}"/>
+                           Grid.Row="1"
+                           gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resource/Graphic/Animated/loading.gif"/>
                     <!--<Label FontSize="128"
                            Margin="0 64 0 0"
                            Foreground="White"

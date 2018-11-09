@@ -689,5 +689,8 @@
     <Resource Include="Resource\Graphic\Animated\loading.gif" />
     <Resource Include="Resource\Graphic\Animated\tumblr_mdta50e8IX1rlbw7io1_500.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Graphic\Titre_chargement.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

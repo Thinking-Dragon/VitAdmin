@@ -56,7 +56,7 @@ namespace VitAdmin.ControlModel
             DialogHost.Show(new ControlEditionChambre(GestionnaireEcrans, chambre =>
             {
                 Departement.Chambres.Add(chambre);
-            }), "dialogGeneral");
+            }), "dialogGeneral:modal=false");
         });
 
         public ICommand CmdModifierLocal => new CommandeDeleguee(param =>
@@ -69,12 +69,12 @@ namespace VitAdmin.ControlModel
                     ChambreSelectionnee.Equipements = chambre.Equipements;
                     Departement.Chambres = new ObservableCollection<Chambre>(Departement.Chambres);
                 }, ChambreSelectionnee
-            ), "dialogGeneral");
+            ), "dialogGeneral:modal=false");
         });
 
         public ICommand CmdSupprimerLocal => new CommandeDeleguee(param =>
         {
-            if (!(Departement.Chambres.ToList().Exists(chambre => chambre.Lits.ToList().Exists(lit => !lit.EstDisponible))))
+            if(!(ChambreSelectionnee.Lits.ToList().Exists(lit => !lit.EstDisponible)))
                 Departement.Chambres.Remove(ChambreSelectionnee);
             else
                 GestionnaireEcrans.AfficherMessage("Cette chambre contient au moins un lit occupé, vous ne pouvez pas la supprimer!");

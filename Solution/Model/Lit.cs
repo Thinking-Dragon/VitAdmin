@@ -12,7 +12,7 @@ namespace VitAdmin.Model
         public String Numero { get; set; }
         public Chambre Chambre { get; set; } // ?????????????????????????
         public EtatLit EtatLit { get; set; }
-        public bool EstDisponible => EtatLit != EtatLit.Occupé && EtatLit != EtatLit.Maintenance && EtatLit != EtatLit.Nettoyage;
+        public bool EstDisponible => EtatLit != EtatLit.Occupé;
 
     }
 }
