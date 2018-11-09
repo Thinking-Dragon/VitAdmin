@@ -88,6 +88,7 @@ namespace VitAdmin.Data
                                  "INNER JOIN quarts q ON q.idQuart = qe.idQuart " +
                                  "INNER JOIN departements d ON d.idDepartement = q.idDepartement " +
                                  "WHERE d.nom = '" + depSelectionne.Nom + "' " +
+                                 "GROUP BY nEmploye " +
                                  "ORDER BY nomCit ";
                 ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
                 {

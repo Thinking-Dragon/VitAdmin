@@ -36,7 +36,7 @@ namespace VitAdmin.ControlModel
         {
             Hospitalisations = hospitalisations;
             // TODO : C'est ici qui indique à la datagrid quel département est associé une hospitalisation!! Bug affichage du département tout le temps en chirurgie.
-            DepartementAssocie = hospitalisations[0].LstTraitements[0].DepartementAssocie;
+            //DepartementAssocie = hospitalisations[0].LstTraitements[0].DepartementAssocie;
             GestEcrans = gestEcrans;
             Patient = patient;
         }

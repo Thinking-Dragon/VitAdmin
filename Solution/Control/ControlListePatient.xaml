@@ -24,6 +24,7 @@
         <ComboBox x:Name="cboRecherche" Grid.Column="1" Grid.Row="1" MaxWidth="500" MinWidth="175" VerticalAlignment="Center" HorizontalAlignment="Left"
               KeyUp="CboRecherche_KeyUp"
               IsEditable="True"
+              IsTextSearchEnabled="True"
               ItemsSource="{Binding Citoyens}"
               DisplayMemberPath="Nom">
         </ComboBox>
@@ -44,8 +45,8 @@
 
             </DataGrid.InputBindings>
         </DataGrid>
-        <StackPanel Name="stpnlFiltres" Grid.Row="2" Grid.Column="2" Height="100" VerticalAlignment="Top">
-            <Label Content="Filtres"/>
+        <StackPanel Name="stpnlFiltres" Grid.Row="2" Grid.Column="2" Height="208" VerticalAlignment="Top">
+            <Label Content="Filtres" FontSize="20"/>
         </StackPanel>
 
     </Grid>

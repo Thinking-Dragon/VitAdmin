@@ -41,7 +41,7 @@ namespace VitAdmin.Data
 
 
             // Il faut aller chercher dans une autre requête les traitements de l'hospitalisation
-            if (ConnexionBD.Instance().EstConnecte())
+            if (ConnexionBD.Instance().EstConnecte() && lstHospitalisation.Count > 0)
             {
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste de la BD

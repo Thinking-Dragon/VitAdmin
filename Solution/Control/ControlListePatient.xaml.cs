@@ -70,9 +70,11 @@ namespace VitAdmin.Control
             //cboDepartements.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? departements[0] : departements[departements.IndexOf(deptRecherche)];
             cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];
 
-
             cboDepartements.SelectionChanged += CboDepartements_SelectionChanged;
 
+            Label lblDepartement = new Label { Content = "Par département" };
+
+            stpnlFiltres.Children.Add(lblDepartement);
             stpnlFiltres.Children.Add(cboDepartements);
 
         }
@@ -95,7 +97,11 @@ namespace VitAdmin.Control
             // Au cas qu'un utilisateur se connecte et qu'il est associé à aucun département, il faut enlever la fonction par défaut des filtres.
             cboProfessionnel.SelectedItem = departement.EstNull() ? employes[0] : employes[employes.IndexOf(empRecherche)];
             cboProfessionnel.SelectionChanged += CboProfessionnel_SelectionChanged;
+            cboProfessionnel.Width = stpnlFiltres.Width - 10;
 
+            Label lblEmploye = new Label { Content = "Par professionnel" };
+
+            stpnlFiltres.Children.Add(lblEmploye);
             stpnlFiltres.Children.Add(cboProfessionnel);
         }
 
@@ -164,18 +170,31 @@ namespace VitAdmin.Control
         private void CboRecherche_KeyUp(object sender, KeyEventArgs e)
         {
             ControlModelListePatient controlModelListePatient = (ControlModelListePatient)DataContext;
-            // Si la barre de recherche est vide, on remet tous les patients. Sinon, on vide la liste pour préparer la recherche.
-            if (cboRecherche.Text == "")
+            string texteRecherche = cboRecherche.Text;
+
+            if (e.Key == Key.Enter)
+            {
+                // On ajoute dans une liste temporaire les patients trouvés dans la liste des patients.
+                List<Citoyen> LstCitoyenTrouve = LstCitoyenRecherche.FindAll((patient) => patient.Nom.IndexOf(cboRecherche.Text) != -1);
+
+                // On vide la liste bindée avec la combobox
+                controlModelListePatient.Citoyens.Clear();
+
+                // On doit remettre le texte dans le combobox, car le clear précédent détruit le texte inscrit par l'utilisateur
+                cboRecherche.Text = texteRecherche;
+
+                // Finalement, on copie tous les patients trouvés dans la liste installée dans le DataContext.
+                LstCitoyenTrouve.ForEach((patient) => controlModelListePatient.Citoyens.Add(patient));
+            }
+            else if (cboRecherche.Text == "") // Si la barre de recherche est vide, on remet tous les patients. Sinon, on vide la liste pour préparer la recherche.
+            {
+                // On vide la liste bindée avec la combobox
+                controlModelListePatient.Citoyens.Clear();
                 LstCitoyenRecherche.ForEach((patient) => controlModelListePatient.Citoyens.Add(patient));
+            }
+                
 
 
-            // On ajoute dans une liste temporaire les patients trouvés dans la liste des patients.
-            List<Citoyen> LstCitoyenTrouve = LstCitoyenRecherche.FindAll((patient) => patient.Nom.IndexOf(cboRecherche.Text) != -1);
-
-            controlModelListePatient.Citoyens.Clear();
-
-            // Finalement, on copie tous les patients trouvés dans la liste installée dans le DataContext.
-            LstCitoyenTrouve.ForEach((patient) => controlModelListePatient.Citoyens.Add(patient));
         }
 
     }
