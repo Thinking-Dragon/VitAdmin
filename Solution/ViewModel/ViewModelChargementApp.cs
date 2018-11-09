@@ -42,8 +42,8 @@ namespace VitAdmin.ViewModel
             GestionnaireEcrans = gestionnaireEcrans;
 
             Random random = new Random();
-            string[] nomsImagesChargement = Directory.GetFiles(@"Resource\Graphic\Animated", "*.gif");
-            UrlImage = @"..\" + nomsImagesChargement[random.Next() % nomsImagesChargement.Length];
+            //string[] nomsImagesChargement = Directory.GetFiles(@"Resource\Graphic\Animated", "*.gif");
+            //UrlImage = @"..\" + nomsImagesChargement[random.Next() % nomsImagesChargement.Length];
 
             DispatcherTimer dt = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             dt.Tick += (object sender, EventArgs e) =>
