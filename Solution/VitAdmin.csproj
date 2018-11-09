@@ -684,7 +684,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resource\Graphic\Animated\doggies.gif~c200.gif" />
+    <Resource Include="Resource\Graphic\Animated\giphy.gif" />
     <Resource Include="Resource\Graphic\Animated\loading.gif" />
+    <Resource Include="Resource\Graphic\Animated\tumblr_mdta50e8IX1rlbw7io1_500.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

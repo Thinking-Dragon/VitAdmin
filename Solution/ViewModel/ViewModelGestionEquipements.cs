@@ -41,7 +41,10 @@ namespace VitAdmin.ViewModel
                 Equipement nouvelEquipement = equipement as Equipement;
                     // Éviter les duplicatats
                 if (!new List<Equipement>(Equipements).Exists(e => e.Nom == nouvelEquipement.Nom))
+                {
                     Equipements.Add(nouvelEquipement);
+                    CmdEnregistrer.Execute(null);
+                }
                 else
                     GestionnaireEcrans.AfficherMessage("Un équipement avec ce nom existe déjà.");
             })), "dialogGeneral");
@@ -61,6 +64,7 @@ namespace VitAdmin.ViewModel
                     EquipementSelectionne.Nom = equipementModifie.Nom;
                     EquipementSelectionne.Description = equipementModifie.Description;
                     Equipements = new ObservableCollection<Equipement>(Equipements);
+                    CmdEnregistrer.Execute(null);
                 }
                 else
                     GestionnaireEcrans.AfficherMessage("Un équipement avec ce nom existe déjà.");
@@ -70,13 +74,16 @@ namespace VitAdmin.ViewModel
         public ICommand CmdSupprimerEquipement => new CommandeDeleguee(param =>
         {
             if(EquipementSelectionne != null)
+            {
                 Equipements.Remove(EquipementSelectionne);
+                CmdEnregistrer.Execute(null);
+            }
         });
 
         public ICommand CmdEnregistrer => new CommandeDeleguee(param =>
         {
             DataModelEquipement.PutEquipements(Equipements.ToList());
-            GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
+//            GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
         });
 
         public ViewModelGestionEquipements(GestionnaireEcrans gestionnaireEcrans, List<Equipement> equipements)

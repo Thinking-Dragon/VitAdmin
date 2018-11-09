@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,13 @@ namespace VitAdmin.ViewModel
     public class ViewModelChargementApp : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
+        private string _urlImage;
+        public string UrlImage
+        {
+            get => _urlImage;
+            set { _urlImage = value; RaisePropertyChangedEvent("UrlImage"); }
+        }
 
         private int _indexTransitionneur = 0;
         /// <summary>
@@ -32,6 +40,10 @@ namespace VitAdmin.ViewModel
                 gestionnaireEcrans.RetourAncienEcran();
 
             GestionnaireEcrans = gestionnaireEcrans;
+
+            Random random = new Random();
+            string[] nomsImagesChargement = Directory.GetFiles(@"Resource\Graphic\Animated", "*.gif");
+            UrlImage = @"..\" + nomsImagesChargement[random.Next() % nomsImagesChargement.Length];
 
             DispatcherTimer dt = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             dt.Tick += (object sender, EventArgs e) =>

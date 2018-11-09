@@ -13,45 +13,26 @@ namespace VitAdmin.ViewModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public ICommand CmdPersonnel
-        {
-            get
-            {
-                return new CommandeDeleguee(obj => {
-                    // GestionnaireEcrans.Changer(new View(...));
-                });
-            }
-        }
+        public ICommand CmdPersonnel => new CommandeDeleguee(obj => {
+            // GestionnaireEcrans.Changer(new View(...));
+        });
 
-        public ICommand CmdInfrastructure
-        {
-            get
-            {
-                return new CommandeDeleguee(obj => {
-                    GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
-                });
-            }
-        }
+        public ICommand CmdInfrastructure => new CommandeDeleguee(obj => {
+            GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
+        });
 
-        public ICommand CmdPatients
-        {
-            get
-            {
-                return new CommandeDeleguee(obj => {
-                    // GestionnaireEcrans.Changer(new View(...));
-                });
-            }
-        }
+        public ICommand CmdPatients => new CommandeDeleguee(obj => {
+            // GestionnaireEcrans.Changer(new View(...));
+        });
 
-        public ICommand CmdTraitements
+        public ICommand CmdEquipements => new CommandeDeleguee(obj =>
         {
-            get
-            {
-                return new CommandeDeleguee(obj => {
-                    GestionnaireEcrans.Changer(new ViewAdminModifierTraitements(GestionnaireEcrans));
-                });
-            }
-        }
+            GestionnaireEcrans.Changer(new ViewGestionEquipements(GestionnaireEcrans));
+        });
+
+        public ICommand CmdTraitements => new CommandeDeleguee(obj => {
+            GestionnaireEcrans.Changer(new ViewAdminModifierTraitements(GestionnaireEcrans));
+        });
 
         public ViewModelHubAdmin(GestionnaireEcrans gestionnaireEcrans)
             => GestionnaireEcrans = gestionnaireEcrans;

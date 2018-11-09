@@ -36,7 +36,7 @@ namespace VitAdmin.View
         private void btnModifierEquipement_Click(object sender, RoutedEventArgs e)
             => ViewModel.CmdModifierEquipement.Execute(null);
 
-        public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
+        public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
 
         public string TexteBoutonRetourEcran => "< Infrastructure";
     }
