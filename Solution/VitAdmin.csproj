@@ -358,6 +358,9 @@
     <Compile Include="View\ViewGestionEquipements.xaml.cs">
       <DependentUpon>ViewGestionEquipements.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewListeEmployes.xaml.cs">
+      <DependentUpon>ViewListeEmployes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewModifierDepartement.xaml.cs">
       <DependentUpon>ViewModifierDepartement.xaml</DependentUpon>
     </Compile>
@@ -577,6 +580,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewGestionEquipements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewListeEmployes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
