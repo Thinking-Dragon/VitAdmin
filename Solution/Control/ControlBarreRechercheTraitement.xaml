@@ -9,8 +9,8 @@
     <ComboBox x:Name="cboRecherche"
               KeyUp="cboRecherche_KeyUp"
               IsEditable="True"
+              IsTextSearchEnabled="True"
               ItemsSource="{Binding TraitementsTemp}"
-              SelectionChanged="cboRecherche_SelectionChanged"
               DisplayMemberPath="Nom">
     </ComboBox>
 </UserControl>

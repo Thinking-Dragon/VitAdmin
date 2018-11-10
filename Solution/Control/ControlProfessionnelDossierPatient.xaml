@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,11 +21,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox VerticalAlignment="Center" Name="cboDepartements" Grid.Row="1"></ComboBox>
         
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray">Liste des hospitalisations</Label>
 
-        <DataGrid Name="dtgDossierPatient" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="dtgDossierPatient" Grid.Row="3" Grid.ColumnSpan="4" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
             
            <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DataContext.DepartementAssocie.Nom, 
@@ -40,8 +40,14 @@
 
             </DataGrid.InputBindings>
         </DataGrid>
-        <DatePicker Name="dtpkrDebut" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
-        <DatePicker Name="dtpkrFin" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
-        <Button Grid.Row="1" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
+        
+        <ComboBox VerticalAlignment="Center" Name="cboDepartements" Grid.Row="2"></ComboBox>
+        <DatePicker Name="dtpkrDebut" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
+        <DatePicker Name="dtpkrFin" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
+        <Button Grid.Row="2" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
+        
+        <Label Content="Département" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
+        <Label Content="Date de début" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
+        <Label Content="Date de fin" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>
