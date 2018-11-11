@@ -197,6 +197,11 @@ namespace VitAdmin.Control
 
         }
 
+        private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = (Hyperlink)e.OriginalSource;
+            
+        }
     }
 
 }
