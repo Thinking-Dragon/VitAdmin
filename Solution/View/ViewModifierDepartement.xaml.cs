@@ -25,7 +25,7 @@ namespace VitAdmin.View
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public ViewModifierDepartement(GestionnaireEcrans gestionnaireEcrans, Departement departement)
+        public ViewModifierDepartement(GestionnaireEcrans gestionnaireEcrans, Departement departement = null)
         {
             InitializeComponent();
             GestionnaireEcrans = gestionnaireEcrans;

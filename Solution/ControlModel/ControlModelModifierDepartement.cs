@@ -18,6 +18,8 @@ namespace VitAdmin.ControlModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
+        private bool ModeCreation { get; set; }
+
         public Departement Departement { get; set; }
 
         private Chambre _chambreSelectionnee;
@@ -44,10 +46,22 @@ namespace VitAdmin.ControlModel
 
         private string AbrevInitiale { get; set; }
 
+        private string _txtBoutonConfirmer = "Valider la modification";
+        public string TxtBoutonConfirmer
+        {
+            get => _txtBoutonConfirmer;
+            set { _txtBoutonConfirmer = value; RaisePropertyChangedEvent("TxtBoutonConfirmer"); }
+        }
+
         public ICommand CmdValider => new CommandeDeleguee(param =>
         {
             Departement.PersonnelMedicalEnChef = (PersonnelMedicalEnChef.Nom == "S/O" ? null : PersonnelMedicalEnChef);
-            DataModelDepartement.PutDepartement(Departement);
+
+            if(ModeCreation)
+                DataModelDepartement.PostDepartement(Departement);
+            else
+                DataModelDepartement.PutDepartement(Departement);
+
             GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
         });
 
@@ -83,13 +97,27 @@ namespace VitAdmin.ControlModel
         public ControlModelModifierDepartement(GestionnaireEcrans gestionnaireEcrans, Departement departement)
         {
             GestionnaireEcrans = gestionnaireEcrans;
-            Departement = departement;
-            AbrevInitiale = departement.Abreviation;
 
+            ModeCreation = departement == null;
+            
             InfirmieresChef = new ObservableCollection<Usager>(DataModelUsager.GetInfirmieresChef());
             InfirmieresChef.Add(new Usager { Nom = "S/O" });
 
-            if (departement.PersonnelMedicalEnChef != null)
+            if (departement == null)
+            {
+                Departement = new Departement
+                {
+                    Chambres = new ObservableCollection<Chambre>()
+                };
+                TxtBoutonConfirmer = "Créer le département";
+            }
+            else
+            {
+                Departement = departement;
+                AbrevInitiale = departement.Abreviation;
+            }
+
+            if (departement != null && departement.PersonnelMedicalEnChef != null)
             {
                 for (int i = 0; i < InfirmieresChef.Count; i++)
                     if (InfirmieresChef[i].NumEmploye == departement.PersonnelMedicalEnChef.NumEmploye)
