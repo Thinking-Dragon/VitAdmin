@@ -92,6 +92,12 @@ namespace VitAdmin.Data
             }
         }
 
+        public static void PostChambres(int idDepartement, List<Chambre> chambres)
+        {
+            foreach (var chambre in chambres)
+                PostChambre(idDepartement, chambre);
+        }
+
         #endregion
 
         #region PUT

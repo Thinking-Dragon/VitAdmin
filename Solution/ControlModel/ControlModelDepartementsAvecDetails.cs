@@ -53,7 +53,7 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
-
+                    GestionnaireEcrans.Changer(new ViewModifierDepartement(GestionnaireEcrans));
                 });
             }
         }

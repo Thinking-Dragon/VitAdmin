@@ -23,6 +23,7 @@
                            Source="pack://application:,,,/Resource/Graphic/Titre_chargement.png"/>
                     <Image Width="256"
                            Grid.Row="1"
+                           Margin="170,0,0,0"
                            gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resource/Graphic/Animated/loading.gif"/>
                     <!--<Label FontSize="128"
                            Margin="0 64 0 0"

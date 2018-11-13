@@ -120,6 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlModel\ContolModelListeEmployes.cs" />
     <Compile Include="ControlModel\ControlModelAjouterPatientLit.cs" />
     <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
     <Compile Include="ControlModel\ControlModelAjoutPrescription.cs" />
@@ -175,6 +176,9 @@
     </Compile>
     <Compile Include="Control\ControlEditionEquipement.xaml.cs">
       <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlListeEmployes.xaml.cs">
+      <DependentUpon>ControlListeEmployes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlNotificationNoteInfirmiere.xaml.cs">
       <DependentUpon>ControlNotificationNoteInfirmiere.xaml</DependentUpon>
@@ -433,6 +437,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlEditionEquipement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlListeEmployes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

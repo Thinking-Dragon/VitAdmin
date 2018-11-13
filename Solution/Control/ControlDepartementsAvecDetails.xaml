@@ -45,7 +45,6 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button VerticalAlignment="Bottom"
-                            IsEnabled="False"
                             Width="128"
                             Command="{Binding CmdCreerDepartement}">Créer</Button>
                     <Button Grid.Column="1"

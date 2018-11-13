@@ -105,8 +105,7 @@
         <Button Grid.Column="1"
                 Grid.Row="3"
                 Width="256"
-                Click="btnValiderClic">
-            Valider la modification
-        </Button>
+                Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.TxtBoutonConfirmer}"
+                Click="btnValiderClic"/>
     </Grid>
 </UserControl>

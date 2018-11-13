@@ -60,6 +60,89 @@ namespace VitAdmin.Data
             return lstDepartement;
         }
 
+        public static Departement GetDepartement(string abreviation, string expand = "")
+        {
+            Departement departement = null;
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                int idEmployeChef = -1;
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "SELECT idDepartement _id, nom, abreviation, idEmploye " +
+                        "FROM Departements " +
+                        "WHERE abreviation = '{0}'"
+                    ), lecteur =>
+                    {
+                        departement = new Departement
+                        {
+                            _identifiant = int.Parse(lecteur.GetString("_id")),
+                            Nom = lecteur.GetString("nom"),
+                            Abreviation = lecteur.GetString("abreviation")
+                        };
+                        idEmployeChef = int.Parse(lecteur.GetString("idEmploye"));
+                    }
+                );
+                
+                departement.PersonnelMedicalEnChef = (idEmployeChef >= 0 ? null : DataModelEmploye.GetEmploye(idEmployeChef));
+                if(expand.Contains("chambres"))
+                {
+                    StringBuilder expandPropagation = new StringBuilder();
+                    if (expand.Contains("lits"))
+                        expandPropagation.Append("lits ");
+                    if (expand.Contains("equipements"))
+                        expandPropagation.Append("equipements ");
+                    departement.Chambres = new ObservableCollection<Chambre>(
+                        DataModelChambre.GetChambres(
+                            departement._identifiant.ToString(),
+                            expandPropagation.ToString()
+                        )
+                    );
+                }
+            }
+            return departement;
+        }
+
+        public static void PostDepartement(Departement departement)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                if(departement.PersonnelMedicalEnChef == null)
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        string.Format(
+                            "INSERT INTO Departements (idEmploye, nom, abreviation) " +
+                            "VALUES ( " +
+                            "   null, " +
+                            "   {0}, " +
+                            "   {1}, " +
+                            ")",
+                            departement.Nom, departement.Abreviation
+                        )
+                    );
+                }
+                else
+                {
+                    ConnexionBD.Instance().ExecuterRequete(
+                        string.Format(
+                            "INSERT INTO Departements (idEmploye, nom, abreviation) " +
+                            "VALUES ( " +
+                            "   (SELECT idEmploye FROM Employes WHERE numEmploye = '{0}'), " +
+                            "   '{1}', " +
+                            "   '{2}' " +
+                            ")",
+                            departement.PersonnelMedicalEnChef.NumEmploye,
+                            departement.Nom,
+                            departement.Abreviation
+                        )
+                    );
+                }
+
+                DataModelChambre.PostChambres(
+                    GetDepartement(departement.Abreviation, "chambres:{lits, equipements}")._identifiant,
+                    new List<Chambre>(departement.Chambres));
+            }
+        }
+
         public static void PutDepartement(Departement departement)
         {
             if (ConnexionBD.Instance().EstConnecte())

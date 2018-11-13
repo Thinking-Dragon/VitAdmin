@@ -62,8 +62,7 @@ namespace VitAdmin.ViewModel
                             GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
                             break;
                         case Role.GestPersonnel:
-                            GestionnaireEcrans.AfficherMessage("L'écran d'accueil d'un gestionnaire du personnel n'existe pas encore");
-                            GestionnaireEcrans.Changer(new ViewCreerNotifications(GestionnaireEcrans));
+                            GestionnaireEcrans.Changer(new ViewListeEmployes(GestionnaireEcrans));
                             break;
                         case Role.InfChef:
                             GestionnaireEcrans.AfficherMessage("L'écran d'accueil d'une infirmière en chef n'existe pas encore");

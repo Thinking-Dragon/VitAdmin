@@ -34,7 +34,7 @@ namespace VitAdmin.Data
 
             if (ConnexionBD.Instance().EstConnecte())
             {
-                string requete = "SELECT * FROM Employes e " +
+                string requete = "SELECT numEmploye FROM Employes e " +
                                  "JOIN Postes p ON p.idPoste = e.idPoste";
                 ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
                 {
