@@ -24,26 +24,27 @@ namespace VitAdmin.Control
     public partial class ControlBarreRechercheTraitement : UserControl
     {
         List<Traitement> LstTraitementsTemp { get; set; }
+        ControlModelBarreRechercheTraitement controlModelBarreRechercheTraitement { get; set; }
 
         // Constructeur
         public ControlBarreRechercheTraitement(ObservableCollection<Traitement> traitementsTemps, ObservableCollection<Traitement> traitements) // Pour rendre la barre de recherche un jour accessible à plus de contexte
         {
             InitializeComponent();
-            DataContext = new ControlModelBarreRechercheTraitement(traitementsTemps, traitements);
+            controlModelBarreRechercheTraitement = new ControlModelBarreRechercheTraitement(traitementsTemps, traitements);
+            DataContext = controlModelBarreRechercheTraitement;
             LstTraitementsTemp = traitementsTemps.ToList<Traitement>();
         }
 
         private void cboRecherche_KeyUp(object sender, KeyEventArgs e)
         {
-            (DataContext as ControlModelBarreRechercheTraitement).TraitementsTemp = new ObservableCollection<Traitement>(LstTraitementsTemp.FindAll(traitement => traitement.Nom.IndexOf(cboRecherche.Text) != -1));
-            (sender as ComboBox).IsDropDownOpen = true;
-        }
+            ControlModelBarreRechercheTraitement controlModelBarreRechercheTraitement = (ControlModelBarreRechercheTraitement)DataContext;
+            string texteRecherche = cboRecherche.Text;
 
-        private void cboRecherche_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            (DataContext as ControlModelBarreRechercheTraitement).Traitements.Add((Traitement)cboRecherche.SelectedItem);
-
+            if (e.Key == Key.Enter)
+            {
+                // On ajoute dans la liste des traitements à donnés au patient le traitement sélectionné.
+                controlModelBarreRechercheTraitement.Traitements.Add(LstTraitementsTemp.Find((traitement) => traitement.Nom.IndexOf(cboRecherche.Text) != -1));
+            }
 
         }
 

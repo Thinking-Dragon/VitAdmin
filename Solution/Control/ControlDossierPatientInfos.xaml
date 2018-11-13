@@ -36,7 +36,8 @@
         <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
                     Text="{Binding Citoyen.NumTelephone}"></TextBox>
         <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"  HorizontalAlignment="Right">Date de naissance</Label>
-        <DatePicker Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
+        <DatePicker Name="dtpkrNaissance" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
+                    DisplayDate="01-01-1993"
                     SelectedDate="{Binding Citoyen.DateNaissance}"></DatePicker>
         <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"  HorizontalAlignment="Right">Adresse</Label>
         <TextBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"

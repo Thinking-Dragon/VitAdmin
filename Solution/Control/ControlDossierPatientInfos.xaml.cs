@@ -21,14 +21,19 @@ namespace VitAdmin.Control
     /// <summary>
     /// Logique d'interaction pour ControlDossierPatientInfos.xaml
     /// </summary>
+    /// 
     public partial class ControlDossierPatientInfos : UserControl
     {
         ComboBox CboGenre { get; set; }
         ControlModelDossierPatientInfos controlModelDossierPatientInfos;
+        //DateTime DtReference = new DateTime(1980, 1, 1);
 
         public ControlDossierPatientInfos(Citoyen citoyen)
         {
             InitializeComponent();
+            /*if (dtpkrNaissance.SelectedDate == null)
+                dtpkrNaissance.SelectedDate = DtReference;*/
+          
 
             controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(citoyen);
 

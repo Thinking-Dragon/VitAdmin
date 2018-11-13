@@ -23,10 +23,12 @@ namespace VitAdmin.Model
         public Citoyen(String NumAssMaladie)
         {
             AssMaladie = NumAssMaladie;
+            
         }
 
         public Citoyen()
         {
+            DateNaissance = new DateTime(1980, 1, 1);
         }
 
 
