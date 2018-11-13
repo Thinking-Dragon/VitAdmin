@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.ControlModel;
 
-namespace VitAdmin.View
+namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour ViewListeEmployes.xaml
+    /// Logique d'interaction pour ControlListeEmployes.xaml
     /// </summary>
-    public partial class ViewListeEmployes : Page
+    public partial class ControlListeEmployes : UserControl
     {
-        public ViewListeEmployes(GestionnaireEcrans gestionnaireEcrans)
+        public ControlListeEmployes()
         {
             InitializeComponent();
+            DataContext = new ContolModelListeEmployes();
         }
     }
 }
