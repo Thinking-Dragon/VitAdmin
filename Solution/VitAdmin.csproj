@@ -181,9 +181,6 @@
     <Compile Include="Control\ControlEditionEquipement.xaml.cs">
       <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\ControlListeDemandeTransfert.xaml.cs">
-      <DependentUpon>ControlListeDemandeTransfert.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Control\ControlNotificationNoteInfirmiere.xaml.cs">
       <DependentUpon>ControlNotificationNoteInfirmiere.xaml</DependentUpon>
     </Compile>
@@ -443,10 +440,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlEditionEquipement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\ControlListeDemandeTransfert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

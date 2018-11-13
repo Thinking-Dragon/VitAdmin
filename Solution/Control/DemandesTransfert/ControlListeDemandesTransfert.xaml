@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:VitAdmin.Control.DemandesTransfert"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <DataGrid Name="dtgDemandeTransfert">
+    <!--<DataGrid Name="dtgDemandeTransfert">
         <DataGridHyperlinkColumn Header="Patient">
             <DataGridHyperlinkColumn.ElementStyle>
             <Style>
@@ -15,5 +15,5 @@
             </DataGridHyperlinkColumn.ElementStyle>
         </DataGridHyperlinkColumn>
         
-    </DataGrid>
+    </DataGrid>-->
 </UserControl>
