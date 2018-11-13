@@ -27,6 +27,7 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlListePatient : UserControl
     {
+        GestionnaireEcrans GestionnaireEcrans { get; set; }
         ComboBox cboProfessionnel = new ComboBox();
         ComboBox cboDepartements = new ComboBox();
         List<Citoyen> LstCitoyenRecherche;
@@ -34,7 +35,7 @@ namespace VitAdmin.Control
         public ControlListePatient(GestionnaireEcrans gestionnaireEcrans, ObservableCollection<Departement> departements, ObservableCollection<Employe> employes, Departement departement, Employe employe)
         {
             InitializeComponent();
-
+            GestionnaireEcrans = gestionnaireEcrans;
             ControlModelListePatient controlModelListePatient = new ControlModelListePatient(gestionnaireEcrans, departement.EstNull() ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyens()) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)), departements, employes);
 
             // On met dans le datacontexte les infos qui seront liées dans le UserControl
@@ -199,7 +200,7 @@ namespace VitAdmin.Control
 
         private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            Hyperlink link = (Hyperlink)e.OriginalSource;
+            GestionnaireEcrans.Changer(new ViewDemandesTransfert((Citoyen)dtgPatient.SelectedItem));
             
         }
     }

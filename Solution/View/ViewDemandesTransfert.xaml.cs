@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Control.DemandesTransfert;
+using VitAdmin.Model;
+using VitAdmin.ViewModel;
 
 namespace VitAdmin.View
 {
@@ -20,10 +23,32 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewDemandesTransfert : Page
     {
-        public ViewDemandesTransfert()
+        ViewModelDemandesTransfert ViewModelDemandesTransfert { get; set; }
+        public ViewDemandesTransfert(Citoyen citoyen)
         {
             InitializeComponent();
+            DataContext = ViewModelDemandesTransfert = new ViewModelDemandesTransfert(citoyen);
+            InitialiserUsersControls(citoyen);
 
+
+
+        }
+
+        private void InitialiserUsersControls(Citoyen citoyen)
+        {
+            ControlInfos controlInfos = new ControlInfos(citoyen);
+            ControlEquipements controlEquipements = new ControlEquipements(citoyen);
+            ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(citoyen);
+
+            Grid.SetRow(controlInfos, 1);
+            Grid.SetRow(controlEquipements, 2);
+            Grid.SetRow(controlListeDemandesTransfert, 1);
+            Grid.SetColumn(controlListeDemandesTransfert, 1);
+            Grid.SetRowSpan(controlListeDemandesTransfert, 2);
+
+            grdGestionLit.Children.Add(controlInfos);
+            grdGestionLit.Children.Add(controlEquipements);
+            grdGestionLit.Children.Add(controlListeDemandesTransfert);
         }
     }
 }

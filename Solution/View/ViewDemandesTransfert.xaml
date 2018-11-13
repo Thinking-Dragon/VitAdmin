@@ -8,12 +8,18 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ViewDemandesTransfert">
 
-    <Grid>
+    <Grid Name="grdGestionLit">
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray" Content="Modification"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray" Content="Gestion du lit"/>
+        
     </Grid>
 </Page>

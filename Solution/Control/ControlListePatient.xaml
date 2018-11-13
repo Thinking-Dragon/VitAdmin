@@ -35,8 +35,7 @@
                 <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"/>
                 <DataGridTextColumn Binding="{Binding Lit.Chambre.UnDepartement.Nom}" Header="Département"/>
                 <DataGridTextColumn Binding="{Binding Lit.Chambre.Numero}" Header="N°Chambre"/>
-                <DataGridTextColumn Binding="{Binding Lit.Numero}" Header="N°Lit"/>
-                <DataGridHyperlinkColumn Binding="{Binding Lit.EtatLit}">
+                <DataGridHyperlinkColumn Binding="{Binding Lit.Numero}" Header="N°Lit">
                     <DataGridHyperlinkColumn.ElementStyle>
                         <Style>
                             <EventSetter Event="Hyperlink.Click" Handler="DG_Hyperlink_Click"/>

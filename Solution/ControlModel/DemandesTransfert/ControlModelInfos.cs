@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 
-namespace VitAdmin.ViewModel
+namespace VitAdmin.ControlModel.DemandesTransfert
 {
-    public class ViewModelDemandesTransfert : ObjetObservable
+    public class ControlModelInfos : ObjetObservable
     {
-        Citoyen Citoyen { get; set; }
-        public ViewModelDemandesTransfert(Citoyen citoyen)
+        public Citoyen Citoyen { get; set; }
+
+        public ControlModelInfos(Citoyen citoyen)
         {
             Citoyen = citoyen;
         }

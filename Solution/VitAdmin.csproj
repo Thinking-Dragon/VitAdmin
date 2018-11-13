@@ -154,6 +154,7 @@
     <Compile Include="ControlModel\ControlModelTableauHoraire.cs" />
     <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
     <Compile Include="ControlModel\ControlModelTraitementCreationHospitalisation.cs" />
+    <Compile Include="ControlModel\DemandesTransfert\ControlModelInfos.cs" />
     <Compile Include="Control\ControlAjouterPatientLit.xaml.cs">
       <DependentUpon>ControlAjouterPatientLit.xaml</DependentUpon>
     </Compile>
@@ -168,12 +169,6 @@
     </Compile>
     <Compile Include="Control\ControlAjoutSuppression.xaml.cs">
       <DependentUpon>ControlAjoutSuppression.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\DemandesTransfert\ControlInfos.xaml.cs">
-      <DependentUpon>ControlInfos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\DemandesTransfert\ControlEquipements.xaml.cs">
-      <DependentUpon>ControlEquipements.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlEditionChambre.xaml.cs">
       <DependentUpon>ControlEditionChambre.xaml</DependentUpon>
@@ -270,6 +265,12 @@
     </Compile>
     <Compile Include="Control\DemandesTransfert\ControlListeDemandesTransfert.xaml.cs">
       <DependentUpon>ControlListeDemandesTransfert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DemandesTransfert\ControlEquipements.xaml.cs">
+      <DependentUpon>ControlEquipements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DemandesTransfert\ControlInfos.xaml.cs">
+      <DependentUpon>ControlInfos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\placeHolder.cs" />
     <Compile Include="Control\QuelPosteOccupesTuAdmin.xaml.cs">
@@ -427,14 +428,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\DemandesTransfert\ControlInfos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\DemandesTransfert\ControlEquipements.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Control\ControlEditionChambre.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -560,6 +553,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\DemandesTransfert\ControlListeDemandesTransfert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\DemandesTransfert\ControlEquipements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\DemandesTransfert\ControlInfos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
