@@ -26,12 +26,16 @@ namespace VitAdmin.View
     public partial class ViewProfessionnelDossierPatientCreerHospitalisation : Page, IEcranRetour
     {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
+        ViewModelProfessionnelDossierPatientCreerHospitalisation ViewModelProfessionnelDossierPatient { get; set; }
 
         public ViewProfessionnelDossierPatientCreerHospitalisation(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
             InitializeComponent();
             GestionnaireEcrans = gestionnaireEcrans;
-            DataContext = new ViewModelProfessionnelDossierPatientCreerHospitalisation(gestionnaireEcrans, citoyen);
+            ViewModelProfessionnelDossierPatient = new ViewModelProfessionnelDossierPatientCreerHospitalisation(gestionnaireEcrans, citoyen);
+            DataContext = ViewModelProfessionnelDossierPatient;
+
+
 
 
         }
@@ -39,7 +43,7 @@ namespace VitAdmin.View
         // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.
         public Action CmdRetourEcranPrecedent
         {
-            get { return () => { GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager)); }; }
+            get { return () => { GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, ViewModelProfessionnelDossierPatient.Citoyen)); }; }
         }
 
         // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.

@@ -24,12 +24,10 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewProfessionnelHub.xaml
     /// </summary>
-    public partial class ViewProfessionnelHub : Page, IEcranRetour
+    public partial class ViewProfessionnelHub : Page
     {
         ViewModelProfessionnelHub ViewModelProfessionnelHub { get; set; }
-        // TODO: Modifier le paramètres pour qu'il recoit les infos du professionnel qui se connecte
-        // Ainsi, le filtre département sera par défaut le département de l'employé ainsi la liste des
-        // professionnels sera mis à jour.
+
         public ViewProfessionnelHub(GestionnaireEcrans gestionnaireEcrans, Employe employe) 
         {
             InitializeComponent();
@@ -38,17 +36,6 @@ namespace VitAdmin.View
             ViewModelProfessionnelHub = new ViewModelProfessionnelHub(gestionnaireEcrans);
             DataContext = ViewModelProfessionnelHub;
 
-            // TODO : À refactoriser ****
-            /*Control.ControlListePatient ctrlLstPatient = 
-                new Control.ControlListePatient(
-                    gestionnaireEcrans, 
-                    UsagerConnecte.Usager.NomUtilisateur == "admin" ? new ObservableCollection<Citoyen>(DataModelCitoyen.GetTousCitoyensDepartement(new Departement { Nom = "Chirurgie", Abreviation = "CHR" })) : new ObservableCollection<Citoyen>(DataModelCitoyen.GetCitoyensLstPatient(employe)), 
-                    new ObservableCollection<Departement>(DataModelDepartement.GetDepartements()), 
-                    new ObservableCollection<Employe>(DataModelEmploye.GetLstEmployesDepartement(departementEmploye)),
-                    departementEmploye, 
-                    employe);*/
-
-            // Le code que je modifie qui va être bon
             Control.ControlListePatient ctrlLstPatient =
                 new Control.ControlListePatient(
                     gestionnaireEcrans,
@@ -62,16 +49,6 @@ namespace VitAdmin.View
             grdLstPatient.Children.Add(ctrlLstPatient);
         }
 
-        // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.
-        public Action CmdRetourEcranPrecedent
-        {
-            get { return () => { ViewModelProfessionnelHub.GestionnaireEcrans.Changer(new ViewChargementApp(ViewModelProfessionnelHub.GestionnaireEcrans)); }; }
-        }
-
-        // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.
-        public string TexteBoutonRetourEcran
-        {
-            get { return "< Accueil"; }
-        }
+       
     }
 }
