@@ -26,7 +26,6 @@ namespace VitAdmin.Control
     {
         ComboBox CboGenre { get; set; }
         ControlModelDossierPatientInfos controlModelDossierPatientInfos;
-        //DateTime DtReference = new DateTime(1980, 1, 1);
 
         public ControlDossierPatientInfos(Citoyen citoyen)
         {

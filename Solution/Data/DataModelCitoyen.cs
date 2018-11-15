@@ -219,7 +219,7 @@ namespace VitAdmin.Data
 
         #endregion GET
         #region PUT
-        public static void PutCitoyen(Citoyen citoyen)
+        public static void PutCitoyen(Citoyen citoyen, string AssMaladieAncien)
         {
             if (ConnexionBD.Instance().EstConnecte())
             {
@@ -228,12 +228,12 @@ namespace VitAdmin.Data
                         "UPDATE citoyens " +
                         "SET prenom = '" + citoyen.Prenom + "', " +
                         "nom = '" + citoyen.Nom + "', " +
-                        //"numAssuranceMaladie = '" + citoyen.AssMaladie + "', " +
+                        "numAssuranceMaladie = '" + citoyen.AssMaladie + "', " +
                         "dateNaissance = '" + citoyen.DateNaissance + "', " +
                         "telephone = '" + citoyen.NumTelephone + "', " +
                         "adresse = '" + citoyen.Adresse + "', " +
                         "idGenre = ( SELECT idGenre FROM genres WHERE nom = '" + citoyen.UnGenre + "') " +
-                        "WHERE numAssuranceMaladie = '" + citoyen.AssMaladie + "' "
+                        "WHERE numAssuranceMaladie = '" + AssMaladieAncien + "' "
                         ,
                         citoyen
                     )

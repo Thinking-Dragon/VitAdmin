@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace VitAdmin.Model
@@ -31,9 +32,41 @@ namespace VitAdmin.Model
             DateNaissance = new DateTime(1980, 1, 1);
         }
 
+        bool ValiderInfos()
+        {
+            const int iMAX_CARAC_NOMPRENOM = 15;
+            const int iMIN_CARAC_NOMPRENOM = 2;
+            const int iCaracteresTelephone = 10;
+            const int iCaracteresAssMaladie = 12;
+            const int iMaxAdresse = 100;
+            Regex regexAssMaladie = new Regex("[A-Z a-z]{4}[0-9]{8}");
+
+            bool bInfosValide = false;
+
+            // Nom du citoyen
+            bInfosValide =  (Nom.Length < iMAX_CARAC_NOMPRENOM && Nom.Length > iMIN_CARAC_NOMPRENOM) &&
+                            (Prenom.Length < iMAX_CARAC_NOMPRENOM && Prenom.Length > iMIN_CARAC_NOMPRENOM) &&
+                            (AssMaladie.Length == iCaracteresAssMaladie && regexAssMaladie.IsMatch(AssMaladie)) &&
+                            (NumTelephone.Length == 0 || NumTelephone.Length == iCaracteresTelephone) &&
+                            (Adresse.Length == 0 || Adresse.Length == iMaxAdresse);
+            /*// Prénom du citoyen
+            bInfosValide = Prenom.Length < iMAX_CARAC_NOMPRENOM && Prenom.Length > iMIN_CARAC_NOMPRENOM;
+            // NumAssuranceMaladie
+            bInfosValide = AssMaladie.Length == iCaracteresAssMaladie && regexAssMaladie.IsMatch(AssMaladie);
+            // Téléphone
+            bInfosValide = NumTelephone.Length == 0 || NumTelephone.Length == iCaracteresTelephone;
+            // Adresse
+            bInfosValide = Num*/
+
+            return new bool();
+        }
 
         bool ValiderTelephone() { return new bool(); }
-        bool ValiderAssMaladie() { return new bool(); }
+        bool ValiderAssMaladie()
+        {
+
+            return new bool();
+        }
         bool ValiderDateNaissance() { return new bool(); }
         String FormaterAdresse() { return ""; }
         DateTime AvoirDateNaissance() { return new DateTime(); }

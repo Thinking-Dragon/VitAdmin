@@ -16,11 +16,13 @@ namespace VitAdmin.ViewModel
     {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
         Citoyen Patient { get; set; }
+        string AssMaladieAncien { get; set; }
 
         public ViewModelProfessionnelDossierPatientInfosModif(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
         {
             GestionnaireEcrans = gestionnaireEcrans;
             Patient = patient;
+            AssMaladieAncien = patient.AssMaladie;
         }
 
         public ICommand CmdBtnModif
@@ -29,7 +31,7 @@ namespace VitAdmin.ViewModel
             {
                 return new CommandeDeleguee(action =>
                 {
-                    DataModelCitoyen.PutCitoyen((Patient));
+                    DataModelCitoyen.PutCitoyen(Patient, AssMaladieAncien);
 
                     //ViewProfessionnelDossierPatientInfosModif winModif = (ViewProfessionnelDossierPatientInfosModif)viewModif;
                     

@@ -31,8 +31,6 @@ namespace VitAdmin.ViewModel
                 {
                     DataModelCitoyen.PostCitoyen(Citoyen);
 
-                    //ViewProfessionnelDossierPatientInfosModif winModif = (ViewProfessionnelDossierPatientInfosModif)viewModif;
-
                     this.GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager));
 
 
