@@ -120,7 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ControlModel\ContolModelListeEmployes.cs" />
+    <Compile Include="ControlModel\ControlModelListeEmployes.cs" />
     <Compile Include="ControlModel\ControlModelAjouterPatientLit.cs" />
     <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
     <Compile Include="ControlModel\ControlModelAjoutPrescription.cs" />

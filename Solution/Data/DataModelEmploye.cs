@@ -34,19 +34,26 @@ namespace VitAdmin.Data
 
             if (ConnexionBD.Instance().EstConnecte())
             {
-                string requete = "SELECT numEmploye FROM Employes e " +
-                                 "JOIN Postes p ON p.idPoste = e.idPoste";
+                string requete = "SELECT c.nom nm, c.prenom prm, numEmploye numEmp, p.nom poste " +
+                                 "FROM employes e " +
+                                 "INNER JOIN  postes p ON p.idPoste = e.idPoste " +
+                                 "INNER JOIN citoyens c ON c.idCitoyen = e.idCitoyen;";
                 ConnexionBD.Instance().ExecuterRequete(requete, SqlDR =>
                 {
                     lstEmployes.Add(new Employe
                     {
-                        NumEmploye = SqlDR.GetString("e.numEmploye"),
-                        NumPermis = SqlDR.GetString("e.numPermis"),
-                        NAS = SqlDR.GetString("e.NAS"),
-                        Poste = SqlDR.GetString("p.nom")
+                        NumEmploye = SqlDR.GetString("numEmp"),
+                        Nom = SqlDR.GetString("nm"),
+                        Prenom = SqlDR.GetString("prm"),
+                        Poste = SqlDR.GetString("poste")
                     });
                 });
             }
+
+            /*SELECT c.nom, c.prenom, numEmploye, p.nom
+	            FROM employes e
+                INNER JOIN  postes p ON p.idPoste = e.idPoste
+                INNER JOIN citoyens c ON c.idCitoyen = e.idCitoyen;*/
 
             return lstEmployes;
         }

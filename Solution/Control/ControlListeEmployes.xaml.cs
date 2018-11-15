@@ -21,10 +21,10 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlListeEmployes : UserControl
     {
-        public ControlListeEmployes()
+        public ControlListeEmployes(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
-            DataContext = new ContolModelListeEmployes();
+            DataContext = new ControlModelListeEmployes();
         }
     }
 }
