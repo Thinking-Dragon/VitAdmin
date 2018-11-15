@@ -7,7 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid ItemsSource="{Binding LstEmployes}" AutoGenerateColumns="False" IsReadOnly="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label FontSize="24" Foreground="Gray">Liste de employés</Label>
+
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding LstEmployes}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"></DataGridTextColumn>
@@ -16,7 +29,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button></Button>
-        <Button></Button>
+        <Button Margin="10,10,10,10" Name="btnHoraire" Grid.Row="2" Grid.Column="1">Horaire</Button>
+        <Button Margin="10,10,10,10" Name="btnProfil" Grid.Row="2" Grid.Column="2">Profil</Button>
     </Grid>
 </UserControl>
