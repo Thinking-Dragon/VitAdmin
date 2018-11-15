@@ -29,6 +29,7 @@
 
                 <DataGrid ItemsSource="{Binding Departements}"
                           AutoGenerateColumns="False"
+                          SelectionMode="Single"
                           IsReadOnly="True"
                           SelectionChanged="dtgDepartements_SelectionChanged"
                           SelectedItem="{Binding DepartementSelectionne}">
@@ -58,9 +59,9 @@
             <Grid DataContext="{Binding DepartementSelectionne}"
                   Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="64"></RowDefinition>
-                    <RowDefinition Height="64"></RowDefinition>
-                    <RowDefinition Height="64"></RowDefinition>
+                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="32"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid>

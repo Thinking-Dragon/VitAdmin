@@ -17,7 +17,7 @@
             </TextBox.InputBindings>
         </TextBox>
         <Label>Mot de passe:</Label>
-        <PasswordBox x:Name="pswPassword">
+        <PasswordBox x:Name="pswPassword" Password="Password">
             <PasswordBox.InputBindings>
                 <KeyBinding Command="{Binding CmdConnexion}" Key="Return"
                             CommandParameter="{Binding ElementName=pswPassword}" />

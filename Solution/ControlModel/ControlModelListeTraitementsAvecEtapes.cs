@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using VitAdmin.Control;
+using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 
@@ -29,14 +30,32 @@ namespace VitAdmin.ControlModel
         public Traitement TraitementSelectionne
         {
             get { return traitementSelectionne; }
-            set { traitementSelectionne = value; RaisePropertyChangedEvent("TraitementSelectionne"); }
+            set
+            {
+                traitementSelectionne = value;
+                RaisePropertyChangedEvent("TraitementSelectionne");
+
+                if(traitementSelectionne != null &&
+                   traitementSelectionne.EtapesTraitement != null &&
+                   traitementSelectionne.EtapesTraitement.Count > 0)
+                    EtapeSelectionnee = traitementSelectionne.EtapesTraitement[0];
+            }
         }
 
         private Etape etapeSelectionnee;
         public Etape EtapeSelectionnee
         {
             get { return etapeSelectionnee; }
-            set { etapeSelectionnee = value; RaisePropertyChangedEvent("EtapeSelectionnee"); }
+            set
+            {
+                etapeSelectionnee = value;
+                RaisePropertyChangedEvent("EtapeSelectionnee");
+
+                if (EtapeSelectionnee != null &&
+                    EtapeSelectionnee.Instructions != null &&
+                    EtapeSelectionnee.Instructions.Count > 0)
+                    InstructionSelectionnee = EtapeSelectionnee.Instructions[0];
+            }
         }
 
         private string instructionSelectionnee;
@@ -62,6 +81,8 @@ namespace VitAdmin.ControlModel
                 {
                     Traitements.Add(traitement as Traitement);
                     DialogHost.CloseDialogCommand.Execute(null, null);
+
+                    DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
                 })), "dialogGeneral");
             });
         }}
@@ -76,6 +97,8 @@ namespace VitAdmin.ControlModel
                         TraitementSelectionne.DepartementAssocie = (traitement as Traitement).DepartementAssocie;
                         Traitements = new ObservableCollection<Traitement>(Traitements);
                         DialogHost.CloseDialogCommand.Execute(null, null);
+
+                        DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
                     }), TraitementSelectionne), "dialogGeneral");
                 }
             });
@@ -84,7 +107,10 @@ namespace VitAdmin.ControlModel
         public ICommand CmdSuppressionTraitement { get { return new CommandeDeleguee(
             param => {
                 if(TraitementSelectionne != null)
+                {
                     Traitements.Remove(TraitementSelectionne);
+                    DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
+                }
             });
         }}
 
@@ -106,6 +132,7 @@ namespace VitAdmin.ControlModel
                                     Instructions = new ObservableCollection<string>()
                                 }
                             );
+                            DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
                         }
                         else
                             GestionnaireEcrans.AfficherMessage("Un nom d'étape ne peut pas être vide");
@@ -122,7 +149,10 @@ namespace VitAdmin.ControlModel
                     {
                         DialogHost.CloseDialogCommand.Execute(null, null);
                         if ((descriptionEtape as string) != string.Empty)
+                        {
                             EtapeSelectionnee.Description = descriptionEtape as string;
+                            DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
+                        }
                         else
                             GestionnaireEcrans.AfficherMessage("Un nom d'étape ne peut pas être vide");
                     }), "Modifier l'étape « " + EtapeSelectionnee.Description + " »", EtapeSelectionnee.Description), "dialogGeneral");
@@ -133,7 +163,10 @@ namespace VitAdmin.ControlModel
         public ICommand CmdSuppressionEtapes { get { return new CommandeDeleguee(
             param => {
                 if (EtapeSelectionnee != null)
+                {
                     TraitementSelectionne.EtapesTraitement.Remove(EtapeSelectionnee);
+                    DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
+                }
             });
         }}
 
@@ -149,6 +182,7 @@ namespace VitAdmin.ControlModel
                         if ((instruction as string) != string.Empty)
                         {
                             EtapeSelectionnee.Instructions.Add(instruction as string);
+                            DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
                         }
                         else
                             GestionnaireEcrans.AfficherMessage("Un nom d'instruction ne peut pas être vide");
@@ -169,6 +203,7 @@ namespace VitAdmin.ControlModel
                             for (int i = 0; i < EtapeSelectionnee.Instructions.Count; ++i)
                                 if (EtapeSelectionnee.Instructions[i] == InstructionSelectionnee)
                                     EtapeSelectionnee.Instructions[i] = instruction as string;
+                            DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
                         }
                         else
                             GestionnaireEcrans.AfficherMessage("Un nom d'instruction ne peut pas être vide");
@@ -180,7 +215,10 @@ namespace VitAdmin.ControlModel
         public ICommand CmdSuppressionInstructions { get { return new CommandeDeleguee(
             param => {
                 if (InstructionSelectionnee != null)
+                {
                     EtapeSelectionnee.Instructions.Remove(InstructionSelectionnee);
+                    DataModelTraitement.PutTraitements(new List<Traitement>(Traitements));
+                }
             });
         }}
 
@@ -188,6 +226,9 @@ namespace VitAdmin.ControlModel
         {
             Traitements = traitements;
             GestionnaireEcrans = gestionnaireEcrans;
+
+            if (Traitements.Count > 0)
+                TraitementSelectionne = Traitements[0];
         }
     }
 }

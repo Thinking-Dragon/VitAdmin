@@ -15,8 +15,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="128">
-            </RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
         <ContentPresenter x:Name="cpDepartementsAvecApercu"
                           Grid.ColumnSpan="2"></ContentPresenter>

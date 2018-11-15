@@ -11,9 +11,9 @@
 
     <Grid x:Name="dtgMain">
         <Grid.RowDefinitions>
-            <RowDefinition Height="128"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="64"></RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,6 +38,7 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1"
+                    Visibility="Collapsed"
                     Command="{Binding CmdEnregistrer}">Enregistrer les modifications</Button>
         </Grid>
     </Grid>

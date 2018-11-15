@@ -22,6 +22,7 @@
                   ItemsSource="{Binding Traitements}"
                   SelectedItem="{Binding TraitementSelectionne}"
                   AutoGenerateColumns="False"
+                  SelectionMode="Single"
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Traitements"
@@ -47,6 +48,7 @@
                   ItemsSource="{Binding SelectedItem.EtapesTraitement, ElementName=dtgTraitements}"
                   SelectedItem="{Binding EtapeSelectionnee}"
                   AutoGenerateColumns="False"
+                  SelectionMode="Single"
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Étapes"
@@ -68,6 +70,7 @@
                   ItemsSource="{Binding SelectedItem.Instructions, ElementName=dtgEtapes}"
                   SelectedItem="{Binding InstructionSelectionnee}"
                   AutoGenerateColumns="False"
+                  SelectionMode="Single"
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Instructions"
