@@ -24,7 +24,15 @@ namespace VitAdmin.Control
         public ControlListeEmployes(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
+            btnHoraire.IsEnabled = false;
+            btnProfil.IsEnabled = false;
             DataContext = new ControlModelListeEmployes();
+        }
+
+        private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            btnHoraire.IsEnabled = true;
+            btnProfil.IsEnabled = true;
         }
     }
 }

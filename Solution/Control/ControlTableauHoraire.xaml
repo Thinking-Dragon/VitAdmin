@@ -29,8 +29,6 @@
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        
-
         <Label Grid.Row="1" Grid.Column="2">Dimanche</Label>
         <Label Grid.Row="1" Grid.Column="3">Lundi</Label>
         <Label Grid.Row="1" Grid.Column="4">Mardi</Label>
