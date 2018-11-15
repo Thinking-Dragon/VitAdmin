@@ -31,6 +31,7 @@
             <TextBox Grid.Column="1"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
+                     Width="64"
                      Text="{Binding Nom}" />
         </Grid>
         <Grid Grid.Row="1">
@@ -43,6 +44,7 @@
             <TextBox Grid.Column="1"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
+                     Width="32"
                      Text="{Binding Abreviation}"/>
         </Grid>
         <DataGrid Grid.Row="2"

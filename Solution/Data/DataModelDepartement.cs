@@ -10,21 +10,6 @@ namespace VitAdmin.Data
 {
     class DataModelDepartement
     {
-        /*public static Departement GetDepartement(string numEmploye)
-        {
-            Departement departement = new Departement();
-
-            if(ConnexionBD.Instance().EstConnecte())
-            {
-                ConnexionBD.Instance().ExecuterRequete(
-                    String.Format(
-                        "SELECT "
-                    )
-                );
-            }
-        }*/
-
-        // On rend static la fonction pour être en mesure de l'utiliser partout
         public static List<Departement> GetDepartements()
         {
             List<Departement> lstDepartement = new List<Departement>();
@@ -70,7 +55,8 @@ namespace VitAdmin.Data
                     string.Format(
                         "SELECT idDepartement _id, nom, abreviation, idEmploye " +
                         "FROM Departements " +
-                        "WHERE abreviation = '{0}'"
+                        "WHERE abreviation = '{0}'",
+                        abreviation
                     ), lecteur =>
                     {
                         departement = new Departement
@@ -79,7 +65,8 @@ namespace VitAdmin.Data
                             Nom = lecteur.GetString("nom"),
                             Abreviation = lecteur.GetString("abreviation")
                         };
-                        idEmployeChef = int.Parse(lecteur.GetString("idEmploye"));
+                        if(!lecteur.IsDBNull(lecteur.GetOrdinal("idEmploye")))
+                            idEmployeChef = int.Parse(lecteur.GetString("idEmploye"));
                     }
                 );
                 
@@ -113,8 +100,8 @@ namespace VitAdmin.Data
                             "INSERT INTO Departements (idEmploye, nom, abreviation) " +
                             "VALUES ( " +
                             "   null, " +
-                            "   {0}, " +
-                            "   {1}, " +
+                            "   '{0}', " +
+                            "   '{1}' " +
                             ")",
                             departement.Nom, departement.Abreviation
                         )
