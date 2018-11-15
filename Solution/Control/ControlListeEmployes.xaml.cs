@@ -26,7 +26,7 @@ namespace VitAdmin.Control
             InitializeComponent();
             btnHoraire.IsEnabled = false;
             btnProfil.IsEnabled = false;
-            DataContext = new ControlModelListeEmployes();
+            DataContext = new ControlModelListeEmployes(gestionnaireEcrans);
         }
 
         private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
