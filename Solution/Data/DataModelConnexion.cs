@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using VitAdmin.Helper;
 using VitAdmin.Model;
 
 namespace VitAdmin.Data
@@ -20,13 +21,15 @@ namespace VitAdmin.Data
                 int nbUsagers = 0;
                 string requete = string.Format("SELECT nomUtilisateur, motDePasse FROM Usagers WHERE nomUtilisateur = '{0}'", usager);
 
-                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé? Nah !
+                ConnexionBD.Instance().ExecuterRequete( // TODO: prevent obvious sql injection exploit -- @Clément réglé? -- Nah !
                     requete, (MySqlDataReader lecteur) =>
                     {
                         string nom = lecteur.GetString("nomUtilisateur");
                         string hash = lecteur.GetString("motDePasse");
-                        if (motDePasse == hash) // TODO : Valider hash
+                        if (Crypto.Verifier(motDePasse, hash))
                             retour.Etat = true;
+                        else
+                            retour.Message = "Nom d'utilisateur ou mot de passe invalide";
                         ++nbUsagers;
                     }
                 );

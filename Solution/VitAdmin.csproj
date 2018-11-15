@@ -301,6 +301,7 @@
     <Compile Include="Data\DataModelTraitement.cs" />
     <Compile Include="Data\DataModelUsager.cs" />
     <Compile Include="Data\EtatAvecMessage.cs" />
+    <Compile Include="Helper\Crypto.cs" />
     <Compile Include="Model\LienNotificationEcran.cs" />
     <Compile Include="Notifications\GestionnaireNotifications.cs" />
     <Compile Include="Model\Chambre.cs" />
