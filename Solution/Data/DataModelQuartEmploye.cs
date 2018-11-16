@@ -9,7 +9,7 @@ namespace VitAdmin.Data
 {
     class DataModelQuartEmploye
     {
-        public static List<QuartEmploye> GetHoraire()
+        public static List<QuartEmploye> GetHoraire(Employe employe)
         {
             List<QuartEmploye> horaire = new List<QuartEmploye>();
 
@@ -26,7 +26,7 @@ namespace VitAdmin.Data
                               "INNER JOIN citoyens cit on cit.idCitoyen = em.idCitoyen " +
                               "INNER JOIN periodesjournee shift on shift.idPeriodeJournee = q.idPeriodeJournee " +
                               "INNER JOIN departements dep on dep.idDepartement = q.idDepartement " +
-                                  "WHERE em.idEmploye = " + Parameter.UsagerConnecte.Usager.idEmploye + ";"
+                                  "WHERE em.idEmploye = " + employe.idEmploye + ";"
 
                     , SqlDR => {
                         horaire.Add(new QuartEmploye

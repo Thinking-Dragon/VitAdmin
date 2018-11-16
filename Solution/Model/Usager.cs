@@ -10,6 +10,6 @@ namespace VitAdmin.Model
     {
         public String NomUtilisateur { get; set; }
         public Role RoleUsager { get; set; }
-        public int idEmploye { get; set; }
+        
     }
 }

@@ -13,6 +13,7 @@ namespace VitAdmin.Model
         public String Poste { get; set; }
         public String NumPermis { get; set; }
         public String NAS { get; set; }
+        public int idEmploye { get; set; }
 
         public string idPrenomNom
         {

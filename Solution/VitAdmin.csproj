@@ -120,6 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlModel\ControlModelGestionHoraire.cs" />
     <Compile Include="ControlModel\ControlModelListeEmployes.cs" />
     <Compile Include="ControlModel\ControlModelAjouterPatientLit.cs" />
     <Compile Include="ControlModel\ControlModelAjoutNote.cs" />
@@ -176,6 +177,9 @@
     </Compile>
     <Compile Include="Control\ControlEditionEquipement.xaml.cs">
       <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlGestionHoraire.xaml.cs">
+      <DependentUpon>ControlGestionHoraire.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlListeEmployes.xaml.cs">
       <DependentUpon>ControlListeEmployes.xaml</DependentUpon>
@@ -377,6 +381,9 @@
     <Compile Include="View\ViewGestionEquipements.xaml.cs">
       <DependentUpon>ViewGestionEquipements.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewGestionHoraire.xaml.cs">
+      <DependentUpon>ViewGestionHoraire.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewListeEmployes.xaml.cs">
       <DependentUpon>ViewListeEmployes.xaml</DependentUpon>
     </Compile>
@@ -438,6 +445,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlEditionEquipement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlGestionHoraire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -619,6 +630,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewGestionEquipements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewGestionHoraire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
