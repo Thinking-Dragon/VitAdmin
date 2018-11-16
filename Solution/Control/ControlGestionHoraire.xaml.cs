@@ -12,23 +12,108 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VitAdmin.Model;
 using VitAdmin.ControlModel;
 using VitAdmin.Data;
-using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
     /// <summary>
-    /// Interaction logic for ControlTableauHoraire.xaml
+    /// Logique d'interaction pour ControlGestionHoraire.xaml
     /// </summary>
-    public partial class ControlTableauHoraire : UserControl
+    public partial class ControlGestionHoraire : UserControl
     {
-        public ControlTableauHoraire()
+        List<DateTime> Semaine { get; set; } = new List<DateTime>();
+
+        public ControlGestionHoraire(Employe employe)
         {
             InitializeComponent();
-            DataContext = new ControlModelTableauHoraire(DataModelQuartEmploye.GetHoraire(Parameter.UsagerConnecte.Usager));
+            DataContext = new ControlModelGestionHoraire(employe);
 
-            List<DateTime> semaine = new List<DateTime>();
+            List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
+
+
+            for (int c = 0; c < 7; c++)
+            {
+
+                foreach (QuartEmploye quart in horaire)
+                {
+                    if (Semaine[c].Year == quart.Date.Year && Semaine[c].Day == quart.Date.Day && Semaine[c].Month == quart.Date.Month)
+                    {
+                        switch (quart.TypeDeQuart)
+                        {
+                            case TypeQuart.jour:
+                                Label temp = new Label
+                                {
+                                    Content = quart.DepartementAssocie.Nom,
+                                    VerticalAlignment = VerticalAlignment.Center,
+                                    Foreground = Brushes.White
+                                };
+
+                                Grid.SetColumn(temp, c + 2);
+                                Grid.SetRow(temp, 3);
+                                GrdHoraire.Children.Add(temp);
+
+                                Border travaille = new Border
+                                {
+                                    Background = Brushes.DodgerBlue
+                                };
+                                Panel.SetZIndex(travaille, -1);
+                                Grid.SetColumn(travaille, c + 2);
+                                Grid.SetRow(travaille, 3);
+                                break;
+                            case TypeQuart.nuit:
+                                Label temp2 = new Label
+                                {
+                                    Content = quart.DepartementAssocie.Nom,
+                                    VerticalAlignment = VerticalAlignment.Center,
+                                    Foreground = Brushes.White
+                                };
+
+                                Grid.SetColumn(temp2, c + 2);
+                                Grid.SetRow(temp2, 2);
+                                GrdHoraire.Children.Add(temp2);
+
+                                Border travaille2 = new Border
+                                {
+                                    Background = Brushes.DodgerBlue
+
+                                };
+                                Panel.SetZIndex(travaille2, -1);
+                                Grid.SetColumn(travaille2, c + 2);
+                                Grid.SetRow(travaille2, 2);
+                                GrdHoraire.Children.Add(travaille2);
+                                break;
+                            case TypeQuart.soir:
+                                Label temp3 = new Label
+                                {
+                                    Content = quart.DepartementAssocie.Nom,
+                                    VerticalAlignment = VerticalAlignment.Center,
+                                    Foreground = Brushes.White
+                                };
+
+                                Grid.SetColumn(temp3, c + 2);
+                                Grid.SetRow(temp3, 4);
+                                GrdHoraire.Children.Add(temp3);
+
+                                Border travaille3 = new Border
+                                {
+                                    Background = Brushes.DodgerBlue
+                                };
+                                Panel.SetZIndex(travaille3, -1);
+                                Grid.SetColumn(travaille3, c + 2);
+                                Grid.SetRow(travaille3, 4);
+                                GrdHoraire.Children.Add(travaille3);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void InitialiseHoraire()
+        {
+            
             DateTime aujourdhui = DateTime.Now;
             DateTime dimanche = new DateTime();
 
@@ -75,16 +160,6 @@ namespace VitAdmin.Control
                     break;
             }
 
-            Label nom = new Label
-            {
-                Content =  "Horaire de " + Parameter.UsagerConnecte.Usager.NomComplet + " \nPoste : " + Parameter.UsagerConnecte.Usager.Poste ,
-                FontSize = 20
-            };
-
-            Grid.SetColumnSpan(nom, 8);
-            Grid.SetColumn(nom, 1);
-            Grid.SetRow(nom, 0);
-            GrdHoraire.Children.Add(nom);
 
             for (int i = 0; i < 7; i++)
             {
@@ -94,98 +169,11 @@ namespace VitAdmin.Control
                     VerticalAlignment = VerticalAlignment.Bottom
                 };
 
-                Grid.SetColumn(temp, i+2);
+                Grid.SetColumn(temp, i + 2);
                 Grid.SetRow(temp, 1);
-                semaine.Add(dimanche.AddDays(i));
+                Semaine.Add(dimanche.AddDays(i));
                 GrdHoraire.Children.Add(temp);
             }
-
-            List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(Parameter.UsagerConnecte.Usager);
-
-
-            for (int c = 0; c < 7; c++)
-            {
-
-                foreach (QuartEmploye quart in horaire)
-                {
-                    if (semaine[c].Year == quart.Date.Year && semaine[c].Day == quart.Date.Day && semaine[c].Month == quart.Date.Month)
-                    {
-                        switch (quart.TypeDeQuart)
-                        {
-                            case TypeQuart.jour:
-                                Label temp = new Label
-                                {
-                                    Content = quart.DepartementAssocie.Nom,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Foreground = Brushes.White
-                                };
-
-                                Grid.SetColumn(temp, c+2);
-                                Grid.SetRow(temp, 3);
-                                GrdHoraire.Children.Add(temp);
-
-                                Border travaille = new Border
-                                {
-                                    Background = Brushes.DodgerBlue
-                                };
-                                Panel.SetZIndex(travaille, -1);
-                                Grid.SetColumn(travaille, c+2);
-                                Grid.SetRow(travaille, 3);
-                                break;
-                            case TypeQuart.nuit:
-                                Label temp2 = new Label
-                                {
-                                    Content = quart.DepartementAssocie.Nom,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Foreground = Brushes.White
-                                };
-
-                                Grid.SetColumn(temp2, c+2);
-                                Grid.SetRow(temp2, 2);
-                                GrdHoraire.Children.Add(temp2);
-
-                                Border travaille2 = new Border
-                                {
-                                    Background = Brushes.DodgerBlue
-                                    
-                                };
-                                Panel.SetZIndex(travaille2, -1);
-                                Grid.SetColumn(travaille2, c+2);
-                                Grid.SetRow(travaille2, 2);
-                                GrdHoraire.Children.Add(travaille2);
-                                break;
-                            case TypeQuart.soir:
-                                Label temp3 = new Label
-                                {
-                                    Content = quart.DepartementAssocie.Nom,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Foreground = Brushes.White
-                                };
-
-                                Grid.SetColumn(temp3, c+2);
-                                Grid.SetRow(temp3, 4);
-                                GrdHoraire.Children.Add(temp3);
-
-                                Border travaille3 = new Border
-                                {
-                                    Background = Brushes.DodgerBlue
-                                };
-                                Panel.SetZIndex(travaille3, -1);
-                                Grid.SetColumn(travaille3, c+2);
-                                Grid.SetRow(travaille3, 4);
-                                GrdHoraire.Children.Add(travaille3);
-                                break;
-                        }
-                    }
-                }
-
-
-            }
-
-
-
-            
-
         }
     }
 }
