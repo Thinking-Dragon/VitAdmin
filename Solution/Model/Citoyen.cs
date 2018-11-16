@@ -17,7 +17,7 @@ namespace VitAdmin.Model
         public DateTime DateNaissance { get; set; }
         public String Adresse { get; set; }
         public String NumTelephone { get; set; }
-        public Genre UnGenre { get; set; }
+        public Genre Genre { get; set; }
         public List<Hospitalisation> Hospitalisations { get; set; }
         public Lit Lit { get; set; }
 

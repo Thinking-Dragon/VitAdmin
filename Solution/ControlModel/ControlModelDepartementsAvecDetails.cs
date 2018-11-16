@@ -64,9 +64,35 @@ namespace VitAdmin.ControlModel
             {
                 return new CommandeDeleguee(param =>
                 {
-
+                    if (DepartementSelectionne != null)
+                    {
+                        if (DepartementSelectionne.Chambres.Count > 0)
+                        {
+                            if (DepartementSelectionne.Chambres.ToList().Exists(chambre => chambre.Lits.ToList().Exists(lit => !lit.EstDisponible)))
+                                GestionnaireEcrans.AfficherMessage("Ce département contient au moins un local occupé, vous ne pouvez pas le supprimer");
+                            else
+                            {
+                                GestionnaireEcrans.DemanderOuiNon("Ce département contient un ou plusieurs locaux, êtes-vous sûr de vouloir le supprimer ?",
+                                    usagerVeutContinuer =>
+                                    {
+                                        if (usagerVeutContinuer)
+                                            SupprimerDepartementSelectionne();
+                                    }
+                                );
+                            }
+                        }
+                        else SupprimerDepartementSelectionne();
+                    }
+                    else GestionnaireEcrans.AfficherMessage("Veuillez choisir un département!");
                 });
             }
+        }
+
+        private void SupprimerDepartementSelectionne()
+        {
+            Departement departementTemporaire = DepartementSelectionne;
+            Departements.Remove(DepartementSelectionne);
+            DataModelDepartement.DeleteDepartement(departementTemporaire);
         }
 
 

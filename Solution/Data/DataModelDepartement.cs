@@ -189,5 +189,22 @@ namespace VitAdmin.Data
 
             return departement;
         }
+
+        public static void DeleteDepartement(Departement departement)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                if (departement.Chambres.Count > 0)
+                    foreach (var chambre in departement.Chambres)
+                        DataModelChambre.DeleteChambre(chambre);
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "DELETE FROM Departements " +
+                        "WHERE idDepartement = {0}",
+                        departement._identifiant
+                    )
+                );
+            }
+        }
     }
 }

@@ -49,7 +49,6 @@
                             Width="128"
                             Command="{Binding CmdCreerDepartement}">Créer</Button>
                     <Button Grid.Column="1"
-                            IsEnabled="False"
                             Width="128"
                             VerticalAlignment="Bottom"
                             Command="{Binding CmdSupprimerDepartement}">Supprimer</Button>

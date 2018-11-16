@@ -50,7 +50,7 @@ namespace VitAdmin.Control
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Width = 100,
                 ItemsSource = Enum.GetValues(typeof(Genre)).Cast<Genre>(),
-                SelectedItem = controlModelDossierPatientInfos.Citoyen == null ? Genre.autre : controlModelDossierPatientInfos.Citoyen.UnGenre
+                SelectedItem = controlModelDossierPatientInfos.Citoyen == null ? Genre.autre : controlModelDossierPatientInfos.Citoyen.Genre
             };
 
             CboGenre.SelectionChanged += CboGenre_SelectionChanged;
@@ -63,7 +63,7 @@ namespace VitAdmin.Control
 
         public void CboGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            controlModelDossierPatientInfos.Citoyen.UnGenre = (Genre)CboGenre.SelectedItem;
+            controlModelDossierPatientInfos.Citoyen.Genre = (Genre)CboGenre.SelectedItem;
         }
     }
 }

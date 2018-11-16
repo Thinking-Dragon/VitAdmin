@@ -85,5 +85,42 @@ namespace VitAdmin
 
             DialogHost.Show(grid, nomDialogue);
         }
+        
+        public void DemanderOuiNon(string message, Action<bool> callback, string nomDialogue = "dialogGeneral")
+        {
+            Grid grid = new Grid();
+            grid.RowDefinitions.Add(new RowDefinition());
+            grid.RowDefinitions.Add(new RowDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+
+            Label lblMessage = new Label { Content = message, Margin = new Thickness(32) };
+
+            Button buttonOui = new Button { Content = "Oui" };
+            Button buttonNon = new Button { Content = "Non" };
+
+            buttonOui.Command = new CommandeDeleguee(param =>
+            {
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                callback(true);
+            });
+            buttonNon.Command = new CommandeDeleguee(param =>
+            {
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                callback(false);
+            });
+
+            Grid.SetColumnSpan(lblMessage, 2);
+            grid.Children.Add(lblMessage);
+
+            Grid.SetRow(buttonOui, 1);
+            Grid.SetColumn(buttonOui, 1);
+            grid.Children.Add(buttonOui);
+
+            Grid.SetRow(buttonNon, 1);
+            grid.Children.Add(buttonNon);
+
+            DialogHost.Show(grid, nomDialogue);
+        }
     }
 }

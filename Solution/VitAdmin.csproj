@@ -342,6 +342,7 @@
     <Compile Include="ViewModel\ViewModelCreerDepartement.cs" />
     <Compile Include="ViewModel\ViewModelDemandesTransfert.cs" />
     <Compile Include="ViewModel\ViewModelGestionEquipements.cs" />
+    <Compile Include="ViewModel\ViewModelGestionUsagers.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -377,6 +378,9 @@
     <Compile Include="View\ViewGestionEquipements.xaml.cs">
       <DependentUpon>ViewGestionEquipements.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewGestionUsagers.xaml.cs">
+      <DependentUpon>ViewGestionUsagers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewListeEmployes.xaml.cs">
       <DependentUpon>ViewListeEmployes.xaml</DependentUpon>
     </Compile>
@@ -407,6 +411,7 @@
     <Compile Include="View\ViewProfessionnelHub.xaml.cs">
       <DependentUpon>ViewProfessionnelHub.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewProfessionnelHubAdmin.cs" />
     <Compile Include="View\ViewProfessionnelProfil.xaml.cs">
       <DependentUpon>ViewProfessionnelProfil.xaml</DependentUpon>
     </Compile>
@@ -619,6 +624,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewGestionEquipements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewGestionUsagers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

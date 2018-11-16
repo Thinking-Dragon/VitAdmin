@@ -38,7 +38,7 @@ namespace VitAdmin.Data
                             Nom = SqlDR.GetString("nomCit"),
                             Prenom = SqlDR.GetString("prenomCit"),
                             AssMaladie = SqlDR.GetString("AssMal"),
-                            UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("GenreCit")),
+                            Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("GenreCit")),
                             DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("DNaiss"),
                             NumTelephone = SqlDR.GetString("Tel"),
                             Adresse = SqlDR.GetString("AdresseCit"),
@@ -96,7 +96,7 @@ namespace VitAdmin.Data
                             Nom = SqlDR.GetString("nomCit"),
                             Prenom = SqlDR.GetString("prenomCit"),
                             AssMaladie = SqlDR.GetString("AssMal"),
-                            UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("GenreCit")),
+                            Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("GenreCit")),
                             DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("DNaiss"),
                             NumTelephone = SqlDR.GetString("Tel"),
                             Adresse = SqlDR.GetString("AdresseCit"),
@@ -157,7 +157,7 @@ namespace VitAdmin.Data
                             Nom = SqlDR.GetString("nomCit"),
                             Prenom = SqlDR.GetString("prenomCit"),
                             AssMaladie = SqlDR.GetString("AssMal"),
-                            UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("NomGenre")),
+                            Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("NomGenre")),
                             DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("DNaissance"),
                             NumTelephone = SqlDR.GetString("Tel"),
                             Adresse = SqlDR.GetString("AdresseCit"),
@@ -205,7 +205,7 @@ namespace VitAdmin.Data
                         InfosCitoyen.Nom = SqlDR.GetString("nomCit");
                         InfosCitoyen.Prenom = SqlDR.GetString("prenomCit");
                         InfosCitoyen.AssMaladie = SqlDR.GetString("AssMal");
-                        InfosCitoyen.UnGenre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("nomGenre"));
+                        InfosCitoyen.Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("nomGenre"));
                         InfosCitoyen.DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("dtNaiss");
                         InfosCitoyen.Adresse = SqlDR.GetString("uneAdresse");
                         InfosCitoyen.NumTelephone = SqlDR.GetString("numTel");
@@ -232,7 +232,7 @@ namespace VitAdmin.Data
                         "dateNaissance = '" + citoyen.DateNaissance + "', " +
                         "telephone = '" + citoyen.NumTelephone + "', " +
                         "adresse = '" + citoyen.Adresse + "', " +
-                        "idGenre = ( SELECT idGenre FROM genres WHERE nom = '" + citoyen.UnGenre + "') " +
+                        "idGenre = ( SELECT idGenre FROM genres WHERE nom = '" + citoyen.Genre + "') " +
                         "WHERE numAssuranceMaladie = '" + AssMaladieAncien + "' "
                         ,
                         citoyen
@@ -255,7 +255,7 @@ namespace VitAdmin.Data
                         "'" + citoyen.DateNaissance + "', " +
                         "'" + citoyen.NumTelephone + "', " +
                         "'" + citoyen.Adresse + "', " +
-                        "(SELECT idGenre FROM genres g WHERE g.nom = '" + citoyen.UnGenre.ToString() + "') ) "
+                        "(SELECT idGenre FROM genres g WHERE g.nom = '" + citoyen.Genre.ToString() + "') ) "
                         ,
                         citoyen
                     )

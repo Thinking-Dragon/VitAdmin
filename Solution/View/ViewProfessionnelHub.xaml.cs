@@ -26,11 +26,14 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewProfessionnelHub : Page
     {
-        ViewModelProfessionnelHub ViewModelProfessionnelHub { get; set; }
+        private ViewModelProfessionnelHub ViewModelProfessionnelHub { get; set; }
+        protected GestionnaireEcrans GestionnaireEcrans { get; set; }
 
         public ViewProfessionnelHub(GestionnaireEcrans gestionnaireEcrans, Employe employe) 
         {
             InitializeComponent();
+            GestionnaireEcrans = gestionnaireEcrans;
+
             Departement departementEmploye = DataModelDepartement.GetDepartementEmploye(employe);
 
             ViewModelProfessionnelHub = new ViewModelProfessionnelHub(gestionnaireEcrans);

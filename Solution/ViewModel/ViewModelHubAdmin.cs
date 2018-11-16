@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using VitAdmin.MVVM;
+using VitAdmin.Parameter;
 using VitAdmin.View;
 
 namespace VitAdmin.ViewModel
@@ -14,7 +15,7 @@ namespace VitAdmin.ViewModel
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
         public ICommand CmdPersonnel => new CommandeDeleguee(obj => {
-            // GestionnaireEcrans.Changer(new View(...));
+            GestionnaireEcrans.Changer(new ViewProfessionnelHubAdmin(GestionnaireEcrans, UsagerConnecte.Usager));
         });
 
         public ICommand CmdInfrastructure => new CommandeDeleguee(obj => {
@@ -32,6 +33,10 @@ namespace VitAdmin.ViewModel
 
         public ICommand CmdTraitements => new CommandeDeleguee(obj => {
             GestionnaireEcrans.Changer(new ViewAdminModifierTraitements(GestionnaireEcrans));
+        });
+
+        public ICommand CmdUsagers => new CommandeDeleguee(obj => {
+            GestionnaireEcrans.Changer(new ViewGestionUsagers(GestionnaireEcrans));
         });
 
         public ViewModelHubAdmin(GestionnaireEcrans gestionnaireEcrans)
