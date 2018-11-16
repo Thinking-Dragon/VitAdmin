@@ -8,20 +8,22 @@ using VitAdmin.Data;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using VitAdmin.MVVM;
+using VitAdmin.Control;
+using VitAdmin.View;
 
 namespace VitAdmin.ControlModel
 {
     class ControlModelListeEmployes
     {
         public ObservableCollection<Employe> LstEmployes { get; set; }
-        private GestionnaireEcrans gestionnaireEcran { get; set; }
-
+        private GestionnaireEcrans GestionnaireEcran { get; set; }
+        public Employe EmployeSelectionnee { get; set; }
+        
         public ControlModelListeEmployes(GestionnaireEcrans gestionnaire)
         {
             LstEmployes = new ObservableCollection<Employe>(DataModelEmploye.GetEmployes());
-            gestionnaireEcran = gestionnaire;
+            GestionnaireEcran = gestionnaire;
         }
-
 
         public ICommand CommandGestionHoraire
         {
@@ -30,7 +32,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        //gestionnaireEcran.Changer()
+                        GestionnaireEcran.Changer(new ViewGestionHoraire(EmployeSelectionnee));
                     }
                 );
             }

@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="VitAdmin.Control.ControlGestionHoraire"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VitAdmin.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Name="GrdHoraire">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.ColumnSpan="10" VerticalAlignment="Top" FontSize="24" Foreground="Gray">Gestion de l'horaire</Label>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="10">
+            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Nom :</Label>
+            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray" Content="{Binding Employe.NomComplet}"></Label>
+            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Poste:</Label>
+            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray" Content="{Binding Employe.Poste}"></Label>
+        </StackPanel>
+        
+
+
+        <Label Grid.Row="1" Grid.Column="2">Dimanche</Label>
+        <Label Grid.Row="1" Grid.Column="3">Lundi</Label>
+        <Label Grid.Row="1" Grid.Column="4">Mardi</Label>
+        <Label Grid.Row="1" Grid.Column="5">Mercredi</Label>
+        <Label Grid.Row="1" Grid.Column="6">Jeudi</Label>
+        <Label Grid.Row="1" Grid.Column="7">Vendredi</Label>
+        <Label Grid.Row="1" Grid.Column="8">Samedi</Label>
+
+        <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">Nuit</Label>
+        <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Jour</Label>
+        <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">Soir</Label>
+
+    </Grid>
+</UserControl>

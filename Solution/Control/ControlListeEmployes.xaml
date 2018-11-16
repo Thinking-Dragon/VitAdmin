@@ -20,7 +20,7 @@
 
         <Label FontSize="24" VerticalAlignment="Center" Foreground="Gray">Liste de employés</Label>
 
-        <DataGrid SelectionMode="Single" SelectedCellsChanged="DataGrid_SelectedCellsChanged" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding LstEmployes}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid SelectionMode="Single" SelectedCellsChanged="DataGrid_SelectedCellsChanged" Grid.Row="1" Grid.ColumnSpan="3" SelectedItem="{Binding EmployeSelectionnee}" ItemsSource="{Binding LstEmployes}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"></DataGridTextColumn>
@@ -29,7 +29,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Margin="10,10,10,10" Command="CommandGestionHoraire" Name="btnHoraire" Grid.Row="2" Grid.Column="1">Horaire Manuel</Button>
+        <Button Margin="10,10,10,10" Command="{Binding CommandGestionHoraire}" Name="btnHoraire" Grid.Row="2" Grid.Column="1">Horaire Manuel</Button>
         <Button Margin="10,10,10,10" Name="btnProfil" Grid.Row="2" Grid.Column="2">Profil</Button>
     </Grid>
 </UserControl>

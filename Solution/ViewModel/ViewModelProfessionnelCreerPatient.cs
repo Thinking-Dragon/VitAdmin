@@ -9,6 +9,8 @@ using VitAdmin.Model;
 using VitAdmin.MVVM;
 using VitAdmin.Parameter;
 using VitAdmin.View;
+using VitAdmin.ControlModel;
+using VitAdmin.Control;
 
 namespace VitAdmin.ViewModel
 {
@@ -16,22 +18,34 @@ namespace VitAdmin.ViewModel
     {
         public GestionnaireEcrans GestionnaireEcrans { get; set; }
         public Citoyen Citoyen { get; set; }
+        public ControlDossierPatientInfos ControlDossierPatientInfos { get; set; }
 
-        public ViewModelProfessionnelCreerPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
+        public ViewModelProfessionnelCreerPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen, ControlDossierPatientInfos controlDossierPatientInfos)
         {
             GestionnaireEcrans = gestionnaireEcrans;
             Citoyen = citoyen;
+            ControlDossierPatientInfos = controlDossierPatientInfos;
         }
 
         public ICommand CmdBtnCreer
         {
             get
             {
-                return new CommandeDeleguee( newPatient =>
+                return new CommandeDeleguee( action =>
                 {
-                    DataModelCitoyen.PostCitoyen(Citoyen);
+                    if ((ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos).Citoyen.ValiderInfos())
+                    {
+                        DataModelCitoyen.PostCitoyen(Citoyen);
 
-                    this.GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager));
+                        this.GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager));
+
+                    }
+                    else
+                    {
+                        (ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos).MessageErreurInfosPatient.ViderMessages();
+                        (ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos).MessageErreurInfosPatient.ActiverMessageErreur(Citoyen);
+
+                    }
 
 
                 });

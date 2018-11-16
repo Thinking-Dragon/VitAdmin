@@ -21,6 +21,12 @@ namespace VitAdmin.Model
         public List<Hospitalisation> Hospitalisations { get; set; }
         public Lit Lit { get; set; }
 
+        public static int iMAX_CARAC_NOMPRENOM = 15;
+        public static int iMIN_CARAC_NOMPRENOM = 2;
+        public static int iCaracteresTelephone = 10;
+        public static int iCaracteresAssMaladie = 12;
+        public static int iMaxAdresse = 100;
+
         public Citoyen(String NumAssMaladie)
         {
             AssMaladie = NumAssMaladie;
@@ -32,42 +38,59 @@ namespace VitAdmin.Model
             DateNaissance = new DateTime(1980, 1, 1);
         }
 
-        bool ValiderInfos()
+        public bool ValiderInfos()
         {
-            const int iMAX_CARAC_NOMPRENOM = 15;
-            const int iMIN_CARAC_NOMPRENOM = 2;
-            const int iCaracteresTelephone = 10;
-            const int iCaracteresAssMaladie = 12;
-            const int iMaxAdresse = 100;
-            Regex regexAssMaladie = new Regex("[A-Z a-z]{4}[0-9]{8}");
-
+            
             bool bInfosValide = false;
 
-            // Nom du citoyen
-            bInfosValide =  (Nom.Length < iMAX_CARAC_NOMPRENOM && Nom.Length > iMIN_CARAC_NOMPRENOM) &&
-                            (Prenom.Length < iMAX_CARAC_NOMPRENOM && Prenom.Length > iMIN_CARAC_NOMPRENOM) &&
-                            (AssMaladie.Length == iCaracteresAssMaladie && regexAssMaladie.IsMatch(AssMaladie)) &&
-                            (NumTelephone.Length == 0 || NumTelephone.Length == iCaracteresTelephone) &&
-                            (Adresse.Length == 0 || Adresse.Length == iMaxAdresse);
-            /*// Prénom du citoyen
-            bInfosValide = Prenom.Length < iMAX_CARAC_NOMPRENOM && Prenom.Length > iMIN_CARAC_NOMPRENOM;
-            // NumAssuranceMaladie
-            bInfosValide = AssMaladie.Length == iCaracteresAssMaladie && regexAssMaladie.IsMatch(AssMaladie);
-            // Téléphone
-            bInfosValide = NumTelephone.Length == 0 || NumTelephone.Length == iCaracteresTelephone;
-            // Adresse
-            bInfosValide = Num*/
+            bInfosValide =  ValiderNom() &&
+                            ValiderPrenom() &&
+                            ValiderAssMaladie() &&
+                            ValiderTelephone() &&
+                            ValiderAdresse();
+    
 
-            return new bool();
+            return bInfosValide;
         }
 
-        bool ValiderTelephone() { return new bool(); }
-        bool ValiderAssMaladie()
+        public bool ValiderTelephone()
         {
-
-            return new bool();
+            if (NumTelephone != null)
+                return (NumTelephone.Length == 0 || NumTelephone.Length == iCaracteresTelephone);
+            else
+                return false;
         }
-        bool ValiderDateNaissance() { return new bool(); }
+        public bool ValiderAssMaladie()
+        {
+            Regex regexAssMaladie = new Regex("[A-Z a-z]{4}[0-9]{8}");
+            if (AssMaladie != null)
+                return (AssMaladie.Length == iCaracteresAssMaladie && regexAssMaladie.IsMatch(AssMaladie));
+            else
+                return false;
+        }
+        public bool ValiderPrenom()
+        {
+            if (Prenom != null)
+                return (Prenom.Length < iMAX_CARAC_NOMPRENOM && Prenom.Length > iMIN_CARAC_NOMPRENOM);
+            else
+                return false;
+        }
+        public bool ValiderNom()
+        {
+            if (Nom != null)
+                return (Nom.Length < iMAX_CARAC_NOMPRENOM && Nom.Length > iMIN_CARAC_NOMPRENOM);
+            else
+                return false;
+        }
+        public bool ValiderAdresse()
+        {
+            if (Adresse != null)
+                return (Adresse.Length == 0 || Adresse.Length < iMaxAdresse);
+            else
+                return false;
+        }
+
+
         String FormaterAdresse() { return ""; }
         DateTime AvoirDateNaissance() { return new DateTime(); }
     }
