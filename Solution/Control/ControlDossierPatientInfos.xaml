@@ -23,25 +23,51 @@
         <!-- TODO: Il va falloir adapter les cases selon la longueur du string comme le nom et l'adresse-->
         <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">Nom</Label>
         <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
-                    Text="{Binding Citoyen.Nom, Mode=TwoWay}"></TextBox>
+                    Text="{Binding Citoyen.Nom}"></TextBox>
+        <Label Content="{Binding MessageErreurInfosPatient.Nom}"
+               Grid.Column="1" Grid.Row="0"
+               VerticalAlignment="Bottom"
+               Foreground="Red"></Label>
+        
         <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Prénom</Label>
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
                     Text="{Binding Citoyen.Prenom}"></TextBox>
+        <Label Content="{Binding MessageErreurInfosPatient.Prenom}"
+               Grid.Column="1" Grid.Row="1"
+               VerticalAlignment="Bottom"
+               Foreground="Red"></Label>
+        
         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Right">Genre</Label>
+        
         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right">N°Assurance maladie</Label>
         <!--TODO : Faire fonctionner la modification d'Assurance Maladie-->
         <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
                     Text="{Binding Citoyen.AssMaladie}"></TextBox>
+        <Label Content="{Binding MessageErreurInfosPatient.AssMaladie}"
+               Grid.Column="1" Grid.Row="3"
+               VerticalAlignment="Bottom"
+               Foreground="Red"></Label>
+        
         <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Right">Téléphone</Label>
         <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150"
                     Text="{Binding Citoyen.NumTelephone}"></TextBox>
+        <Label Content="{Binding MessageErreurInfosPatient.Telephone}"
+               Grid.Column="1" Grid.Row="4"
+               VerticalAlignment="Bottom"
+               Foreground="Red"></Label>
+        
         <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"  HorizontalAlignment="Right">Date de naissance</Label>
         <DatePicker Name="dtpkrNaissance" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150"
                     DisplayDate="01-01-1993"
                     SelectedDate="{Binding Citoyen.DateNaissance}"></DatePicker>
+
         <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"  HorizontalAlignment="Right">Adresse</Label>
         <TextBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350"
                     Text="{Binding Citoyen.Adresse}"></TextBox>
+        <Label Content="{Binding MessageErreurInfosPatient.Adresse}"
+               Grid.Column="1" Grid.Row="6"
+               VerticalAlignment="Bottom"
+               Foreground="Red"></Label>
 
     </Grid>
 </UserControl>

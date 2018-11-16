@@ -335,6 +335,7 @@
     <Compile Include="Notifications\EventNotifications.cs" />
     <Compile Include="Notifications\BackgroundWorkerNotifications.cs" />
     <Compile Include="Parameter\UsagerConnecte.cs" />
+    <Compile Include="Tools\MessageErreurInfosPatient.cs" />
     <Compile Include="ViewModel\ModelViewAdminModificationStructure.cs" />
     <Compile Include="ViewModel\ViewModelAdminModifierTraitements.cs" />
     <Compile Include="ViewModel\ViewModelChargementApp.cs" />
