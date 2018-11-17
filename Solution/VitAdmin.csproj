@@ -385,6 +385,7 @@
     </Compile>
     <Compile Include="View\ViewGestionUsagers.xaml.cs">
       <DependentUpon>ViewGestionUsagers.xaml</DependentUpon>
+	</Compile>
     <Compile Include="View\ViewGestionHoraire.xaml.cs">
       <DependentUpon>ViewGestionHoraire.xaml</DependentUpon>
     </Compile>
@@ -637,8 +638,8 @@
     <Page Include="View\ViewGestionEquipements.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page
-    <Page Include="View\ViewGestionUsagers.xaml">
+    </Page>
+    <Page Include="View\ViewGestionUsagers.xaml"/>
     <Page Include="View\ViewGestionHoraire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
