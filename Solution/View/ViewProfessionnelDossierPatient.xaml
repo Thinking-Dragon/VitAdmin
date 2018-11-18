@@ -11,6 +11,7 @@
 
     <Grid Name="grdListeHospitalisation">
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
@@ -21,7 +22,7 @@
 
         <Button Name="btnInfosPatients" Grid.Row="0" Grid.Column="1" MaxHeight="30" MaxWidth="150" Content="Informations" VerticalAlignment="Top"
                 Command="{Binding CmdBtnClicInfosPatient}"></Button>
-        <Button Grid.Row="1" Grid.Column="1" MaxHeight="30" MaxWidth="165" Content="Créer Hospitalisation" 
+        <Button Grid.Row="2" Grid.Column="1" MaxHeight="30" MaxWidth="165" Content="Créer Hospitalisation" 
                 Command="{Binding CmdBtnCreerHospitalisation}"></Button>
     </Grid>
 </Page>

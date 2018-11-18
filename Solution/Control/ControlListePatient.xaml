@@ -31,17 +31,11 @@
 
         <DataGrid Name="dtgPatient" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"/>
-                <DataGridTextColumn Binding="{Binding Prenom}" Header="Prénom"/>
-                <DataGridTextColumn Binding="{Binding Lit.Chambre.UnDepartement.Nom}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding Lit.Chambre.Numero}" Header="N°Chambre"/>
-                <DataGridHyperlinkColumn Binding="{Binding Lit.Numero}" Header="N°Lit">
-                    <DataGridHyperlinkColumn.ElementStyle>
-                        <Style>
-                            <EventSetter Event="Hyperlink.Click" Handler="DG_Hyperlink_Click"/>
-                        </Style>
-                    </DataGridHyperlinkColumn.ElementStyle>
-                </DataGridHyperlinkColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom"/>
+                <DataGridTextColumn Width="*" Binding="{Binding Prenom}" Header="Prénom"/>
+                <DataGridTextColumn Width="*" Binding="{Binding Lit.Chambre.UnDepartement.Nom}" Header="Département"/>
+                <DataGridTextColumn Width="*" Binding="{Binding Lit.Chambre.Numero}" Header="N°Chambre"/>
+                <DataGridTextColumn Width="*" Binding="{Binding Lit.Numero}" Header="N°Lit"/>
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding MouseAction="LeftDoubleClick"

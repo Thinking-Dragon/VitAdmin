@@ -18,6 +18,7 @@ using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
 using VitAdmin.View;
 using VitAdmin.Parameter;
+using VitAdmin.Control;
 
 namespace VitAdmin.View
 {
@@ -27,14 +28,18 @@ namespace VitAdmin.View
     public partial class ViewProfessionnelDossierPatient : Page, IEcranRetour
     {
         public GestionnaireEcrans GestEcrans { get; set; }
+        public ControlProfessionnelDossierPatient ControlProfessionnelDossierPatient { get; set; }
 
         public ViewProfessionnelDossierPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
         {
             InitializeComponent();
             GestEcrans = gestionnaireEcrans;
+            ControlProfessionnelDossierPatient = new ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient)), patient);
             DataContext = new ViewModelProfessionnelDossierPatient(gestionnaireEcrans, patient);
 
-            grdListeHospitalisation.Children.Add(new Control.ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient)), patient));
+            Grid.SetRow(ControlProfessionnelDossierPatient, 1);
+            Grid.SetColumnSpan(ControlProfessionnelDossierPatient, 2);
+            grdListeHospitalisation.Children.Add(ControlProfessionnelDossierPatient);
 
         }
 

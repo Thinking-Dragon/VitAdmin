@@ -10,27 +10,24 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray">Liste des hospitalisations</Label>
 
-        <DataGrid Name="dtgDossierPatient" Grid.Row="3" Grid.ColumnSpan="4" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="dtgDossierPatient" Grid.Row="1" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
             
            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding DataContext.DepartementAssocie.Nom, 
+                <DataGridTextColumn Width="*" Binding="{Binding DataContext.DepartementAssocie.Nom, 
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding DateDebut, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date début"/>
-                <DataGridTextColumn Binding="{Binding DateFin, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date fin"/>
+                <DataGridTextColumn Width="*" Binding="{Binding DateDebut, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date début"/>
+                <DataGridTextColumn Width="*" Binding="{Binding DateFin, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date fin"/>
             </DataGrid.Columns>
             
             <DataGrid.InputBindings>
@@ -40,14 +37,22 @@
 
             </DataGrid.InputBindings>
         </DataGrid>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Filtres" FontSize="20"/>
+
+            <Label Content="Département" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
+            <ComboBox VerticalAlignment="Center" Name="cboDepartements"></ComboBox>
+            
+            <Label Content="Date de début" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
+            <DatePicker Name="dtpkrDebut" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
+            
+            <Label Content="Date de fin" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
+            <DatePicker Name="dtpkrFin" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
+            
+            <Button Grid.Row="2" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
+            
+        </StackPanel>
         
-        <ComboBox VerticalAlignment="Center" Name="cboDepartements" Grid.Row="2"></ComboBox>
-        <DatePicker Name="dtpkrDebut" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
-        <DatePicker Name="dtpkrFin" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
-        <Button Grid.Row="2" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
         
-        <Label Content="Département" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
-        <Label Content="Date de début" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
-        <Label Content="Date de fin" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>
