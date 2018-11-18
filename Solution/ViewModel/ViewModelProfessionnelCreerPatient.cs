@@ -18,13 +18,12 @@ namespace VitAdmin.ViewModel
     {
         public GestionnaireEcrans GestionnaireEcrans { get; set; }
         public Citoyen Citoyen { get; set; }
-        public ControlDossierPatientInfos ControlDossierPatientInfos { get; set; }
+        public ControlModelDossierPatientInfos ControlModelDossierPatientInfos { get; set; }
 
-        public ViewModelProfessionnelCreerPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen, ControlDossierPatientInfos controlDossierPatientInfos)
+        public ViewModelProfessionnelCreerPatient(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen)
         {
             GestionnaireEcrans = gestionnaireEcrans;
             Citoyen = citoyen;
-            ControlDossierPatientInfos = controlDossierPatientInfos;
         }
 
         public ICommand CmdBtnCreer
@@ -33,7 +32,7 @@ namespace VitAdmin.ViewModel
             {
                 return new CommandeDeleguee( action =>
                 {
-                    if ((ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos).Citoyen.ValiderInfos())
+                    if (ControlModelDossierPatientInfos.Citoyen.ValiderInfos(ControlModelDossierPatientInfos.LstCitoyen))
                     {
                         DataModelCitoyen.PostCitoyen(Citoyen);
 
@@ -42,8 +41,8 @@ namespace VitAdmin.ViewModel
                     }
                     else
                     {
-                        (ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos).MessageErreurInfosPatient.ViderMessages();
-                        (ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos).MessageErreurInfosPatient.ActiverMessageErreur(Citoyen);
+                        ControlModelDossierPatientInfos.MessageErreurInfosPatient.ViderMessages();
+                        ControlModelDossierPatientInfos.MessageErreurInfosPatient.ActiverMessageErreur(Citoyen, ControlModelDossierPatientInfos.LstCitoyen);
 
                     }
 

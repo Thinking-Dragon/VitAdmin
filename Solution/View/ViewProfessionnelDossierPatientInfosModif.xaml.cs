@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using VitAdmin.Model;
 using VitAdmin.View.Tool;
 using VitAdmin.ViewModel;
+using VitAdmin.Control;
+using VitAdmin.ControlModel;
 
 namespace VitAdmin.View
 {
@@ -25,15 +27,18 @@ namespace VitAdmin.View
     {
         GestionnaireEcrans GestEcrans { get; set; }
         Citoyen Patient { get; set; }
+        ControlDossierPatientInfos ControlDossierPatientInfos { get; set; }
 
         public ViewProfessionnelDossierPatientInfosModif(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
         {
             InitializeComponent();
             Patient = patient;
             GestEcrans = gestionnaireEcrans;
-            DataContext = new ViewModelProfessionnelDossierPatientInfosModif(gestionnaireEcrans, patient);
+            ControlDossierPatientInfos = new ControlDossierPatientInfos(Patient);
+            DataContext = new ViewModelProfessionnelDossierPatientInfosModif(gestionnaireEcrans, Patient, (ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos));
 
-            grdPatientInfos.Children.Add(new Control.ControlDossierPatientInfos(patient));
+            Grid.SetRow(ControlDossierPatientInfos, 1);
+            grdPatientInfos.Children.Add(ControlDossierPatientInfos);
         }
 
         // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.

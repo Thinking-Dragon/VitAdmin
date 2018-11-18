@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
+using VitAdmin.ControlModel;
 using VitAdmin.Model;
 using VitAdmin.Parameter;
 using VitAdmin.View.Tool;
@@ -37,14 +38,15 @@ namespace VitAdmin.View
             GestionnaireEcrans = gestionnaireEcrans;
 
             // On crée le ViewModelProfessionnelCreerPatient
-            ViewModelProfessionnelCreerPatient = new ViewModelProfessionnelCreerPatient(gestionnaireEcrans, new Citoyen(), null);
+            ViewModelProfessionnelCreerPatient = new ViewModelProfessionnelCreerPatient(gestionnaireEcrans, new Citoyen());
             // On crée le ControlDossierPatientInfos
             ControlDossierPatientInfos = new ControlDossierPatientInfos(ViewModelProfessionnelCreerPatient.Citoyen);
             // On associe ControlDossierPatientInfos à ViewModelProfessionnelCreerPatient
-            ViewModelProfessionnelCreerPatient.ControlDossierPatientInfos = ControlDossierPatientInfos;
+            ViewModelProfessionnelCreerPatient.ControlModelDossierPatientInfos = (ControlDossierPatientInfos.DataContext as ControlModelDossierPatientInfos);
 
             DataContext = ViewModelProfessionnelCreerPatient;
 
+            Grid.SetRow(ControlDossierPatientInfos, 1);
             grdCreerPatient.Children.Add(ControlDossierPatientInfos);
 
         }

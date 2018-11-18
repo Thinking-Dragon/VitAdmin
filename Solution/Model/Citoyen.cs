@@ -38,14 +38,20 @@ namespace VitAdmin.Model
             DateNaissance = new DateTime(1980, 1, 1);
         }
 
-        public bool ValiderInfos()
+        /// <summary>
+        /// Permet de vérifier si les infos du citoyen sont valides pour une insertation ou une modification dans la bd.
+        /// </summary>
+        /// <param name="LstCitoyen">Sert à vérifier qu'il n'y a pas de duplicata pour l'assurance maladie</param>
+        /// <returns></returns>
+        public bool ValiderInfos(List<Citoyen> lstCitoyen)
         {
             
             bool bInfosValide = false;
 
             bInfosValide =  ValiderNom() &&
                             ValiderPrenom() &&
-                            ValiderAssMaladie() &&
+                            ValiderFormatAssMaladie() &&
+                            ValiderDuplicataAssMaladie(lstCitoyen) &&
                             ValiderTelephone() &&
                             ValiderAdresse();
     
@@ -60,25 +66,35 @@ namespace VitAdmin.Model
             else
                 return false;
         }
-        public bool ValiderAssMaladie()
+        public bool ValiderFormatAssMaladie()
         {
             Regex regexAssMaladie = new Regex("[A-Z a-z]{4}[0-9]{8}");
             if (AssMaladie != null)
-                return (AssMaladie.Length == iCaracteresAssMaladie && regexAssMaladie.IsMatch(AssMaladie));
+                return regexAssMaladie.IsMatch(AssMaladie);
             else
                 return false;
         }
+
+        public bool ValiderDuplicataAssMaladie(List<Citoyen> lstCitoyen)
+        {
+
+            if (AssMaladie != null)
+                return !lstCitoyen.Exists(citoyen => AssMaladie == citoyen.AssMaladie);
+            else
+                return false;
+        }
+
         public bool ValiderPrenom()
         {
             if (Prenom != null)
-                return (Prenom.Length < iMAX_CARAC_NOMPRENOM && Prenom.Length > iMIN_CARAC_NOMPRENOM);
+                return (Prenom.Length <= iMAX_CARAC_NOMPRENOM && Prenom.Length >= iMIN_CARAC_NOMPRENOM);
             else
                 return false;
         }
         public bool ValiderNom()
         {
             if (Nom != null)
-                return (Nom.Length < iMAX_CARAC_NOMPRENOM && Nom.Length > iMIN_CARAC_NOMPRENOM);
+                return (Nom.Length <= iMAX_CARAC_NOMPRENOM && Nom.Length >= iMIN_CARAC_NOMPRENOM);
             else
                 return false;
         }

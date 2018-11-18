@@ -30,8 +30,6 @@ namespace VitAdmin.Control
         public ControlDossierPatientInfos(Citoyen citoyen)
         {
             InitializeComponent();
-            /*if (dtpkrNaissance.SelectedDate == null)
-                dtpkrNaissance.SelectedDate = DtReference;*/
           
 
             controlModelDossierPatientInfos = new ControlModelDossierPatientInfos(citoyen);

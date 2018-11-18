@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 using VitAdmin.Tools;
+using VitAdmin.Data;
 
 namespace VitAdmin.ControlModel
 {
@@ -15,11 +16,13 @@ namespace VitAdmin.ControlModel
     {
         public Citoyen Citoyen { get; set; }
         public MessageErreurInfosPatient MessageErreurInfosPatient { get; set; }
+        public List<Citoyen> LstCitoyen { get; set; }
 
         public ControlModelDossierPatientInfos(Citoyen citoyen)
         {
             Citoyen = citoyen;
             MessageErreurInfosPatient = new MessageErreurInfosPatient();
+            LstCitoyen = DataModelCitoyen.GetCitoyens();
         }
   
     }

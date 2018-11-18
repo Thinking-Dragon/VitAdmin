@@ -63,18 +63,21 @@ namespace VitAdmin.Tools
         }
 
 
-        public void ActiverMessageErreur(Citoyen citoyen)
+        public void ActiverMessageErreur(Citoyen citoyen, List<Citoyen> lstCitoyen)
         {
             if(!citoyen.ValiderPrenom())
-                Prenom = new StringBuilder("Maximum " + Citoyen.iMIN_CARAC_NOMPRENOM.ToString() + " caractères et minimum " + Citoyen.iMAX_CARAC_NOMPRENOM.ToString() + " caractères").ToString();
+                Prenom = new StringBuilder("Minimum " + Citoyen.iMIN_CARAC_NOMPRENOM.ToString() + " caractères et maximum " + Citoyen.iMAX_CARAC_NOMPRENOM.ToString() + " caractères").ToString();
             if(!citoyen.ValiderNom())
-                Nom = new StringBuilder("Maximum " + Citoyen.iMIN_CARAC_NOMPRENOM.ToString() + " caractères et minimum " + Citoyen.iMAX_CARAC_NOMPRENOM.ToString() + " caractères").ToString();
+                Nom = new StringBuilder("Minimum " + Citoyen.iMIN_CARAC_NOMPRENOM.ToString() + " caractères et maximum " + Citoyen.iMAX_CARAC_NOMPRENOM.ToString() + " caractères").ToString();
             if(!citoyen.ValiderAdresse())
                 Adresse = new StringBuilder("Maximum " + Citoyen.iMaxAdresse + " caractères").ToString();
             if(!citoyen.ValiderTelephone())
                 Telephone = new StringBuilder("Doit contenir " + Citoyen.iCaracteresTelephone + " caractères").ToString();
-            if(!citoyen.ValiderAssMaladie())
+            if(!citoyen.ValiderFormatAssMaladie())
                 AssMaladie = new StringBuilder("Doit respecter le format AAAA00000000").ToString();
+            if(!citoyen.ValiderDuplicataAssMaladie(lstCitoyen))
+                AssMaladie = new StringBuilder("Numéro déjà utilisé").ToString();
+
         }
 
         public void ViderMessages()

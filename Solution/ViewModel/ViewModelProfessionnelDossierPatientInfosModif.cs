@@ -9,6 +9,7 @@ using VitAdmin.Model;
 using VitAdmin.MVVM;
 using VitAdmin.Data;
 using VitAdmin.View;
+using VitAdmin.ControlModel;
 
 namespace VitAdmin.ViewModel
 {
@@ -17,12 +18,14 @@ namespace VitAdmin.ViewModel
         GestionnaireEcrans GestionnaireEcrans { get; set; }
         Citoyen Patient { get; set; }
         string AssMaladieAncien { get; set; }
+        ControlModelDossierPatientInfos ControlModelDossierPatientInfos { get; set; }
 
-        public ViewModelProfessionnelDossierPatientInfosModif(GestionnaireEcrans gestionnaireEcrans, Citoyen patient)
+        public ViewModelProfessionnelDossierPatientInfosModif(GestionnaireEcrans gestionnaireEcrans, Citoyen patient, ControlModelDossierPatientInfos controlModelDossierPatientInfos)
         {
             GestionnaireEcrans = gestionnaireEcrans;
             Patient = patient;
             AssMaladieAncien = patient.AssMaladie;
+            ControlModelDossierPatientInfos = controlModelDossierPatientInfos;
         }
 
         public ICommand CmdBtnModif
@@ -31,11 +34,20 @@ namespace VitAdmin.ViewModel
             {
                 return new CommandeDeleguee(action =>
                 {
-                    DataModelCitoyen.PutCitoyen(Patient, AssMaladieAncien);
+                    if (ControlModelDossierPatientInfos.Citoyen.ValiderInfos(ControlModelDossierPatientInfos.LstCitoyen))
+                    {
+                        DataModelCitoyen.PutCitoyen(Patient, AssMaladieAncien);
 
-                    //ViewProfessionnelDossierPatientInfosModif winModif = (ViewProfessionnelDossierPatientInfosModif)viewModif;
+                        this.GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, Patient));
+
+                    }
+                    else
+                    {
+                        ControlModelDossierPatientInfos.MessageErreurInfosPatient.ViderMessages();
+                        ControlModelDossierPatientInfos.MessageErreurInfosPatient.ActiverMessageErreur(Patient, ControlModelDossierPatientInfos.LstCitoyen);
+
+                    }
                     
-                    this.GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, Patient));
 
                     
                 });
