@@ -50,7 +50,6 @@
                 Width="180"
                 Height="128"
                 HorizontalAlignment="Left"
-                IsEnabled="False"
                 Command="{Binding CmdPatients}">Gestion patients</Button>
 
         <Button Grid.Column="1"

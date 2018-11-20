@@ -23,7 +23,7 @@ namespace VitAdmin.ViewModel
         });
 
         public ICommand CmdPatients => new CommandeDeleguee(obj => {
-            // GestionnaireEcrans.Changer(new View(...));
+            GestionnaireEcrans.Changer(new ViewListeEmployesAdmin(GestionnaireEcrans));
         });
 
         public ICommand CmdEquipements => new CommandeDeleguee(obj =>
