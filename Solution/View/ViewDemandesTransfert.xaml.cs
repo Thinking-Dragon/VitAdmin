@@ -36,7 +36,7 @@ namespace VitAdmin.View
 
         private void InitialiserUsersControls(Citoyen citoyen)
         {
-            ControlInfos controlInfos = new ControlInfos(citoyen);
+            ControlListeLits controlInfos = new ControlListeLits(citoyen);
             ControlEquipements controlEquipements = new ControlEquipements(citoyen);
             ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(citoyen);
 

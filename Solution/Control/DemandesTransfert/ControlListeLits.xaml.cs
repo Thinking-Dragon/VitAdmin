@@ -21,20 +21,25 @@ namespace VitAdmin.Control.DemandesTransfert
     /// <summary>
     /// Logique d'interaction pour test.xaml
     /// </summary>
-    public partial class ControlInfos : UserControl
+    public partial class ControlListeLits : UserControl
     {
         ControlModelInfos ControlModelInfos { get; set; }
-        public ControlInfos(Citoyen citoyen)
+        public ControlListeLits(Citoyen citoyen)
         {
             InitializeComponent();
             DataContext = ControlModelInfos = new ControlModelInfos(citoyen);
 
-            InitialiserTxtNomPrenomPatient();
-            InitialiserCboEtatLit();
+            /*InitialiserTxtNomPrenomPatient();
+            InitialiserCboEtatLit();*/
 
         }
 
-        private void InitialiserCboEtatLit()
+        private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /*private void InitialiserCboEtatLit()
         {
             Label lblEtatLit = new Label { Content = "État du lit" };
             ComboBox cboEtatLit = new ComboBox
@@ -43,8 +48,7 @@ namespace VitAdmin.Control.DemandesTransfert
                 SelectedItem = ControlModelInfos.Citoyen.Lit.EtatLit
             };
 
-            stkpInfos.Children.Add(lblEtatLit);
-            stkpInfos.Children.Add(cboEtatLit);
+
 
 
         }
@@ -54,8 +58,7 @@ namespace VitAdmin.Control.DemandesTransfert
             Label lblNomPrenomPatient = new Label { Content = "Nom et prénom" };
             TextBox txtNomPrenom = new TextBox { Text = ControlModelInfos.Citoyen.NomComplet };
 
-            stkpInfos.Children.Add(lblNomPrenomPatient);
-            stkpInfos.Children.Add(txtNomPrenom);
-        }
+
+        }*/
     }
 }
