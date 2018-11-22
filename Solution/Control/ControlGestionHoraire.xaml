@@ -38,7 +38,7 @@
             <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray" Content="{Binding Employe.Poste}"></Label>
 
             <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Semaine du :</Label>
-            <ComboBox Name="Semaine"  Width="300" Height="30" VerticalAlignment="Bottom" Margin="10,10,10,15" HorizontalAlignment="Right">
+            <ComboBox Name="semaineDu"  Width="300" Height="30" VerticalAlignment="Bottom" Margin="10,10,10,15" HorizontalAlignment="Right">
                 
             </ComboBox>
         </StackPanel>
