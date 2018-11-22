@@ -157,6 +157,7 @@
     <Compile Include="ControlModel\ControlModelTextBoxHospitalisation.cs" />
     <Compile Include="ControlModel\ControlModelTraitementCreationHospitalisation.cs" />
     <Compile Include="ControlModel\DemandesTransfert\ControlModelInfos.cs" />
+    <Compile Include="ControlModel\DemandesTransfert\ControlModelListeDemandesTransfert.cs" />
     <Compile Include="Control\ControlAjouterPatientLit.xaml.cs">
       <DependentUpon>ControlAjouterPatientLit.xaml</DependentUpon>
     </Compile>

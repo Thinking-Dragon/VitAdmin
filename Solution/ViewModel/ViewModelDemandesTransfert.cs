@@ -10,10 +10,9 @@ namespace VitAdmin.ViewModel
 {
     public class ViewModelDemandesTransfert : ObjetObservable
     {
-        Citoyen Citoyen { get; set; }
-        public ViewModelDemandesTransfert(Citoyen citoyen)
+        public ViewModelDemandesTransfert()
         {
-            Citoyen = citoyen;
+
         }
     }
 }

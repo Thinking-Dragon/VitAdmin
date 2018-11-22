@@ -23,10 +23,23 @@ namespace VitAdmin.ViewModel
         {
             get
             {
-                return new CommandeDeleguee(newPatient =>
+                return new CommandeDeleguee(action =>
                 {
                    
                     this.GestionnaireEcrans.Changer(new ViewProfessionnelCreerPatient(GestionnaireEcrans));
+
+                });
+            }
+        }
+
+        public ICommand CmdBtnGestionLits
+        {
+            get
+            {
+                return new CommandeDeleguee(action =>
+                {
+
+                    this.GestionnaireEcrans.Changer(new ViewDemandesTransfert(GestionnaireEcrans));
 
                 });
             }

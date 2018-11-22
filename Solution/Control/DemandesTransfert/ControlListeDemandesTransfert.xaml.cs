@@ -21,7 +21,7 @@ namespace VitAdmin.Control.DemandesTransfert
     /// </summary>
     public partial class ControlListeDemandesTransfert : UserControl
     {
-        public ControlListeDemandesTransfert(Citoyen citoyen)
+        public ControlListeDemandesTransfert(List<Citoyen> LstCitoyen)
         {
             InitializeComponent();
         }

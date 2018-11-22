@@ -50,8 +50,22 @@ namespace VitAdmin.View
             Grid.SetColumnSpan(ctrlLstPatient, 2);
 
             grdLstPatient.Children.Add(ctrlLstPatient);
+            CreerBoutonGestionLit();
         }
 
-       
+       private void CreerBoutonGestionLit()
+        {
+            Button btnGestionLit = new Button
+            {
+                Content = "Gestion des lits",
+                Command = ViewModelProfessionnelHub.CmdBtnGestionLits,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
+            Grid.SetColumn(btnGestionLit, 1);
+            Grid.SetRow(btnGestionLit, 1);
+            grdLstPatient.Children.Add(btnGestionLit);
+        }
     }
 }

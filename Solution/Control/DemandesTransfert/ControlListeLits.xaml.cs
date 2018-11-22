@@ -23,11 +23,11 @@ namespace VitAdmin.Control.DemandesTransfert
     /// </summary>
     public partial class ControlListeLits : UserControl
     {
-        ControlModelInfos ControlModelInfos { get; set; }
-        public ControlListeLits(Citoyen citoyen)
+        ControlModelListeLits ControlModelInfos { get; set; }
+        public ControlListeLits(List<Citoyen> lstCitoyen)
         {
             InitializeComponent();
-            DataContext = ControlModelInfos = new ControlModelInfos(citoyen);
+            DataContext = ControlModelInfos = new ControlModelListeLits(lstCitoyen);
 
             /*InitialiserTxtNomPrenomPatient();
             InitialiserCboEtatLit();*/

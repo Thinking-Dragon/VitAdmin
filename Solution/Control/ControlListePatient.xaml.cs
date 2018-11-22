@@ -197,12 +197,6 @@ namespace VitAdmin.Control
 
 
         }
-
-        private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            GestionnaireEcrans.Changer(new ViewDemandesTransfert((Citoyen)dtgPatient.SelectedItem));
-            
-        }
     }
 
 }
