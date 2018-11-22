@@ -10,11 +10,11 @@ namespace VitAdmin.ControlModel.DemandesTransfert
 {
     public class ControlModelListeLits : ObjetObservable
     {
-        public List<Citoyen> LstCitoyen { get; set; }
+        public List<Lit> LstLits { get; set; }
 
-        public ControlModelListeLits(List<Citoyen> lstCitoyen)
+        public ControlModelListeLits(List<Lit> lstLits = null)
         {
-            LstCitoyen = lstCitoyen;
+            LstLits = lstLits;
         }
     }
 }

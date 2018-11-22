@@ -67,7 +67,6 @@ namespace VitAdmin.Data
             return lstCitoyen;
         }
 
-        // ****** FÉLIX, tu peux utiliser cette requête pour l'infirmière-chef!! *******
         public static List<Citoyen> GetCitoyensLstPatient(Employe employe)
         {
             // On crée une liste de citoyen venant de la BD
@@ -215,6 +214,75 @@ namespace VitAdmin.Data
             }
 
             return InfosCitoyen;
+        }
+
+        public static void GetUnCitoyenParLit(Lit lit)
+        {
+            Citoyen citoyen = new Citoyen();
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.nom nomGenre, c.dateNaissance dtNaiss, c.adresse uneAdresse, c.telephone numTel " +
+                    "FROM citoyens c " +
+                    "INNER JOIN genres g ON g.idGenre = c.idGenre " +
+                    "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
+                    "WHERE l.idLit = '" + lit._identifiant + "' "
+                     , SqlDR => {
+
+                         citoyen.Nom = SqlDR.GetString("nomCit");
+                         citoyen.Prenom = SqlDR.GetString("prenomCit");
+                         citoyen.AssMaladie = SqlDR.GetString("AssMal");
+                         citoyen.Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("nomGenre"));
+                         citoyen.DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("dtNaiss");
+                         citoyen.Adresse = SqlDR.GetString("uneAdresse");
+                         citoyen.NumTelephone = SqlDR.GetString("numTel");
+
+                     }
+                    );
+            }
+
+            lit.Citoyen = citoyen;
+        }
+
+        public static List<Citoyen> GetCitoyenDemandeTraitement(Departement departement)
+        {
+            List<Citoyen> lstCitoyen = new List<Citoyen>();
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.nom nomGenre, c.dateNaissance dtNaiss, c.adresse uneAdresse, c.telephone numTel " +
+                    "FROM citoyens c " +
+                    "INNER JOIN genres g ON g.idGenre = c.idGenre " +
+                    "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
+                    "INNER JOIN hospitalisations h ON h.idCitoyen = c.idCitoyen " +
+                    "INNER JOIN hospitalisationstraitements ht ON ht.idHospitalisation = h.idHospitalisation " +
+                    "INNER JOIN traitements t ON t.idTraitement = ht.idTraitement " +
+                    "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
+                    "WHERE d.nom = '" + departement.Nom + "' " +
+                    "AND ht.estEnCours = true " 
+                     , SqlDR => {
+                         lstCitoyen.Add(new Citoyen
+                         {
+                             Nom = SqlDR.GetString("nomCit"),
+                             Prenom = SqlDR.GetString("prenomCit"),
+                             AssMaladie = SqlDR.GetString("AssMal"),
+                             Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("nomGenre")),
+                             DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("dtNaiss"),
+                             Adresse = SqlDR.GetString("uneAdresse"),
+                             NumTelephone = SqlDR.GetString("numTel")
+                         });
+                     }
+                     
+                    );
+            }
+
+            return lstCitoyen;
         }
 
         #endregion GET

@@ -40,11 +40,14 @@ namespace VitAdmin.View
 
         private void InitialiserUsersControls()
         {
-            List<Citoyen> LstCitoyenDepartement = DataModelCitoyen.GetTousCitoyensDepartement(DataModelDepartement.GetDepartementEmploye(UsagerConnecte.Usager));
+            Departement departement = DataModelDepartement.GetDepartementEmploye(UsagerConnecte.Usager);
 
-            ControlListeLits controlInfos = new ControlListeLits(LstCitoyenDepartement);
+            List<Lit> LstLitsDepartement = DataModelLit.GetLitsDepartement(departement, true);
+            List<Citoyen> lstCitoyenDemandeTransfert = DataModelCitoyen.GetCitoyenDemandeTraitement(departement);
+
+            ControlListeLits controlInfos = new ControlListeLits(LstLitsDepartement);
             //ControlEquipements controlEquipements = new ControlEquipements();
-            /*ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert();
+            ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(lstCitoyenDemandeTransfert);
 
             Grid.SetRow(controlInfos, 1);
             //Grid.SetRow(controlEquipements, 2);
@@ -54,7 +57,7 @@ namespace VitAdmin.View
 
             grdGestionLit.Children.Add(controlInfos);
             //grdGestionLit.Children.Add(controlEquipements);
-            grdGestionLit.Children.Add(controlListeDemandesTransfert);*/
+            grdGestionLit.Children.Add(controlListeDemandesTransfert);
         }
     }
 }

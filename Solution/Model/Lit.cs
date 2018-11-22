@@ -12,6 +12,7 @@ namespace VitAdmin.Model
         public String Numero { get; set; }
         public Chambre Chambre { get; set; } 
         public EtatLit EtatLit { get; set; }
+        public Citoyen Citoyen { get; set; }
         public bool EstDisponible => EtatLit != EtatLit.Occupé;
 
     }

@@ -38,7 +38,7 @@ namespace VitAdmin.Data
             return lits;
         }
 
-        public static List<Lit> GetLitsDepartement(Departement departement)
+        public static List<Lit> GetLitsDepartement(Departement departement, bool expandCitoyen = false)
         {
             List<Lit> lits = new List<Lit>();
 
@@ -72,10 +72,15 @@ namespace VitAdmin.Data
                         }
                     )
                 );
+
+                if (expandCitoyen)
+                    lits.ForEach(lit => DataModelCitoyen.GetUnCitoyenParLit(lit));
             }
 
             return lits;
         }
+
+
         #endregion
 
         #region POST

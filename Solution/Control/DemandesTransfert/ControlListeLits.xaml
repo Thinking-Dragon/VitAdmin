@@ -17,16 +17,18 @@
                VerticalAlignment="Bottom"
                HorizontalAlignment="Left"/>
 
-        <DataGrid Grid.Row="1">
-            <DataGridTextColumn Header="Chambre" Width="*"/>
-            <DataGridTextColumn Header="Lit" Width="*"/>
-            <DataGridHyperlinkColumn Header="Patient" Width="*">
-                <DataGridHyperlinkColumn.ElementStyle>
-                    <Style>
-                        <EventSetter Event="Hyperlink.Click" Handler="DG_Hyperlink_Click"/>
-                    </Style>
-                </DataGridHyperlinkColumn.ElementStyle>
-            </DataGridHyperlinkColumn>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding LstLits}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="Chambre" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Numero}" Header="Lit" Width="*"/>
+                <DataGridHyperlinkColumn Binding="{Binding Citoyen.NomComplet}" Header="Patient" Width="*">
+                    <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                            <EventSetter Event="Hyperlink.Click" Handler="DG_Hyperlink_Click"/>
+                        </Style>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

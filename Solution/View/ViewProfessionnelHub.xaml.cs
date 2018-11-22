@@ -50,7 +50,8 @@ namespace VitAdmin.View
             Grid.SetColumnSpan(ctrlLstPatient, 2);
 
             grdLstPatient.Children.Add(ctrlLstPatient);
-            CreerBoutonGestionLit();
+            if(UsagerConnecte.Usager.RoleUsager == Role.InfChef)
+                CreerBoutonGestionLit();
         }
 
        private void CreerBoutonGestionLit()
