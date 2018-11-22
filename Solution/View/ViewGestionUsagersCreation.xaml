@@ -45,7 +45,7 @@
                  Width="256"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Center"
-                 Text="{Binding Usager.Nom}"/>
+                 Text="{Binding Usager.NomUtilisateur}"/>
 
         <Label HorizontalAlignment="Right"
                VerticalAlignment="Center"
@@ -55,7 +55,8 @@
                   Width="256"
                   Grid.Column="1"
                   Grid.Row="2"
-                  ItemsSource="{Binding Source={StaticResource RoleEnumValues}}"></ComboBox>
+                  ItemsSource="{Binding Source={StaticResource RoleEnumValues}}"
+                  SelectedItem="{Binding Usager.RoleUsager}"></ComboBox>
 
         <Label HorizontalAlignment="Right"
                VerticalAlignment="Center"

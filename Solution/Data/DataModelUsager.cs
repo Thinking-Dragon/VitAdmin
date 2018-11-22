@@ -118,5 +118,51 @@ namespace VitAdmin.Data
 
             return usagers;
         }
+
+        public static void Put(Usager usager, string nomUtilisateur)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "UPDATE TABLE Usagers " +
+                        "SET nomUtilisateur = '{0}', " +
+                        "    idRole = (SELECT idRole FROM Roles WHERE role = '{1}') " +
+                        "WHERE idUsager = (" +
+                        "   SELECT idUsager " +
+                        "   FROM Usagers " +
+                        "   WHERE nomUtilisateur = '{2}' " +
+                        ")",
+                        usager.NomUtilisateur, usager.RoleUsager, nomUtilisateur
+                    )
+                );
+
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "UPDATE TABLE Employe " +
+                        "SET numEmploye = '{0}', numPermis = '{1}', NAS = '{2}' " +
+                        "WHERE idEmploye = ( " +
+                        "   SELECT e.idEmploye " +
+                        "   FROM Employes e " +
+                        "   JOIN Usagers u ON u.idEmploye = e.idEmploye " +
+                        ")"
+                    )
+                );
+
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "UPDATE TABLE Citoyen " +
+                        "SET prenom = '{0}', nom = '{1}', numAssuranceMaladie = '{2}', dateNaissance = '{3}', telephone = '{4}', adresse = '{5}', " +
+                        "    idGenre = (SELECT idGenre FROM Genres WHERE nom = '{6}') " +
+                        "WHERE idCitoyen = ( " +
+                        "   SELECT idCitoyen " +
+                        "   FROM Citoyens c " +
+                        "   JOIN Employes e ON c.idCitoyen = e.idCitoyen " +
+                        "   JOIN Usagers u ON e.idEmploye = u.idEmploye " +
+                        ")"
+                    )
+                );
+            }
+        }
     }
 }

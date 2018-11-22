@@ -55,8 +55,8 @@ namespace VitAdmin
         {
             if (!(ecran.GetType() == TypeEcranPresent))
             {
-                if(!(GetEcranPresent() is IRetourEcranListeExclusion &&
-                    (GetEcranPresent() as IRetourEcranListeExclusion).ListeExclusionEcransRetour.Exists(type => type == ecran.GetType())))
+                if(!(GetEcranPresent() is IRetourEcranListeExclusion ecranPresent &&
+                     ecranPresent.ListeExclusionEcransRetour.Exists(type => type == ecran.GetType())))
                 {
                     AncienEcran = Frame.Content as Page;
                     TypeAncienEcran = TypeEcranPresent;
@@ -70,7 +70,7 @@ namespace VitAdmin
         public void RetourAncienEcran()
             => Changer(AncienEcran);
 
-        public Page GetEcranPresent() => (Frame.Content != null ? Frame.Content as Page : null);
+        public Page GetEcranPresent() => Frame.Content as Page;
 
         public void AfficherMessage(string message, string texteBouton = "Okay", string nomDialogue = "dialogGeneral")
         {

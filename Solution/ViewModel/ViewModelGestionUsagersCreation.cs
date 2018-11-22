@@ -14,6 +14,8 @@ namespace VitAdmin.ViewModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
+        private Action<Usager> Callback { get; set; }
+
         private Usager _usager;
         public Usager Usager
         {
@@ -28,9 +30,11 @@ namespace VitAdmin.ViewModel
             set { _passwordVisibility = value; RaisePropertyChangedEvent("PasswordVisibility"); }
         }
 
-        public ViewModelGestionUsagersCreation(GestionnaireEcrans gestionnaireEcrans, Usager usager)
+        public ViewModelGestionUsagersCreation(GestionnaireEcrans gestionnaireEcrans, Usager usager, Action<Usager> callback)
         {
             GestionnaireEcrans = gestionnaireEcrans;
+
+            Callback = callback;
 
             Usager = usager;
 
@@ -41,10 +45,7 @@ namespace VitAdmin.ViewModel
             }
         }
         
-        public ICommand CmdConfirmer => new CommandeDeleguee(param =>
-        {
-            
-        });
+        public ICommand CmdConfirmer => new CommandeDeleguee(param => Callback(Usager));
 
         private string _btnConfirmationTexte { get; set; } = "Créer";
         public string BtnConfirmationTexte

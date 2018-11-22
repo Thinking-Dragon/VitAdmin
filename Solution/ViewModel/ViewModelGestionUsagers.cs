@@ -26,14 +26,23 @@ namespace VitAdmin.ViewModel
         }
 
         public ICommand CmdAjouter => new CommandeDeleguee(param =>
-            GestionnaireEcrans.Changer(new ViewGestionUsagersCreation(GestionnaireEcrans))
+            GestionnaireEcrans.Changer(new ViewGestionUsagersCreation(GestionnaireEcrans, usager => Usagers.Add(usager)))
         );
 
         public ICommand CmdModifier => new CommandeDeleguee(param => {
-            if (UsagerSelectionne == null)
-                GestionnaireEcrans.AfficherMessage("Veuillez d'abord sélectionner un usager");
-            else
-                GestionnaireEcrans.Changer(new ViewGestionUsagersCreation(GestionnaireEcrans, UsagerSelectionne));
+        if (UsagerSelectionne == null)
+            GestionnaireEcrans.AfficherMessage("Veuillez d'abord sélectionner un usager");
+        else
+            GestionnaireEcrans.Changer(
+                new ViewGestionUsagersCreation(
+                    GestionnaireEcrans,
+                    usager => {
+                        DataModelUsager.Put(usager, UsagerSelectionne.NomUtilisateur);
+                        GestionnaireEcrans.Changer(new ViewGestionUsagers(GestionnaireEcrans));
+                    },
+                    UsagerSelectionne
+                )
+            );
         });
 
         public ICommand CmdSupprimer => new CommandeDeleguee(param =>
