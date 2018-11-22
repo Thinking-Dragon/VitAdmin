@@ -34,11 +34,206 @@
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="10">
             <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Nom :</Label>
             <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray" Content="{Binding Employe.NomComplet}"></Label>
-            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Poste:</Label>
+            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Poste :</Label>
             <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray" Content="{Binding Employe.Poste}"></Label>
-        </StackPanel>
-        
 
+            <Label Margin="10,10,10,10" VerticalAlignment="Bottom" FontSize="15" Foreground="Gray">Semaine du :</Label>
+            <ComboBox Name="Semaine"  Width="300" Height="30" VerticalAlignment="Bottom" Margin="10,10,10,15" HorizontalAlignment="Right">
+                
+            </ComboBox>
+        </StackPanel>
+
+        <Label Grid.Row="2" Grid.Column="2" Name="L22"></Label>
+        <Label Grid.Row="2" Grid.Column="3" Name="L23"></Label>
+        <Label Grid.Row="2" Grid.Column="4" Name="L24"></Label>
+        <Label Grid.Row="2" Grid.Column="5" Name="L25"></Label>
+        <Label Grid.Row="2" Grid.Column="6" Name="L26"></Label>
+        <Label Grid.Row="2" Grid.Column="7" Name="L27"></Label>
+        <Label Grid.Row="2" Grid.Column="8" Name="L28"></Label>
+        <Label Grid.Row="3" Grid.Column="2" Name="L32"></Label>
+        <Label Grid.Row="3" Grid.Column="3" Name="L33"></Label>
+        <Label Grid.Row="3" Grid.Column="4" Name="L34"></Label>
+        <Label Grid.Row="3" Grid.Column="5" Name="L35"></Label>
+        <Label Grid.Row="3" Grid.Column="6" Name="L36"></Label>
+        <Label Grid.Row="3" Grid.Column="7" Name="L37"></Label>
+        <Label Grid.Row="3" Grid.Column="8" Name="L38"></Label>
+        <Label Grid.Row="4" Grid.Column="2" Name="L42"></Label>
+        <Label Grid.Row="4" Grid.Column="3" Name="L43"></Label>
+        <Label Grid.Row="4" Grid.Column="4" Name="L44"></Label>
+        <Label Grid.Row="4" Grid.Column="5" Name="L45"></Label>
+        <Label Grid.Row="4" Grid.Column="6" Name="L46"></Label>
+        <Label Grid.Row="4" Grid.Column="7" Name="L47"></Label>
+        <Label Grid.Row="4" Grid.Column="8" Name="L48"></Label>
+
+        <Border Grid.Row="2" Grid.Column="2" Name="B22" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="3" Name="B23" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="4" Name="B24" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="5" Name="B25" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="6" Name="B26" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="7" Name="B27" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="8" Name="B28" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="2" Name="B32" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="3" Name="B33" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="4" Name="B34" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="5" Name="B35" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="6" Name="B36" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="7" Name="B37" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="8" Name="B38" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="2" Name="B42" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="3" Name="B43" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="4" Name="B44" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="5" Name="B45" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="6" Name="B46" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="7" Name="B47" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="8" Name="B48" Cursor="Hand">
+            <Border.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent"></SolidColorBrush>
+            </Border.Background>
+        </Border>
+        
 
         <Label Grid.Row="1" Grid.Column="2">Dimanche</Label>
         <Label Grid.Row="1" Grid.Column="3">Lundi</Label>

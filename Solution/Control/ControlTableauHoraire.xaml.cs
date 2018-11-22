@@ -29,7 +29,8 @@ namespace VitAdmin.Control
             DataContext = new ControlModelTableauHoraire(DataModelQuartEmploye.GetHoraire(Parameter.UsagerConnecte.Usager));
 
             List<DateTime> semaine = new List<DateTime>();
-            DateTime aujourdhui = DateTime.Now;
+            //DateTime aujourdhui = DateTime.Now;
+            DateTime aujourdhui = new DateTime(2018, 10, 29);
             DateTime dimanche = new DateTime();
 
             for (int i = 1; i < 5; i++)

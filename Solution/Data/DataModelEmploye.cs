@@ -34,7 +34,7 @@ namespace VitAdmin.Data
 
             if (ConnexionBD.Instance().EstConnecte())
             {
-                string requete = "SELECT c.nom nm, c.prenom prm, numEmploye numEmp, p.nom poste " +
+                string requete = "SELECT c.nom nm, c.prenom prm, numEmploye numEmp, p.nom poste, e.idEmploye id " +
                                  "FROM employes e " +
                                  "INNER JOIN  postes p ON p.idPoste = e.idPoste " +
                                  "INNER JOIN citoyens c ON c.idCitoyen = e.idCitoyen;";
@@ -42,6 +42,7 @@ namespace VitAdmin.Data
                 {
                     lstEmployes.Add(new Employe
                     {
+                        idEmploye = SqlDR.GetInt16("id"),
                         NumEmploye = SqlDR.GetString("numEmp"),
                         Nom = SqlDR.GetString("nm"),
                         Prenom = SqlDR.GetString("prm"),

@@ -23,15 +23,22 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlGestionHoraire : UserControl
     {
-        List<DateTime> Semaine { get; set; } = new List<DateTime>();
+        private List<DateTime> Semaine { get; set; } = new List<DateTime>();
+        private ControlModelGestionHoraire Contexte {get; set;}
 
         public ControlGestionHoraire(Employe employe)
         {
             InitializeComponent();
-            DataContext = new ControlModelGestionHoraire(employe);
+            DataContext = Contexte = new ControlModelGestionHoraire(employe, GrdHoraire);
+            InitialiseHoraire();
 
-            List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
+            /*List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
 
+
+
+            MouseBinding commandDoubleClick = new MouseBinding();
+            commandDoubleClick.MouseAction = MouseAction.LeftDoubleClick;
+            commandDoubleClick.Command = Contexte.CmdDoubleClickQuart;
 
             for (int c = 0; c < 7; c++)
             {
@@ -40,9 +47,13 @@ namespace VitAdmin.Control
                 {
                     if (Semaine[c].Year == quart.Date.Year && Semaine[c].Day == quart.Date.Day && Semaine[c].Month == quart.Date.Month)
                     {
+
+
+
                         switch (quart.TypeDeQuart)
                         {
                             case TypeQuart.jour:
+
                                 Label temp = new Label
                                 {
                                     Content = quart.DepartementAssocie.Nom,
@@ -57,11 +68,19 @@ namespace VitAdmin.Control
                                 Border travaille = new Border
                                 {
                                     Background = Brushes.DodgerBlue
+                                    
                                 };
+
+                                travaille.InputBindings.Add(commandDoubleClick);
+
                                 Panel.SetZIndex(travaille, -1);
                                 Grid.SetColumn(travaille, c + 2);
                                 Grid.SetRow(travaille, 3);
+                                GrdHoraire.Children.Add(travaille);
                                 break;
+
+                                //////////////////////////////////////////////////////////////////
+
                             case TypeQuart.nuit:
                                 Label temp2 = new Label
                                 {
@@ -79,11 +98,17 @@ namespace VitAdmin.Control
                                     Background = Brushes.DodgerBlue
 
                                 };
+
+                                travaille2.InputBindings.Add(commandDoubleClick);
+
                                 Panel.SetZIndex(travaille2, -1);
                                 Grid.SetColumn(travaille2, c + 2);
                                 Grid.SetRow(travaille2, 2);
                                 GrdHoraire.Children.Add(travaille2);
                                 break;
+
+                                /////////////////////////////////////////////////////////////////
+
                             case TypeQuart.soir:
                                 Label temp3 = new Label
                                 {
@@ -100,6 +125,10 @@ namespace VitAdmin.Control
                                 {
                                     Background = Brushes.DodgerBlue
                                 };
+
+                                travaille3.InputBindings.Add(commandDoubleClick);
+
+
                                 Panel.SetZIndex(travaille3, -1);
                                 Grid.SetColumn(travaille3, c + 2);
                                 Grid.SetRow(travaille3, 4);
@@ -108,13 +137,15 @@ namespace VitAdmin.Control
                         }
                     }
                 }
-            }
+            }*/
         }
 
         private void InitialiseHoraire()
         {
-            
-            DateTime aujourdhui = DateTime.Now;
+            /*29/10/2018*/
+
+            //DateTime aujourdhui = DateTime.Now;
+            DateTime aujourdhui = new DateTime(2018, 10, 29);
             DateTime dimanche = new DateTime();
 
             for (int i = 1; i < 5; i++)
@@ -177,3 +208,20 @@ namespace VitAdmin.Control
         }
     }
 }
+
+
+/*
+  référence :
+  https://docs.microsoft.com/en-us/dotnet/api/system.windows.input.mousebinding?redirectedfrom=MSDN&view=netframework-4.7.2
+
+  code utilisé :
+  MouseGesture OpenCmdMouseGesture = new MouseGesture();
+  OpenCmdMouseGesture.MouseAction = MouseAction.WheelClick;
+  OpenCmdMouseGesture.Modifiers = ModifierKeys.Control;
+
+  MouseBinding OpenCmdMouseBinding = new MouseBinding();
+  OpenCmdMouseBinding.Gesture = OpenCmdMouseGesture;
+  OpenCmdMouseBinding.Command = ApplicationCommands.Open;
+
+  this.InputBindings.Add(OpenCmdMouseBinding)
+*/
