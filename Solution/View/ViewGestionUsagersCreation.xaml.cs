@@ -18,21 +18,21 @@ using VitAdmin.ViewModel;
 namespace VitAdmin.View
 {
     /// <summary>
-    /// Logique d'interaction pour ViewGestionUsagers.xaml
+    /// Logique d'interaction pour ViewGestionUsagersCreation.xaml
     /// </summary>
-    public partial class ViewGestionUsagers : Page, IEcranRetour
+    public partial class ViewGestionUsagersCreation : Page, IEcranRetour
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
-
-        public ViewGestionUsagers(GestionnaireEcrans gestionnaireEcrans)
+        public ViewGestionUsagersCreation(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
             GestionnaireEcrans = gestionnaireEcrans;
-            DataContext = new ViewModelGestionUsagers(gestionnaireEcrans);
+            DataContext = new ViewModelGestionUsagersCreation(gestionnaireEcrans);
         }
 
-        public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
+        public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewGestionUsagers(GestionnaireEcrans));
 
-        public string TexteBoutonRetourEcran => "< Accueil";
+        public string TexteBoutonRetourEcran => "< Gestion usagers";
+
     }
 }

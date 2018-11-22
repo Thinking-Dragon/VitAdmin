@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using VitAdmin.Data;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.View;
 
 namespace VitAdmin.ViewModel
 {
@@ -22,6 +24,15 @@ namespace VitAdmin.ViewModel
             get => _usagerSelectionne;
             set { _usagerSelectionne = value; RaisePropertyChangedEvent("UsagerSelectionne"); }
         }
+
+        public ICommand CmdAjouter => new CommandeDeleguee(param =>
+            GestionnaireEcrans.Changer(new ViewGestionUsagersCreation(GestionnaireEcrans))
+        );
+
+        public ICommand CmdSupprimer => new CommandeDeleguee(param =>
+        {
+
+        });
 
         public ViewModelGestionUsagers(GestionnaireEcrans gestionnaireEcrans)
         {

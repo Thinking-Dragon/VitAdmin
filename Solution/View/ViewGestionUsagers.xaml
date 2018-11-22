@@ -66,7 +66,8 @@
                 Margin="0 0 24 0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Width="195">
+                Width="195"
+                Command="{Binding CmdAjouter}">
             Créer un nouvel usager
         </Button>
         <Button Grid.Column="1"
@@ -74,7 +75,8 @@
                 Margin="24 0 0 0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Width="195">
+                Width="195"
+                Command="{Binding CmdSupprimer}">
             Supprimer l'usager
         </Button>
     </Grid>

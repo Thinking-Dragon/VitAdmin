@@ -1,0 +1,47 @@
+﻿<Page x:Class="VitAdmin.View.ViewGestionUsagersCreation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VitAdmin.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ViewGestionUsagersCreation">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!-- Champs CRUD -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center">Nom:</Label>
+        <TextBox Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Text="{Binding Usager.Nom}"/>
+
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Row="1">Mot de passe</Label>
+        <PasswordBox x:Name="psbMotDePasse"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Grid.Column="1"/>
+
+        <!-- Bouton confirmation -->
+        <Button Command="{Binding CmdConfirmer}"
+                CommandParameter="{Binding Password, ElementName=psbMotDePasse}"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Width="128"
+                Content="{Binding BtnConfirmationTexte}"/>
+    </Grid>
+</Page>
