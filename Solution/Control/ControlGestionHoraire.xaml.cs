@@ -32,27 +32,29 @@ namespace VitAdmin.Control
             DataContext = Contexte = new ControlModelGestionHoraire(employe, GrdHoraire);
             InitialiseHoraire();
 
-            /*List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
+            List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
 
-
-
-            MouseBinding commandDoubleClick = new MouseBinding();
-            commandDoubleClick.MouseAction = MouseAction.LeftDoubleClick;
-            commandDoubleClick.Command = Contexte.CmdDoubleClickQuart;
 
             for (int c = 0; c < 7; c++)
             {
-
                 foreach (QuartEmploye quart in horaire)
                 {
                     if (Semaine[c].Year == quart.Date.Year && Semaine[c].Day == quart.Date.Day && Semaine[c].Month == quart.Date.Month)
                     {
-
-
-
                         switch (quart.TypeDeQuart)
                         {
                             case TypeQuart.jour:
+
+                                string nomL = "L" + c.ToString() + "J";
+
+                                foreach (UIElement item in GrdHoraire.Children)
+                                {
+                                    if (item is Label && (item as Label).Name == nomL)
+                                    {
+
+                                    }
+                                }
+
 
                                 Label temp = new Label
                                 {
@@ -60,23 +62,13 @@ namespace VitAdmin.Control
                                     VerticalAlignment = VerticalAlignment.Center,
                                     Foreground = Brushes.White
                                 };
-
-                                Grid.SetColumn(temp, c + 2);
-                                Grid.SetRow(temp, 3);
-                                GrdHoraire.Children.Add(temp);
-
+                               
                                 Border travaille = new Border
                                 {
                                     Background = Brushes.DodgerBlue
                                     
                                 };
 
-                                travaille.InputBindings.Add(commandDoubleClick);
-
-                                Panel.SetZIndex(travaille, -1);
-                                Grid.SetColumn(travaille, c + 2);
-                                Grid.SetRow(travaille, 3);
-                                GrdHoraire.Children.Add(travaille);
                                 break;
 
                                 //////////////////////////////////////////////////////////////////
@@ -98,8 +90,6 @@ namespace VitAdmin.Control
                                     Background = Brushes.DodgerBlue
 
                                 };
-
-                                travaille2.InputBindings.Add(commandDoubleClick);
 
                                 Panel.SetZIndex(travaille2, -1);
                                 Grid.SetColumn(travaille2, c + 2);
@@ -126,8 +116,6 @@ namespace VitAdmin.Control
                                     Background = Brushes.DodgerBlue
                                 };
 
-                                travaille3.InputBindings.Add(commandDoubleClick);
-
 
                                 Panel.SetZIndex(travaille3, -1);
                                 Grid.SetColumn(travaille3, c + 2);
@@ -137,7 +125,7 @@ namespace VitAdmin.Control
                         }
                     }
                 }
-            }*/
+            }
         }
 
         private void InitialiseHoraire()
