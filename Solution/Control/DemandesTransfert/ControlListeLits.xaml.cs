@@ -34,31 +34,11 @@ namespace VitAdmin.Control.DemandesTransfert
 
         }
 
-        private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void DGLstLit_Hyperlink_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        /*private void InitialiserCboEtatLit()
-        {
-            Label lblEtatLit = new Label { Content = "État du lit" };
-            ComboBox cboEtatLit = new ComboBox
-            {
-                ItemsSource = Enum.GetValues(typeof(EtatLit)).Cast<EtatLit>(),
-                SelectedItem = ControlModelInfos.Citoyen.Lit.EtatLit
-            };
-
-
-
-
-        }
-
-        private void InitialiserTxtNomPrenomPatient()
-        {
-            Label lblNomPrenomPatient = new Label { Content = "Nom et prénom" };
-            TextBox txtNomPrenom = new TextBox { Text = ControlModelInfos.Citoyen.NomComplet };
-
-
-        }*/
+       
     }
 }

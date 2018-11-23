@@ -18,22 +18,24 @@
 
         <Label Content="Traitements"
                FontSize="40"/>
+        
         <DataGrid Grid.Row="2"
                   Name="dtgTraitements"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
+                  ItemsSource ="{Binding Traitements}"
                   >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Nom}" Header="Traitement"/>
+                <DataGridTextColumn Binding="{Binding Nom}" Header="Traitement" Width="*"/>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="BtnSupprimer" Click="BtnSupprimer_Click">Supprimer</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
-            <!--<DataGridTemplateColumn>
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <Button Name="BtnSupprimer" Click="BtnSupprimer_Click">Supprimer</Button>
-                        
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>-->
+            
         </DataGrid>
 
         <Button Grid.Row="3"

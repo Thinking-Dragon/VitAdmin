@@ -90,11 +90,7 @@ namespace VitAdmin.Data
                         "VALUES ((SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "'), " +
                         "'" + hospitalisation.DateDebut.ToString() + "', " +
                         "'" + hospitalisation.DateFin.ToString() + "', " +
-                        "'" + hospitalisation.Contexte + "') " ,
-                        new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
-                        new Tuple<string, string>("@DateDebut", hospitalisation.DateDebut.ToString()),
-                        new Tuple<string, string>("@DateFin", hospitalisation.DateFin.ToString()),
-                        new Tuple<string, string>("@Contexte", hospitalisation.Contexte)
+                        "'" + hospitalisation.Contexte + "') "
                 );
 
                 // On crée la nouvelle liste de symptôme lié à l'hospitalisation
@@ -116,9 +112,7 @@ namespace VitAdmin.Data
 
                         "INSERT INTO hospitalisationstraitements (idHospitalisation, idTraitement) " +
                         "VALUES ((SELECT idHospitalisation FROM hospitalisations h INNER JOIN citoyens c WHERE (c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') AND (h.dateDebut = '" + hospitalisation.DateDebut.ToString() + "')), " +
-                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '" + traitement.Nom + "')) " ,
-                        new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
-                        new Tuple<string, string>("@TraitementNom", traitement.Nom)
+                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '" + traitement.Nom + "')) "
                 );
 
                 // Ensuite, il faut mettre à jour le lit dans lequel le citoyen est hospitalisé
@@ -128,18 +122,12 @@ namespace VitAdmin.Data
                         "JOIN chambres ch ON ch.idChambre = l.idChambre " +
                         "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') " +
                         "WHERE (ch.nom = '" + chambre.Numero + "') AND " +
-                        "(l.numero = '" + lit.Numero + "') ",
-                        new Tuple<string, string>("@AssMaladie", citoyen.AssMaladie),
-                        new Tuple<string, string>("@NomChambre", chambre.Numero),
-                        new Tuple<string, string>("@NumLit", lit.Numero)
+                        "(l.numero = '" + lit.Numero + "') "
 
                 );
             }
         }
 
-        public void PostHospitalisation2(Hospitalisation hospitalisation)
-        {
-
-        }
+     
     }
 }

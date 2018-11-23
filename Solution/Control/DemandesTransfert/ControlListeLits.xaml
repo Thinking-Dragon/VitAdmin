@@ -14,20 +14,21 @@
 
         <Label Content="Liste des lits"
                FontSize="35"
-               VerticalAlignment="Bottom"
+               VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding LstLits}">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding LstLits}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="Chambre" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Numero}" Header="Lit" Width="*"/>
-                <DataGridHyperlinkColumn Binding="{Binding Citoyen.NomComplet}" Header="Patient" Width="*">
+                <DataGridTextColumn Binding="{Binding Citoyen.NomComplet}" Header="Patient" Width="*"/>
+                <!--<DataGridHyperlinkColumn Binding="{Binding Citoyen.NomComplet}" Header="Patient" Width="*">
                     <DataGridHyperlinkColumn.ElementStyle>
                         <Style>
-                            <EventSetter Event="Hyperlink.Click" Handler="DG_Hyperlink_Click"/>
+                            <EventSetter Event="Hyperlink.Click" Handler="DGLstLit_Hyperlink_Click"/>
                         </Style>
                     </DataGridHyperlinkColumn.ElementStyle>
-                </DataGridHyperlinkColumn>
+                </DataGridHyperlinkColumn>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

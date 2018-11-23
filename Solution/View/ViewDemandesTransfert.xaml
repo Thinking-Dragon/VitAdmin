@@ -10,8 +10,7 @@
 
     <Grid Name="grdGestionLit">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
-            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>

@@ -69,6 +69,33 @@ namespace VitAdmin.Data
             return departement;
         }
 
+        public static Departement GetDepartementInfChef(Employe employe)
+        {
+            Departement departement = new Departement();
+
+            int idEmployeRecherche = DataModelEmploye.GetidEmploye(employe);
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT d.idDepartement _id, d.nom depNom, d.abreviation depAbrev " +
+                    "FROM departements d " +
+                    "JOIN quarts q ON q.idDepartement = d.idDepartement " +
+                    "JOIN quartsemployes qe ON qe.idQuart = q.idQuart " +
+                    "JOIN employes e ON e.idEmploye = qe.idEmploye " +
+                    "WHERE d.idEmploye = " + idEmployeRecherche + " "
+                    , SqlDR => {
+                        departement._identifiant = int.Parse(SqlDR.GetString("_id"));
+                        departement.Nom = SqlDR.GetString("depNom");
+                        departement.Abreviation = SqlDR.GetString("depAbrev");
+                    }
+                    );
+            }
+
+            return departement;
+        }
+
         public static Departement GetDepartement(string abreviation, string expand = "")
         {
             Departement departement = null;
