@@ -28,6 +28,28 @@ namespace VitAdmin.Data
             }
         }
 
+        public static void Post(Employe employe)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                DataModelCitoyen.PostCitoyen(employe as Citoyen);
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format(
+                        "INSERT INTO Employes (numEmploye, numPermis, NAS, idCitoyen, idPoste) " +
+                        "VALUES (" +
+                        "   '{0}', " +
+                        "   '{1}', " +
+                        "   '{2}', " +
+                        "   (SELECT idCitoyen FROM Citoyens WHERE numAssuranceMaladie = '{3}'), " +
+                        "   (SELECT idPoste FROM Postes WHERE nom = '{4}') " +
+                        ")",
+                        employe.NumEmploye, employe.NumPermis, employe.NAS,
+                        employe.AssMaladie, employe.Poste
+                    )
+                );
+            }
+        }
+
         public static List<Employe> GetEmployes()
         {
             List<Employe> lstEmployes = new List<Employe>();
@@ -150,6 +172,16 @@ namespace VitAdmin.Data
                 //DataModelCitoyen.AddCitoyen(employe);
                 ConnexionBD.Instance().ExecuterRequete(requete);
                 // TODO : Recevoir code erreur BD dans cas d'erreur (duplicata)
+            }
+        }
+
+        public static void Delete(Employe employe)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format("DELETE FROM Employes WHERE numEmploye = '{0}'", employe.NumEmploye));
+                DataModelCitoyen.Delete(employe as Citoyen);
             }
         }
     }

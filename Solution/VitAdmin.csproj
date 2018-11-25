@@ -300,6 +300,7 @@
     <Compile Include="Data\DataModelNotesInf.cs" />
     <Compile Include="Data\DataModelNotesMed.cs" />
     <Compile Include="Data\DataModelNotification.cs" />
+    <Compile Include="Data\DataModelPoste.cs" />
     <Compile Include="Data\DataModelPrescriptions.cs" />
     <Compile Include="Data\DataModelQuartEmploye.cs" />
     <Compile Include="Data\DataModelResultatsLabo.cs" />
@@ -361,6 +362,7 @@
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
     <Compile Include="View\Tool\IEcranRetour.cs" />
     <Compile Include="View\Tool\IRetourEcranListeExclusion.cs" />
+    <Compile Include="View\Tool\Validateur.cs" />
     <Compile Include="View\ViewAdminModificationStructure.xaml.cs">
       <DependentUpon>ViewAdminModificationStructure.xaml</DependentUpon>
     </Compile>

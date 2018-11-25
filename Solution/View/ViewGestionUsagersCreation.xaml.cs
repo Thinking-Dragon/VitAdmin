@@ -24,11 +24,11 @@ namespace VitAdmin.View
     public partial class ViewGestionUsagersCreation : Page, IEcranRetour
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
-        public ViewGestionUsagersCreation(GestionnaireEcrans gestionnaireEcrans, Action<Usager> callback, Usager usager = null)
+        public ViewGestionUsagersCreation(GestionnaireEcrans gestionnaireEcrans, Usager usager = null)
         {
             InitializeComponent();
             GestionnaireEcrans = gestionnaireEcrans;
-            DataContext = new ViewModelGestionUsagersCreation(gestionnaireEcrans, usager, callback);
+            DataContext = new ViewModelGestionUsagersCreation(gestionnaireEcrans, usager);
         }
 
         public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewGestionUsagers(GestionnaireEcrans));

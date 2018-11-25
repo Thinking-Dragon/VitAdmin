@@ -324,13 +324,20 @@ namespace VitAdmin.Data
                         "'" + citoyen.NumTelephone + "', " +
                         "'" + citoyen.Adresse + "', " +
                         "(SELECT idGenre FROM genres g WHERE g.nom = '" + citoyen.Genre.ToString() + "') ) "
-                        ,
-                        citoyen
                     )
                 );
             }
         }
         #endregion
-
+        #region DELETE
+        public static void Delete(Citoyen citoyen)
+        {
+            if(ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    string.Format("DELETE FROM Citoyens WHERE numAssuranceMaladie = '{0}'", citoyen.AssMaladie));
+            }
+        }
+        #endregion
     }
 }

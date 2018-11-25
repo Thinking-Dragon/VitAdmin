@@ -17,63 +17,207 @@
                 <x:Type TypeName="model:Role"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <ObjectDataProvider x:Key="GenreEnumValues"
+                            MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:Genre"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="64"/>
             <RowDefinition Height="64"/>
             <RowDefinition Height="64"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="128"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="64"/>
         </Grid.RowDefinitions>
 
-        <Label FontSize="24"
+        <Label FontSize="18"
                FontWeight="Bold"
+               Grid.ColumnSpan="2"
                HorizontalAlignment="Center">Informations d'un usager</Label>
         
         <!-- Champs CRUD -->
+        
+        <!-- Citoyen -->
+            <!-- Nom -->
         <Label HorizontalAlignment="Right"
-               Grid.Row="1"
-               VerticalAlignment="Center">Nom:</Label>
-        <TextBox Grid.Column="1"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="1">Nom:</Label>
+        <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Grid.Column="2"
+                   Grid.Row="1"
+                   Text="{Binding MessageErreurNom}"
+                   Foreground="Red"
+                   Opacity="0.5"/>
+        <TextBox HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Width="256"
+                 Grid.Column="2"
                  Grid.Row="1"
+                 Text="{Binding Usager.Nom}"/>
+            <!-- Prénom -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="2">Prénom:</Label>
+        <TextBox HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Width="256"
+                   Grid.Column="2"
+                   Grid.Row="2"
+                   Text="{Binding Usager.Prenom}"/>
+            <!-- Assurance maladie -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="3">Assurance maladie:</Label>
+        <TextBox HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Width="256"
+                   Grid.Column="2"
+                   Grid.Row="3"
+                   Text="{Binding Usager.AssMaladie}"/>
+            <!-- Date de naissance -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="4">Date de naissance:</Label>
+        <DatePicker HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Grid.Column="2"
+                    Grid.Row="4"
+                    SelectedDate="{Binding Usager.DateNaissance}"/>
+            <!-- Numéro de téléphone -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="5">Téléphone:</Label>
+        <TextBox HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Width="256"
+                   Grid.Column="2"
+                   Grid.Row="5"
+                   Text="{Binding Usager.NumTelephone}"/>
+            <!-- Genre -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="6">Genre:</Label>
+        <ComboBox HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Width="256"
+                  Grid.Column="2"
+                  Grid.Row="6"
+                  ItemsSource="{Binding Source={StaticResource GenreEnumValues}}"
+                  SelectedItem="{Binding Usager.Genre}"/>
+        
+        <!-- Employé -->
+            <!-- N°employé -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="3"
+               Grid.Row="1">Numéro employé:</Label>
+        <TextBox HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Width="256"
+                   Grid.Column="4"
+                   Grid.Row="1"
+                   Text="{Binding Usager.NumEmploye}"/>
+            <!-- Poste -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="3"
+               Grid.Row="2">Poste:</Label>
+        <ComboBox HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Width="256"
+                  Grid.Column="4"
+                  Grid.Row="2"
+                  ItemsSource="{Binding PostesPossibles}"
+                  SelectedItem="{Binding PosteSelectionne}"/>
+        <!-- N°permis -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="3"
+               Grid.Row="3">Numéro permis:</Label>
+        <TextBox HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Width="256"
+                 Grid.Column="4"
+                 Grid.Row="3"
+                 Text="{Binding Usager.NumPermis}"/>
+            <!-- NAS -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="3"
+               Grid.Row="4">NAS:</Label>
+        <TextBox HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Width="256"
+                 Grid.Column="4"
+                 Grid.Row="4"
+                 Text="{Binding Usager.NAS}"/>
+        
+        <!-- Usager -->
+            <!-- Nom d'utilisateur -->
+        <Label HorizontalAlignment="Right"
+               Grid.Column="3"
+               Grid.Row="5"
+               VerticalAlignment="Center">Nom usager:</Label>
+        <TextBox Grid.Column="4"
+                 Grid.Row="5"
                  Width="256"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Center"
                  Text="{Binding Usager.NomUtilisateur}"/>
-
+            <!-- Rôle -->
         <Label HorizontalAlignment="Right"
                VerticalAlignment="Center"
-               Grid.Row="2">Rôle</Label>
+               Grid.Column="3"
+               Grid.Row="6">Rôle</Label>
         <ComboBox HorizontalAlignment="Left"
                   VerticalAlignment="Center"
                   Width="256"
-                  Grid.Column="1"
-                  Grid.Row="2"
+                  Grid.Column="4"
+                  Grid.Row="6"
                   ItemsSource="{Binding Source={StaticResource RoleEnumValues}}"
-                  SelectedItem="{Binding Usager.RoleUsager}"></ComboBox>
-
+                  SelectedItem="{Binding Usager.RoleUsager}"/>
+            <!-- Mot de passe -->
         <Label HorizontalAlignment="Right"
                VerticalAlignment="Center"
                Visibility="{Binding PasswordVisibility}"
-               Grid.Row="3">Mot de passe</Label>
-        <PasswordBox x:Name="psbMotDePasse"
-                     Width="256"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Center"
-                     Visibility="{Binding PasswordVisibility}"
-                     Grid.Column="1"
-                     Grid.Row="3"/>
+               Grid.Column="3"
+               Grid.Row="7">Mot de passe</Label>
+        <TextBox Width="256"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Visibility="{Binding PasswordVisibility}"
+                 Grid.Column="4"
+                 Grid.Row="7"
+                 Text="{Binding Password}"/>
 
         <!-- Bouton confirmation -->
         <Button Command="{Binding CmdConfirmer}"
-                CommandParameter="{Binding Password, ElementName=psbMotDePasse}"
-                Grid.Row="5"
+                Grid.Column="3"
+                Grid.Row="9"
                 Grid.ColumnSpan="2"
                 Width="256"
                 Content="{Binding BtnConfirmationTexte}"/>
