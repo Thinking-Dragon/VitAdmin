@@ -34,7 +34,7 @@ namespace VitAdmin.View
         {
             InitializeComponent();
             GestEcrans = gestionnaireEcrans;
-            ControlProfessionnelDossierPatient = new ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.getHospitalisation(patient)), patient);
+            ControlProfessionnelDossierPatient = new ControlProfessionnelDossierPatient(gestionnaireEcrans, new ObservableCollection<Hospitalisation>(Data.DataModelHospitalisation.GetHospitalisations(patient)), patient);
             DataContext = new ViewModelProfessionnelDossierPatient(gestionnaireEcrans, patient);
 
             Grid.SetRow(ControlProfessionnelDossierPatient, 1);

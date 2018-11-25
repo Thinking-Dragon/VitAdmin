@@ -13,5 +13,11 @@ namespace VitAdmin.Model
         public String Nom { get; set; }
         public ObservableCollection<Etape> EtapesTraitement { get; set; }
         public Departement DepartementAssocie { get; set; }
+        public bool EstEnCours { get; set; }
+
+        public Traitement()
+        {
+            EstEnCours = false;
+        }
     }
 }

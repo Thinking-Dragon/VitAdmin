@@ -27,7 +27,7 @@
                 <DataGridTextColumn Width="*" Binding="{Binding DataContext.DepartementAssocie.Nom, 
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
                 <DataGridTextColumn Width="*" Binding="{Binding DateDebut, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date début"/>
-                <DataGridTextColumn Width="*" Binding="{Binding DateFin, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date fin"/>
+                <DataGridTextColumn Width="*" Binding="{Binding DateFin, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date fin" SortDirection="Ascending"/>
             </DataGrid.Columns>
             
             <DataGrid.InputBindings>

@@ -24,11 +24,6 @@ namespace VitAdmin.Control
     public partial class ControlProfessionnelDossierPatient : UserControl
     {
         List<Hospitalisation> LstHospitalisation; // List temporaire qui garde en mémoire tous les hospitalisations trouvées lors de l'accès au dossier du patient. Cela permet d'augmenter la vitesse de l'application et diminuer le nombre de demande à la bd.
-        //Ta combo box est déclarée dans le XAML
-        /*ComboBox cboDepartements = new ComboBox
-        {
-            VerticalAlignment = VerticalAlignment.Center
-        };*/
 
         ControlModelProfessionnelDossierPatient controlModelProfessionnelDossierPatient;
 

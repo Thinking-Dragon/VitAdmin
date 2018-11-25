@@ -9,9 +9,9 @@ namespace VitAdmin.Data
 {
     class DataModelHospitalisation
     {
-        public static List<Hospitalisation> getHospitalisation(Citoyen citoyen)
+        public static List<Hospitalisation> GetHospitalisations(Citoyen citoyen)
         {
-            // On crée une liste de citoyen venant de la BD
+            // On crée une liste d'hospitalisation venant de la BD
             List<Hospitalisation> lstHospitalisation = new List<Hospitalisation>();
 
             // On vérifie si la BD est connecté
@@ -31,7 +31,7 @@ namespace VitAdmin.Data
                         lstHospitalisation.Add(new Hospitalisation
                         {
                             DateDebut = (DateTime)SqlDR.GetMySqlDateTime("dDebut"),
-                            //DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin") , 
+                            DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin")
                             
                         });
 
@@ -77,11 +77,39 @@ namespace VitAdmin.Data
             return lstHospitalisation;
         }
 
+        public static Hospitalisation GetHospitalisation(Citoyen citoyen)
+        {
+            Hospitalisation hospitalisation = new Hospitalisation();
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT h.dateDebut dDebut, h.dateFin dFin, t.Nom NomTrait " +
+                    "FROM hospitalisations h " +
+                    "INNER JOIN citoyens c ON c.idCitoyen = h.idCitoyen " +
+                    "INNER JOIN hospitalisationstraitements ht ON ht.idHospitalisation = h.idHospitalisation " +
+                    "INNER JOIN traitements t ON t.idTraitement = ht.idTraitement " +
+                    "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
+                    "WHERE c.numAssuranceMaladie ='" + citoyen.AssMaladie + "' "
+                    , lecteur =>
+                    {
+                        hospitalisation.DateDebut = (DateTime)lecteur.GetMySqlDateTime("dDebut");
+                        hospitalisation.DateFin = lecteur.IsDBNull(lecteur.GetOrdinal("dFin")) ? new DateTime() : (DateTime)lecteur.GetMySqlDateTime("dFin");
+                    }
+                    );
+            }
+
+            return hospitalisation;
+        }
+
         public static void PostHospitalisation(Citoyen citoyen, Hospitalisation hospitalisation, Traitement traitement, Chambre chambre, Lit lit)
         {
 
             if (ConnexionBD.Instance().EstConnecte())
             {
+                PutHospitalisationTerminees(citoyen);
 
                 // On crée la nouvelle hospitalisation liée au patient
                 ConnexionBD.Instance().ExecuterRequete(
@@ -106,28 +134,87 @@ namespace VitAdmin.Data
                             "'" + symptome.EstActif + "') ");
                 });
 
-
                 // Ensuite, il faut créer le lien en bd entre l'hospitalisation et le traitement assigné
                 ConnexionBD.Instance().ExecuterRequete(
 
-                        "INSERT INTO hospitalisationstraitements (idHospitalisation, idTraitement) " +
+                        "INSERT INTO hospitalisationstraitements (idHospitalisation, idTraitement, estEnCours) " +
                         "VALUES ((SELECT idHospitalisation FROM hospitalisations h INNER JOIN citoyens c WHERE (c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') AND (h.dateDebut = '" + hospitalisation.DateDebut.ToString() + "')), " +
-                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '" + traitement.Nom + "')) "
+                        "(SELECT idTraitement FROM traitements t WHERE t.nom = '" + traitement.Nom + "'), " +
+                        "true) "
                 );
 
-                // Ensuite, il faut mettre à jour le lit dans lequel le citoyen est hospitalisé
+                PutHospitalisationTraitement(hospitalisation, traitement);
+
+
+
+                // Ensuite, il faut mettre à jour le lit dans lequel le citoyen est hospitalisé s'il a été assigné dans un lit disponible
+                if(lit != null)
+                {
+
+                    ConnexionBD.Instance().ExecuterRequete(
+
+                            "UPDATE lits l " +
+                            "JOIN chambres ch ON ch.idChambre = l.idChambre " +
+                            "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') " +
+                            "WHERE (ch.nom = '" + chambre.Numero + "') AND " +
+                            "(l.numero = '" + lit.Numero + "') "
+
+                    );
+                }
+            }
+        }
+        /// <summary>
+        /// sert à rendre à false le estEnCours des traitements qui ne sont plus en cours dans une hospitalisation
+        /// </summary>
+        /// <param name="hospitalisation"></param>
+        /// <param name="traitementEnCours"></param> 
+        public static void PutHospitalisationTraitement(Hospitalisation hospitalisation, Traitement traitementEnCours)
+        {
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                // Si oui, on execute la requête que l'on veut effectuer
                 ConnexionBD.Instance().ExecuterRequete(
-
-                        "UPDATE lits l " +
-                        "JOIN chambres ch ON ch.idChambre = l.idChambre " +
-                        "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') " +
-                        "WHERE (ch.nom = '" + chambre.Numero + "') AND " +
-                        "(l.numero = '" + lit.Numero + "') "
-
-                );
+                    "UPDATE hospitalisationstraitements ht " +
+                    "SET ht.estEnCours = 0 " +
+                    "WHERE ht.idHospitalisation = (SELECT idHospitalisation FROM hospitalisations h WHERE h.dateDebut = '" + hospitalisation.DateDebut + "') " +
+                    "AND ht.idTraitement != (SELECT idTraitement FROM traitements t WHERE t.nom = '" + traitementEnCours.Nom + "') "
+                    );
             }
         }
 
-     
+        /// <summary>
+        /// Sert à s'assurer que les dernières hospitalisations ont été terminées lorsqu'un nouvelle hospitalisation a été créée pour un patient
+        /// </summary>
+        /// <param name="citoyen"></param>
+        public static void PutHospitalisationTerminees(Citoyen citoyen)
+        {
+            Hospitalisation hospitalisation = new Hospitalisation();
+
+            // On vérifie si la BD est connecté
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                //hospitalisation = GetHospitalisation(citoyen);
+
+                // On met fin au traitement de l'hospitalisation à terminer
+                ConnexionBD.Instance().ExecuterRequete(
+                    "UPDATE hospitalisationstraitements ht " +
+                    "SET ht.estEnCours = 'false' " +
+                    "WHERE ht.idHospitalisation = (SELECT idHospitalisation FROM hospitalisations h WHERE (h.dateFin = '0001-01-01 00:00:00' OR h.dateFin IS NULL) " +
+                    "AND h.idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "')) "
+                    );
+
+                // Si oui, on execute la requête que l'on veut effectuer
+                ConnexionBD.Instance().ExecuterRequete(
+                    "UPDATE hospitalisations h " +
+                    "SET h.dateFin = '" + DateTime.Now + "' " +
+                    "WHERE (h.dateFin = '0001-01-01 00:00:00' OR h.dateFin IS NULL) " +
+                    "AND h.idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') "
+                    );
+            }
+        }
+
+
     }
 }

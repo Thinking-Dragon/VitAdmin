@@ -36,10 +36,14 @@ namespace VitAdmin.Control
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Pour tester
-           Hospitalisation hops = (DataContext as ControlModelAjouterPatientLit).Hospitalisation;
-            if (dtgSelectionLit.SelectedItem != null && (dtgSelectionLit.SelectedItem as Lit).EstDisponible)
+           //Hospitalisation hops = (DataContext as ControlModelAjouterPatientLit).Hospitalisation;
+            if (dtgSelectionLit.SelectedItem != null /*&& (dtgSelectionLit.SelectedItem as Lit).EstDisponible*/)
             {
                 (DataContext as ControlModelAjouterPatientLit).Citoyen.Lit = (Lit)dtgSelectionLit.SelectedItem;
+
+                if (!(dtgSelectionLit.SelectedItem as Lit).EstDisponible)
+                    (DataContext as ControlModelAjouterPatientLit).Citoyen.Lit = null;
+
                 btnTerminer.IsEnabled = true;
             }
             else

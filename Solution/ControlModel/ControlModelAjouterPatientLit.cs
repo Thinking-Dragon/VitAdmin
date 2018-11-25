@@ -41,6 +41,7 @@ namespace VitAdmin.ControlModel
                 {
                     // On effectue la création de la nouvelle hospitalisation
                     Hospitalisation.DateDebut = DateTime.Now;
+                    // Pour l'instant, seulement un traitement peut être assigné au patient et sera actif par défaut.
                     DataModelHospitalisation.PostHospitalisation(Citoyen, Hospitalisation, Hospitalisation.LstTraitements[0], Citoyen.Lit.Chambre, Citoyen.Lit);
                     GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, Citoyen));
 
