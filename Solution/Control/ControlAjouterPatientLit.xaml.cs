@@ -26,11 +26,11 @@ namespace VitAdmin.Control
     {
         public void CallRequeteLits() => (DataContext as ControlModelAjouterPatientLit).CallRequeteLit();
         //ObservableCollection<Lit> Lits { get; set; }
-        public ControlAjouterPatientLit(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen, Hospitalisation hospitalisation)
+        public ControlAjouterPatientLit(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen, Lit lit, Hospitalisation hospitalisation)
         {
             InitializeComponent();
 
-            DataContext = new ControlModelAjouterPatientLit(gestionnaireEcrans, citoyen, hospitalisation, new List<Lit>());
+            DataContext = new ControlModelAjouterPatientLit(gestionnaireEcrans, citoyen, lit, hospitalisation, new List<Lit>());
         }
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -39,10 +39,10 @@ namespace VitAdmin.Control
            //Hospitalisation hops = (DataContext as ControlModelAjouterPatientLit).Hospitalisation;
             if (dtgSelectionLit.SelectedItem != null /*&& (dtgSelectionLit.SelectedItem as Lit).EstDisponible*/)
             {
-                (DataContext as ControlModelAjouterPatientLit).Citoyen.Lit = (Lit)dtgSelectionLit.SelectedItem;
+                (DataContext as ControlModelAjouterPatientLit).Lit = (Lit)dtgSelectionLit.SelectedItem;
 
                 if (!(dtgSelectionLit.SelectedItem as Lit).EstDisponible)
-                    (DataContext as ControlModelAjouterPatientLit).Citoyen.Lit = null;
+                    (DataContext as ControlModelAjouterPatientLit).Lit = null;
 
                 btnTerminer.IsEnabled = true;
             }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
+using VitAdmin.ControlModel.DemandesTransfert;
 
 namespace VitAdmin.Control.DemandesTransfert
 {
@@ -21,9 +22,13 @@ namespace VitAdmin.Control.DemandesTransfert
     /// </summary>
     public partial class ControlListeDemandesTransfert : UserControl
     {
+        ControlModelListeDemandesTransfert ControlModelListeDemandesTransfert { get; set; }
+
         public ControlListeDemandesTransfert(List<Citoyen> LstCitoyen)
         {
             InitializeComponent();
+
+            DataContext = ControlModelListeDemandesTransfert = new ControlModelListeDemandesTransfert(LstCitoyen);
         }
 
         private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)

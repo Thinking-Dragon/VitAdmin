@@ -19,6 +19,7 @@ namespace VitAdmin.ViewModel
         public Citoyen Citoyen { get; set; }
         public List<UserControl> LstUserControl { get; set; }
         public Hospitalisation Hospitalisation { get; set; }
+        public Lit Lit { get; set; }
         public int TotalEtape { get; set; }
         public int NumEtape { get; set; }
 
@@ -29,7 +30,7 @@ namespace VitAdmin.ViewModel
             GestionnaireEcrans = gestionnaireEcrans;
             Citoyen = citoyen;
 
-            ControlAjouterPatientLit UCPatientLits = new ControlAjouterPatientLit(GestionnaireEcrans, Citoyen, Hospitalisation);
+            ControlAjouterPatientLit UCPatientLits = new ControlAjouterPatientLit(GestionnaireEcrans, Citoyen, Lit, Hospitalisation);
 
             LstUserControl.Add(new ControlTextBoxHospitalisation("Contexte", Hospitalisation));
             LstUserControl.Add(new ControlSymptome(Hospitalisation));

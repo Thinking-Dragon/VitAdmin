@@ -256,16 +256,17 @@ namespace VitAdmin.Data
                 // Si oui, on execute la requête que l'on veut effectuer
                 // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
                 ConnexionBD.Instance().ExecuterRequete(
-                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.nom nomGenre, c.dateNaissance dtNaiss, c.adresse uneAdresse, c.telephone numTel " +
+                    "SELECT c.nom nomCit, c.prenom prenomCit, c.numAssuranceMaladie AssMal, g.nom nomGenre, c.dateNaissance dtNaiss, c.adresse uneAdresse, c.telephone numTel, l.numero litNum, ch.numero chNum " +
                     "FROM citoyens c " +
                     "INNER JOIN genres g ON g.idGenre = c.idGenre " +
                     "INNER JOIN lits l ON l.idCitoyen = c.idCitoyen " +
+                    "INNER JOIN chambres ch ON ch.idChambre = l.idChambre" +
                     "INNER JOIN hospitalisations h ON h.idCitoyen = c.idCitoyen " +
                     "INNER JOIN hospitalisationstraitements ht ON ht.idHospitalisation = h.idHospitalisation " +
                     "INNER JOIN traitements t ON t.idTraitement = ht.idTraitement " +
                     "INNER JOIN departements d ON d.idDepartement = t.idDepartement " +
                     "WHERE d.nom = '" + departement.Nom + "' " +
-                    "AND ht.estEnCours = true " 
+                    "AND ht.estEnCours = true "
                      , SqlDR => {
                          lstCitoyen.Add(new Citoyen
                          {
@@ -275,12 +276,23 @@ namespace VitAdmin.Data
                              Genre = (Genre)Enum.Parse(typeof(Genre), SqlDR.GetString("nomGenre")),
                              DateNaissance = (DateTime)SqlDR.GetMySqlDateTime("dtNaiss"),
                              Adresse = SqlDR.GetString("uneAdresse"),
-                             NumTelephone = SqlDR.GetString("numTel")
+                             NumTelephone = SqlDR.GetString("numTel"),
+                             Lit = new Lit
+                             {
+                                 Numero = SqlDR.GetString("litNum"),
+                                 Chambre = new Chambre
+                                 {
+                                     Numero = SqlDR.GetString("chNum")
+                                 }
+                             }
+
                          });
                      }
                      
                     );
             }
+
+
 
             return lstCitoyen;
         }

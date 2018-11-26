@@ -16,6 +16,7 @@ namespace VitAdmin.ControlModel
     {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
         public Citoyen Citoyen { get; set; }
+        public Lit Lit { get; set; } // Nouveau lit à attribuer au citoyen
         public Hospitalisation Hospitalisation { get; set; }
         private ObservableCollection<Lit> lits;
         public ObservableCollection<Lit> Lits
@@ -42,7 +43,7 @@ namespace VitAdmin.ControlModel
                     // On effectue la création de la nouvelle hospitalisation
                     Hospitalisation.DateDebut = DateTime.Now;
                     // Pour l'instant, seulement un traitement peut être assigné au patient et sera actif par défaut.
-                    DataModelHospitalisation.PostHospitalisation(Citoyen, Hospitalisation, Hospitalisation.LstTraitements[0], Citoyen.Lit.Chambre, Citoyen.Lit);
+                    DataModelHospitalisation.PostHospitalisation(Citoyen, Hospitalisation, Hospitalisation.LstTraitements[0], Lit.Chambre, Lit);
                     GestionnaireEcrans.Changer(new ViewProfessionnelDossierPatient(GestionnaireEcrans, Citoyen));
 
                 });
@@ -50,11 +51,12 @@ namespace VitAdmin.ControlModel
         }
 
 
-        public ControlModelAjouterPatientLit(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen, Hospitalisation hospitalisation, List<Lit> lits)
+        public ControlModelAjouterPatientLit(GestionnaireEcrans gestionnaireEcrans, Citoyen citoyen, Lit lit, Hospitalisation hospitalisation, List<Lit> lits)
         {
             GestionnaireEcrans = gestionnaireEcrans;
             Citoyen = citoyen;
             Hospitalisation = hospitalisation;
+            Lit = lit;
             CallRequeteLit = () => {Lits = new ObservableCollection<Lit>(DataModelLit.GetLitsDepartement(hospitalisation.LstTraitements[0].DepartementAssocie)); };
         }
     }

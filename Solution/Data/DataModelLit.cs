@@ -168,6 +168,40 @@ namespace VitAdmin.Data
             }
         }
 
+        public static void PutAncienLitCitoyen(Citoyen citoyen)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+
+                            "UPDATE lits l " +
+                            "JOIN chambres ch ON ch.idChambre = l.idChambre " +
+                            "SET idCitoyen = NULL , " +
+                            " idEtatLit = (SELECT idEtatLit FROM etatslits et WHERE et.nom = 'Libre') " +
+                            "WHERE (ch.nom = '" + citoyen.Lit.Chambre.Numero + "') AND " +
+                            "(l.numero = '" + citoyen.Lit.Numero + "') "
+
+                    );
+            }
+        }
+
+        public static void PutNouveauLitCitoyen(Lit lit, Citoyen citoyen)
+        {
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+
+                            "UPDATE lits l " +
+                            "JOIN chambres ch ON ch.idChambre = l.idChambre " +
+                            "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "'), " +
+                            " idEtatLit = (SELECT idEtatLit FROM etatslits et WHERE et.nom = 'Occupé') " +
+                            "WHERE (ch.nom = '" + lit.Chambre.Numero + "') AND " +
+                            "(l.numero = '" + lit.Numero + "') "
+
+                    );
+            }
+        }
+
         #endregion
 
         #region DELETE

@@ -145,22 +145,17 @@ namespace VitAdmin.Data
 
                 PutHospitalisationTraitement(hospitalisation, traitement);
 
-
-
                 // Ensuite, il faut mettre à jour le lit dans lequel le citoyen est hospitalisé s'il a été assigné dans un lit disponible
+                // Si le citoyen était assigné à un autre lit, il faut le sortir de ce lit pour le libérer. 
+                // TODO: Il va falloir mettre l'ancien lit en entretien par défaut lorsque l'infirmière-chef aura le menu pour modifier l'état des lits
+                if(citoyen.Lit.Numero != null)
+                    DataModelLit.PutAncienLitCitoyen(citoyen);
+                
                 if(lit != null)
-                {
-
-                    ConnexionBD.Instance().ExecuterRequete(
-
-                            "UPDATE lits l " +
-                            "JOIN chambres ch ON ch.idChambre = l.idChambre " +
-                            "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') " +
-                            "WHERE (ch.nom = '" + chambre.Numero + "') AND " +
-                            "(l.numero = '" + lit.Numero + "') "
-
-                    );
-                }
+                    DataModelLit.PutNouveauLitCitoyen(lit, citoyen);
+                
+                //On change le lit du patient dans la mémoire aussi!
+                citoyen.Lit = lit;
             }
         }
         /// <summary>
