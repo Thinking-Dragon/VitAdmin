@@ -25,107 +25,15 @@ namespace VitAdmin.Control
     {
         private List<DateTime> Semaine { get; set; } = new List<DateTime>();
         private ControlModelGestionHoraire Contexte {get; set;}
+        private Employe Employe { get; set; }
 
         public ControlGestionHoraire(Employe employe)
         {
             InitializeComponent();
             DataContext = Contexte = new ControlModelGestionHoraire(employe, GrdHoraire);
+            Employe = employe;
             InitialiseHoraire();
-
-            List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
-
-
-            for (int c = 0; c < 7; c++)
-            {
-                foreach (QuartEmploye quart in horaire)
-                {
-                    if (Semaine[c].Year == quart.Date.Year && Semaine[c].Day == quart.Date.Day && Semaine[c].Month == quart.Date.Month)
-                    {
-                        switch (quart.TypeDeQuart)
-                        {
-                            case TypeQuart.jour:
-
-                                string nomL = "L" + c.ToString() + "J";
-
-                                foreach (UIElement item in GrdHoraire.Children)
-                                {
-                                    if (item is Label && (item as Label).Name == nomL)
-                                    {
-
-                                    }
-                                }
-
-
-                                Label temp = new Label
-                                {
-                                    Content = quart.DepartementAssocie.Nom,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Foreground = Brushes.White
-                                };
-                               
-                                Border travaille = new Border
-                                {
-                                    Background = Brushes.DodgerBlue
-                                    
-                                };
-
-                                break;
-
-                                //////////////////////////////////////////////////////////////////
-
-                            case TypeQuart.nuit:
-                                Label temp2 = new Label
-                                {
-                                    Content = quart.DepartementAssocie.Nom,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Foreground = Brushes.White
-                                };
-
-                                Grid.SetColumn(temp2, c + 2);
-                                Grid.SetRow(temp2, 2);
-                                GrdHoraire.Children.Add(temp2);
-
-                                Border travaille2 = new Border
-                                {
-                                    Background = Brushes.DodgerBlue
-
-                                };
-
-                                Panel.SetZIndex(travaille2, -1);
-                                Grid.SetColumn(travaille2, c + 2);
-                                Grid.SetRow(travaille2, 2);
-                                GrdHoraire.Children.Add(travaille2);
-                                break;
-
-                                /////////////////////////////////////////////////////////////////
-
-                            case TypeQuart.soir:
-                                Label temp3 = new Label
-                                {
-                                    Content = quart.DepartementAssocie.Nom,
-                                    VerticalAlignment = VerticalAlignment.Center,
-                                    Foreground = Brushes.White
-                                };
-
-                                Grid.SetColumn(temp3, c + 2);
-                                Grid.SetRow(temp3, 4);
-                                GrdHoraire.Children.Add(temp3);
-
-                                Border travaille3 = new Border
-                                {
-                                    Background = Brushes.DodgerBlue
-                                };
-
-
-                                Panel.SetZIndex(travaille3, -1);
-                                Grid.SetColumn(travaille3, c + 2);
-                                Grid.SetRow(travaille3, 4);
-                                GrdHoraire.Children.Add(travaille3);
-                                break;
-                        }
-                    }
-                }
-            }
+            RemplirHoraire(Employe, GrdHoraire);
         }
 
         private void InitialiseHoraire()
@@ -194,22 +102,76 @@ namespace VitAdmin.Control
                 GrdHoraire.Children.Add(temp);
             }
         }
-    }
+
+        public void RemplirHoraire(Employe employe, Grid gridHoraireParam)
+        {
+            List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
+
+            string nom;
+
+            for (int c = 0; c < 7; c++)
+            {
+                foreach (QuartEmploye quart in horaire)
+                {
+                    if (Semaine[c].Year == quart.Date.Year && Semaine[c].Day == quart.Date.Day && Semaine[c].Month == quart.Date.Month)
+                    {
+                        switch (quart.TypeDeQuart)
+                        {
+                            case TypeQuart.jour:
+
+                                nom = "B" + "J" + (c + 2).ToString();
+
+                                foreach (UIElement item in gridHoraireParam.Children)
+                                {
+                                    if (item is Border && (item as Border).Name == nom)
+                                    {
+                                        ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
+                                        ((item as Border).Child as Label).Foreground = Brushes.White;
+                                        (item as Border).Background = Brushes.DodgerBlue;
+                                    }
+                                }
+
+                                break;
+
+                            //////////////////////////////////////////////////////////////////
+
+                            case TypeQuart.nuit:
+
+                                nom = "B" + "N" + (c + 2).ToString();
+
+                                foreach (UIElement item in gridHoraireParam.Children)
+                                {
+                                    if (item is Border && (item as Border).Name == nom)
+                                    {
+                                        ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
+                                        ((item as Border).Child as Label).Foreground = Brushes.White;
+                                        (item as Border).Background = Brushes.DodgerBlue;
+                                    }
+                                }
+
+                                break;
+
+                            /////////////////////////////////////////////////////////////////
+
+                            case TypeQuart.soir:
+
+                                nom = "B" + "S" + (c + 2).ToString();
+
+                                foreach (UIElement item in gridHoraireParam.Children)
+                                {
+                                    if (item is Border && (item as Border).Name == nom)
+                                    {
+                                        ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
+                                        ((item as Border).Child as Label).Foreground = Brushes.White;
+                                        (item as Border).Background = Brushes.DodgerBlue;
+                                    }
+                                }
+
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    } 
 }
-
-
-/*
-  référence :
-  https://docs.microsoft.com/en-us/dotnet/api/system.windows.input.mousebinding?redirectedfrom=MSDN&view=netframework-4.7.2
-
-  code utilisé :
-  MouseGesture OpenCmdMouseGesture = new MouseGesture();
-  OpenCmdMouseGesture.MouseAction = MouseAction.WheelClick;
-  OpenCmdMouseGesture.Modifiers = ModifierKeys.Control;
-
-  MouseBinding OpenCmdMouseBinding = new MouseBinding();
-  OpenCmdMouseBinding.Gesture = OpenCmdMouseGesture;
-  OpenCmdMouseBinding.Command = ApplicationCommands.Open;
-
-  this.InputBindings.Add(OpenCmdMouseBinding)
-*/
