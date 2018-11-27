@@ -44,6 +44,30 @@ namespace VitAdmin.Data
 
             return lstDepartement;
         }
+
+        public static List<Departement> GetNomsDepartements()
+        {
+            List<Departement> lstDepartement = new List<Departement>();
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT nom nm " +
+                    "FROM departements"
+                    , SqlDR => {
+                        lstDepartement.Add(new Departement
+                        {
+                            Nom = SqlDR.GetString("nm")
+                        });
+                    }
+                );
+
+            }
+
+            return lstDepartement;
+        }
+
+
         public static Departement GetDepartementEmploye(Employe employe)
         {
             Departement departement = new Departement();

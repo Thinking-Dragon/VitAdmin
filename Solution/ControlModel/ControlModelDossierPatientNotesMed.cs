@@ -31,7 +31,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlAjoutNote(Hospit), "dialogGeneral");
+                        DialogHost.Show(new ControlAjoutNote(Hospit), "dialogGeneral:modal=false");
                     }
                 );
             }

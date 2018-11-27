@@ -46,7 +46,7 @@
 
         <Border Grid.Row="2" Grid.Column="2" Name="BN2" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -59,7 +59,7 @@
         
         <Border Grid.Row="2" Grid.Column="3" Name="BN3" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -71,7 +71,7 @@
         
         <Border Grid.Row="2" Grid.Column="4" Name="BN4" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -83,7 +83,7 @@
         
         <Border Grid.Row="2" Grid.Column="5" Name="BN5" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -95,7 +95,7 @@
         
         <Border Grid.Row="2" Grid.Column="6" Name="BN6" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -107,7 +107,7 @@
         
         <Border Grid.Row="2" Grid.Column="7" Name="BN7" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -119,7 +119,7 @@
         
         <Border Grid.Row="2" Grid.Column="8" Name="BN8" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -131,7 +131,7 @@
         
         <Border Grid.Row="3" Grid.Column="2" Name="BJ2" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -143,7 +143,7 @@
         
         <Border Grid.Row="3" Grid.Column="3" Name="BJ3" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -155,7 +155,7 @@
         
         <Border Grid.Row="3" Grid.Column="4" Name="BJ4" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -167,7 +167,7 @@
         
         <Border Grid.Row="3" Grid.Column="5" Name="BJ5" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -179,7 +179,7 @@
         
         <Border Grid.Row="3" Grid.Column="6" Name="BJ6" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -191,7 +191,7 @@
         
         <Border Grid.Row="3" Grid.Column="7" Name="BJ7" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -203,7 +203,7 @@
         
         <Border Grid.Row="3" Grid.Column="8" Name="BJ8" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -215,7 +215,7 @@
         
         <Border Grid.Row="4" Grid.Column="2" Name="BS2" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -227,7 +227,7 @@
         
         <Border Grid.Row="4" Grid.Column="3" Name="BS3" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -239,7 +239,7 @@
         
         <Border Grid.Row="4" Grid.Column="4" Name="BS4" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -251,7 +251,7 @@
         
         <Border Grid.Row="4" Grid.Column="5" Name="BS5" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -263,7 +263,7 @@
         
         <Border Grid.Row="4" Grid.Column="6" Name="BS6" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -275,7 +275,7 @@
         
         <Border Grid.Row="4" Grid.Column="7" Name="BS7" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>
@@ -287,7 +287,7 @@
         
         <Border Grid.Row="4" Grid.Column="8" Name="BS8" Cursor="Hand">
             <Border.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
+                <MouseBinding Gesture="LeftDoubleClick" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Border}}" Command="{Binding CmdDoubleClickQuart}"></MouseBinding>
             </Border.InputBindings>
             <Border.Background>
                 <SolidColorBrush Color="Transparent"></SolidColorBrush>

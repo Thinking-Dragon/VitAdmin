@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using VitAdmin.Control;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
@@ -30,9 +31,17 @@ namespace VitAdmin.ControlModel
             get
             {
                 return new CommandeDeleguee(
-                    param =>
-                    {
-                        MessageBox.Show("Test");
+                    quart =>
+                    {   
+                        if ((((quart as Border).Background)as SolidColorBrush).Color == (Brushes.Transparent as SolidColorBrush).Color)
+                        {
+                            DialogHost.Show(new ControlAjoutQuart(), "dialogLaurence");
+                        }
+                        else
+                        {
+                            (quart as Border).Background = Brushes.Transparent;
+                            ((quart as Border).Child as Label).Content = "";
+                        }
                     }
                 );
             }

@@ -39,7 +39,6 @@ namespace VitAdmin.Control
         private void InitialiseHoraire()
         {
             /*29/10/2018*/
-
             //DateTime aujourdhui = DateTime.Now;
             DateTime aujourdhui = new DateTime(2018, 10, 29);
             DateTime dimanche = new DateTime();
@@ -59,8 +58,6 @@ namespace VitAdmin.Control
                     GrdHoraire.Children.Add(temp);
                 }
             }
-
-
 
             switch (aujourdhui.DayOfWeek)
             {
@@ -86,7 +83,6 @@ namespace VitAdmin.Control
                     dimanche = aujourdhui.AddDays(-6);
                     break;
             }
-
 
             for (int i = 0; i < 7; i++)
             {
@@ -121,51 +117,23 @@ namespace VitAdmin.Control
 
                                 nom = "B" + "J" + (c + 2).ToString();
 
-                                foreach (UIElement item in gridHoraireParam.Children)
-                                {
-                                    if (item is Border && (item as Border).Name == nom)
-                                    {
-                                        ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
-                                        ((item as Border).Child as Label).Foreground = Brushes.White;
-                                        (item as Border).Background = Brushes.DodgerBlue;
-                                    }
-                                }
+                                AjouterQuart(nom, gridHoraireParam, quart);
 
                                 break;
-
-                            //////////////////////////////////////////////////////////////////
 
                             case TypeQuart.nuit:
 
                                 nom = "B" + "N" + (c + 2).ToString();
 
-                                foreach (UIElement item in gridHoraireParam.Children)
-                                {
-                                    if (item is Border && (item as Border).Name == nom)
-                                    {
-                                        ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
-                                        ((item as Border).Child as Label).Foreground = Brushes.White;
-                                        (item as Border).Background = Brushes.DodgerBlue;
-                                    }
-                                }
+                                AjouterQuart(nom, gridHoraireParam, quart);
 
                                 break;
-
-                            /////////////////////////////////////////////////////////////////
 
                             case TypeQuart.soir:
 
                                 nom = "B" + "S" + (c + 2).ToString();
 
-                                foreach (UIElement item in gridHoraireParam.Children)
-                                {
-                                    if (item is Border && (item as Border).Name == nom)
-                                    {
-                                        ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
-                                        ((item as Border).Child as Label).Foreground = Brushes.White;
-                                        (item as Border).Background = Brushes.DodgerBlue;
-                                    }
-                                }
+                                AjouterQuart(nom, gridHoraireParam, quart);
 
                                 break;
                         }
@@ -173,5 +141,17 @@ namespace VitAdmin.Control
                 }
             }
         }
-    } 
+        public void AjouterQuart(string nom, Grid gridHoraireParam, QuartEmploye quart)
+        {
+            foreach (UIElement item in gridHoraireParam.Children)
+            {
+                if (item is Border && (item as Border).Name == nom)
+                {
+                    ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
+                    ((item as Border).Child as Label).Foreground = Brushes.White;
+                    (item as Border).Background = Brushes.DodgerBlue;
+                }
+            }
+        }
+    }
 }
