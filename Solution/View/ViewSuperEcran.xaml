@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:VitAdmin.View"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewSuperEcran">
@@ -21,6 +23,19 @@
                                    Panel.ZIndex="97"
                                    Grid.RowSpan="2">
         </materialDesign:DialogHost>
+
+        <materialDesign:DialogHost Identifier="dialogLaurence" Panel.ZIndex="97" Grid.RowSpan="2">
+            <!--Ici c'est du code que charles m'a trouvé-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseUp">
+                    <i:InvokeCommandAction Command="{x:Null}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </materialDesign:DialogHost>
+
         <materialDesign:DialogHost Identifier="dialogGeneral:modal=false"
                                    CloseOnClickAway="True"
                                    Panel.ZIndex="97"
