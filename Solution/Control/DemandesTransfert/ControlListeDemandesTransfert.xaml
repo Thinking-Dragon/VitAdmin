@@ -20,9 +20,11 @@
 
         <DataGrid Grid.Row="1" 
                   Name="dtgDemandeTransfert"
-                  ItemsSource="{Binding LstCitoyen}">
+                  ItemsSource="{Binding Citoyens}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient"/>
+                <DataGridTextColumn Header="Patient" Binding="{Binding NomComplet}"/>
 
             </DataGrid.Columns>
         </DataGrid>

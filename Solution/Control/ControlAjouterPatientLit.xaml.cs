@@ -41,9 +41,6 @@ namespace VitAdmin.Control
             {
                 (DataContext as ControlModelAjouterPatientLit).Lit = (Lit)dtgSelectionLit.SelectedItem;
 
-                if (!(dtgSelectionLit.SelectedItem as Lit).EstDisponible)
-                    (DataContext as ControlModelAjouterPatientLit).Lit = null;
-
                 btnTerminer.IsEnabled = true;
             }
             else

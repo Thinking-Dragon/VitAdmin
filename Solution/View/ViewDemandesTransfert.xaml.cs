@@ -45,14 +45,14 @@ namespace VitAdmin.View
             List<Lit> LstLitsDepartement = DataModelLit.GetLitsDepartement(departement, true);
             List<Citoyen> lstCitoyenDemandeTransfert = DataModelCitoyen.GetCitoyenDemandeTraitement(departement);
 
-            ControlListeLits controlInfos = new ControlListeLits(LstLitsDepartement);
+            ControlListeLits controlListeLits = new ControlListeLits(LstLitsDepartement);
             ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(lstCitoyenDemandeTransfert);
 
-            Grid.SetRow(controlInfos, 1);
+            Grid.SetRow(controlListeLits, 1);
             Grid.SetRow(controlListeDemandesTransfert, 1);
             Grid.SetColumn(controlListeDemandesTransfert, 1);
 
-            grdGestionLit.Children.Add(controlInfos);
+            grdGestionLit.Children.Add(controlListeLits);
             grdGestionLit.Children.Add(controlListeDemandesTransfert);
         }
     }

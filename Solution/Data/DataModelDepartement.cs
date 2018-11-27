@@ -81,9 +81,6 @@ namespace VitAdmin.Data
                 ConnexionBD.Instance().ExecuterRequete(
                     "SELECT d.idDepartement _id, d.nom depNom, d.abreviation depAbrev " +
                     "FROM departements d " +
-                    "JOIN quarts q ON q.idDepartement = d.idDepartement " +
-                    "JOIN quartsemployes qe ON qe.idQuart = q.idQuart " +
-                    "JOIN employes e ON e.idEmploye = qe.idEmploye " +
                     "WHERE d.idEmploye = " + idEmployeRecherche + " "
                     , SqlDR => {
                         departement._identifiant = int.Parse(SqlDR.GetString("_id"));

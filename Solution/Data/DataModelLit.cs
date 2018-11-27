@@ -196,7 +196,8 @@ namespace VitAdmin.Data
                             "SET idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "'), " +
                             " idEtatLit = (SELECT idEtatLit FROM etatslits et WHERE et.nom = 'Occupé') " +
                             "WHERE (ch.nom = '" + lit.Chambre.Numero + "') AND " +
-                            "(l.numero = '" + lit.Numero + "') "
+                            "(l.numero = '" + lit.Numero + "') " +
+                            "AND (l.idEtatLit = (SELECT idEtatLit FROM EtatsLits el WHERE el.nom = 'Libre')) "
 
                     );
             }
