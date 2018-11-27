@@ -70,6 +70,7 @@ namespace VitAdmin.ViewModel
             set { _btnConfirmationTexte = value; RaisePropertyChangedEvent("BtnConfirmationTexte"); }
         }
 
+        #region Messages validation
         private string _messageErreurNom = string.Empty;
         public string MessageErreurNom
         {
@@ -77,10 +78,82 @@ namespace VitAdmin.ViewModel
             set { _messageErreurNom = value; RaisePropertyChangedEvent(nameof(MessageErreurNom)); }
         }
 
+        private string _messageErreurPrenom = string.Empty;
+        public string MessageErreurPrenom
+        {
+            get => _messageErreurPrenom;
+            set { _messageErreurPrenom = value; RaisePropertyChangedEvent(nameof(MessageErreurPrenom)); }
+        }
+
+        private string _messageErreurAssuranceMaladie = string.Empty;
+        public string MessageErreurAssuranceMaladie
+        {
+            get => _messageErreurAssuranceMaladie;
+            set { _messageErreurAssuranceMaladie = value; RaisePropertyChangedEvent(nameof(MessageErreurAssuranceMaladie)); }
+        }
+
+        private string _messageErreurDateNaissance = string.Empty;
+        public string MessageErreurDateNaissance
+        {
+            get => _messageErreurDateNaissance;
+            set { _messageErreurDateNaissance = value; RaisePropertyChangedEvent(nameof(MessageErreurDateNaissance)); }
+        }
+
+        private string _messageErreurTelephone = string.Empty;
+        public string MessageErreurTelephone
+        {
+            get => _messageErreurTelephone;
+            set { _messageErreurTelephone = value; RaisePropertyChangedEvent(nameof(MessageErreurTelephone)); }
+        }
+
+        private string _messageErreurNoEmploye = string.Empty;
+        public string MessageErreurNoEmploye
+        {
+            get => _messageErreurNoEmploye;
+            set { _messageErreurNoEmploye = value; RaisePropertyChangedEvent(nameof(MessageErreurNoEmploye)); }
+        }
+
+        private string _messageErreurPoste = string.Empty;
+        public string MessageErreurPoste
+        {
+            get => _messageErreurPoste;
+            set { _messageErreurPoste = value; RaisePropertyChangedEvent(nameof(MessageErreurPoste)); }
+        }
+
+        private string _messageErreurNoPermis = string.Empty;
+        public string MessageErreurNoPermis
+        {
+            get => _messageErreurNoPermis;
+            set { _messageErreurNoPermis = value; RaisePropertyChangedEvent(nameof(MessageErreurNoPermis)); }
+        }
+
+        private string _messageErreurNAS = string.Empty;
+        public string MessageErreurNAS
+        {
+            get => _messageErreurNAS;
+            set { _messageErreurNAS = value; RaisePropertyChangedEvent(nameof(MessageErreurNAS)); }
+        }
+
+        private string _messageErreurNomUsager = string.Empty;
+        public string MessageErreurNomUsager
+        {
+            get => _messageErreurNomUsager;
+            set { _messageErreurNomUsager = value; RaisePropertyChangedEvent(nameof(MessageErreurNomUsager)); }
+        }
+
+        private string _messageErreurMotDePasse = string.Empty;
+        public string MessageErreurMotDePasse
+        {
+            get => _messageErreurMotDePasse;
+            set { _messageErreurMotDePasse = value; RaisePropertyChangedEvent(nameof(MessageErreurMotDePasse)); }
+        }
+        #endregion
+
         private Validateur Validateur { get; set; }
 
         public ViewModelGestionUsagersCreation(GestionnaireEcrans gestionnaireEcrans, Usager usager)
         {
+            #region Initialisation
             GestionnaireEcrans = gestionnaireEcrans;
 
             PostesPossibles = new ObservableCollection<string>(DataModelPoste.GetPostes());
@@ -119,28 +192,198 @@ namespace VitAdmin.ViewModel
                 };
                 Random random = new Random();
                 Password = new string(
-                    Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 16)
+                    Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", 16)
                     .Select(s => s[random.Next(s.Length)]).ToArray()
                 );
             }
+            #endregion
 
+            #region Validation
             Validateur = new Validateur(
+            #region Nom
+                // Clear
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNom = message,
-                    () => Usager.Nom.Length < 1 || Usager.Nom.Length > 20
-                ),
+                    () => Usager.Nom.Length >= 1 && Usager.Nom.Length <= 20
+                ),      // length < 1
                 new Validateur.Regle(
-                    "Le nom doit avoir au moins 1 caractères",
+                    "Doit avoir au moins 1 caractère",
                     message => MessageErreurNom = message,
-                    () => Usager.Nom.Length >= 1
-                ),
+                    () => Usager.Nom.Length < 1
+                ),      // length > 20
                 new Validateur.Regle(
-                    "Le nom doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 20 caractères",
                     message => MessageErreurNom = message,
-                    () => Usager.Nom.Length <= 20
+                    () => Usager.Nom.Length > 20
+                ),
+            #endregion
+            #region Prénom
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurPrenom = message,
+                    () => Usager.Prenom.Length >= 1 && Usager.Prenom.Length <= 20
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurPrenom = message,
+                    () => Usager.Prenom.Length < 1
+                ),      // length > 20
+                new Validateur.Regle(
+                    "Doit avoir au plus 20 caractères",
+                    message => MessageErreurPrenom = message,
+                    () => Usager.Prenom.Length > 20
+                ),
+            #endregion
+            #region Assurance maladie
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurAssuranceMaladie = message,
+                    () => Usager.ValiderFormatAssMaladie() && Usager.ValiderDuplicataAssMaladie(DataModelCitoyen.GetCitoyens())
+                ),      // Format du numéro d'assurance maladie
+                new Validateur.Regle(
+                    "Format invalide",
+                    message => MessageErreurAssuranceMaladie = message,
+                    () => !Usager.ValiderFormatAssMaladie()
+                ),      // Duplicata
+                new Validateur.Regle(
+                    "Existe déjà dans notre système",
+                    message => MessageErreurAssuranceMaladie = message,
+                    () => !Usager.ValiderDuplicataAssMaladie(DataModelCitoyen.GetCitoyens())
+                ),
+            #endregion
+            #region Date de naissance
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurDateNaissance = message,
+                    () => Usager.DateNaissance.CompareTo(DateTime.Now) <= 0
+                ),      // Date de naissance > maintenant
+                new Validateur.Regle(
+                    "Ne peut pas être dans le futur!",
+                    message => MessageErreurDateNaissance = message,
+                    () => Usager.DateNaissance.CompareTo(DateTime.Now) > 0
+                ),
+            #endregion
+            #region Numéro de téléphone
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurTelephone = message,
+                    () => Usager.NumTelephone.Length >= 1 && Usager.NumTelephone.Length <= 20
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurTelephone = message,
+                    () => Usager.NumTelephone.Length < 1
+                ),      // length > 20
+                new Validateur.Regle(
+                    "Doit avoir au plus 20 caractères",
+                    message => MessageErreurTelephone = message,
+                    () => Usager.NumTelephone.Length > 20
+                ),
+            #endregion
+            #region Numéro d'employé
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurNoEmploye = message,
+                    () => Usager.NumEmploye.Length >= 1 && Usager.NumEmploye.Length <= 20
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurNoEmploye = message,
+                    () => Usager.NumEmploye.Length < 1
+                ),      // length > 20
+                new Validateur.Regle(
+                    "Doit avoir au plus 20 caractères",
+                    message => MessageErreurNoEmploye = message,
+                    () => Usager.NumEmploye.Length > 20
+                ),
+            #endregion
+            #region Poste
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurPoste = message,
+                    () => false // DataModelCitoyen.GetCitoyens().Exists(citoyen => citoyen.
+                ),
+            #endregion
+            #region Numéro permis
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurNoPermis = message,
+                    () => Usager.NumPermis.Length >= 1 && Usager.NumPermis.Length <= 20
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurNoPermis = message,
+                    () => Usager.NumPermis.Length < 1
+                ),      // length > 20
+                new Validateur.Regle(
+                    "Doit avoir au plus 20 caractères",
+                    message => MessageErreurNoPermis = message,
+                    () => Usager.NumPermis.Length > 20
+                ),
+            #endregion
+            #region NAS
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurNAS = message,
+                    () => Usager.NAS.Length >= 1 && Usager.NAS.Length <= 20
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurNAS = message,
+                    () => Usager.NAS.Length < 1
+                ),      // length > 20
+                new Validateur.Regle(
+                    "Doit avoir au plus 20 caractères",
+                    message => MessageErreurNAS = message,
+                    () => Usager.NAS.Length > 20
+                ),
+            #endregion
+            #region Nom d'usager
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurNomUsager = message,
+                    () => Usager.NomUtilisateur.Length >= 1 && Usager.NomUtilisateur.Length <= 20
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurNomUsager = message,
+                    () => Usager.NomUtilisateur.Length < 1
+                ),      // length > 20
+                new Validateur.Regle(
+                    "Doit avoir au plus 20 caractères",
+                    message => MessageErreurNomUsager = message,
+                    () => Usager.NomUtilisateur.Length > 20
+                ),
+            #endregion
+            #region Mot de passe
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurMotDePasse = message,
+                    () => AncienUsager != null || (Password.Length >= 1 && Password.Length <= 20)
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurMotDePasse = message,
+                    () => AncienUsager == null && Password.Length < 1
+                ),      // length > 30
+                new Validateur.Regle(
+                    "Doit avoir au plus 30 caractère",
+                    message => MessageErreurMotDePasse = message,
+                    () => AncienUsager == null && Password.Length > 30
                 )
+            #endregion
             );
+            #endregion
         }
     }
 }

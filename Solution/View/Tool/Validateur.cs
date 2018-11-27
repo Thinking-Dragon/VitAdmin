@@ -16,7 +16,7 @@ namespace VitAdmin.View.Tool
 
             public bool Tester()
             {
-                bool succes = Condition();
+                bool succes = !Condition();
                 if (!succes) Echec(Message);
                 return succes;
             }

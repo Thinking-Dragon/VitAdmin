@@ -10,6 +10,10 @@ namespace VitAdmin.Model
     {
         public String NomUtilisateur { get; set; }
         public Role RoleUsager { get; set; }
-        
+
+       /* internal bool ValiderDuplicataAssMaladie(object dateModelCitoyen)
+        {
+            throw new NotImplementedException();
+        } */
     }
 }
