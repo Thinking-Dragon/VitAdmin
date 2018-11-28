@@ -786,5 +786,8 @@
   <ItemGroup>
     <Resource Include="Resource\Graphic\Titre_chargement.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Graphic\Background\plants.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
