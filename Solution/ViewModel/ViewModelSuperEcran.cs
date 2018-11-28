@@ -11,7 +11,7 @@ namespace VitAdmin.ViewModel
     public class ViewModelSuperEcran
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
-        private GestionnaireEcrans GestionnaireSousEcrans { get; set; }
+        public static GestionnaireEcrans GestionnaireSousEcrans { get; private set; }
 
         public SnackbarMessageQueue MessageQueue { get; set; }
 

@@ -46,7 +46,7 @@ namespace VitAdmin.Notifications
                             {
                                 notification.EstLu = true;
                                 DataModelNotification.Set("estLu", notification, "true");
-                                notification.Voir();
+                                notification.Voir(ViewModel.ViewModelSuperEcran.GestionnaireSousEcrans);
                             },
                             args.Notifications[i]
                         );
@@ -77,7 +77,7 @@ namespace VitAdmin.Notifications
         #endregion
 
         #region Instance du singleton
-
+        
         private static GestionnaireNotifications _instance = null;
         public static GestionnaireNotifications Instance
         {

@@ -361,6 +361,7 @@
     <Compile Include="ViewModel\ViewModelDemandesTransfert.cs" />
     <Compile Include="ViewModel\ViewModelGestionEquipements.cs" />
     <Compile Include="ViewModel\ViewModelGestionUsagers.cs" />
+    <Compile Include="ViewModel\ViewModelMessageNotification.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -388,9 +389,6 @@
     <Compile Include="View\ViewCreerDepartement.xaml.cs">
       <DependentUpon>ViewCreerDepartement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewCreerNotifications.xaml.cs">
-      <DependentUpon>ViewCreerNotifications.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ViewDemandesTransfert.xaml.cs">
       <DependentUpon>ViewDemandesTransfert.xaml</DependentUpon>
     </Compile>
@@ -410,6 +408,9 @@
       <DependentUpon>ViewListeEmployes.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewListeEmployesAdmin.cs" />
+    <Compile Include="View\ViewMessageNotification.xaml.cs">
+      <DependentUpon>ViewMessageNotification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewModifierDepartement.xaml.cs">
       <DependentUpon>ViewModifierDepartement.xaml</DependentUpon>
     </Compile>
@@ -649,10 +650,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewCreerNotifications.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ViewDemandesTransfert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -671,6 +668,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewListeEmployes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewMessageNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
