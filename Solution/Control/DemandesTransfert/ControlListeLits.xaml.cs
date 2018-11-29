@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
 using VitAdmin.ControlModel.DemandesTransfert;
+using VitAdmin.Data;
 
 
 namespace VitAdmin.Control.DemandesTransfert
@@ -33,11 +34,27 @@ namespace VitAdmin.Control.DemandesTransfert
 
         private void dtgLstLit_Drop(object sender, DragEventArgs e)
         {
-            if((dtgLstLit.SelectedItem as Lit).EstDisponible)
+            Lit LitSelectionne = (dtgLstLit.SelectedItem as Lit);
+
+            
+
+            if (LitSelectionne.EstDisponible)
             {
-               /* DataFormats.GetDataFormat()
-                ControlModelListeLits.LstLits.Add(e.Data.GetData();*/
+                // If the DataObject contains citoyen data, extract it.
+                if (e.Data.GetDataPresent(DataFormats.Serializable))
+                {
+                    Citoyen demandeTransfert = (Citoyen)e.Data.GetData(DataFormats.StringFormat);
+
+                    LitSelectionne.Citoyen = demandeTransfert;
+                    DataModelLit.PutLitCitoyen(LitSelectionne, demandeTransfert);
+                   
+                }
             }
+        }
+
+        private void dtgLstLit_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            //dtgLstLit.SelectedItem = ControlModelListeLits.
         }
     }
 }
