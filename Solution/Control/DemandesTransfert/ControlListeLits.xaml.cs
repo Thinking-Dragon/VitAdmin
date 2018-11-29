@@ -29,16 +29,15 @@ namespace VitAdmin.Control.DemandesTransfert
             InitializeComponent();
             DataContext = ControlModelListeLits = new ControlModelListeLits(lstLits);
 
-            /*InitialiserTxtNomPrenomPatient();
-            InitialiserCboEtatLit();*/
-
         }
 
-        private void DGLstLit_Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void dtgLstLit_Drop(object sender, DragEventArgs e)
         {
-
+            if((dtgLstLit.SelectedItem as Lit).EstDisponible)
+            {
+               /* DataFormats.GetDataFormat()
+                ControlModelListeLits.LstLits.Add(e.Data.GetData();*/
+            }
         }
-
-       
     }
 }

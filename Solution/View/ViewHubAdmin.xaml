@@ -23,6 +23,10 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/Resource/Graphic/Background/plants.png"/>
+        </Grid.Background>
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>

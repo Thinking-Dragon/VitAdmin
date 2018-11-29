@@ -42,7 +42,7 @@ namespace VitAdmin.ControlModel
                             NotificationSelectionnee.EstLu = true;
                             Data.DataModelNotification.Set("estLu", NotificationSelectionnee, "true");
                             DialogHost.CloseDialogCommand.Execute(null, null);
-                            NotificationSelectionnee.Voir();
+                            NotificationSelectionnee.Voir(ViewModel.ViewModelSuperEcran.GestionnaireSousEcrans);
                         }
                     }
                 );

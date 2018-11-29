@@ -24,16 +24,13 @@ namespace VitAdmin.Control.DemandesTransfert
     {
         ControlModelListeDemandesTransfert ControlModelListeDemandesTransfert { get; set; }
 
-        public ControlListeDemandesTransfert(List<Citoyen> LstCitoyen)
+        public ControlListeDemandesTransfert(List<Citoyen> LstCitoyen, ControlListeLits controlListeLits)
         {
             InitializeComponent();
 
-            DataContext = ControlModelListeDemandesTransfert = new ControlModelListeDemandesTransfert(LstCitoyen);
-        }
-
-        private void DG_Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
+            DataContext = ControlModelListeDemandesTransfert = new ControlModelListeDemandesTransfert(LstCitoyen, controlListeLits);
            
         }
+
     }
 }

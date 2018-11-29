@@ -13,19 +13,21 @@ namespace VitAdmin.View.Tool
             private string Message { get; set; }
             private Action<string> Echec{ get; set; }
             private Func<bool> Condition { get; set; }
+            private bool Ignorer { get; set; }
 
             public bool Tester()
             {
                 bool succes = !Condition();
                 if (!succes) Echec(Message);
-                return succes;
+                return Ignorer ? true : succes;
             }
 
-            public Regle(string message, Action<string> echec, Func<bool> condition)
+            public Regle(string message, Action<string> echec, Func<bool> condition, bool ignorer = false)
             {
                 Message = message;
                 Echec = echec;
                 Condition = condition;
+                Ignorer = ignorer;
             }
         }
 

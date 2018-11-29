@@ -106,6 +106,13 @@ namespace VitAdmin.ViewModel
             set { _messageErreurTelephone = value; RaisePropertyChangedEvent(nameof(MessageErreurTelephone)); }
         }
 
+        private string _messageErreurAdresse = string.Empty;
+        public string MessageErreurAdresse
+        {
+            get => _messageErreurAdresse;
+            set { _messageErreurAdresse = value; RaisePropertyChangedEvent(nameof(MessageErreurAdresse)); }
+        }
+
         private string _messageErreurNoEmploye = string.Empty;
         public string MessageErreurNoEmploye
         {
@@ -205,7 +212,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNom = message,
-                    () => Usager.Nom.Length >= 1 && Usager.Nom.Length <= 20
+                    () => Usager.Nom.Length >= 1 && Usager.Nom.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -223,7 +230,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurPrenom = message,
-                    () => Usager.Prenom.Length >= 1 && Usager.Prenom.Length <= 20
+                    () => Usager.Prenom.Length >= 1 && Usager.Prenom.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -241,7 +248,8 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurAssuranceMaladie = message,
-                    () => Usager.ValiderFormatAssMaladie() && Usager.ValiderDuplicataAssMaladie(DataModelCitoyen.GetCitoyens())
+                    () => Usager.ValiderFormatAssMaladie()
+                       && AncienUsager != null || Usager.ValiderDuplicataAssMaladie(DataModelCitoyen.GetCitoyens()), true
                 ),      // Format du numéro d'assurance maladie
                 new Validateur.Regle(
                     "Format invalide",
@@ -251,7 +259,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     "Existe déjà dans notre système",
                     message => MessageErreurAssuranceMaladie = message,
-                    () => !Usager.ValiderDuplicataAssMaladie(DataModelCitoyen.GetCitoyens())
+                    () => AncienUsager == null && !Usager.ValiderDuplicataAssMaladie(DataModelCitoyen.GetCitoyens())
                 ),
             #endregion
             #region Date de naissance
@@ -259,7 +267,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurDateNaissance = message,
-                    () => Usager.DateNaissance.CompareTo(DateTime.Now) <= 0
+                    () => Usager.DateNaissance.CompareTo(DateTime.Now) <= 0, true
                 ),      // Date de naissance > maintenant
                 new Validateur.Regle(
                     "Ne peut pas être dans le futur!",
@@ -272,7 +280,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurTelephone = message,
-                    () => Usager.NumTelephone.Length >= 1 && Usager.NumTelephone.Length <= 20
+                    () => Usager.NumTelephone.Length >= 1 && Usager.NumTelephone.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -280,9 +288,27 @@ namespace VitAdmin.ViewModel
                     () => Usager.NumTelephone.Length < 1
                 ),      // length > 20
                 new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 10 caractères",
                     message => MessageErreurTelephone = message,
-                    () => Usager.NumTelephone.Length > 20
+                    () => Usager.NumTelephone.Length > 10
+                ),
+            #endregion
+            #region Adresse
+                // Clear
+                new Validateur.Regle(
+                    string.Empty,
+                    message => MessageErreurAdresse = message,
+                    () => Usager.Adresse.Length >= 1 && Usager.Adresse.Length <= 100, true
+                ),      // length < 1
+                new Validateur.Regle(
+                    "Doit avoir au moins 1 caractère",
+                    message => MessageErreurAdresse = message,
+                    () => Usager.Adresse.Length < 1
+                ),      // length > 100
+                new Validateur.Regle(
+                    "Doit avoir au plus 100 caractères",
+                    message => MessageErreurAdresse = message,
+                    () => Usager.Adresse.Length > 100
                 ),
             #endregion
             #region Numéro d'employé
@@ -290,7 +316,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNoEmploye = message,
-                    () => Usager.NumEmploye.Length >= 1 && Usager.NumEmploye.Length <= 20
+                    () => Usager.NumEmploye.Length >= 1 && Usager.NumEmploye.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -304,10 +330,16 @@ namespace VitAdmin.ViewModel
                 ),
             #endregion
             #region Poste
+                // Clear
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurPoste = message,
-                    () => false // DataModelCitoyen.GetCitoyens().Exists(citoyen => citoyen.
+                    () => Usager.Poste != string.Empty, true
+                ),      // Empty
+                new Validateur.Regle(
+                    "Ne doit pas être vide",
+                    message => MessageErreurPoste = message,
+                    () => Usager.Poste == string.Empty
                 ),
             #endregion
             #region Numéro permis
@@ -315,7 +347,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNoPermis = message,
-                    () => Usager.NumPermis.Length >= 1 && Usager.NumPermis.Length <= 20
+                    () => Usager.NumPermis.Length >= 1 && Usager.NumPermis.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -333,7 +365,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNAS = message,
-                    () => Usager.NAS.Length >= 1 && Usager.NAS.Length <= 20
+                    () => Usager.NAS.Length >= 1 && Usager.NAS.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -351,7 +383,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNomUsager = message,
-                    () => Usager.NomUtilisateur.Length >= 1 && Usager.NomUtilisateur.Length <= 20
+                    () => Usager.NomUtilisateur.Length >= 1 && Usager.NomUtilisateur.Length <= 20, true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",
@@ -369,7 +401,7 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurMotDePasse = message,
-                    () => AncienUsager != null || (Password.Length >= 1 && Password.Length <= 20)
+                    () => AncienUsager != null || (Password.Length >= 1 && Password.Length <= 20), true
                 ),      // length < 1
                 new Validateur.Regle(
                     "Doit avoir au moins 1 caractère",

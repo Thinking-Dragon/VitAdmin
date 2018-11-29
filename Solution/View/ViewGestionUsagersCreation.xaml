@@ -161,7 +161,26 @@
                   Grid.Row="6"
                   ItemsSource="{Binding Source={StaticResource GenreEnumValues}}"
                   SelectedItem="{Binding Usager.Genre}"/>
-        
+            <!-- Adresse -->
+        <Label HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Grid.Column="1"
+               Grid.Row="7">Adresse:</Label>
+        <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Grid.Column="2"
+                   Grid.Row="7"
+                   Margin="0 42 0 0"
+                   Text="{Binding MessageErreurAdresse}"
+                   Foreground="Red"
+                   Opacity="0.85"/>
+        <TextBox HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Width="256"
+                   Grid.Column="2"
+                   Grid.Row="7"
+                   Text="{Binding Usager.Adresse}"/>
+
         <!-- Employé -->
             <!-- N°employé -->
         <Label HorizontalAlignment="Right"

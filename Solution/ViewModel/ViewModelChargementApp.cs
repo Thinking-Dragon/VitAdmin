@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
+using VitAdmin.Notifications;
 using VitAdmin.Parameter;
 using VitAdmin.View;
 

@@ -70,6 +70,9 @@
     <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.13\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="NDragDrop, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NDragDrop.0.3.0\lib\NDragDrop.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -365,6 +368,7 @@
     <Compile Include="ViewModel\ViewModelDemandesTransfert.cs" />
     <Compile Include="ViewModel\ViewModelGestionEquipements.cs" />
     <Compile Include="ViewModel\ViewModelGestionUsagers.cs" />
+    <Compile Include="ViewModel\ViewModelMessageNotification.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientCreerHospitalisation.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelDossierPatientInfosModif.cs" />
     <Compile Include="ViewModel\ViewModelHubAdmin.cs" />
@@ -392,9 +396,6 @@
     <Compile Include="View\ViewCreerDepartement.xaml.cs">
       <DependentUpon>ViewCreerDepartement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewCreerNotifications.xaml.cs">
-      <DependentUpon>ViewCreerNotifications.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ViewDemandesTransfert.xaml.cs">
       <DependentUpon>ViewDemandesTransfert.xaml</DependentUpon>
     </Compile>
@@ -414,6 +415,9 @@
       <DependentUpon>ViewListeEmployes.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewListeEmployesAdmin.cs" />
+    <Compile Include="View\ViewMessageNotification.xaml.cs">
+      <DependentUpon>ViewMessageNotification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewModifierDepartement.xaml.cs">
       <DependentUpon>ViewModifierDepartement.xaml</DependentUpon>
     </Compile>
@@ -657,10 +661,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ViewCreerNotifications.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ViewDemandesTransfert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -679,6 +679,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ViewListeEmployes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewMessageNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -793,6 +797,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Graphic\Titre_chargement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Graphic\Background\plants.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
