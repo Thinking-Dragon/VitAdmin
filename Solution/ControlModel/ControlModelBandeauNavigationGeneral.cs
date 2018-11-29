@@ -88,8 +88,9 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        
-                    })
+
+                    }
+                );
             }
         }
 
