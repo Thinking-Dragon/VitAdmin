@@ -46,21 +46,26 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdEnvoyer => new CommandeDeleguee(param =>
         {
-            Notifications.GestionnaireNotifications.Instance.PostNotification(
-                string.Format("Nouveau message de {0} «{1}»", UsagerConnecte.Usager.NomComplet, Titre),
-                new LienNotificationEcran
-                {
-                    TypeEcran = typeof(ViewMessageNotification),
-                    Parametres = new Dictionary<string, object>
-                    {
-                        { "Sender", UsagerConnecte.Usager.idEmploye.ToString() },
-                        { "Titre", Titre },
-                        { "Message", Message }
-                    }
-                },
-                DataModelEmploye.GetEmploye(Employe.idEmploye)
-            );
             DialogHost.CloseDialogCommand.Execute(null, null);
+            if (Employe != null && Message != string.Empty && Titre != string.Empty)
+            {
+                Notifications.GestionnaireNotifications.Instance.PostNotification(
+                    string.Format("Nouveau message de {0} «{1}»", UsagerConnecte.Usager.NomComplet, Titre),
+                    new LienNotificationEcran
+                    {
+                        TypeEcran = typeof(ViewMessageNotification),
+                        Parametres = new Dictionary<string, object>
+                        {
+                            { "Sender", UsagerConnecte.Usager.idEmploye.ToString() },
+                            { "Titre", Titre },
+                            { "Message", Message }
+                        }
+                    },
+                    DataModelEmploye.GetEmploye(Employe.idEmploye)
+                );
+            }
+            else
+                ViewModel.ViewModelSuperEcran.GestionnaireSousEcrans.AfficherMessage("Entrée invalide");
         });
 
         public ControlModelEnvoieMessage()

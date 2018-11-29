@@ -29,7 +29,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Notifications"
                                         Binding="{Binding Message}"/>
-                <DataGridTextColumn Binding="{Binding TempsReception}"/>
+                <!--<DataGridTextColumn Binding="{Binding TempsReception}"/>-->
             </DataGrid.Columns>
         </DataGrid>
     </materialDesign:Card>

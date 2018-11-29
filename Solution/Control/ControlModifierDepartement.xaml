@@ -15,13 +15,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="64"></RowDefinition>
             <RowDefinition Height="64"></RowDefinition>
+            <RowDefinition Height="64"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="64"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <!-- Partie de gauche -->
+        <Label FontSize="18"
+               Grid.ColumnSpan="2">Modification de la chambre</Label>
 
-        <Grid>
+        <Grid Grid.ColumnSpan="1"
+              Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -31,10 +34,11 @@
             <TextBox Grid.Column="1"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
-                     Width="64"
+                     Width="128"
                      Text="{Binding Nom}" />
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -44,10 +48,11 @@
             <TextBox Grid.Column="1"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Width="32"
+                     Width="128"
                      Text="{Binding Abreviation}"/>
         </Grid>
-        <DataGrid Grid.Row="2"
+        <DataGrid Grid.Row="3"
+                  Grid.ColumnSpan="2"
                   Margin="16"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
@@ -69,7 +74,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="95*"/>
                 <ColumnDefinition Width="89*"/>
@@ -89,23 +94,29 @@
             </Button>
         </Grid>
 
-        <!-- Partie de droite -->
-
-        <Label Grid.Column="1"
-               Grid.Row="1"
-               VerticalAlignment="Bottom">
-            Infirmière chef:
-        </Label>
-        <ComboBox Grid.Column="1"
-                  Grid.Row="2"
-                  Width="256"
-                  VerticalAlignment="Top"
-                  IsReadOnly="True"
-                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.InfirmieresChef}"
-                  SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PersonnelMedicalEnChef}"
-                  DisplayMemberPath="NomComplet"/>
+        <Grid Grid.Row="2"
+              Grid.Column="1"
+              Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24*"/>
+                <ColumnDefinition Width="89*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center">
+                Infirmière chef:
+            </Label>
+            <ComboBox Grid.Column="1"
+                      Width="256"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.InfirmieresChef}"
+                      SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PersonnelMedicalEnChef}"
+                      DisplayMemberPath="NomComplet"/>
+        </Grid>
         <Button Grid.Column="1"
-                Grid.Row="3"
+                Grid.Row="4"
                 Width="256"
                 Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.TxtBoutonConfirmer}"
                 Click="btnValiderClic"/>
