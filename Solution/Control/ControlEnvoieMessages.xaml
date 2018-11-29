@@ -3,16 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:VitAdmin.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Width="512" Height="200" Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
+
+        <!-- Bouton quitter -->
+        <Button Grid.Column="1"
+                Panel.ZIndex="2"
+                HorizontalAlignment="Right"
+                Width="42"
+                Background="White"
+                Foreground="Black"
+                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+            X
+        </Button>
+
+        <!-- Titre fenêtre -->
+        <Label FontSize="18"
+               Grid.ColumnSpan="2">Nouveau message</Label>
+        
+        <!-- Titre message -->
+        <Label Grid.Row="2"
+               HorizontalAlignment="Right">Titre:</Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="2"
+                 Text="{Binding Titre}"/>
+
+        <!-- Destinataire -->
+        <Label Grid.Row="3"
+               HorizontalAlignment="Right">Destinataire:</Label>
+        <ComboBox Grid.Column="1"
+                  Grid.Row="3"
+                  ItemsSource="{Binding Employes}"
+                  SelectedItem="{Binding Employe}"
+                  DisplayMemberPath="NomComplet"
+                  IsEditable="True"/>
+        
+        <!-- Message -->
+        <Label Grid.Row="4"
+               HorizontalAlignment="Right">Message:</Label>
+        <TextBox Grid.Column="1"
+                 Grid.Row="4"
+                 Text="{Binding Message}"/>
+        
+        <!-- Bouton envoyer -->
+        <Button Command="{Binding CmdEnvoyer}"
+                Width="85"
+                Grid.Column="1"
+                Grid.Row="6">Envoyer</Button>
+        
     </Grid>
 </UserControl>

@@ -28,19 +28,6 @@ namespace VitAdmin.ViewModel
 
         public ICommand CmdEquipements => new CommandeDeleguee(obj =>
         {
-            Notifications.GestionnaireNotifications.Instance.PostNotification(
-                "Message",
-                new Model.LienNotificationEcran
-                {
-                    TypeEcran = typeof(ViewMessageNotification),
-                    Parametres = new Dictionary<string, object>
-                    {
-                        { "Titre", "Test" },
-                        { "Message", "Bonjour, comment ça va?" }
-                    }
-                },
-                Data.DataModelEmploye.GetEmploye(1)
-            );
             GestionnaireEcrans.Changer(new ViewGestionEquipements(GestionnaireEcrans));
         });
 

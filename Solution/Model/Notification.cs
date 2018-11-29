@@ -30,7 +30,9 @@ namespace VitAdmin.Model
             conteneurPage.RowDefinitions.Add(new RowDefinition { Height = new GridLength(32) });
             conteneurPage.RowDefinitions.Add(new RowDefinition());
 
-            Button btnFermer = new Button
+            conteneurPage.Children.Add(new DialogHost { Identifier="dialogLocal" });
+
+             Button btnFermer = new Button
             {
                 Content = 'X',
                 Foreground = Brushes.Black,
@@ -52,11 +54,13 @@ namespace VitAdmin.Model
             if (LienNotificationEcran.TypeEcran == typeof(ViewProfessionnelDossierPatient))
             {
                 erreur = false;
-                gestionnaireEcransDialog.Changer(new ViewProfessionnelDossierPatient(
+                Citoyen citoyen = DataModelCitoyen.GetUnCitoyen(
+                    new Citoyen { AssMaladie = LienNotificationEcran.Parametres["AssuranceMaladiePatient"] as string }
+                );
+                gestionnaireEcransDialog.Changer(new ViewPatientHospitalisation(
                     gestionnaireEcransDialog,
-                    DataModelCitoyen.GetUnCitoyen(
-                        new Citoyen { AssMaladie = LienNotificationEcran.Parametres["AssuranceMaladiePatient"] as string }
-                    )
+                    citoyen,
+                    DataModelHospitalisation.GetHospitalisation(citoyen)
                 ));
             }
             else if(LienNotificationEcran.TypeEcran == typeof(ViewMessageNotification))
@@ -64,6 +68,7 @@ namespace VitAdmin.Model
                 erreur = false;
                 gestionnaireEcransDialog.Changer(
                     new ViewMessageNotification(
+                        int.Parse(LienNotificationEcran.Parametres["Sender"] as string),
                         LienNotificationEcran.Parametres["Titre"] as string,
                         LienNotificationEcran.Parametres["Message"] as string
                     )
@@ -71,7 +76,19 @@ namespace VitAdmin.Model
             }
 
             if(!erreur)
-                DialogHost.Show(conteneurPage, "dialogGeneral");
+            {
+                if(LienNotificationEcran.TypeEcran == typeof(ViewProfessionnelDossierPatient))
+                {
+                    gestionnaireEcrans.AfficherMessage(
+                        "Note: voici le bon écran, mais puisque Laurence ne crée pas de notification lors de la création d'une note, je ne peut pas afficher la bonne note, puisqu'elle n'existe pas!",
+                        "Voir",
+                        "dialogGeneral",
+                        () => DialogHost.Show(conteneurPage, "dialogGeneral")
+                    );
+                }
+                else
+                    DialogHost.Show(conteneurPage, "dialogGeneral");
+            }
             else
                 gestionnaireEcrans.AfficherMessage("Une erreur est survenue lors de l'ouverture de la notification");
 

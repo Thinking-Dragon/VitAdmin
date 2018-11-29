@@ -72,14 +72,18 @@ namespace VitAdmin
 
         public Page GetEcranPresent() => Frame.Content as Page;
 
-        public void AfficherMessage(string message, string texteBouton = "Okay", string nomDialogue = "dialogGeneral")
+        public void AfficherMessage(string message, string texteBouton = "Okay", string nomDialogue = "dialogGeneral", Action callback = null)
         {
             Grid grid = new Grid();
             grid.RowDefinitions.Add(new RowDefinition());
             grid.RowDefinitions.Add(new RowDefinition());
             grid.Children.Add(new Label { Content = message, Margin = new Thickness(32) });
             Button buttonClose = new Button { Content = texteBouton };
-            buttonClose.Command = DialogHost.CloseDialogCommand;
+            buttonClose.Command = new CommandeDeleguee(param =>
+            {
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                callback?.Invoke();
+            });
             Grid.SetRow(buttonClose, 1);
             grid.Children.Add(buttonClose);
 

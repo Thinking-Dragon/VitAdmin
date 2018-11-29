@@ -21,10 +21,10 @@ namespace VitAdmin.View
     /// </summary>
     public partial class ViewMessageNotification : Page
     {
-        public ViewMessageNotification(string titre, string message)
+        public ViewMessageNotification(int senderID, string titre, string message)
         {
             InitializeComponent();
-            DataContext = new ViewModelMessageNotification(titre, message);
+            DataContext = new ViewModelMessageNotification(senderID, titre, message);
         }
     }
 }
