@@ -33,5 +33,11 @@ namespace VitAdmin.Model
             else
                 return false;
         }
+
+        public Departement() { }
+        public Departement(string nom)
+        {
+            Nom = nom;
+        }
     }
 }

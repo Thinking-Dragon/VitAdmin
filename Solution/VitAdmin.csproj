@@ -127,6 +127,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ControlModel\ControlModelAjoutQuart.cs" />
+    <Compile Include="ControlModel\ControlModelEnregistrerHoraire.cs" />
     <Compile Include="ControlModel\ControlModelGestionHoraire.cs" />
     <Compile Include="ControlModel\ControlModelListeEmployes.cs" />
     <Compile Include="ControlModel\ControlModelAjouterPatientLit.cs" />
@@ -188,6 +189,9 @@
     </Compile>
     <Compile Include="Control\ControlEditionEquipement.xaml.cs">
       <DependentUpon>ControlEditionEquipement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ControlEnregistrerHoraire.xaml.cs">
+      <DependentUpon>ControlEnregistrerHoraire.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\ControlGestionHoraire.xaml.cs">
       <DependentUpon>ControlGestionHoraire.xaml</DependentUpon>
@@ -473,6 +477,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\ControlEditionEquipement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ControlEnregistrerHoraire.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

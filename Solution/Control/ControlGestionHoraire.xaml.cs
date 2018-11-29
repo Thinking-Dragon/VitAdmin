@@ -23,24 +23,23 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlGestionHoraire : UserControl
     {
-        private List<DateTime> Semaine { get; set; } = new List<DateTime>();
+        public static List<DateTime> Semaine { get; set; } = new List<DateTime>();
         private ControlModelGestionHoraire Contexte {get; set;}
         private Employe Employe { get; set; }
+        public static DateTime aujourdhui { get; set; } = DateTime.Now;
 
         public ControlGestionHoraire(Employe employe)
         {
             InitializeComponent();
-            DataContext = Contexte = new ControlModelGestionHoraire(employe, GrdHoraire);
             Employe = employe;
-            InitialiseHoraire();
+            DataContext = Contexte = new ControlModelGestionHoraire(Employe, GrdHoraire);
+            InitialiseHoraire(GrdHoraire);
             RemplirHoraire(Employe, GrdHoraire);
         }
 
-        private void InitialiseHoraire()
+        public static void InitialiseHoraire(Grid horaire)
         {
-            /*29/10/2018*/
-            //DateTime aujourdhui = DateTime.Now;
-            DateTime aujourdhui = new DateTime(2018, 10, 29);
+            //DateTime aujourdhui = new DateTime(2018, 10, 29);
             DateTime dimanche = new DateTime();
 
             for (int i = 1; i < 5; i++)
@@ -55,7 +54,7 @@ namespace VitAdmin.Control
 
                     Grid.SetColumn(temp, c);
                     Grid.SetRow(temp, i);
-                    GrdHoraire.Children.Add(temp);
+                    horaire.Children.Add(temp);
                 }
             }
 
@@ -95,11 +94,11 @@ namespace VitAdmin.Control
                 Grid.SetColumn(temp, i + 2);
                 Grid.SetRow(temp, 1);
                 Semaine.Add(dimanche.AddDays(i));
-                GrdHoraire.Children.Add(temp);
+                horaire.Children.Add(temp);
             }
         }
 
-        public void RemplirHoraire(Employe employe, Grid gridHoraireParam)
+        public static void RemplirHoraire(Employe employe, Grid gridHoraireParam)
         {
             List<QuartEmploye> horaire = DataModelQuartEmploye.GetHoraire(employe);
 
@@ -141,14 +140,14 @@ namespace VitAdmin.Control
                 }
             }
         }
-        public void AjouterQuart(string nom, Grid gridHoraireParam, QuartEmploye quart)
+
+        public static void AjouterQuart(string nom, Grid gridHoraireParam, QuartEmploye quart)
         {
             foreach (UIElement item in gridHoraireParam.Children)
             {
                 if (item is Border && (item as Border).Name == nom)
                 {
                     ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
-                    ((item as Border).Child as Label).Foreground = Brushes.White;
                     (item as Border).Background = Brushes.DodgerBlue;
                 }
             }

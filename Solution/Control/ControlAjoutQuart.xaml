@@ -16,11 +16,12 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label Foreground="Gray" FontSize="24" Margin="20,20,20,20">Départements</Label>
         
-        <ComboBox Grid.Row="1" Name="cboDeparts" ItemsSource="{Binding LstNomsDepartements}" Width="150" Margin="20,20,20,20">
+        <ComboBox Grid.Row="1" Name="cboDeparts" ItemsSource="{Binding LstNomsDepartements}" Width="150" Margin="20,20,20,20" SelectedItem="{Binding DepartSelectionne}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Nom}"></TextBlock>
@@ -28,6 +29,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Button Grid.Row="2" Command="{Binding }" Name="Confirmer" Width="100" Margin="10,10,10,10" HorizontalAlignment="Right">Confirmer</Button>
+        <Label Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Height="30" Foreground="Red" Content="{Binding MessageErreur}"></Label>
+        <Button Grid.Row="3" Command="{Binding CmdConfirmClick}" Name="Confirmer" Width="100" Margin="10,10,10,10" HorizontalAlignment="Right" Content="{Binding TextButton}"></Button>
     </Grid>
 </UserControl>

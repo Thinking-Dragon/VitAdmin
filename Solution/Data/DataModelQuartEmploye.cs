@@ -59,6 +59,58 @@ namespace VitAdmin.Data
             return horaire;
         }
 
+        public static void POSTHoraire(List<QuartEmploye> horaire)
+        {
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                foreach (QuartEmploye item in horaire)
+                {
+                    string requete = string.Format("INSERT INTO quarts " +
+                           "(idDepartement, idPeriodeJournee, date) " +
+                           "VALUES (" +
+                           "(SELECT idDepartement FROM departements WHERE nom = '{0}')," +
+                           "(SELECT idPeriodeJournee FROM periodesjournee WHERE periode = '{1}'), " +
+                           "'{2}');", 
+                           item.DepartementAssocie.Nom, item.TypeDeQuart, item.Date.ToString());
+
+
+                    ConnexionBD.Instance().ExecuterRequete(requete);
+
+                    requete = string.Format("INSERT INTO quartsEmployes " +
+                                               "(idQuart, idEmploye) " +
+                                               "VALUES (" +
+                                               "(SELECT idQuart FROM quarts WHERE date = '{0}'), " +
+                                               "(SELECT idEmploye FROM employes WHERE idEmploye = {1}));",
+                                               item.Date.ToString(), item.Employe.idEmploye);
+
+                    ConnexionBD.Instance().ExecuterRequete(requete);
+                }
+
+
+
+                /*INSERT INTO quarts
+                       (idDepartement, idPeriodeJournee, date)
+                       VALUES
+                       (
+                         (SELECT idDepartement FROM departements WHERE nom = 'Pédiatrie'),
+                         (SELECT idPeriodeJournee FROM periodesjournee WHERE periode = 'soir'),
+                         '2018-11-28'
+                       );
+
+                  INSERT INTO quartsEmployes
+                       (idQuart, idEmploye)
+                       VALUES
+                       (
+                         (SELECT idQuart FROM quarts WHERE date = '2018-11-28'),
+                         (SELECT idEmploye FROM employes WHERE idEmploye = 4)
+                       );
+
+                */
+
+            }
+        }
+
     }
 }
 

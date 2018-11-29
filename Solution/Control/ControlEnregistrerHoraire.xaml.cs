@@ -12,20 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using VitAdmin.Data;
 using VitAdmin.ControlModel;
+using VitAdmin.Model;
 
 namespace VitAdmin.Control
 {
     /// <summary>
-    /// Logique d'interaction pour ControlAjoutQuart.xaml
+    /// Interaction logic for ControlEnregistrerHoraire.xaml
     /// </summary>
-    public partial class ControlAjoutQuart : UserControl
+    public partial class ControlEnregistrerHoraire : UserControl
     {
-        public ControlAjoutQuart(Border quart)
+        public ControlEnregistrerHoraire(Grid horaire, Employe employe)
         {
             InitializeComponent();
-            DataContext = new ControlModelAjoutQuart(quart);
+            DataContext = new ControlModelEnregistrerHoraire(horaire, employe);
         }
     }
 }

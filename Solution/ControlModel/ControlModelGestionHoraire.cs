@@ -14,7 +14,7 @@ using VitAdmin.MVVM;
 
 namespace VitAdmin.ControlModel
 {
-    class ControlModelGestionHoraire
+    class ControlModelGestionHoraire : ObjetObservable
     {
         public Employe Employe { get; set; }
 
@@ -35,13 +35,40 @@ namespace VitAdmin.ControlModel
                     {   
                         if ((((quart as Border).Background)as SolidColorBrush).Color == (Brushes.Transparent as SolidColorBrush).Color)
                         {
-                            DialogHost.Show(new ControlAjoutQuart(), "dialogLaurence");
+                            ControlAjoutQuart dialog = new ControlAjoutQuart(quart as Border);
+                            DialogHost.Show(dialog, "dialogLaurence");
                         }
                         else
                         {
                             (quart as Border).Background = Brushes.Transparent;
                             ((quart as Border).Child as Label).Content = "";
                         }
+                    }
+                );
+            }
+        }
+
+        public ICommand CmdSemaineSuivante
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe), "dialogGeneral:modal=false");
+                    }
+                );
+            }
+        }
+
+        public ICommand CmdSemainePrecedente
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe), "dialogGeneral:modal=false");
                     }
                 );
             }
