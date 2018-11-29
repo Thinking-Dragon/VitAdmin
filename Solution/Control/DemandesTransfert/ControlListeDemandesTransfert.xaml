@@ -27,6 +27,11 @@
                 <DataGridTextColumn Header="Patient" Binding="{Binding NomComplet}"/>
 
             </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding CmddtgDemandeTransfertLeftClick}"
+                              CommandParameter="{Binding SelectedItem, ElementName=dtgDemandeTransfert}"/>
+            </DataGrid.InputBindings>
         </DataGrid>
     </Grid>
     

@@ -46,7 +46,7 @@ namespace VitAdmin.View
             List<Citoyen> lstCitoyenDemandeTransfert = DataModelCitoyen.GetCitoyenDemandeTraitement(departement);
 
             ControlListeLits controlListeLits = new ControlListeLits(LstLitsDepartement);
-            ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(lstCitoyenDemandeTransfert);
+            ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(lstCitoyenDemandeTransfert, controlListeLits);
 
             Grid.SetRow(controlListeLits, 1);
             Grid.SetRow(controlListeDemandesTransfert, 1);
