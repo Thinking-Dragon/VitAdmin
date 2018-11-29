@@ -9,6 +9,8 @@ using System.Windows.Input;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 using VitAdmin.Data;
+using MaterialDesignThemes.Wpf;
+using VitAdmin.Control;
 
 namespace VitAdmin.ControlModel
 {
@@ -16,11 +18,13 @@ namespace VitAdmin.ControlModel
     {
         public Grid Horaire { get; set; }
         public Employe Employe { get; set; }
+        private Action ChangerSemaine { get; set; }
 
-        public ControlModelEnregistrerHoraire(Grid horaire, Employe employe)
+        public ControlModelEnregistrerHoraire(Grid horaire, Employe employe, Action changeSemaine)
         {
             Horaire = horaire;
             Employe = employe;
+            ChangerSemaine = changeSemaine;
         }
 
         public ICommand CmdOui
@@ -30,42 +34,67 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        List<QuartEmploye> LstQuarts = new List<QuartEmploye>();
-
-                        foreach (UIElement item in Horaire.Children)
+                        if (ControlGestionHoraire.Semaine[6] > DateTime.Now)
                         {
-                            if (item is Border && (item as Border).Child != null)
+                            List<QuartEmploye> LstQuarts = new List<QuartEmploye>();
+
+                            foreach (UIElement item in Horaire.Children)
                             {
-                                if (((item as Border).Child as Label).Content as string != "")
+                                if (item is Border && (item as Border).Child != null)
                                 {
-                                    QuartEmploye quart = new QuartEmploye();
-                                    quart.Employe = Employe;
-                                    quart.DepartementAssocie = new Departement(((item as Border).Child as Label).Content as string);
-                                    quart.Date = Control.ControlGestionHoraire.Semaine[Grid.GetColumn(item)-2];
-
-                                    switch (Grid.GetRow(item))
+                                    if (((item as Border).Child as Label).Visibility == Visibility.Visible)
                                     {
-                                       case 2:
-                                            quart.TypeDeQuart = TypeQuart.nuit;
-                                           break;
-                                       case 3:
-                                            quart.TypeDeQuart = TypeQuart.jour;
-                                           break;
-                                       case 4:
-                                            quart.TypeDeQuart = TypeQuart.soir;
-                                           break;
+                                        QuartEmploye quart = new QuartEmploye();
+                                        quart.Employe = Employe;
+                                        quart.DepartementAssocie = new Departement(((item as Border).Child as Label).Content as string);
+                                        quart.Date = Control.ControlGestionHoraire.Semaine[Grid.GetColumn(item) - 2];
+
+                                        switch (Grid.GetRow(item))
+                                        {
+                                            case 2:
+                                                quart.TypeDeQuart = TypeQuart.nuit;
+                                                break;
+                                            case 3:
+                                                quart.TypeDeQuart = TypeQuart.jour;
+                                                break;
+                                            case 4:
+                                                quart.TypeDeQuart = TypeQuart.soir;
+                                                break;
+                                        }
+
+                                        LstQuarts.Add(quart);
+
                                     }
+                                    else
+                                    {
+                                        QuartEmploye quart = new QuartEmploye();
+                                        quart.Employe = Employe;
+                                        quart.DepartementAssocie = new Departement(((item as Border).Child as Label).Content as string);
+                                        quart.Date = Control.ControlGestionHoraire.Semaine[Grid.GetColumn(item) - 2];
 
-                                    LstQuarts.Add(quart);
-                                    
+                                        switch (Grid.GetRow(item))
+                                        {
+                                            case 2:
+                                                quart.TypeDeQuart = TypeQuart.nuit;
+                                                break;
+                                            case 3:
+                                                quart.TypeDeQuart = TypeQuart.jour;
+                                                break;
+                                            case 4:
+                                                quart.TypeDeQuart = TypeQuart.soir;
+                                                break;
+                                        }
+
+                                        DataModelQuartEmploye.DELETE_quartEmploye(quart);
+                                    }
                                 }
-
-                                
                             }
+                            DataModelQuartEmploye.POSTHoraire(LstQuarts);
                         }
 
-                        DataModelQuartEmploye.POSTHoraire(LstQuarts);
-                    }
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                        ChangerSemaine();
+                    }  
                 );
             }
         }
@@ -77,7 +106,8 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        //ferme le dialog
+                        DialogHost.CloseDialogCommand.Execute(null, null);
+                        ChangerSemaine();
                     }
                 );
             }

@@ -32,7 +32,7 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        GestionnaireEcran.Changer(new ViewGestionHoraire(EmployeSelectionnee));
+                        GestionnaireEcran.Changer(new ViewGestionHoraire(EmployeSelectionnee, GestionnaireEcran));
                     }
                 );
             }

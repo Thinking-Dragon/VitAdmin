@@ -74,6 +74,7 @@ namespace VitAdmin.ControlModel
                             EstPremierClick = true;
                             Quart.Background = Brushes.DodgerBlue;
                             (Quart.Child as Label).Content = DepartSelectionne.Nom;
+                            (Quart.Child as Label).Visibility = System.Windows.Visibility.Visible;
                         }
                     }
                 );

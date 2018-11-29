@@ -22,10 +22,10 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlEnregistrerHoraire : UserControl
     {
-        public ControlEnregistrerHoraire(Grid horaire, Employe employe)
+        public ControlEnregistrerHoraire(Grid horaire, Employe employe, Action changerSemaine)
         {
             InitializeComponent();
-            DataContext = new ControlModelEnregistrerHoraire(horaire, employe);
+            DataContext = new ControlModelEnregistrerHoraire(horaire, employe, changerSemaine);
         }
     }
 }

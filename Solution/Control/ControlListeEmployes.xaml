@@ -18,7 +18,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label FontSize="24" VerticalAlignment="Center" Foreground="Gray">Liste de employés</Label>
+        <Label FontSize="24" VerticalAlignment="Top" Foreground="Gray">Liste de employés</Label>
+        <Label FontSize="24" VerticalAlignment="Center" Foreground="Gray">(POUR LA V 1.0, ne pas modifier l'horaire de jaques therien)</Label>
 
         <DataGrid SelectionMode="Single" SelectedCellsChanged="DataGrid_SelectedCellsChanged" Grid.Row="1" Grid.ColumnSpan="3" SelectedItem="{Binding EmployeSelectionnee}" ItemsSource="{Binding LstEmployes}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>

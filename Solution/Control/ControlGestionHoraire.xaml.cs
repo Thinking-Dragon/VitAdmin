@@ -25,21 +25,39 @@ namespace VitAdmin.Control
     {
         public static List<DateTime> Semaine { get; set; } = new List<DateTime>();
         private ControlModelGestionHoraire Contexte {get; set;}
-        private Employe Employe { get; set; }
-        public static DateTime aujourdhui { get; set; } = DateTime.Now;
+        private static Employe Employe { get; set; }
+        private static Grid Horaire { get; set; }
+
+        private static DateTime aujourdhuiP = DateTime.Now;
+        public static DateTime aujourdhui
+        {
+            get
+            {
+                return aujourdhuiP;
+            }
+            set
+            {
+                aujourdhuiP = value;
+                Semaine = new List<DateTime>();
+                InitialiseHoraire(Horaire, true);
+                ViderHoraire(Employe, Horaire);
+                RemplirHoraire(Employe, Horaire);
+            }
+        }
+
 
         public ControlGestionHoraire(Employe employe)
         {
             InitializeComponent();
             Employe = employe;
-            DataContext = Contexte = new ControlModelGestionHoraire(Employe, GrdHoraire);
-            InitialiseHoraire(GrdHoraire);
-            RemplirHoraire(Employe, GrdHoraire);
+            Horaire = GrdHoraire;
+            DataContext = Contexte = new ControlModelGestionHoraire(Employe, Horaire);
+            InitialiseHoraire(Horaire, false);
+            RemplirHoraire(Employe, Horaire);
         }
 
-        public static void InitialiseHoraire(Grid horaire)
+        public static void InitialiseHoraire(Grid horaire, bool dejaFait)
         {
-            //DateTime aujourdhui = new DateTime(2018, 10, 29);
             DateTime dimanche = new DateTime();
 
             for (int i = 1; i < 5; i++)
@@ -58,43 +76,65 @@ namespace VitAdmin.Control
                 }
             }
 
-            switch (aujourdhui.DayOfWeek)
+            switch (aujourdhuiP.DayOfWeek)
             {
                 case DayOfWeek.Sunday:
-                    dimanche = aujourdhui;
+                    dimanche = aujourdhuiP;
                     break;
                 case DayOfWeek.Monday:
-                    dimanche = aujourdhui.AddDays(-1);
+                    dimanche = aujourdhuiP.AddDays(-1);
                     break;
                 case DayOfWeek.Tuesday:
-                    dimanche = aujourdhui.AddDays(-2);
+                    dimanche = aujourdhuiP.AddDays(-2);
                     break;
                 case DayOfWeek.Wednesday:
-                    dimanche = aujourdhui.AddDays(-3);
+                    dimanche = aujourdhuiP.AddDays(-3);
                     break;
                 case DayOfWeek.Thursday:
-                    dimanche = aujourdhui.AddDays(-4);
+                    dimanche = aujourdhuiP.AddDays(-4);
                     break;
                 case DayOfWeek.Friday:
-                    dimanche = aujourdhui.AddDays(-5);
+                    dimanche = aujourdhuiP.AddDays(-5);
                     break;
                 case DayOfWeek.Saturday:
-                    dimanche = aujourdhui.AddDays(-6);
+                    dimanche = aujourdhuiP.AddDays(-6);
                     break;
             }
 
-            for (int i = 0; i < 7; i++)
+            if (dejaFait)
             {
-                Label temp = new Label
+                foreach (UIElement item in horaire.Children)
                 {
-                    Content = dimanche.AddDays(i).Date.ToString("dd MMMM"),
-                    VerticalAlignment = VerticalAlignment.Bottom
-                };
+                    if (item is Label)
+                    {
+                        for (int i = 0; i < 7; i++)
+                        {
+                            if ((item as Label).Name == "L" + i.ToString())
+                            {
+                                (item as Label).Content = dimanche.AddDays(i).Date.ToString("dd MMMM");
+                            }
+                            Semaine.Add(dimanche.AddDays(i));
+                        }
 
-                Grid.SetColumn(temp, i + 2);
-                Grid.SetRow(temp, 1);
-                Semaine.Add(dimanche.AddDays(i));
-                horaire.Children.Add(temp);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    Label temp = new Label
+                    {
+                        Content = dimanche.AddDays(i).Date.ToString("dd MMMM"),
+                        VerticalAlignment = VerticalAlignment.Bottom,
+                        Name = "L" + i.ToString()
+                    };
+
+                    Grid.SetColumn(temp, i + 2);
+                    Grid.SetRow(temp, 1);
+                    Semaine.Add(dimanche.AddDays(i));
+                    horaire.Children.Add(temp);
+                }
             }
         }
 
@@ -148,7 +188,21 @@ namespace VitAdmin.Control
                 if (item is Border && (item as Border).Name == nom)
                 {
                     ((item as Border).Child as Label).Content = quart.DepartementAssocie.Nom;
+                    ((item as Border).Child as Label).Visibility = Visibility.Visible;
                     (item as Border).Background = Brushes.DodgerBlue;
+                }
+            }
+        }
+
+        public static void ViderHoraire(Employe employe, Grid gridHoraireParam)
+        {
+            foreach (UIElement item in gridHoraireParam.Children)
+            {
+                if (item is Border && (item as Border).Child is Label)
+                {
+                    ((item as Border).Child as Label).Content = "";
+                    ((item as Border).Child as Label).Visibility = Visibility.Hidden;
+                    (item as Border).Background = Brushes.Transparent;
                 }
             }
         }

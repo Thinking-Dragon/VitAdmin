@@ -14,18 +14,46 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Model;
 using VitAdmin.Control;
+using VitAdmin.View.Tool;
+using VitAdmin.ControlModel;
+using MaterialDesignThemes.Wpf;
 
 namespace VitAdmin.View
 {
     /// <summary>
     /// Logique d'interaction pour ViewGestionHoraire.xaml
     /// </summary>
-    public partial class ViewGestionHoraire : Page
+    public partial class ViewGestionHoraire : Page, IEcranRetour
     {
-        public ViewGestionHoraire(Employe employe)
+        private GestionnaireEcrans GestEcrans { get; set; }
+        private Employe Employe { get; set; }
+        public ViewGestionHoraire(Employe employe, GestionnaireEcrans gest)
         {
             InitializeComponent();
-            Content = new ControlGestionHoraire(employe);
+            Employe = employe;
+            Content = new ControlGestionHoraire(Employe);
+            GestEcrans = gest;
+        }
+
+        // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.
+        public Action CmdRetourEcranPrecedent
+        {
+            get
+            {
+                ControlEnregistrerHoraire test = new ControlEnregistrerHoraire((Content as ControlGestionHoraire).GrdHoraire , Employe, () => { });
+                DialogHost.Show(test, "dialogGeneral:modal=false");
+                
+                DialogHost.CloseDialogCommand.Execute(null, null);
+                ControlGestionHoraire.aujourdhui = DateTime.Now;
+
+                return () => { GestEcrans.Changer(new ViewListeEmployes(GestEcrans)); };
+            }
+        }
+
+        // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.
+        public string TexteBoutonRetourEcran
+        {
+            get { return "< Liste d'employés"; }
         }
     }
 }

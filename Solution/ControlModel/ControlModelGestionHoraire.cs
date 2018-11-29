@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,16 @@ namespace VitAdmin.ControlModel
 
         private Grid GridHoraire { get; set; }
 
+        public ObservableCollection<string> Semaines { get; set; } = new ObservableCollection<string>();
+
+        public string SemaineCourante { get; set; }
+
         public ControlModelGestionHoraire(Employe employe, Grid grid)
         {
             Employe = employe;
             GridHoraire = grid;
+
+
         }
 
         public ICommand CmdDoubleClickQuart
@@ -41,7 +48,7 @@ namespace VitAdmin.ControlModel
                         else
                         {
                             (quart as Border).Background = Brushes.Transparent;
-                            ((quart as Border).Child as Label).Content = "";
+                            ((quart as Border).Child as Label).Visibility = Visibility.Hidden;
                         }
                     }
                 );
@@ -55,7 +62,12 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe), "dialogGeneral:modal=false");
+                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe, () => 
+                        {
+                            ControlGestionHoraire.aujourdhui = ControlGestionHoraire.Semaine[0].AddDays(7);
+
+                        }), "dialogGeneral:modal=false");
+
                     }
                 );
             }
@@ -68,7 +80,11 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe), "dialogGeneral:modal=false");
+                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe, () =>
+                        {
+                            ControlGestionHoraire.aujourdhui = ControlGestionHoraire.Semaine[0].AddDays(-7);
+
+                        }), "dialogGeneral:modal=false");
                     }
                 );
             }
