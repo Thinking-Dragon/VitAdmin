@@ -81,6 +81,18 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        public ICommand CmdMessages
+        {
+            get
+            {
+                return new CommandeDeleguee(
+                    param =>
+                    {
+                        
+                    })
+            }
+        }
+
         private void ActualiserNbNotificationsNonLues(object sender, NotificationsEventArgs args)
         {
             int nombre = 0;
