@@ -23,7 +23,8 @@
                   AutoGenerateColumns="False" 
                   IsReadOnly="True" 
                   AllowDrop="True"
-                  DragDrop.Drop="dtgLstLit_Drop">
+                  DragDrop.Drop="dtgLstLit_Drop"
+                  IsMouseDirectlyOverChanged="dtgLstLit_IsMouseDirectlyOverChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="Chambre" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Numero}" Header="Lit" Width="*"/>

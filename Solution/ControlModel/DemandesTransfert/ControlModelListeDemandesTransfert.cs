@@ -31,9 +31,9 @@ namespace VitAdmin.ControlModel.DemandesTransfert
                 {
                     if (demandeSelectionnee != null)
                     {
-                        /*string dataFormat = DataFormats.Serializable
-                        DataObject dataObject = new DataObject()
-                        DragDrop.DoDragDrop(ControlListeLits, (Citoyen)demandeSelectionnee, DragDropEffects.All);*/
+                        string dataFormat = DataFormats.Serializable;
+                        DataObject dataObject = new DataObject(dataFormat, (Citoyen)demandeSelectionnee);
+                        DragDrop.DoDragDrop(ControlListeLits, dataObject, DragDropEffects.All);
                     }
 
                 });
