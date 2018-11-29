@@ -17,9 +17,12 @@
         </Grid.RowDefinitions>
 
         <Label FontSize="18" Content="{Binding Titre}"/>
-        <TextBlock Grid.Row="1" Text="{Binding Message}"/>
+        <TextBlock Grid.Row="1"
+                   Background="LightGray"
+                   Padding="4"
+                   Text="{Binding Message}"/>
 
-        <RichTextBox Grid.Row="2"/>
-        <Button Grid.Row="3" Width="128">Répondre</Button>
+        <TextBox Grid.Row="2" Text="{Binding Reponse}"/>
+        <Button Grid.Row="3" Width="128" Command="{Binding CmdRepondre}">Répondre</Button>
     </Grid>
 </Page>
