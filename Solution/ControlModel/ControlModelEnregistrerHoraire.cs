@@ -57,7 +57,10 @@ namespace VitAdmin.ControlModel
                                     }
 
                                     LstQuarts.Add(quart);
+                                    
                                 }
+
+                                
                             }
                         }
 

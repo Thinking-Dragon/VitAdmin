@@ -66,18 +66,20 @@ namespace VitAdmin.Data
             {
                 foreach (QuartEmploye item in horaire)
                 {
-                    string requete = string.Format("INSERT INTO quarts " +
+                    if (DataModelQuartEmploye.SelectQuart(item))
+                    {
+                        string req = string.Format("INSERT INTO quarts " +
                            "(idDepartement, idPeriodeJournee, date) " +
                            "VALUES (" +
                            "(SELECT idDepartement FROM departements WHERE nom = '{0}')," +
                            "(SELECT idPeriodeJournee FROM periodesjournee WHERE periode = '{1}'), " +
-                           "'{2}');", 
+                           "'{2}');",
                            item.DepartementAssocie.Nom, item.TypeDeQuart, item.Date.ToString());
 
+                        ConnexionBD.Instance().ExecuterRequete(req);
+                    }
 
-                    ConnexionBD.Instance().ExecuterRequete(requete);
-
-                    requete = string.Format("INSERT INTO quartsEmployes " +
+                    string requete = string.Format("INSERT INTO quartsEmployes " +
                                                "(idQuart, idEmploye) " +
                                                "VALUES (" +
                                                "(SELECT idQuart FROM quarts WHERE date = '{0}'), " +
@@ -111,6 +113,39 @@ namespace VitAdmin.Data
             }
         }
 
+
+        public static bool SelectQuart(QuartEmploye quart)
+        {
+            QuartEmploye qe = null;
+
+            if (ConnexionBD.Instance().EstConnecte())
+            {
+                
+                // Si oui, on execute la requête que l'on veut effectuer
+                // SqlDR (MySqlDataReader) emmagasine une liste des citoyens de la BD
+                ConnexionBD.Instance().ExecuterRequete(
+                    "SELECT date dt, dep.nom nmDep, shift.periode typeQ " +
+                          "FROM quarts qe " +
+                              "INNER JOIN periodesjournee shift on shift.idPeriodeJournee = qe.idPeriodeJournee " +
+                              "INNER JOIN departements dep on dep.idDepartement = qe.idDepartement " +
+                                  "WHERE qe.date = '" + quart.Date.ToString() + "' && shift.periode = '" + quart.TypeDeQuart + "' && dep.nom = '" + quart.DepartementAssocie.Nom + "';"
+
+                    , SqlDR =>
+                    {
+                        qe = new QuartEmploye
+                        {
+                            Date = SqlDR.GetDateTime("dt"),
+                            DepartementAssocie = new Departement
+                            {
+                                Nom = SqlDR.GetString("nmDep")
+                            },
+                            TypeDeQuart = (TypeQuart)System.Enum.Parse(typeof(TypeQuart), SqlDR.GetString("typeQ"))
+                        };
+                    });
+            }
+
+            return qe != null;
+        }
     }
 }
 
