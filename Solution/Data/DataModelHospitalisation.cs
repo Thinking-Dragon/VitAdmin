@@ -96,7 +96,9 @@ namespace VitAdmin.Data
                     , lecteur =>
                     {
                         hospitalisation.DateDebut = (DateTime)lecteur.GetMySqlDateTime("dDebut");
-                        hospitalisation.DateFin = lecteur.IsDBNull(lecteur.GetOrdinal("dFin")) ? new DateTime() : (DateTime)lecteur.GetMySqlDateTime("dFin");
+                        //hospitalisation.DateFin = lecteur.IsDBNull(lecteur.GetOrdinal("dFin")) ? new DateTime() : (DateTime)lecteur.GetMySqlDateTime("dFin");
+                        hospitalisation.DateFin = (DateTime)lecteur.GetMySqlDateTime("dFin");
+
                     }
                     );
             }
