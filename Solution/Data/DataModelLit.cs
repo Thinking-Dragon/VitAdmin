@@ -91,7 +91,7 @@ namespace VitAdmin.Data
             {
                 ConnexionBD.Instance().ExecuterRequete(
                     string.Format(
-                        "INSERT INTO `vitadmin_bd_main`.`lits` (`idLit`, `idCitoyen`, `idChambre`, `idEtatLit`, `numero`) VALUES (NULL, NULL, '{0}', (SELECT idEtatLit FROM EtatsLits WHERE nom = '{1}'), '{2}');",
+                        "INSERT INTO `lits` (`idLit`, `idCitoyen`, `idChambre`, `idEtatLit`, `numero`) VALUES (NULL, NULL, '{0}', (SELECT idEtatLit FROM EtatsLits WHERE nom = '{1}'), '{2}');",
                         /*"INSERT INTO Lits (idChambre, idEtatLit, numero) " +
                         "VALUES ( " +
                         "   {0}, " +
