@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <Label>Usager:</Label>
-        <TextBox Text="{Binding Usager}"> <!-- BUG TO FIX (User binding doesn't update unless focus is changed) -->
+        <TextBox Text="{Binding Usager, UpdateSourceTrigger=PropertyChanged}"> <!-- BUG TO FIX (User binding doesn't update unless focus is changed) -->
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding CmdConnexion}" Key="Return"
                             CommandParameter="{Binding ElementName=pswPassword}" />
