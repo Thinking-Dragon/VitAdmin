@@ -15,7 +15,7 @@ namespace VitAdmin.ViewModel
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
         public ICommand CmdPersonnel => new CommandeDeleguee(obj => {
-            GestionnaireEcrans.Changer(new ViewProfessionnelHubAdmin(GestionnaireEcrans, UsagerConnecte.Usager));
+            GestionnaireEcrans.Changer(new ViewListeEmployesAdmin(GestionnaireEcrans));
         });
 
         public ICommand CmdInfrastructure => new CommandeDeleguee(obj => {
@@ -23,7 +23,7 @@ namespace VitAdmin.ViewModel
         });
 
         public ICommand CmdPatients => new CommandeDeleguee(obj => {
-            GestionnaireEcrans.Changer(new ViewListeEmployesAdmin(GestionnaireEcrans));
+            GestionnaireEcrans.Changer(new ViewProfessionnelHubAdmin(GestionnaireEcrans, UsagerConnecte.Usager));
         });
 
         public ICommand CmdEquipements => new CommandeDeleguee(obj =>
