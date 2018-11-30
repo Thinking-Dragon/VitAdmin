@@ -12,9 +12,23 @@ using VitAdmin.Control.DemandesTransfert;
 
 namespace VitAdmin.ControlModel.DemandesTransfert
 {
-    class ControlModelListeDemandesTransfert
+    class ControlModelListeDemandesTransfert : ObjetObservable
     {
-        public ObservableCollection<Citoyen> Citoyens { get; set; }
+        private ObservableCollection<Citoyen> citoyens;
+        public ObservableCollection<Citoyen> Citoyens
+        {
+            get
+            {
+                return citoyens;
+            }
+
+            set
+            {
+                citoyens = value;
+                RaisePropertyChangedEvent("Citoyens");
+            }
+        }
+
         ControlListeLits ControlListeLits { get; set; }
 
         public ControlModelListeDemandesTransfert(List<Citoyen> lstCitoyen, ControlListeLits controlListeLits)

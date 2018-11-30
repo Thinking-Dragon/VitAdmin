@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,23 +12,26 @@ namespace VitAdmin.ControlModel.DemandesTransfert
 {
     public class ControlModelListeLits : ObjetObservable
     {
-        public List<Lit> LstLits { get; set; }
-
-        public ControlModelListeLits(List<Lit> lstLits = null)
-        {
-            LstLits = lstLits;
-        }
-
-        public ICommand CmdDtgLstLitDrop
+        private ObservableCollection<Lit> lits;
+        public ObservableCollection<Lit> Lits
         {
             get
             {
-                return new CommandeDeleguee(demandeDrop =>
-                {
-                    //LstLits
+                return lits;
+            }
 
-                });
+            set
+            {
+                lits = value;
+                RaisePropertyChangedEvent("Lits");
             }
         }
+
+        public ControlModelListeLits(List<Lit> lstLits = null)
+        {
+            Lits = new ObservableCollection<Lit>(lstLits);
+        }
+
+        
     }
 }

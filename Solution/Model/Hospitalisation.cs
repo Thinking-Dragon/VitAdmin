@@ -9,7 +9,12 @@ namespace VitAdmin.Model
     public class Hospitalisation
     {
         public DateTime DateDebut { get; set; }
-        public DateTime DateFin { get; set; }
+        private DateTime? _dateFin;
+        public DateTime? DateFin
+        {
+            get { return _dateFin; }
+            set { _dateFin = value == new DateTime(0) ? null : value; }
+        }
         public string Contexte { get; set; }
        
         public List<Traitement> LstTraitements { get; set; }

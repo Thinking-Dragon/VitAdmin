@@ -19,18 +19,23 @@
 
         <DataGrid Grid.Row="1" 
                   Name="dtgLstLit"
-                  ItemsSource="{Binding LstLits}" 
+                  ItemsSource="{Binding Lits}" 
                   AutoGenerateColumns="False" 
                   IsReadOnly="True" 
                   AllowDrop="True"
                   DragDrop.Drop="dtgLstLit_Drop"
-                  IsMouseDirectlyOverChanged="dtgLstLit_IsMouseDirectlyOverChanged">
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="Chambre" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Numero}" Header="Lit" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Citoyen.NomComplet}" Header="Patient" Width="*"/>
 
             </DataGrid.Columns>
+            <!--<DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DataGridRow Drop="dtgLstLit_Drop" AllowDrop="True"></DataGridRow>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>-->
         </DataGrid>
     </Grid>
 </UserControl>

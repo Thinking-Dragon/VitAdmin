@@ -101,7 +101,7 @@ namespace VitAdmin.Control
                 DateTime dateTimeFin = new DateTime(dtpkrFin.SelectedDate.Value.Year, dtpkrFin.SelectedDate.Value.Month, dtpkrFin.SelectedDate.Value.Day);
 
                 // On recherche dans la liste des hospitalisations ceux qui correspondent à la date demandée.
-                LstHospitalisationsRecherche = LstHospitalisation.FindAll((hospitalisation) => hospitalisation.DateFin.ToString("MM/dd/yyyy") == dateTimeFin.ToString("MM/dd/yyyy"));
+                LstHospitalisationsRecherche = LstHospitalisation.FindAll((hospitalisation) => hospitalisation.DateFin?.ToString("MM/dd/yyyy") == dateTimeFin.ToString("MM/dd/yyyy"));
                 // On vide le contenu de la liste dans le datacontext.
                 controlModelProfessionnelDossierPatient.Hospitalisations.Clear();
                 // Ajoute dans la liste les hospitalisations trouvées.

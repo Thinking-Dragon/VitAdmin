@@ -25,6 +25,7 @@ namespace VitAdmin.Control.DemandesTransfert
     public partial class ControlListeLits : UserControl
     {
         ControlModelListeLits ControlModelListeLits { get; set; }
+        public ControlListeDemandesTransfert ControlListeDemandesTransfert { get; set; }
         public ControlListeLits(List<Lit> lstLits)
         {
             InitializeComponent();
@@ -34,27 +35,32 @@ namespace VitAdmin.Control.DemandesTransfert
 
         private void dtgLstLit_Drop(object sender, DragEventArgs e)
         {
-            Lit LitSelectionne = (dtgLstLit.SelectedItem as Lit);
+            Lit litLibre = new Lit();
+            foreach(Lit lit in ControlModelListeLits.Lits)
+            {
+                if (lit.EtatLit == EtatLit.Libre)
+                {
+                    litLibre = lit;
+                }
+            }
 
-            
-
-            if (LitSelectionne.EstDisponible)
+            if (litLibre.Numero != null)
             {
                 // If the DataObject contains citoyen data, extract it.
                 if (e.Data.GetDataPresent(DataFormats.Serializable))
                 {
-                    Citoyen demandeTransfert = (Citoyen)e.Data.GetData(DataFormats.StringFormat);
+                    Citoyen demandeTransfert = (Citoyen)e.Data.GetData(DataFormats.Serializable);
 
-                    LitSelectionne.Citoyen = demandeTransfert;
-                    DataModelLit.PutLitCitoyen(LitSelectionne, demandeTransfert);
-                   
+                    litLibre.Citoyen = demandeTransfert;
+                    ControlModelListeLits.Lits.Remove(litLibre);
+                    ControlModelListeLits.Lits.Add(litLibre);
+                    DataModelLit.PutNouveauLitCitoyen(litLibre, demandeTransfert);
+                    (ControlListeDemandesTransfert.DataContext as ControlModelListeDemandesTransfert).Citoyens = (ControlListeDemandesTransfert.DataContext as ControlModelListeDemandesTransfert).Citoyens;
+
+
                 }
             }
         }
 
-        private void dtgLstLit_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //dtgLstLit.SelectedItem = ControlModelListeLits.
-        }
     }
 }

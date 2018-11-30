@@ -31,8 +31,8 @@ namespace VitAdmin.Data
                         lstHospitalisation.Add(new Hospitalisation
                         {
                             DateDebut = (DateTime)SqlDR.GetMySqlDateTime("dDebut"),
-                            DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin")
-                            
+                            //DateFin = SqlDR.IsDBNull(SqlDR.GetOrdinal("dFin")) ? new DateTime() : (DateTime)SqlDR.GetMySqlDateTime("dFin")
+                            DateFin = (DateTime)SqlDR.GetMySqlDateTime("dFin")
                         });
 
                     }
@@ -204,7 +204,7 @@ namespace VitAdmin.Data
                 ConnexionBD.Instance().ExecuterRequete(
                     "UPDATE hospitalisations h " +
                     "SET h.dateFin = '" + DateTime.Now + "' " +
-                    "WHERE (h.dateFin = '0001-01-01 00:00:00' OR h.dateFin IS NULL) " +
+                    "WHERE (h.dateFin = '0000-00-00 00:00:00' OR h.dateFin IS NULL) " +
                     "AND h.idCitoyen = (SELECT idCitoyen FROM citoyens c WHERE c.numAssuranceMaladie = '" + citoyen.AssMaladie + "') "
                     );
             }

@@ -19,6 +19,7 @@
 
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray" Content="Gestion du lit"/>
-        
+        <Label VerticalAlignment="Bottom" Grid.Row="0" Grid.ColumnSpan ="2"  Content="Pour tester, il faut créer une nouvelle hospitalisation avant. Ensuite, connectez-vous en admin pour créer un nouveau lit dans le même département que l'hospitalisation créée. Retourner ici pour faire ensuite le transfert!"/>
+
     </Grid>
 </Page>

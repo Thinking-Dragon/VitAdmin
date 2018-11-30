@@ -17,13 +17,14 @@ using VitAdmin.Model;
 using VitAdmin.ViewModel;
 using VitAdmin.Data;
 using VitAdmin.Parameter;
+using VitAdmin.View.Tool;
 
 namespace VitAdmin.View
 {
     /// <summary>
     /// Logique d'interaction pour ViewDemandesTransfert.xaml
     /// </summary>
-    public partial class ViewDemandesTransfert : Page
+    public partial class ViewDemandesTransfert : Page, IEcranRetour
     {
         ViewModelDemandesTransfert ViewModelDemandesTransfert { get; set; }
         GestionnaireEcrans GestionnaireEcrans { get; set; }
@@ -47,6 +48,7 @@ namespace VitAdmin.View
 
             ControlListeLits controlListeLits = new ControlListeLits(LstLitsDepartement);
             ControlListeDemandesTransfert controlListeDemandesTransfert = new ControlListeDemandesTransfert(lstCitoyenDemandeTransfert, controlListeLits);
+            controlListeLits.ControlListeDemandesTransfert = controlListeDemandesTransfert;
 
             Grid.SetRow(controlListeLits, 1);
             Grid.SetRow(controlListeDemandesTransfert, 1);
@@ -54,6 +56,18 @@ namespace VitAdmin.View
 
             grdGestionLit.Children.Add(controlListeLits);
             grdGestionLit.Children.Add(controlListeDemandesTransfert);
+        }
+
+        // CmdRetourEcranPrecedent, qui retourne une fonction qui s'exécutera lorsque l'utilisateur cliquera sur le bouton de retour.
+        public Action CmdRetourEcranPrecedent
+        {
+            get { return () => { GestionnaireEcrans.Changer(new ViewProfessionnelHub(GestionnaireEcrans, UsagerConnecte.Usager)); }; }
+        }
+
+        // TexteBoutonRetourEcran, qui retourne une chaine de caractères, qui s'affichera sur le bouton.
+        public string TexteBoutonRetourEcran
+        {
+            get { return "< Retour"; }
         }
     }
 }

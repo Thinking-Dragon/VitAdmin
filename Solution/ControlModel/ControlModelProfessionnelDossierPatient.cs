@@ -35,8 +35,8 @@ namespace VitAdmin.ControlModel
         public ControlModelProfessionnelDossierPatient(GestionnaireEcrans gestEcrans, ObservableCollection<Hospitalisation> hospitalisations, Citoyen patient)
         {
             Hospitalisations = hospitalisations;
-            // TODO : C'est ici qui indique à la datagrid quel département est associé une hospitalisation!! Bug affichage du département tout le temps en chirurgie.
-            //DepartementAssocie = hospitalisations[0].LstTraitements[0].DepartementAssocie;
+            //Hospitalisations.OrderBy(hospitalisation => hospitalisation.DateDebut);
+            Hospitalisations = new ObservableCollection<Hospitalisation>(Hospitalisations.OrderByDescending(hosp => hosp.DateDebut));
             GestEcrans = gestEcrans;
             Patient = patient;
         }

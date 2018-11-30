@@ -32,4 +32,22 @@ Usagers pour tester
    Un professionnel
 	Nom : "Bas"
 	Mot de passe : ""
+
+   et 
+	Pour tester la gestion des lits 
+   Infirmières-chef (Oncologie)
+	Nom: "GentilF"
+	Mot de passe : ""
+   Infirmières-chef (Psychologie)
+	Nom: "PlanteR"
+	Mot de passe : ""
+   Infirmières-chef (Chirurgie)
+	Nom: "PlanteM"
+	Mot de passe : ""
+   Infirmières-chef (Radiologie)
+	Nom: "RocherP"
+	Mot de passe : ""
+   Infirmières-chef (Pédiatrie)
+	Nom: "DesmaraisF"
+	Mot de passe : ""
 	

@@ -22,12 +22,11 @@
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray">Liste des hospitalisations</Label>
 
         <DataGrid Name="dtgDossierPatient" Grid.Row="1" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
-            
-           <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Binding="{Binding DataContext.DepartementAssocie.Nom, 
-                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" Header="Département"/>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Binding="{Binding LstTraitements[0].DepartementAssocie.Nom}" Header="Département"/>
                 <DataGridTextColumn Width="*" Binding="{Binding DateDebut, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date début"/>
-                <DataGridTextColumn Width="*" Binding="{Binding DateFin, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date fin" SortDirection="Ascending"/>
+                <DataGridTextColumn Width="*" Binding="{Binding DateFin, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="Date fin"/>
             </DataGrid.Columns>
             
             <DataGrid.InputBindings>
