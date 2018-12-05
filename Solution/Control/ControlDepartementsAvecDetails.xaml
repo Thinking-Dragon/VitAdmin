@@ -105,6 +105,7 @@
                 <DataGrid Grid.Row="3"
                           Margin="16"
                           ItemsSource="{Binding Chambres}"
+                          SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChambreSelectionnee}"
                           AutoGenerateColumns="False"
                           IsReadOnly="True">
                     <DataGrid.Columns>
@@ -114,6 +115,13 @@
                                             Binding="{Binding Lits.Count}"/>
                         <DataGridTextColumn Header="Équipements" Width="*"
                                             Binding="{Binding EquipementsString}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="btnModifierChambre_Click">Modifier</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -14,6 +14,9 @@ using VitAdmin.View;
 
 namespace VitAdmin.ControlModel
 {
+    /// <summary>
+    /// View model du control DépartementsAvecDétails
+    /// </summary>
     public class ControlModelDepartementsAvecDetails : ObjetObservable
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
@@ -34,6 +37,13 @@ namespace VitAdmin.ControlModel
         public bool IsDepartementSelectionneNull
         {
             get { return DepartementSelectionne == null; }
+        }
+
+        private Chambre _chambreSelectionnee;
+        public Chambre ChambreSelectionnee
+        {
+            get => _chambreSelectionnee;
+            set { _chambreSelectionnee = value; RaisePropertyChangedEvent("ChambreSelectionnee"); }
         }
 
         public ICommand CmdModifierDepartement
@@ -87,6 +97,19 @@ namespace VitAdmin.ControlModel
                 });
             }
         }
+
+        public ICommand CmdModifierLocal => new CommandeDeleguee(param =>
+        {
+            DialogHost.Show(new ControlEditionChambre(
+                GestionnaireEcrans, chambre =>
+                {
+                    ChambreSelectionnee.Numero = chambre.Numero;
+                    ChambreSelectionnee.Lits = chambre.Lits;
+                    ChambreSelectionnee.Equipements = chambre.Equipements;
+                    DepartementSelectionne.Chambres = new ObservableCollection<Chambre>(DepartementSelectionne.Chambres);
+                }, ChambreSelectionnee
+            ), "dialogGeneral:modal=false");
+        });
 
         private void SupprimerDepartementSelectionne()
         {

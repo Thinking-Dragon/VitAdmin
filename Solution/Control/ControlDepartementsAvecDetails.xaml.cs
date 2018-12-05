@@ -18,6 +18,10 @@ namespace VitAdmin.Control
 {
     /// <summary>
     /// Logique d'interaction pour ControlDepartementsAvecDetails.xaml
+    /// Auteur: Clément Gassmann-Prince
+    /// ---
+    /// Affiche la liste des départements et permet de les modifier, d'en ajouter et d'en supprimer.
+    /// ---
     /// </summary>
     public partial class ControlDepartementsAvecDetails : UserControl
     {
@@ -34,5 +38,8 @@ namespace VitAdmin.Control
             else
                 btnModifierDepartement.IsEnabled = false;
         }
+
+        private void btnModifierChambre_Click(object sender, RoutedEventArgs e)
+            => (DataContext as ControlModelDepartementsAvecDetails).CmdModifierLocal.Execute(null);
     }
 }
