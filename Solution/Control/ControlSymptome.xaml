@@ -17,8 +17,9 @@
         </Grid.RowDefinitions>
 
         <Label Content="Symptômes"
-               FontSize="40"/>
-        
+               FontSize="20"
+               VerticalAlignment="Bottom"/>
+
         <DataGrid Name="dtgSymptome"
           ItemsSource="{Binding Symptomes}"
           AutoGenerateColumns="False"
@@ -29,25 +30,19 @@
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding Description}"
                                                            Header="Description"
                                                            IsReadOnly="False"
+                                                           Width="*"
                                                            />
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="BtnSupprimer" Click="BtnSupprimer_Click">Supprimer</Button>
-                           
+                            <Button Name="BtnSupprimer" Width="125" Click="BtnSupprimer_Click">Supprimer</Button>
+
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
 
         </DataGrid>
-
-        <Button Name="btnAjouterSymptome" 
-                Grid.Row="2" 
-                Width="40"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Command="{Binding CmdAjoutSymptome}"> + </Button>
 
         <Button Grid.Row="3"
                 Width="130"

@@ -51,7 +51,7 @@ namespace VitAdmin.Control
 
             controlBarreRechercheTraitement.HorizontalAlignment = HorizontalAlignment.Left;
             controlBarreRechercheTraitement.VerticalAlignment = VerticalAlignment.Center;
-            controlBarreRechercheTraitement.Width = 120;
+            controlBarreRechercheTraitement.Width = 150;
 
             Grid.SetRow(controlBarreRechercheTraitement, 1);
 

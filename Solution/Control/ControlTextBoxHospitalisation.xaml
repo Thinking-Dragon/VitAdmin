@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
 
         <Label Content="{Binding NomLabel}"
-               FontSize="40"
+               FontSize="20"
                FontWeight="DemiBold"
-               VerticalAlignment="Top"
+               VerticalAlignment="Bottom"
                HorizontalAlignment="Left"/>
         
         <Border Grid.Row="1"

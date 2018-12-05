@@ -32,7 +32,7 @@ namespace VitAdmin.ViewModel
 
             ControlAjouterPatientLit UCPatientLits = new ControlAjouterPatientLit(GestionnaireEcrans, Citoyen, Lit, Hospitalisation);
 
-            LstUserControl.Add(new ControlTextBoxHospitalisation("Contexte", Hospitalisation));
+            LstUserControl.Add(new ControlTextBoxHospitalisation("Contexte:", Hospitalisation));
             LstUserControl.Add(new ControlSymptome(Hospitalisation));
             LstUserControl.Add(new ControlTraitementCreationHospitalisation(Hospitalisation.LstTraitements = new List<Traitement>(), UCPatientLits.CallRequeteLits));
             LstUserControl.Add(UCPatientLits);

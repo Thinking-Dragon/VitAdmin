@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
 
         <Label Content="Sélectionner un lit"
-               FontSize="40"/>
+               FontSize="20"
+               VerticalAlignment="Bottom"/>
         <DataGrid Name="dtgSelectionLit"
             ItemsSource="{Binding Lits}"
           AutoGenerateColumns="False"
@@ -23,10 +24,10 @@
                   IsReadOnly="True"
                  Grid.Row="1" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Chambre.UnDepartement.Nom}" Header="Département"/>
-                <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="N°Chambre"/>
-                <DataGridTextColumn Binding="{Binding Numero}" Header="N°Lit"/>
-                <DataGridTextColumn Binding="{Binding EtatLit}" Header="N°Lit"/>
+                <DataGridTextColumn Binding="{Binding Chambre.UnDepartement.Nom}" Header="Département" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Chambre.Numero}" Header="N°Chambre" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Numero}" Header="N°Lit" Width="*"/>
+                <DataGridTextColumn Binding="{Binding EtatLit}" Header="État" Width="*"/>
             </DataGrid.Columns>
         
         </DataGrid>

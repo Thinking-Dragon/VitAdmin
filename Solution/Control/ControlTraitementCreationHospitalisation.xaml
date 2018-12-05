@@ -17,7 +17,8 @@
         </Grid.RowDefinitions>
 
         <Label Content="Traitements"
-               FontSize="40"/>
+               FontSize="20"
+               VerticalAlignment="Bottom"/>
         
         <DataGrid Grid.Row="2"
                   Name="dtgTraitements"
@@ -30,7 +31,7 @@
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="BtnSupprimer" Click="BtnSupprimer_Click">Supprimer</Button>
+                            <Button Name="BtnSupprimer" Width="125" Click="BtnSupprimer_Click">Supprimer</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -56,7 +57,7 @@
                 Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}">
             Précédent
         </Button>
-        <Label Content="+ Enter" HorizontalAlignment="Left" Margin="119,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="+ Enter" HorizontalAlignment="Left" Margin="147,39,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Traitements disponibles" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

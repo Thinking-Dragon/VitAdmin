@@ -17,7 +17,8 @@
         </Grid.RowDefinitions>
 
         <Label Content="Création d'une hospitalisation"
-               FontSize="15"/>
+               FontWeight="DemiBold"
+               FontSize="28"/>
         <materialDesign:Transitioner Name="transitionnerUC" Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding LstUserControl}">
         </materialDesign:Transitioner>
 
