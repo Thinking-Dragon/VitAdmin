@@ -14,6 +14,23 @@ namespace VitAdmin.ControlModel
     {
         public NoteMedecin NoteMed { get; set; }
         public NoteInfirmiere NoteInf { get; set; }
+
+        //contenuBtn
+        private string contenuBtnPrivate = "Confirmer";
+        public String contenuBtn
+        {
+            get
+            {
+                return contenuBtnPrivate;
+            }
+            set
+            {
+                contenuBtnPrivate = value;
+                RaisePropertyChangedEvent("contenuBtn");
+            }
+        }
+
+
         private string MessagePrivate = "";
         public String MessageErreur
         {

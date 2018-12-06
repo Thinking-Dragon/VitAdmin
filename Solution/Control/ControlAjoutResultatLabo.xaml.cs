@@ -55,6 +55,7 @@ namespace VitAdmin.Control
                     {
                         (DataContext as ControlModelAjoutResultatLabo).MessageErreur = "Voulez-vous vraiment confirmer?";
                         EstDeuxiemeClick = true;
+                        (DataContext as ControlModelAjoutResultatLabo).contenuBtn = "Oui";
                     }
                 };
 

@@ -58,6 +58,8 @@ namespace VitAdmin.Control
                         {
                             (DataContext as ControlModelAjoutPrescription).MessageErreur = "Voulez-vous vraiment confirmer?";
                             EstDeuxiemeClick = true;
+                            (DataContext as ControlModelAjoutPrescription).contenuBtn = "Oui";
+
                         }
                     }
                     else

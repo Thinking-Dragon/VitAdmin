@@ -40,11 +40,8 @@ namespace VitAdmin.View
         {
             get
             {
-                ControlEnregistrerHoraire test = new ControlEnregistrerHoraire((Content as ControlGestionHoraire).GrdHoraire , Employe, () => { });
+                ControlEnregistrerHoraire test = new ControlEnregistrerHoraire((Content as ControlGestionHoraire).GrdHoraire , Employe, () => { ControlGestionHoraire.aujourdhui = DateTime.Now;  });
                 DialogHost.Show(test, "dialogGeneral:modal=false");
-                
-                DialogHost.CloseDialogCommand.Execute(null, null);
-                ControlGestionHoraire.aujourdhui = DateTime.Now;
 
                 return () => { GestEcrans.Changer(new ViewListeEmployes(GestEcrans)); };
             }

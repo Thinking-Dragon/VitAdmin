@@ -27,6 +27,20 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        private string contenuBtnPrivate = "Confirmer";
+        public String contenuBtn
+        {
+            get
+            {
+                return contenuBtnPrivate;
+            }
+            set
+            {
+                contenuBtnPrivate = value;
+                RaisePropertyChangedEvent("contenuBtn");
+            }
+        }
+
         public Hospitalisation Hospit { get; set; }
 
         public ControlModelAjoutPrescription(Hospitalisation hospit)
