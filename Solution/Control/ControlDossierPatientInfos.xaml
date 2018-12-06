@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VitAdmin.Control"
-             mc:Ignorable="d" Height="474.477" Width="651.255">
+             mc:Ignorable="d">
     <Grid Name="grdInfosPatient">
         <Grid.RowDefinitions>
                 <RowDefinition />
