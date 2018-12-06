@@ -8,7 +8,6 @@ namespace VitAdmin.Model
 {
     public enum EtatLit
     {
-        Aucune,
         Libre,
         Occupé,
         Nettoyage,

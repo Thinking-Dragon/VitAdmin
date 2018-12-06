@@ -30,7 +30,52 @@ namespace VitAdmin.ControlModel
             set
             {
                 departementSelectionne = value;
-                RaisePropertyChangedEvent("DepartementSelectionne");
+                RaisePropertyChangedEvent(nameof(DepartementSelectionne));
+                RaisePropertyChangedEvent(nameof(IsDepartementSelected));
+                NomDepartement = DepartementSelectionne.Nom;
+                AbreviationDepartement = DepartementSelectionne.Abreviation;
+                //InfirmieresChef = DepartementSelectionne.PersonnelMedicalEnChef;
+            }
+        }
+
+        public string NomDepartement
+        {
+            get => DepartementSelectionne.Nom;
+            set
+            {
+                DepartementSelectionne.Nom = value;
+                RaisePropertyChangedEvent(nameof(DepartementSelectionne));
+                // Persist
+            }
+        }
+
+        public string AbreviationDepartement
+        {
+            get => DepartementSelectionne.Nom;
+            set
+            {
+                DepartementSelectionne.Abreviation = value;
+                RaisePropertyChangedEvent(nameof(AbreviationDepartement));
+                // Persist
+            }
+        }
+
+        private ObservableCollection<Employe> _infirmieresChef;
+
+        public ObservableCollection<Employe> InfirmieresChef
+        {
+            get => _infirmieresChef;
+            set { _infirmieresChef = value; RaisePropertyChangedEvent("InfirmieresChef"); }
+        }
+        
+        public Employe PersonnelMedicalEnChef
+        {
+            get => DepartementSelectionne.PersonnelMedicalEnChef;
+            set
+            {
+                DepartementSelectionne.PersonnelMedicalEnChef = value;
+                RaisePropertyChangedEvent(nameof(PersonnelMedicalEnChef));
+                // Persist
             }
         }
 
@@ -38,6 +83,8 @@ namespace VitAdmin.ControlModel
         {
             get { return DepartementSelectionne == null; }
         }
+
+        public bool IsDepartementSelected => DepartementSelectionne != null;
 
         private Chambre _chambreSelectionnee;
         public Chambre ChambreSelectionnee
@@ -98,6 +145,15 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        public ICommand CmdCreerLocal => new CommandeDeleguee(param =>
+        {
+            DialogHost.Show(new ControlEditionChambre(GestionnaireEcrans, chambre =>
+            {
+                DepartementSelectionne.Chambres.Add(chambre);
+                DataModelDepartement.PutDepartement(DepartementSelectionne);
+            }), "dialogGeneral:modal=false");
+        });
+
         public ICommand CmdModifierLocal => new CommandeDeleguee(param =>
         {
             DialogHost.Show(new ControlEditionChambre(
@@ -107,8 +163,20 @@ namespace VitAdmin.ControlModel
                     ChambreSelectionnee.Lits = chambre.Lits;
                     ChambreSelectionnee.Equipements = chambre.Equipements;
                     DepartementSelectionne.Chambres = new ObservableCollection<Chambre>(DepartementSelectionne.Chambres);
+                    DataModelDepartement.PutDepartement(DepartementSelectionne);
                 }, ChambreSelectionnee
             ), "dialogGeneral:modal=false");
+        });
+
+        public ICommand CmdSupprimerLocal => new CommandeDeleguee(param =>
+        {
+            if (!(ChambreSelectionnee.Lits.ToList().Exists(lit => !lit.EstDisponible)))
+            {
+                DepartementSelectionne.Chambres.Remove(ChambreSelectionnee);
+                DataModelDepartement.PutDepartement(DepartementSelectionne);
+            }
+            else
+                GestionnaireEcrans.AfficherMessage("Cette chambre contient au moins un lit occupé, vous ne pouvez pas la supprimer!");
         });
 
         private void SupprimerDepartementSelectionne()
@@ -123,6 +191,21 @@ namespace VitAdmin.ControlModel
         {
             GestionnaireEcrans = gestionnaireEcrans;
             Departements = new ObservableCollection<Departement>(DataModelDepartement.GetDepartements());
+
+            if (Departements.Count > 0)
+                DepartementSelectionne = Departements[0];
+
+            InfirmieresChef = new ObservableCollection<Employe>(DataModelUsager.GetInfirmieresChef());
+            InfirmieresChef.Add(new Usager { Nom = "S/O" });
+
+            if (DepartementSelectionne != null && DepartementSelectionne.PersonnelMedicalEnChef != null)
+            {
+                for (int i = 0; i < InfirmieresChef.Count; i++)
+                    if (InfirmieresChef[i].NumEmploye == DepartementSelectionne.PersonnelMedicalEnChef.NumEmploye)
+                        PersonnelMedicalEnChef = InfirmieresChef[i];
+            }
+            else
+                PersonnelMedicalEnChef = InfirmieresChef[InfirmieresChef.Count - 1];
         }
     }
 }
