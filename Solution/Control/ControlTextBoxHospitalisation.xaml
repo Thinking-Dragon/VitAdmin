@@ -25,6 +25,7 @@
                 Background="LightGray" BorderBrush="GhostWhite" BorderThickness="2" Margin="105,10,105,10">
 
             <TextBox Grid.Row="1"
+                     Name="txtContext"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
                      AcceptsTab="True"

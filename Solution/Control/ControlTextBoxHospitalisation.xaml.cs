@@ -23,11 +23,25 @@ namespace VitAdmin.Control
     /// </summary>
     public partial class ControlTextBoxHospitalisation : UserControl
     {
+        public placeHolder placeHolder { get; set; }
+
         public ControlTextBoxHospitalisation(string nomLabel, Hospitalisation hospitalisation)
         {
             InitializeComponent();
-            DataContext = new ControlModelTextBoxHospitalisation(nomLabel, hospitalisation);
+
             
+            DataContext = new ControlModelTextBoxHospitalisation(nomLabel, hospitalisation);
+            placeHolder = new placeHolder((DataContext as ControlModelTextBoxHospitalisation).Hospitalisation.Contexte, "Ajouter le contexte ici");
+            Loaded += Focus_OnLoaded;
+
+            txtContext.GotFocus += placeHolder.EnleverTexte;
+            txtContext.LostFocus += placeHolder.AjouterTexte;
+            
+        }
+
+        private void Focus_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            txtContext.Focus();
         }
     }
 }
