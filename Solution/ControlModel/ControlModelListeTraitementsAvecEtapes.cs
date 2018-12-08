@@ -69,8 +69,8 @@ namespace VitAdmin.ControlModel
             param => {
                 // Pour afficher un contrôle dans une fenêtre contextuelle, vous pouvez appeler la fonction DialogHost.Show :
                 // Le premier paramètre est le contenu (je vous conseille de mettre une nouvelle instance d'un UserControl)
-                // et le deuxième paramètre est l'identifiant du dialog. Si vous voulez un dialog qui s'affiche par dessus tout l'interface,
-                // veuillez utiliser un dialog que j'ai créé dans le « super-écran », dont l'identifiant est "dialogGeneral".
+                // et le deuxième paramètre est l'identifiant du dialogue. Si vous voulez un dialogue qui s'affiche par dessus tout l'interface,
+                // veuillez utiliser un dialogue que j'ai créé dans le « super-écran », dont l'identifiant est "dialogGeneral".
 
                 // Exemple d'utilisation :
                 // DialogHost.Show(new Control(...), "dialogGeneral");

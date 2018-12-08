@@ -9,6 +9,11 @@ using VitAdmin.Model;
 
 namespace VitAdmin.Notifications
 {
+    /// <summary>
+    /// Gestionnaire des notifications.
+    /// Singleton auquel on peut s'inscrire (à la propriété «ANotifier») pour reçevoir les nouvelles notifications.
+    /// Auteur: Clément Gaßmann-Prince
+    /// </summary>
     public class GestionnaireNotifications
     {
         #region Constantes
@@ -38,7 +43,6 @@ namespace VitAdmin.Notifications
                     bool bEstPresente = false;
                         for (int j = 0; j < NotificationsDerniereActualisation.Count; j++)
                             if (args.Notifications[i].Message == NotificationsDerniereActualisation[j].Message &&
-                                //args.Notifications[i].LienVersFenetre == NotificationsDerniereActualisation[j].LienVersFenetre &&
                                 args.Notifications[i].TempsReception == NotificationsDerniereActualisation[j].TempsReception)
                                 bEstPresente = true;
                     if (!bEstPresente)

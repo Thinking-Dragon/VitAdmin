@@ -24,6 +24,14 @@
                                    Grid.RowSpan="2">
         </materialDesign:DialogHost>
 
+        <materialDesign:DialogHost Identifier="dialogGeneral:modal=false"
+                                   CloseOnClickAway="True"
+                                   Panel.ZIndex="97"
+                                   Grid.RowSpan="2">
+        </materialDesign:DialogHost>
+        
+                <!-- Le nom/Identifier devrait décrir la fonction de l'élément, pas l'auteur ! -->
+                <!--                                                                - Clément  -->
         <materialDesign:DialogHost Identifier="dialogLaurence" Panel.ZIndex="97" Grid.RowSpan="2">
             <!--Ici c'est du code que charles m'a trouvé-->
             <i:Interaction.Triggers>
@@ -34,12 +42,6 @@
                     <i:InvokeCommandAction Command="{x:Null}"></i:InvokeCommandAction>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-        </materialDesign:DialogHost>
-
-        <materialDesign:DialogHost Identifier="dialogGeneral:modal=false"
-                                   CloseOnClickAway="True"
-                                   Panel.ZIndex="97"
-                                   Grid.RowSpan="2">
         </materialDesign:DialogHost>
     </Grid>
 </Page>

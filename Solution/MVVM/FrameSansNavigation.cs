@@ -8,6 +8,10 @@ using System.Windows.Navigation;
 
 namespace VitAdmin.MVVM
 {
+    /// <summary>
+    /// Description: Frame sans l'interface de navigation par défaut de wpf.
+    /// Auteur: Clément Gaßmann-Prince
+    /// </summary>
     public class FrameSansNavigation : Frame
     {
         void FrameSansNavigation_Naviguee(object sender, NavigationEventArgs e)

@@ -21,7 +21,12 @@ namespace VitAdmin.ControlModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public ObservableCollection<Departement> Departements { get; set; }
+        private ObservableCollection<Departement> _departements { get; set; }
+        public ObservableCollection<Departement> Departements
+        {
+            get => _departements;
+            set { _departements = value; RaisePropertyChangedEvent(nameof(Departements)); }
+        }
 
         private Departement departementSelectionne;
         public Departement DepartementSelectionne
@@ -30,33 +35,56 @@ namespace VitAdmin.ControlModel
             set
             {
                 departementSelectionne = value;
+
+                if (DepartementSelectionne != null &&
+                    DepartementSelectionne.PersonnelMedicalEnChef != null)
+                {
+                    for (int i = 0; i < InfirmieresChef.Count; i++)
+                        if (InfirmieresChef[i].NumEmploye == DepartementSelectionne.PersonnelMedicalEnChef.NumEmploye)
+                            PersonnelMedicalEnChef = InfirmieresChef[i];
+                }
+                else
+                {
+                    for (int i = 0; i < InfirmieresChef.Count; i++)
+                        if (InfirmieresChef[i].Nom == "S/O")
+                            PersonnelMedicalEnChef = InfirmieresChef[i];
+                }
+
                 RaisePropertyChangedEvent(nameof(DepartementSelectionne));
                 RaisePropertyChangedEvent(nameof(IsDepartementSelected));
+                _dernierNomDepartement = DepartementSelectionne.Nom;
                 NomDepartement = DepartementSelectionne.Nom;
                 AbreviationDepartement = DepartementSelectionne.Abreviation;
-                //InfirmieresChef = DepartementSelectionne.PersonnelMedicalEnChef;
+                PersonnelMedicalEnChef = DepartementSelectionne.PersonnelMedicalEnChef;
             }
         }
 
+        private string _dernierNomDepartement = string.Empty;
         public string NomDepartement
         {
             get => DepartementSelectionne.Nom;
             set
             {
                 DepartementSelectionne.Nom = value;
+                RaisePropertyChangedEvent(nameof(NomDepartement));
                 RaisePropertyChangedEvent(nameof(DepartementSelectionne));
-                // Persist
+                DataModelDepartement.PutDepartement(DepartementSelectionne);
+
+                if(value != _dernierNomDepartement)
+                    Departements = new ObservableCollection<Departement>(Departements);
+                _dernierNomDepartement = value;
             }
         }
 
         public string AbreviationDepartement
         {
-            get => DepartementSelectionne.Nom;
+            get => DepartementSelectionne.Abreviation;
             set
             {
                 DepartementSelectionne.Abreviation = value;
                 RaisePropertyChangedEvent(nameof(AbreviationDepartement));
-                // Persist
+                RaisePropertyChangedEvent(nameof(DepartementSelectionne));
+                DataModelDepartement.PutDepartement(DepartementSelectionne);
             }
         }
 
@@ -67,15 +95,25 @@ namespace VitAdmin.ControlModel
             get => _infirmieresChef;
             set { _infirmieresChef = value; RaisePropertyChangedEvent("InfirmieresChef"); }
         }
-        
+
+        private Employe _personnelMedicalEnChef;
         public Employe PersonnelMedicalEnChef
         {
-            get => DepartementSelectionne.PersonnelMedicalEnChef;
+            get => _personnelMedicalEnChef;
             set
             {
-                DepartementSelectionne.PersonnelMedicalEnChef = value;
+                if(value == null)
+                {
+                    for (int i = 0; i < InfirmieresChef.Count; i++)
+                        if (InfirmieresChef[i].Nom == "S/O")
+                            _personnelMedicalEnChef = InfirmieresChef[i];
+                }
+                else _personnelMedicalEnChef = value;
+                if (value != null && value.Nom != "S/O") DepartementSelectionne.PersonnelMedicalEnChef = value;
+                else DepartementSelectionne.PersonnelMedicalEnChef = null;
                 RaisePropertyChangedEvent(nameof(PersonnelMedicalEnChef));
-                // Persist
+                RaisePropertyChangedEvent(nameof(DepartementSelectionne));
+                DataModelDepartement.PutDepartement(DepartementSelectionne);
             }
         }
 
@@ -192,20 +230,11 @@ namespace VitAdmin.ControlModel
             GestionnaireEcrans = gestionnaireEcrans;
             Departements = new ObservableCollection<Departement>(DataModelDepartement.GetDepartements());
 
-            if (Departements.Count > 0)
-                DepartementSelectionne = Departements[0];
-
             InfirmieresChef = new ObservableCollection<Employe>(DataModelUsager.GetInfirmieresChef());
             InfirmieresChef.Add(new Usager { Nom = "S/O" });
 
-            if (DepartementSelectionne != null && DepartementSelectionne.PersonnelMedicalEnChef != null)
-            {
-                for (int i = 0; i < InfirmieresChef.Count; i++)
-                    if (InfirmieresChef[i].NumEmploye == DepartementSelectionne.PersonnelMedicalEnChef.NumEmploye)
-                        PersonnelMedicalEnChef = InfirmieresChef[i];
-            }
-            else
-                PersonnelMedicalEnChef = InfirmieresChef[InfirmieresChef.Count - 1];
+            if (Departements.Count > 0)
+                DepartementSelectionne = Departements[0];
         }
     }
 }

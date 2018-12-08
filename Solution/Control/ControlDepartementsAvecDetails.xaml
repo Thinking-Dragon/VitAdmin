@@ -105,7 +105,7 @@
                 </Grid>
                 <DataGrid Grid.Row="3"
                           Margin="16"
-                          ItemsSource="{Binding Chambres}"
+                          ItemsSource="{Binding DepartementSelectionne.Chambres}"
                           SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ChambreSelectionnee}"
                           AutoGenerateColumns="False"
                           IsReadOnly="True">

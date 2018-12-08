@@ -7,6 +7,9 @@ using VitAdmin.Model;
 
 namespace VitAdmin.Notifications
 {
+    /// <summary>
+    /// Conteneur qui est passé en argument à l'évènement de mise à jour des notifications.
+    /// </summary>
     public class NotificationsEventArgs
     {
         public List<Notification> Notifications { get; set; }
@@ -14,5 +17,10 @@ namespace VitAdmin.Notifications
             => Notifications = notifications;
     }
 
+    /// <summary>
+    /// Manutenteur de l'évènement de mise à jour des notifications.
+    /// </summary>
+    /// <param name="sender">Appelant de l'évènement</param>
+    /// <param name="args">Arguments de l'évènement</param>
     public delegate void NotificationsEventHandler(object sender, NotificationsEventArgs args);
 }

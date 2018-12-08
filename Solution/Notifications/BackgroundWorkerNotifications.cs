@@ -10,6 +10,10 @@ using VitAdmin.Parameter;
 
 namespace VitAdmin.Notifications
 {
+    /// <summary>
+    /// Description: va chercher les notifications de l'usager connecté périodiquement.
+    /// Auteur: Clément Gaßmann-Prince
+    /// </summary>
     public class BackgroundWorkerNotifications
     {
         private DispatcherTimer Timer { get; set; }
@@ -19,6 +23,10 @@ namespace VitAdmin.Notifications
         private void ObtenirNotifications()
             => EventHandler?.Invoke(this, new NotificationsEventArgs(DataModelNotification.GetNotifications(UsagerConnecte.Usager)));
 
+        /// <summary>
+        /// Construit un backgroundworker de notifications.
+        /// </summary>
+        /// <param name="interval">fréquence de mise à jour</param>
         public BackgroundWorkerNotifications(uint interval)
         {
             Timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(interval) };
