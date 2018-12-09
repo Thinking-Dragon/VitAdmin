@@ -52,10 +52,15 @@ namespace VitAdmin.ControlModel
 
                 RaisePropertyChangedEvent(nameof(DepartementSelectionne));
                 RaisePropertyChangedEvent(nameof(IsDepartementSelected));
-                _dernierNomDepartement = DepartementSelectionne.Nom;
-                NomDepartement = DepartementSelectionne.Nom;
-                AbreviationDepartement = DepartementSelectionne.Abreviation;
-                PersonnelMedicalEnChef = DepartementSelectionne.PersonnelMedicalEnChef;
+                if (DepartementSelectionne != null)
+                {
+                    _dernierNomDepartement = DepartementSelectionne.Nom;
+                    NomDepartement = DepartementSelectionne.Nom;
+                    AbreviationDepartement = DepartementSelectionne.Abreviation;
+                    PersonnelMedicalEnChef = DepartementSelectionne.PersonnelMedicalEnChef;
+                }
+                else
+                    _dernierNomDepartement = string.Empty;
             }
         }
 
@@ -110,10 +115,11 @@ namespace VitAdmin.ControlModel
                 }
                 else _personnelMedicalEnChef = value;
                 if (value != null && value.Nom != "S/O") DepartementSelectionne.PersonnelMedicalEnChef = value;
-                else DepartementSelectionne.PersonnelMedicalEnChef = null;
+                else if (DepartementSelectionne != null) DepartementSelectionne.PersonnelMedicalEnChef = null;
                 RaisePropertyChangedEvent(nameof(PersonnelMedicalEnChef));
                 RaisePropertyChangedEvent(nameof(DepartementSelectionne));
-                DataModelDepartement.PutDepartement(DepartementSelectionne);
+                if(DepartementSelectionne != null)
+                    DataModelDepartement.PutDepartement(DepartementSelectionne);
             }
         }
 

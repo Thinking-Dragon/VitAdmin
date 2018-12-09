@@ -118,10 +118,10 @@ namespace VitAdmin
             grid.Children.Add(lblMessage);
 
             Grid.SetRow(buttonOui, 1);
-            Grid.SetColumn(buttonOui, 1);
             grid.Children.Add(buttonOui);
 
             Grid.SetRow(buttonNon, 1);
+            Grid.SetColumn(buttonNon, 1);
             grid.Children.Add(buttonNon);
 
             DialogHost.Show(grid, nomDialogue);

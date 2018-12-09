@@ -142,20 +142,23 @@ namespace VitAdmin.Data
                     }
                 );
                 
-                departement.PersonnelMedicalEnChef = (idEmployeChef >= 0 ? null : DataModelEmploye.GetEmploye(idEmployeChef));
-                if(expand.Contains("chambres"))
+                if(departement != null)
                 {
-                    StringBuilder expandPropagation = new StringBuilder();
-                    if (expand.Contains("lits"))
-                        expandPropagation.Append("lits ");
-                    if (expand.Contains("equipements"))
-                        expandPropagation.Append("equipements ");
-                    departement.Chambres = new ObservableCollection<Chambre>(
-                        DataModelChambre.GetChambres(
-                            departement._identifiant.ToString(),
-                            expandPropagation.ToString()
-                        )
-                    );
+                    departement.PersonnelMedicalEnChef = (idEmployeChef >= 0 ? null : DataModelEmploye.GetEmploye(idEmployeChef));
+                    if(expand.Contains("chambres"))
+                    {
+                        StringBuilder expandPropagation = new StringBuilder();
+                        if (expand.Contains("lits"))
+                            expandPropagation.Append("lits ");
+                        if (expand.Contains("equipements"))
+                            expandPropagation.Append("equipements ");
+                        departement.Chambres = new ObservableCollection<Chambre>(
+                            DataModelChambre.GetChambres(
+                                departement._identifiant.ToString(),
+                                expandPropagation.ToString()
+                            )
+                        );
+                    }
                 }
             }
             return departement;

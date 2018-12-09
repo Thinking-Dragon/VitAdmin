@@ -218,11 +218,11 @@ namespace VitAdmin.ViewModel
                     "Doit avoir au moins 1 caractère",
                     message => MessageErreurNom = message,
                     () => Usager.Nom.Length < 1
-                ),      // length > 20
+                ),      // length > 15
                 new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 15 caractères",
                     message => MessageErreurNom = message,
-                    () => Usager.Nom.Length > 20
+                    () => Usager.Nom.Length > 15
                 ),
             #endregion
             #region Prénom
@@ -236,11 +236,11 @@ namespace VitAdmin.ViewModel
                     "Doit avoir au moins 1 caractère",
                     message => MessageErreurPrenom = message,
                     () => Usager.Prenom.Length < 1
-                ),      // length > 20
+                ),      // length > 15
                 new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 15 caractères",
                     message => MessageErreurPrenom = message,
-                    () => Usager.Prenom.Length > 20
+                    () => Usager.Prenom.Length > 15
                 ),
             #endregion
             #region Assurance maladie
@@ -280,17 +280,12 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurTelephone = message,
-                    () => Usager.NumTelephone.Length >= 1 && Usager.NumTelephone.Length <= 20, true
-                ),      // length < 1
+                    () => Usager.NumTelephone.Length == 10, true
+                ),      // length != 10
                 new Validateur.Regle(
-                    "Doit avoir au moins 1 caractère",
+                    "Format invalid",
                     message => MessageErreurTelephone = message,
-                    () => Usager.NumTelephone.Length < 1
-                ),      // length > 20
-                new Validateur.Regle(
-                    "Doit avoir au plus 10 caractères",
-                    message => MessageErreurTelephone = message,
-                    () => Usager.NumTelephone.Length > 10
+                    () => Usager.NumTelephone.Length != 10
                 ),
             #endregion
             #region Adresse
@@ -322,11 +317,11 @@ namespace VitAdmin.ViewModel
                     "Doit avoir au moins 1 caractère",
                     message => MessageErreurNoEmploye = message,
                     () => Usager.NumEmploye.Length < 1
-                ),      // length > 20
+                ),      // length > 25
                 new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 25 caractères",
                     message => MessageErreurNoEmploye = message,
-                    () => Usager.NumEmploye.Length > 20
+                    () => Usager.NumEmploye.Length > 25
                 ),
             #endregion
             #region Poste
@@ -353,11 +348,11 @@ namespace VitAdmin.ViewModel
                     "Doit avoir au moins 1 caractère",
                     message => MessageErreurNoPermis = message,
                     () => Usager.NumPermis.Length < 1
-                ),      // length > 20
+                ),      // length > 25
                 new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 25 caractères",
                     message => MessageErreurNoPermis = message,
-                    () => Usager.NumPermis.Length > 20
+                    () => Usager.NumPermis.Length > 25
                 ),
             #endregion
             #region NAS
@@ -365,17 +360,12 @@ namespace VitAdmin.ViewModel
                 new Validateur.Regle(
                     string.Empty,
                     message => MessageErreurNAS = message,
-                    () => Usager.NAS.Length >= 1 && Usager.NAS.Length <= 20, true
-                ),      // length < 1
+                    () => Usager.NAS.Length == 9, true
+                ),      // length != 9
                 new Validateur.Regle(
-                    "Doit avoir au moins 1 caractère",
+                    "Format invalid",
                     message => MessageErreurNAS = message,
-                    () => Usager.NAS.Length < 1
-                ),      // length > 20
-                new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
-                    message => MessageErreurNAS = message,
-                    () => Usager.NAS.Length > 20
+                    () => Usager.NAS.Length != 9
                 ),
             #endregion
             #region Nom d'usager
@@ -389,11 +379,11 @@ namespace VitAdmin.ViewModel
                     "Doit avoir au moins 1 caractère",
                     message => MessageErreurNomUsager = message,
                     () => Usager.NomUtilisateur.Length < 1
-                ),      // length > 20
+                ),      // length > 25
                 new Validateur.Regle(
-                    "Doit avoir au plus 20 caractères",
+                    "Doit avoir au plus 25 caractères",
                     message => MessageErreurNomUsager = message,
-                    () => Usager.NomUtilisateur.Length > 20
+                    () => Usager.NomUtilisateur.Length > 25
                 ),
             #endregion
             #region Mot de passe

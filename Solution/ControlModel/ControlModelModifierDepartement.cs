@@ -55,14 +55,19 @@ namespace VitAdmin.ControlModel
 
         public ICommand CmdValider => new CommandeDeleguee(param =>
         {
-            Departement.PersonnelMedicalEnChef = (PersonnelMedicalEnChef.Nom == "S/O" ? null : PersonnelMedicalEnChef);
-
-            if(ModeCreation)
-                DataModelDepartement.PostDepartement(Departement);
+            if (Departement.Nom == string.Empty || Departement.Abreviation == string.Empty)
+                GestionnaireEcrans.AfficherMessage("Le nom et l'abréviation sont obligatoires");
             else
-                DataModelDepartement.PutDepartement(Departement);
+            {
+                Departement.PersonnelMedicalEnChef = (PersonnelMedicalEnChef.Nom == "S/O" ? null : PersonnelMedicalEnChef);
 
-            GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
+                if(ModeCreation)
+                    DataModelDepartement.PostDepartement(Departement);
+                else
+                    DataModelDepartement.PutDepartement(Departement);
+
+                GestionnaireEcrans.Changer(new ViewAdminModificationStructure(GestionnaireEcrans));
+            }
         });
 
         public ICommand CmdCreerLocal => new CommandeDeleguee(param =>
@@ -107,6 +112,8 @@ namespace VitAdmin.ControlModel
             {
                 Departement = new Departement
                 {
+                    Nom = string.Empty,
+                    Abreviation = string.Empty,
                     Chambres = new ObservableCollection<Chambre>()
                 };
                 TxtBoutonConfirmer = "Créer le département";

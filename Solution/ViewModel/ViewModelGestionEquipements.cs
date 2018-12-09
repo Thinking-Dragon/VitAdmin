@@ -47,7 +47,7 @@ namespace VitAdmin.ViewModel
                 }
                 else
                     GestionnaireEcrans.AfficherMessage("Un équipement avec ce nom existe déjà.");
-            })), "dialogGeneral");
+            })), "dialogGeneral:modal=false");
         });
 
         public ICommand CmdModifierEquipement => new CommandeDeleguee(param =>
@@ -68,7 +68,7 @@ namespace VitAdmin.ViewModel
                 }
                 else
                     GestionnaireEcrans.AfficherMessage("Un équipement avec ce nom existe déjà.");
-            }), EquipementSelectionne), "dialogGeneral");
+            }), EquipementSelectionne), "dialogGeneral:modal=false");
         });
 
         public ICommand CmdSupprimerEquipement => new CommandeDeleguee(param =>
