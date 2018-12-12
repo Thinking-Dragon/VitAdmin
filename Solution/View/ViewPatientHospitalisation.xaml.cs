@@ -23,7 +23,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Interaction logic for ViewPatientHospitalisation.xaml
     /// </summary>
-    public partial class ViewPatientHospitalisation : Page, IEcranRetour
+    public partial class ViewPatientHospitalisation : Page, IEcranRetour, IEcranAAideContextuelle
     {
         public GestionnaireEcrans GestEcrans { get; set; }
         public Citoyen Patient { get; set; }
@@ -48,5 +48,7 @@ namespace VitAdmin.View
         {
             get { return "< Hospitalisations"; }
         }
+
+        public string AncreSectionAideContextuelle => "MIdossierPatient";
     }
 }

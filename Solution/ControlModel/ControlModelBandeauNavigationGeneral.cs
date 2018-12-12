@@ -30,6 +30,13 @@ namespace VitAdmin.ControlModel
             }
         }
 
+        private string _texteBoutonAideContextuelle = string.Empty;
+        public string AncreAideContextuelle
+        {
+            get => _textBoutonRetourEcran;
+            set { _textBoutonRetourEcran = value; RaisePropertyChangedEvent(nameof(AncreAideContextuelle)); }
+        }
+
         public string _nbNotificationsNonLues = string.Empty;
         public string NbNotificationsNonLues
         {
@@ -54,6 +61,9 @@ namespace VitAdmin.ControlModel
                 );
             }
         }
+
+        public ICommand CmdAideContextuelle =>
+            new CommandeDeleguee(param => System.Diagnostics.Process.Start($"http://420.cstj.qc.ca/vitadmin/GuideUtilisateur#{AncreAideContextuelle}"));
 
         public ICommand CmdProfil
         {

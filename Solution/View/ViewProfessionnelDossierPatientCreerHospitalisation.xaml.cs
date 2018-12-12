@@ -23,7 +23,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewProfessionnelDossierPatientCreerHospitalisation.xaml
     /// </summary>
-    public partial class ViewProfessionnelDossierPatientCreerHospitalisation : Page, IEcranRetour
+    public partial class ViewProfessionnelDossierPatientCreerHospitalisation : Page, IEcranRetour, IEcranAAideContextuelle
     {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
         ViewModelProfessionnelDossierPatientCreerHospitalisation ViewModelProfessionnelDossierPatient { get; set; }
@@ -52,6 +52,6 @@ namespace VitAdmin.View
             get { return "< Annuler"; }
         }
 
-
+        public string AncreSectionAideContextuelle => "MIhospitalisationCreer";
     }
 }

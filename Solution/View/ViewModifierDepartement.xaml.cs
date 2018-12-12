@@ -21,7 +21,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewModifierDepartement.xaml
     /// </summary>
-    public partial class ViewModifierDepartement : Page, IEcranRetour
+    public partial class ViewModifierDepartement : Page, IEcranRetour, IEcranAAideContextuelle
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
@@ -41,5 +41,7 @@ namespace VitAdmin.View
         {
             get { return "< Départements"; }
         }
+
+        public string AncreSectionAideContextuelle => "MAdepartementsCreer";
     }
 }

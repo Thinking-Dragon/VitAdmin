@@ -22,7 +22,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewAdminModificationStructure.xaml
     /// </summary>
-    public partial class ViewAdminModificationStructure : Page, IEcranRetour
+    public partial class ViewAdminModificationStructure : Page, IEcranRetour, IEcranAAideContextuelle
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
@@ -43,5 +43,7 @@ namespace VitAdmin.View
         {
             get { return "< Accueil"; }
         }
+
+        public string AncreSectionAideContextuelle => "MAdepartements";
     }
 }

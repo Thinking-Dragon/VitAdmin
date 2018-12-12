@@ -22,9 +22,11 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewHubAdmin.xaml
     /// </summary>
-    public partial class ViewHubAdmin : Page
+    public partial class ViewHubAdmin : Page, IEcranAAideContextuelle
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
+
+        public string AncreSectionAideContextuelle => "Madministration";
 
         public ViewHubAdmin(GestionnaireEcrans gestionnaireEcrans)
         {

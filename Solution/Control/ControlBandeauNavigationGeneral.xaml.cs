@@ -35,6 +35,13 @@ namespace VitAdmin.Control
                     btnRetourEcran.Visibility = Visibility.Visible;
                 }
                 else btnRetourEcran.Visibility = Visibility.Hidden;
+
+                if (prochainEcran is IEcranAAideContextuelle)
+                {
+                    (DataContext as ControlModelBandeauNavigationGeneral).AncreAideContextuelle = (prochainEcran as IEcranAAideContextuelle).AncreSectionAideContextuelle;
+                    btnAideContextuelle.Visibility = Visibility.Visible;
+                }
+                else btnAideContextuelle.Visibility = Visibility.Hidden;
             });
             DataContext = new ControlModelBandeauNavigationGeneral(gestionnaireEcrans, GestionnaireSousEcrans);
         }

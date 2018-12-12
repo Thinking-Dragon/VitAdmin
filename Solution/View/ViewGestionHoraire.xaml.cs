@@ -23,7 +23,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewGestionHoraire.xaml
     /// </summary>
-    public partial class ViewGestionHoraire : Page, IEcranRetour
+    public partial class ViewGestionHoraire : Page, IEcranRetour, IEcranAAideContextuelle
     {
         private GestionnaireEcrans GestEcrans { get; set; }
         private Employe Employe { get; set; }
@@ -52,5 +52,7 @@ namespace VitAdmin.View
         {
             get { return "< Liste d'employés"; }
         }
+
+        public string AncreSectionAideContextuelle => "MPhoraireVetM";
     }
 }

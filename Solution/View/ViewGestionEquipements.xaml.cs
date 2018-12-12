@@ -21,7 +21,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewGestionEquipements.xaml
     /// </summary>
-    public partial class ViewGestionEquipements : Page, IEcranRetour
+    public partial class ViewGestionEquipements : Page, IEcranRetour, IEcranAAideContextuelle
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
         private ViewModelGestionEquipements ViewModel { get; set; }
@@ -39,5 +39,7 @@ namespace VitAdmin.View
         public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
 
         public string TexteBoutonRetourEcran => "< Infrastructure";
+
+        public string AncreSectionAideContextuelle => "MAequipements";
     }
 }

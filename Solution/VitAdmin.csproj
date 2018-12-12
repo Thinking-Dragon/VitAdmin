@@ -382,6 +382,7 @@
     <Compile Include="ViewModel\ViewModelProfessionnelHub.cs" />
     <Compile Include="ViewModel\ViewModelProfessionnelProfil.cs" />
     <Compile Include="ViewModel\ViewModelSuperEcran.cs" />
+    <Compile Include="View\Tool\IEcranAAideContextuelle.cs" />
     <Compile Include="View\Tool\IEcranRetour.cs" />
     <Compile Include="View\Tool\IRetourEcranListeExclusion.cs" />
     <Compile Include="View\Tool\Validateur.cs" />

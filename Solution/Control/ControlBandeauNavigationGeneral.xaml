@@ -16,17 +16,30 @@
             <ColumnDefinition Width="128"></ColumnDefinition>
             <ColumnDefinition Width="8"></ColumnDefinition>
             <ColumnDefinition Width="128"></ColumnDefinition>
+            <ColumnDefinition Width="8"></ColumnDefinition>
+            <ColumnDefinition Width="128"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnRetourEcran"
                 Content="{Binding TexteBoutonRetourEcran}"
                 Command="{Binding CmdRetourEcran}"/>
+        <Button x:Name="btnAideContextuelle"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Width="64"
+                Command="{Binding CmdAideContextuelle}">
+            <materialDesign:PackIcon Kind="Help"
+                                     Width="32" Height="32"
+                                     VerticalAlignment="Center"
+                                     Cursor="Hand">
+            </materialDesign:PackIcon>
+        </Button>
         <materialDesign:DialogHost CloseOnClickAway="True"
                                    Grid.Column="2">
             <materialDesign:DialogHost.DialogContent>
                 <local:ControlNotifications />
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
-        <Button Grid.Column="2"
+        <Button Grid.Column="4"
                 Width="64"
                 HorizontalAlignment="Right"
                 Command="{Binding CmdMessages}">
@@ -37,7 +50,7 @@
                                      Cursor="Hand">
             </materialDesign:PackIcon>
         </Button>
-        <Button Grid.Column="4"
+        <Button Grid.Column="6"
                 Width="64"
                 HorizontalAlignment="Center"
                 Command="{Binding CmdNotifications}">
@@ -66,7 +79,7 @@
                 </materialDesign:Badged>
             </Grid>
         </Button>
-        <Button Grid.Column="6"
+        <Button Grid.Column="8"
                 Width="64"
                 HorizontalAlignment="Left"
                 Command="{Binding CmdProfil}">

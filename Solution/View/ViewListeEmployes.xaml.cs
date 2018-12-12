@@ -13,18 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VitAdmin.Control;
+using VitAdmin.Model;
+using VitAdmin.Parameter;
+using VitAdmin.View.Tool;
 
 namespace VitAdmin.View
 {
     /// <summary>
     /// Logique d'interaction pour ViewListeEmployes.xaml
     /// </summary>
-    public partial class ViewListeEmployes : Page
+    public partial class ViewListeEmployes : Page, IEcranAAideContextuelle
     {
         public ViewListeEmployes(GestionnaireEcrans gestionnaireEcrans)
         {
             InitializeComponent();
+
+            if (!(this is ViewListeEmployesAdmin) && UsagerConnecte.Usager.RoleUsager == Role.admin)
+                gestionnaireEcrans.Changer(new ViewListeEmployesAdmin(gestionnaireEcrans));
+
             this.Content = new ControlListeEmployes(gestionnaireEcrans);
         }
+
+        public string AncreSectionAideContextuelle => "MgestionnairePersonnel";
     }
 }

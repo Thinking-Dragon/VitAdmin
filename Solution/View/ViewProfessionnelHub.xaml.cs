@@ -24,14 +24,20 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewProfessionnelHub.xaml
     /// </summary>
-    public partial class ViewProfessionnelHub : Page
+    public partial class ViewProfessionnelHub : Page, IEcranAAideContextuelle
     {
         private ViewModelProfessionnelHub ViewModelProfessionnelHub { get; set; }
         protected GestionnaireEcrans GestionnaireEcrans { get; set; }
 
+        public string AncreSectionAideContextuelle => UsagerConnecte.Usager.RoleUsager == Role.InfChef ? "MinfirmiereChef" : "MIpatients";
+
         public ViewProfessionnelHub(GestionnaireEcrans gestionnaireEcrans, Employe employe) 
         {
             InitializeComponent();
+
+            if (!(this is ViewProfessionnelHubAdmin) && UsagerConnecte.Usager.RoleUsager == Role.admin)
+                gestionnaireEcrans.Changer(new ViewProfessionnelHubAdmin(gestionnaireEcrans, employe));
+
             GestionnaireEcrans = gestionnaireEcrans;
 
             Departement departementEmploye = DataModelDepartement.GetDepartementEmploye(employe);

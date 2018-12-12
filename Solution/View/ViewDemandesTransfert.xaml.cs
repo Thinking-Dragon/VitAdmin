@@ -24,7 +24,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewDemandesTransfert.xaml
     /// </summary>
-    public partial class ViewDemandesTransfert : Page, IEcranRetour
+    public partial class ViewDemandesTransfert : Page, IEcranRetour, IEcranAAideContextuelle
     {
         ViewModelDemandesTransfert ViewModelDemandesTransfert { get; set; }
         GestionnaireEcrans GestionnaireEcrans { get; set; }
@@ -69,5 +69,7 @@ namespace VitAdmin.View
         {
             get { return "< Retour"; }
         }
+
+        public string AncreSectionAideContextuelle => "MCtransfert";
     }
 }

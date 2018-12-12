@@ -20,7 +20,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewGestionUsagers.xaml
     /// </summary>
-    public partial class ViewGestionUsagers : Page, IEcranRetour
+    public partial class ViewGestionUsagers : Page, IEcranRetour, IEcranAAideContextuelle
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
@@ -34,5 +34,7 @@ namespace VitAdmin.View
         public Action CmdRetourEcranPrecedent => () => GestionnaireEcrans.Changer(new ViewHubAdmin(GestionnaireEcrans));
 
         public string TexteBoutonRetourEcran => "< Accueil";
+
+        public string AncreSectionAideContextuelle => "MAusagers";
     }
 }

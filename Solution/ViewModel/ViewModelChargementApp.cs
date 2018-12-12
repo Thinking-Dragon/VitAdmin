@@ -42,7 +42,8 @@ namespace VitAdmin.ViewModel
 
             GestionnaireEcrans = gestionnaireEcrans;
 
-            Random random = new Random();
+                // Activer pour définir aléatoirement une image de chargement
+            //Random random = new Random();
             //string[] nomsImagesChargement = Directory.GetFiles(@"Resource\Graphic\Animated", "*.gif");
             //UrlImage = @"..\" + nomsImagesChargement[random.Next() % nomsImagesChargement.Length];
 

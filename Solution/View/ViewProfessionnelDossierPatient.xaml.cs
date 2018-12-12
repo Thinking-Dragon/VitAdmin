@@ -25,7 +25,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewHubProfessionnel.xaml
     /// </summary>
-    public partial class ViewProfessionnelDossierPatient : Page, IEcranRetour
+    public partial class ViewProfessionnelDossierPatient : Page, IEcranRetour, IEcranAAideContextuelle
     {
         public GestionnaireEcrans GestEcrans { get; set; }
         public ControlProfessionnelDossierPatient ControlProfessionnelDossierPatient { get; set; }
@@ -55,5 +55,6 @@ namespace VitAdmin.View
             get { return "< Liste patients"; }
         }
 
+        public string AncreSectionAideContextuelle => "MIhospitalisations";
     }
 }

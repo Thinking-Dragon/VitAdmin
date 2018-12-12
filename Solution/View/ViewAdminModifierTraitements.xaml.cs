@@ -24,7 +24,7 @@ namespace VitAdmin.View
     /// <summary>
     /// Logique d'interaction pour ViewAdminModifierTraitements.xaml
     /// </summary>
-    public partial class ViewAdminModifierTraitements : Page, IEcranRetour
+    public partial class ViewAdminModifierTraitements : Page, IEcranRetour, IEcranAAideContextuelle
     {
         GestionnaireEcrans GestionnaireEcrans { get; set; }
 
@@ -54,5 +54,7 @@ namespace VitAdmin.View
         {
             get { return "< Accueil"; }
         }
+
+        public string AncreSectionAideContextuelle => "MAtraitements";
     }
 }
