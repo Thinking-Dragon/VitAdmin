@@ -31,7 +31,8 @@ namespace VitAdmin.Control
 
             
             DataContext = new ControlModelTextBoxHospitalisation(nomLabel, hospitalisation);
-            placeHolder = new placeHolder((DataContext as ControlModelTextBoxHospitalisation).Hospitalisation.Contexte, "Ajouter le contexte ici");
+            placeHolder = new placeHolder("Ajouter le contexte ici");
+            (DataContext as ControlModelTextBoxHospitalisation).Hospitalisation.Contexte = placeHolder.Texte;
             Loaded += Focus_OnLoaded;
 
             txtContext.GotFocus += placeHolder.EnleverTexte;

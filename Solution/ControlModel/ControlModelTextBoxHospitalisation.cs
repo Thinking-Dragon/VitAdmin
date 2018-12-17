@@ -19,6 +19,7 @@ namespace VitAdmin.ControlModel
         {
             NomLabel = nomLabel;
             Hospitalisation = hospitalisation;
+            //Hospitalisation.Contexte = "Ajouter le contexte ici";
         }
     }
 }

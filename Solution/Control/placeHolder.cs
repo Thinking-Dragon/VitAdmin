@@ -21,9 +21,9 @@ namespace VitAdmin.Control
             }
         }
 
-        public placeHolder(string texte, string textePlaceholder)
+        public placeHolder(string textePlaceholder)
         {
-            Texte = texte;
+            Texte = textePlaceholder;
             TextePlaceHolder = textePlaceholder;
         }
 
