@@ -18,7 +18,7 @@ namespace VitAdmin.ControlModel
     {
         public Grid Horaire { get; set; }
         public Employe Employe { get; set; }
-        private Action ChangerSemaine { get; set; }
+        public Action ChangerSemaine { get; set; }
 
         public ControlModelEnregistrerHoraire(Grid horaire, Employe employe, Action changeSemaine)
         {
@@ -94,6 +94,7 @@ namespace VitAdmin.ControlModel
 
                         DialogHost.CloseDialogCommand.Execute(null, null);
                         ChangerSemaine();
+                        ControlModelAjoutQuart.estModifie = false;
                     }  
                 );
             }
@@ -108,6 +109,7 @@ namespace VitAdmin.ControlModel
                     {
                         DialogHost.CloseDialogCommand.Execute(null, null);
                         ChangerSemaine();
+                        ControlModelAjoutQuart.estModifie = false;
                     }
                 );
             }

@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using VitAdmin.Control;
+using VitAdmin.ControlModel;
 using VitAdmin.Model;
 using VitAdmin.MVVM;
 
@@ -62,11 +63,22 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe, () => 
+                        if (ControlModelAjoutQuart.estModifie)
+                        {
+                            DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe, () =>
+                            {
+                                ControlGestionHoraire.aujourdhui = ControlGestionHoraire.Semaine[0].AddDays(7);
+
+                            }), "dialogGeneral:modal=false");
+
+
+                        }
+                        else
                         {
                             ControlGestionHoraire.aujourdhui = ControlGestionHoraire.Semaine[0].AddDays(7);
-
-                        }), "dialogGeneral:modal=false");
+                            
+                        }
+                        
 
                     }
                 );
@@ -80,11 +92,23 @@ namespace VitAdmin.ControlModel
                 return new CommandeDeleguee(
                     param =>
                     {
-                        DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe, () =>
+                        
+
+                        if (ControlModelAjoutQuart.estModifie)
+                        {
+                            DialogHost.Show(new ControlEnregistrerHoraire(GridHoraire, Employe, () =>
+                            {
+                                ControlGestionHoraire.aujourdhui = ControlGestionHoraire.Semaine[0].AddDays(-7);
+
+                            }), "dialogGeneral:modal=false");
+
+
+                        }
+                        else
                         {
                             ControlGestionHoraire.aujourdhui = ControlGestionHoraire.Semaine[0].AddDays(-7);
 
-                        }), "dialogGeneral:modal=false");
+                        }
                     }
                 );
             }

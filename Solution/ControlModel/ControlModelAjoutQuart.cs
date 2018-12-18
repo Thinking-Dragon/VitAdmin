@@ -17,6 +17,7 @@ namespace VitAdmin.ControlModel
         public List<Departement> LstNomsDepartements { get; set; }
         public Departement DepartSelectionne { get; set; }
         public static bool EstPremierClick { get; set; } = true;
+        public static bool estModifie { get; set; } = false;
         public Border Quart { get; set; }
 
         private String PrivateTextButton = "Confirmer";
@@ -50,6 +51,7 @@ namespace VitAdmin.ControlModel
         public ControlModelAjoutQuart(Border quart)
         {
             LstNomsDepartements = Data.DataModelDepartement.GetNomsDepartements();
+            DepartSelectionne = LstNomsDepartements[0];
             Quart = quart;
 
         }
@@ -72,6 +74,7 @@ namespace VitAdmin.ControlModel
                         {
                             DialogHost.CloseDialogCommand.Execute(null, null);
                             EstPremierClick = true;
+                            estModifie = true;
                             Quart.Background = Brushes.DodgerBlue;
                             (Quart.Child as Label).Content = DepartSelectionne.Nom;
                             (Quart.Child as Label).Visibility = System.Windows.Visibility.Visible;
