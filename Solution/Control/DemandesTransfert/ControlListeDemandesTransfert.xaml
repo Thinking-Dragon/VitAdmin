@@ -22,6 +22,7 @@
                   Name="dtgDemandeTransfert"
                   ItemsSource="{Binding Citoyens}"
                   AutoGenerateColumns="False"
+                  ToolTip="Sélectionner le patient à placer dans un lit, puis effectuer le drag and drop sur un lit libre de la liste."
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Patient" Binding="{Binding NomComplet}"/>

@@ -25,6 +25,7 @@
           AutoGenerateColumns="False"
           CanUserAddRows="True"
           MouseDoubleClick="dtgSymptome_MouseDoubleClick"
+          ToolTip="Entrer chaque symptôme que présente votre patient"
           Grid.Row="1" >
             <DataGrid.Columns>
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding Description}"

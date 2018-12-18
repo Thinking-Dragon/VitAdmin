@@ -52,6 +52,7 @@ namespace VitAdmin.Control
             controlBarreRechercheTraitement.HorizontalAlignment = HorizontalAlignment.Left;
             controlBarreRechercheTraitement.VerticalAlignment = VerticalAlignment.Center;
             controlBarreRechercheTraitement.Width = 150;
+            controlBarreRechercheTraitement.ToolTip = "Taper le nom du traitement à ajouter dans la liste. Appuyer sur entrer pour l'ajouter.";
 
             Grid.SetRow(controlBarreRechercheTraitement, 1);
 

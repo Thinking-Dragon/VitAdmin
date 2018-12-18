@@ -22,6 +22,7 @@
           AutoGenerateColumns="False"
                   MouseDoubleClick="DataGrid_MouseDoubleClick"
                   IsReadOnly="True"
+                  ToolTip="Effectuer un double-click pour sélectionner un lit pour le patient. Même si le lit est occupé, le patient sera assigné au département qui prendra en charge l'assignation d'un lit pour le patient."
                  Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Chambre.UnDepartement.Nom}" Header="Département" Width="*"/>
@@ -38,6 +39,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
                 IsEnabled="False"
+                ToolTip="Pour terminer, sélectionner avant tout un lit"
                 Command="{Binding CmdBtnTerminer}">
             Terminer
         </Button>

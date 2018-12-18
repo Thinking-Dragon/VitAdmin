@@ -21,7 +21,7 @@
         
         <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="24" Foreground="Gray">Liste des hospitalisations</Label>
 
-        <DataGrid Name="dtgDossierPatient" Grid.Row="1" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="dtgDossierPatient" Grid.Row="1" ItemsSource="{Binding Hospitalisations}" IsReadOnly="True" AutoGenerateColumns="False" ToolTip="Sélectionner une hospitalisation pour consulter les informations de santé">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Binding="{Binding LstTraitements[0].DepartementAssocie.Nom}" Header="Département"/>
@@ -40,15 +40,15 @@
             <Label Content="Filtres" FontSize="20"/>
 
             <Label Content="Département" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
-            <ComboBox VerticalAlignment="Center" Name="cboDepartements"></ComboBox>
+            <ComboBox VerticalAlignment="Center" Name="cboDepartements" ToolTip="Affiche seulement les hospitalisations dans un département"></ComboBox>
             
             <Label Content="Date de début" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
-            <DatePicker Name="dtpkrDebut" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged"></DatePicker>
+            <DatePicker Name="dtpkrDebut" VerticalAlignment="Center" SelectedDateChanged="dtpkrDebut_SelectedDateChanged" ToolTip="Affiche seulement les hospitalisations débutant à cette date"></DatePicker>
             
             <Label Content="Date de fin" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"/>
-            <DatePicker Name="dtpkrFin" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged"></DatePicker>
+            <DatePicker Name="dtpkrFin" VerticalAlignment="Center" SelectedDateChanged="dtpkrFin_SelectedDateChanged" ToolTip="Affiche seulement les hospitalisations finissant à cette date"></DatePicker>
             
-            <Button Grid.Row="2" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" Click="btnReset_Click"/>
+            <Button Grid.Row="2" Name="btnReset" Content="réinitialiser" Grid.Column="4" MaxWidth="120" ToolTip="Réafficher toutes les hospitalisations" Click="btnReset_Click"/>
             
         </StackPanel>
         

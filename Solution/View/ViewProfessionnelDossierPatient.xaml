@@ -20,9 +20,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Name="btnInfosPatients" Grid.Row="0" Grid.Column="1" MaxHeight="30" MaxWidth="150" Content="Informations" VerticalAlignment="Top"
+        <Button Name="btnInfosPatients" Grid.Row="0" Grid.Column="1" MaxHeight="30" MaxWidth="150" Content="Informations" VerticalAlignment="Top" ToolTip="Consulter les informations personnelles du patient"
                 Command="{Binding CmdBtnClicInfosPatient}"></Button>
-        <Button Grid.Row="2" Grid.Column="1" MaxHeight="30" MaxWidth="165" Content="Créer Hospitalisation" 
+        <Button Grid.Row="2" Grid.Column="1" MaxHeight="30" MaxWidth="165" Content="Créer Hospitalisation" ToolTip="Créer une nouvelle hospitalisation pour le patient"
                 Command="{Binding CmdBtnCreerHospitalisation}"></Button>
     </Grid>
 </Page>

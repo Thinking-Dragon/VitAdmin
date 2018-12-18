@@ -67,6 +67,7 @@ namespace VitAdmin.Control
 
             cboDepartements.ItemsSource = departements;
             cboDepartements.DisplayMemberPath = "Nom";
+            cboDepartements.ToolTip = "Lorsqu'un département est choisi, la liste des professionnels affichera ceux reliés avec le département";
             // Au cas qu'un admin se connecte, aucun département lui est associé, donc il faut enlever la fonction par défaut des filtres.
             //cboDepartements.SelectedItem = UsagerConnecte.Usager.NomUtilisateur == "admin" ? departements[0] : departements[departements.IndexOf(deptRecherche)];
             cboDepartements.SelectedItem = departements[departements.IndexOf(deptRecherche)];

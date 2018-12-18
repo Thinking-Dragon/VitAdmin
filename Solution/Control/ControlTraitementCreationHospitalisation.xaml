@@ -25,6 +25,7 @@
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   ItemsSource ="{Binding Traitements}"
+                  ToolTip="Tous les traitements dans liste seront possiblement prodigués durant l'hospitalisation"
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Traitement" Width="*"/>
@@ -45,7 +46,7 @@
                 Width="130"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
-                
+                ToolTip="Pour débloquer, sélectionner un traitement"
                 Command="{Binding CmdBtnSuivant}">
             Suivant
         </Button>

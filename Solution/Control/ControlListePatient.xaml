@@ -26,10 +26,12 @@
               IsEditable="True"
               IsTextSearchEnabled="True"
               ItemsSource="{Binding Citoyens}"
-              DisplayMemberPath="Nom">
+              DisplayMemberPath="Nom"
+              ToolTip="Taper le nom de famille du patient recherché"
+              >
         </ComboBox>
 
-        <DataGrid Name="dtgPatient" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="dtgPatient" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Citoyens}" IsReadOnly="True" AutoGenerateColumns="False" ToolTip="Sélectionner un patient pour accèder à son dossier">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Binding="{Binding Nom}" Header="Nom"/>
                 <DataGridTextColumn Width="*" Binding="{Binding Prenom}" Header="Prénom"/>

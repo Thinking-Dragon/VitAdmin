@@ -31,6 +31,7 @@
                      AcceptsTab="True"
                      SpellCheck.IsEnabled="True"
                      VerticalContentAlignment="Top"
+                     ToolTip="Permet d'écrire le contexte qui a mené à l'hospitalisation"
                      Text="{Binding Hospitalisation.Contexte}" Margin="65,8,65,10"/>
         </Border>
 
