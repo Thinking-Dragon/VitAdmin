@@ -36,7 +36,8 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="btnModifierTraitement_Click">Modifier</Button>
+                            <Button Click="btnModifierTraitement_Click"
+                                    ToolTip="Modifier le traitement">Modifier</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -58,7 +59,8 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="btnModifierEtape_Click">Modifier</Button>
+                            <Button Click="btnModifierEtape_Click"
+                                    ToolTip="Modifier l'étape">Modifier</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -80,7 +82,8 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="btnModifierInstruction_Click">Modifier</Button>
+                            <Button Click="btnModifierInstruction_Click"
+                                    ToolTip="Modifier l'instruction">Modifier</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

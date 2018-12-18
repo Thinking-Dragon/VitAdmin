@@ -24,6 +24,7 @@
         <Button Grid.Column="2"
                 Grid.Row="0"
                 Width="64"
+                ToolTip="Obtenir de l'aide"
                 Command="{Binding CmdAideContextuelle}">
             <materialDesign:PackIcon Kind="Help"
                                      Width="32" Height="32"

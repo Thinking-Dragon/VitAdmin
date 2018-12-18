@@ -42,6 +42,7 @@
                 Height="128"
                 HorizontalAlignment="Right"
                 Command="{Binding CmdPersonnel}"
+                ToolTip="Gestion du personnel (module des gestionnaires de personnel)"
                 Content="Gestion personnel">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect ShadowDepth="5" Softness="0.2" Color="Black" Opacity="0.4"/>
@@ -53,6 +54,7 @@
                 Width="180"
                 Height="128"
                 Command="{Binding CmdInfrastructure}"
+                ToolTip="Ajouter, modifier et supprimer les départements du système"
                 Content="Gestion départements">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect ShadowDepth="5" Softness="0.2" Color="Black" Opacity="0.4"/>
@@ -65,6 +67,7 @@
                 Height="128"
                 HorizontalAlignment="Left"
                 Command="{Binding CmdPatients}"
+                ToolTip="Gestion des patients (module des professionnels de la santé)"
                 Content="Gestion patients">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect ShadowDepth="5" Softness="0.2" Color="Black" Opacity="0.4"/>
@@ -77,6 +80,7 @@
                 Height="128"
                 HorizontalAlignment="Right"
                 Command="{Binding CmdEquipements}"
+                ToolTip="Ajouter, modifier et supprimer les équipements"
                 Content="Gestion équipements">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect ShadowDepth="5" Softness="0.2" Color="Black" Opacity="0.4"/>
@@ -88,6 +92,7 @@
                 Width="180"
                 Height="128"
                 Command="{Binding CmdTraitements}"
+                ToolTip="Définir les traitements possibles"
                 Content="Gestion traitements">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect ShadowDepth="5" Softness="0.2" Color="Black" Opacity="0.4"/>
@@ -100,6 +105,7 @@
                 Height="128"
                 HorizontalAlignment="Left"
                 Command="{Binding CmdUsagers}"
+                ToolTip="Créer, modifier et supprimer les usagers du système"
                 Content="Gestion des usagers">
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect ShadowDepth="5" Softness="0.2" Color="Black" Opacity="0.4"/>

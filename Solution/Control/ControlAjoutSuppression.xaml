@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="1" Command="{Binding CmdAjout}">+</Button>
-        <Button Grid.Column="2" Command="{Binding CmdSuppression}">-</Button>
+        <Button Grid.Column="1" Command="{Binding CmdAjout}" ToolTip="Ajouter">+</Button>
+        <Button Grid.Column="2" Command="{Binding CmdSuppression}" ToolTip="Retirer">-</Button>
     </Grid>
 </UserControl>

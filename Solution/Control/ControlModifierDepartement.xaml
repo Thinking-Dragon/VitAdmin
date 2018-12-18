@@ -83,12 +83,14 @@
             <Button Click="btnCreerLocal_Click"
                     Width="128"
                     Grid.ColumnSpan="2"
+                    ToolTip="Ajouter un nouveau local au département"
                     Margin="28,16">
                 Créer un local
             </Button>
             <Button Click="btnSupprimerLocal_Click"
                     Width="175"
                     Grid.Column="2"
+                    ToolTip="Supprimer le local sélectionné"
                     Margin="28,16">
                 Supprimer un local
             </Button>

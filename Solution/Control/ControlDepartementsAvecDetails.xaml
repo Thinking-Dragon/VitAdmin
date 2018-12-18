@@ -31,6 +31,7 @@
                           AutoGenerateColumns="False"
                           SelectionMode="Single"
                           IsReadOnly="True"
+                          ToolTip="Sélectionner un département pour le modifier ou pour consulter ses détails"
                           SelectedItem="{Binding DepartementSelectionne}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Département"
@@ -46,10 +47,12 @@
                     </Grid.ColumnDefinitions>
                     <Button VerticalAlignment="Bottom"
                             Width="128"
+                            ToolTip="Créer un nouveau département"
                             Command="{Binding CmdCreerDepartement}">Créer</Button>
                     <Button Grid.Column="1"
                             Width="128"
                             VerticalAlignment="Bottom"
+                            ToolTip="Supprimer le département sélectionné"
                             Command="{Binding CmdSupprimerDepartement}">Supprimer</Button>
                 </Grid>
             </Grid>
@@ -119,7 +122,8 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CmdModifierLocal}">Modifier</Button>
+                                    <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CmdModifierLocal}"
+                                            ToolTip="Modifier le local">Modifier</Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -137,6 +141,7 @@
                         HorizontalAlignment="Right"
                         Margin="0 0 4 0"
                         IsEnabled="{Binding IsDepartementSelected}"
+                        ToolTip="Ajouter un nouveau local au département"
                         Command="{Binding CmdCreerLocal}">
                     Ajouter local
                 </Button>
@@ -146,6 +151,7 @@
                         HorizontalAlignment="Left"
                         Margin="4 0 0 0"
                         IsEnabled="{Binding IsDepartementSelected}"
+                        ToolTip="Supprimer le local sélectionné"
                         Command="{Binding CmdSupprimerLocal}">
                     Supprimer local
                 </Button>

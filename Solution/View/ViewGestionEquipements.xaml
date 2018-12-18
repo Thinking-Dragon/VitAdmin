@@ -31,7 +31,8 @@
                 <DataGridTemplateColumn Width="0.33*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="btnModifierEquipement_Click">Modifier</Button>
+                            <Button Click="btnModifierEquipement_Click"
+                                    ToolTip="Modifier l'équipement">Modifier</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -43,9 +44,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Margin="8"
+                    ToolTip="Ajouter un nouvel équipement"
                     Command="{Binding CmdAjouterEquipement}">Ajouter</Button>
             <Button Grid.Column="1"
                     Margin="8"
+                    ToolTip="Supprimer l'équipement sélectionné"
                     Command="{Binding CmdSupprimerEquipement}">Supprimer</Button>
         </Grid>
         <!--<Button Grid.Column="2"

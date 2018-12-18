@@ -26,6 +26,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Right"
                 Width="64"
+                ToolTip="Obtenir de l'aide"
                 Command="{Binding CmdAideContextuelle}">
             <materialDesign:PackIcon Kind="Help"
                                      Width="32" Height="32"
@@ -42,6 +43,7 @@
         <Button Grid.Column="4"
                 Width="64"
                 HorizontalAlignment="Right"
+                ToolTip="Envoyer un message"
                 Command="{Binding CmdMessages}">
             <materialDesign:PackIcon Grid.Column="3"
                                      Kind="Message"
@@ -53,6 +55,7 @@
         <Button Grid.Column="6"
                 Width="64"
                 HorizontalAlignment="Center"
+                ToolTip="Consulter la liste des notifications"
                 Command="{Binding CmdNotifications}">
             <Grid>
                 <materialDesign:PackIcon Canvas.Left="auto"
@@ -82,6 +85,7 @@
         <Button Grid.Column="8"
                 Width="64"
                 HorizontalAlignment="Left"
+                ToolTip="Menu de l'usager"
                 Command="{Binding CmdProfil}">
             <materialDesign:PackIcon Grid.Column="3"
                                      Kind="AccountCircle"

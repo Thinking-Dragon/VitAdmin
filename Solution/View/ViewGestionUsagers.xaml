@@ -68,6 +68,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Width="195"
+                ToolTip="Créer un nouvel usager"
                 Command="{Binding CmdAjouter}">
             Créer un nouvel usager
         </Button>
@@ -76,6 +77,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Width="195"
+                ToolTip="Modifier l'usager sélectionné"
                 Command="{Binding CmdModifier}">
             Modifier d'usager
         </Button>
@@ -85,6 +87,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Width="195"
+                ToolTip="Supprimer l'usager sélectionné"
                 Command="{Binding CmdSupprimer}">
             Supprimer l'usager
         </Button>

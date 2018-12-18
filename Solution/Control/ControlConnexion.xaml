@@ -8,7 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <Label>Usager:</Label>
-        <TextBox Text="{Binding Usager, UpdateSourceTrigger=PropertyChanged}"> <!-- BUG TO FIX (User binding doesn't update unless focus is changed) -->
+        <TextBox Text="{Binding Usager, UpdateSourceTrigger=PropertyChanged}"
+                 ToolTip="Votre nom d'usager"> <!-- BUG TO FIX (User binding doesn't update unless focus is changed) -->
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding CmdConnexion}" Key="Return"
                             CommandParameter="{Binding ElementName=pswPassword}" />
@@ -17,7 +18,9 @@
             </TextBox.InputBindings>
         </TextBox>
         <Label>Mot de passe:</Label>
-        <PasswordBox x:Name="pswPassword" Password="Password">
+        <PasswordBox x:Name="pswPassword"
+                     ToolTip="Votre mot de passe"
+                     Password="Password">
             <PasswordBox.InputBindings>
                 <KeyBinding Command="{Binding CmdConnexion}" Key="Return"
                             CommandParameter="{Binding ElementName=pswPassword}" />
@@ -31,6 +34,7 @@
                     Grid.Row="3"
                     Width="120"
                     Command="{Binding CmdConnexion}"
+                    ToolTip="Se connecter"
                     CommandParameter="{Binding ElementName=pswPassword}">Connexion</Button>
     </StackPanel>
 </UserControl>
