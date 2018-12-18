@@ -10,9 +10,6 @@ namespace VitAdmin.ViewModel
 {
     public class ViewModelDemandesTransfert : ObjetObservable
     {
-        public ViewModelDemandesTransfert()
-        {
-
-        }
+        public ViewModelDemandesTransfert() {}
     }
 }

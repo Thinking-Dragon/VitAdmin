@@ -12,16 +12,7 @@ namespace VitAdmin.ViewModel
     {
         private GestionnaireEcrans GestionnaireEcrans { get; set; }
 
-        public ICommand CmdCreer
-        {
-            get
-            {
-                return new CommandeDeleguee(param =>
-                {
-
-                });
-            }
-        }
+        public ICommand CmdCreer {get{return new CommandeDeleguee(param =>{});}}
 
         public ViewModelCreerDepartement(GestionnaireEcrans gestionnaireEcrans)
             => GestionnaireEcrans = gestionnaireEcrans;

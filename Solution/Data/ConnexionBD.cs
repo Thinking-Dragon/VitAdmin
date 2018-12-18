@@ -15,10 +15,6 @@ namespace VitAdmin.Data
     {
         private ConnexionBD() { }
 
-        public string NomBD { get; set; } = string.Empty;
-   
-        public string Mdp { get; set; }
-
         private MySqlConnection connexion = null;
         public MySqlConnection Connexion { get { return connexion; } }
 
@@ -36,7 +32,6 @@ namespace VitAdmin.Data
             {
                 try
                 {
-                    if (String.IsNullOrEmpty(NomBD)) return false;
                     //POUR LAURENCE : Utilisation de l'alias 420
                     string strConnexion = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
                     connexion = new MySqlConnection(strConnexion);
