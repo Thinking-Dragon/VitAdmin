@@ -310,8 +310,8 @@
         <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Jour</Label>
         <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">Soir</Label>
 
-        <Button Margin="10,10,10,10" Grid.Row="5" Grid.Column="9" Command="{Binding CmdSemaineSuivante}">Semaine suivante</Button>
-        <Button Margin="10,10,10,10" Grid.Row="5" Command="{Binding CmdSemainePrecedente}">Semaine précédente</Button>
+        <Button ToolTip="Passer à la semaine suivante" Margin="10,10,10,10" Grid.Row="5" Grid.Column="9" Command="{Binding CmdSemaineSuivante}">Semaine suivante</Button>
+        <Button ToolTip="Passer à la semaine précédente" Margin="10,10,10,10" Grid.Row="5" Command="{Binding CmdSemainePrecedente}">Semaine précédente</Button>
 
     </Grid>
 </UserControl>

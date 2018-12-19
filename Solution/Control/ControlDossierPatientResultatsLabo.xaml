@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid SelectedCellsChanged="DataGrid_SelectedCellsChanged" ItemsSource="{Binding LstResultsLabo}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0">
+        <DataGrid ToolTip="Liste des résultats de laboratoire" SelectedCellsChanged="DataGrid_SelectedCellsChanged" ItemsSource="{Binding LstResultsLabo}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NomAnalyse}" Header="Note" Width="*"/>
                 <DataGridTextColumn Binding="{Binding DateEvenement, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date" Width="*" />
@@ -25,7 +25,7 @@
 
         <Grid Grid.Column="1">
             <Image Name="img"></Image>
-            <Button Click="NouveauResultat_Click" Name="NouveauResultat" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouveau résultat</Button>
+            <Button ToolTip="Ajouter un nouveau résultat de laboratoire" Click="NouveauResultat_Click" Name="NouveauResultat" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouveau résultat</Button>
         </Grid>
      
     </Grid>

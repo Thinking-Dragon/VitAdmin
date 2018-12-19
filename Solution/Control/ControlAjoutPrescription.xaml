@@ -21,19 +21,19 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0">Produit :</Label>
-        <TextBox Grid.Column="1" Grid.Row="0" Name="produit" Margin="10,10,10,10" Width="250"></TextBox>
+        <TextBox ToolTip="Entrer le nom du produit à prescrire" Grid.Column="1" Grid.Row="0" Name="produit" Margin="10,10,10,10" Width="250"></TextBox>
 
         <Label Grid.Column="0" Grid.Row="1">Posologie :</Label>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="posologie" Margin="10,10,10,10" Width="250"></TextBox>
+        <TextBox ToolTip="Entrer la posologie du produit" Grid.Column="1" Grid.Row="1" Name="posologie" Margin="10,10,10,10" Width="250"></TextBox>
 
         <Label Grid.Column="0" Grid.Row="2">Date de début de la prescription :</Label>
-        <DatePicker Grid.Column="1" Grid.Row="2" Name="dateDebut" Margin="10,10,10,10" Width="250"></DatePicker>
+        <DatePicker ToolTip="Entrer la date de début de la prescription" Grid.Column="1" Grid.Row="2" Name="dateDebut" Margin="10,10,10,10" Width="250"></DatePicker>
 
         <Label Grid.Column="0" Grid.Row="3">Nombre de jours :</Label>
-        <xctk:IntegerUpDown Grid.Column="1" Width="70" Height="50" Grid.Row="3" Name="nbJour" Margin="10,10,10,10"/>
+        <xctk:IntegerUpDown ToolTip="Entrer le nombre de jour de la prescription, 0 jours pour une prescription sans limite" Grid.Column="1" Width="70" Height="50" Grid.Row="3" Name="nbJour" Margin="10,10,10,10"/>
 
         <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,10,10,50" Height="30" Foreground="Red" Content="{Binding MessageErreur}"></Label>
-        <CheckBox Grid.Row="4" Grid.Column="0" Name="Notifier" Margin="10,10,10,10" Height="30" Width="65" HorizontalAlignment="Left">Notifier</CheckBox>
-        <Button Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" Click="Confirmer_Click" Name="Confirmer" Width="100" Margin="20,10,10,10" HorizontalAlignment="Right" Panel.ZIndex="-1" Content="{Binding contenuBtn}"></Button>
+        <CheckBox ToolTip="Créer une notification pour tous les employés concernés" Grid.Row="4" Grid.Column="0" Name="Notifier" Margin="10,10,10,10" Height="30" Width="65" HorizontalAlignment="Left">Notifier</CheckBox>
+        <Button ToolTip="Enrigistrer la nouvelle note" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" Click="Confirmer_Click" Name="Confirmer" Width="100" Margin="20,10,10,10" HorizontalAlignment="Right" Panel.ZIndex="-1" Content="{Binding contenuBtn}"></Button>
     </Grid>
 </UserControl>

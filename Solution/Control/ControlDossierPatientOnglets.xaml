@@ -18,16 +18,16 @@
             <TabItem Name="Apercu" Header="Aperçu" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="NotesInf" Header="Notes Infirmières" HorizontalAlignment="Center">
+            <TabItem ToolTip="Liste des notes des infirmières" Name="NotesInf" Header="Notes Infirmières" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="Prescriptions" Header="Prescriptions" HorizontalAlignment="Center">
+            <TabItem ToolTip="Liste des prescriptions" Name="Prescriptions" Header="Prescriptions" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="ResultatsLabo" Header="Résultats d'analyse" HorizontalAlignment="Center">
+            <TabItem ToolTip="Liste des résultats de laboratoire" Name="ResultatsLabo" Header="Résultats d'analyse" HorizontalAlignment="Center">
 
             </TabItem>
-            <TabItem Name="NotesMed" Header="Notes Médecins" HorizontalAlignment="Center">
+            <TabItem ToolTip="Liste des notes des médecins" Name="NotesMed" Header="Notes Médecins" HorizontalAlignment="Center">
 
             </TabItem>
         </dragablz:TabablzControl>

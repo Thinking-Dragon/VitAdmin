@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding LstNotesMed}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid ToolTip="Liste des notes des medecins" ItemsSource="{Binding LstNotesMed}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NotesMed}" Header="Note" Width="*" />
                 <DataGridTextColumn Binding="{Binding DateEvenement, StringFormat=\{0:dd-MM-yy HH:mm\}}" Header="Date" Width="*" />
@@ -17,6 +17,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Click="NouvelleNote_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle note</Button>
+        <Button ToolTip="Créer une nouvelle note" Click="NouvelleNote_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle note</Button>
     </Grid>
 </UserControl>

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DataGrid ItemsSource="{Binding LstPrescriptions}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid ToolTip="Liste des prescriptions" ItemsSource="{Binding LstPrescriptions}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Produit}" Header="Médicament" Width="*" />
                 <DataGridTextColumn Binding="{Binding Posologie}" Header="Posologie" Width="*" />
@@ -16,6 +16,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Click="NouvellePrescription_Click" Name="NouvellePrescription" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle Prescription</Button>
+        <Button ToolTip="Créer une nouvelle prescriptions" Click="NouvellePrescription_Click" Name="NouvellePrescription" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10">Nouvelle Prescription</Button>
     </Grid>
 </UserControl>

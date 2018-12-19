@@ -27,8 +27,8 @@
                 <SolidColorBrush Color="{Binding FillBtnProfil}"></SolidColorBrush>
             </Border.Background>
         </Border>
-        
-        <Border Grid.Row="1" Panel.ZIndex="5" Cursor="Hand" IsEnabled="{Binding IsBtnHoraireEnabled}">
+
+        <Border ToolTip="Visualisation de l'horaire" Grid.Row="1" Panel.ZIndex="5" Cursor="Hand" IsEnabled="{Binding IsBtnHoraireEnabled}">
             <Border.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdAfficheHoraire}"></MouseBinding>
             </Border.InputBindings>
@@ -37,7 +37,7 @@
             </Border.Background>
         </Border>
 
-        <Border Grid.Row="2" Panel.ZIndex="5" Cursor="Hand">
+        <Border ToolTip="Déconnexion" Grid.Row="2" Panel.ZIndex="5" Cursor="Hand">
             <Border.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding CmdLogOut}"></MouseBinding>
             </Border.InputBindings>
